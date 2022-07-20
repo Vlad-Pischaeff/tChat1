@@ -1,5 +1,5 @@
 import React from 'react';
-import { LoginPage } from './pages/LoginPage';
+import * as PAGE from './pages';
 
 function App() {
     return (
@@ -10,7 +10,7 @@ function App() {
                     <p>Header</p>
                 </header>
                 <article className="content">
-                    <LoginPage />
+                    <PAGE.LoginPage />
                 </article>
                 <footer className="footer">
                     <p>Footer</p>

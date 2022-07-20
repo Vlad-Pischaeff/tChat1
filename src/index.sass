@@ -51,9 +51,14 @@ body
 .header, .footer
     flex: 0 0 3rem
     display: flex
-    justify-content: center
     width: 100%
     color: $C5
+.header
+    justify-content: flex-end
+    p
+        padding: 0 1rem
+.footer
+    justify-content: center
 .content
     flex: 1 1 auto
     display: flex
@@ -62,7 +67,7 @@ body
     width: 100%
 .authForm
     width: 22rem
-    min-height: 20rem
+    min-height: 25rem
     border-radius: 8px 
     background: $C2
     color: $C5
@@ -76,12 +81,14 @@ body
         height: 3rem
         background: $C4
         font-size: 2rem
+        margin-bottom: 1rem
         p
             margin: 0 1rem
             height: 3rem
             line-height: 3rem
     .fs-body
         width: 100%
+        margin-bottom: 1rem
         fieldset
             display: flex
             flex-flow: column nowrap
@@ -119,3 +126,15 @@ body
         padding: 0 2rem
         border-radius: 5px 
         background: $C1
+.input-container
+    position: relative
+    height: 2.5rem
+    & > img
+        position: absolute
+        width: 2rem
+        height: 2rem
+        right: 1rem
+        top: .2rem
+    & > input
+        position: absolute
+        width: 96%
