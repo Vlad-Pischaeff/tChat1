@@ -1,0 +1,121 @@
+@font-face 
+    font-family: 'Roboto'
+    src: url('http://localhost:3000/fonts/roboto-v20-latin_cyrillic-100.woff2') format('woff2')
+    src: url('http://localhost:3000/fonts/roboto-v20-latin_cyrillic-100.woff') format('woff')
+    font-weight: 100
+    font-style: normal
+
+@font-face
+    font-family: 'Roboto'
+    src: url('http://localhost:3000/fonts/roboto-v20-latin_cyrillic-300.woff2') format('woff2')
+    src: url('http://localhost:3000/fonts/roboto-v20-latin_cyrillic-300.woff') format('woff')
+    font-weight: 300
+    font-style: normal
+
+$ff: 'Roboto', sans-serif
+$ff-light: 100
+$ff-regular: 300
+$C1: #3F8A8C
+$C2: #0C5679
+$C3: #E5340B
+$C4: #F28A0F
+$C5: #FFE7BD
+$C6: #B0B0B0
+$BG: #0F1A2B
+
+body
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+    letter-spacing: .1rem
+    font-family: $ff
+#root
+    width: 100vw
+    height: 100vh
+    background: $BG
+    display: flex
+.aside, .layout
+    height: 100vh
+.aside
+    width: 20%
+    min-width: 10rem
+    background-image: url('http://localhost:3000/img/image1.jpg')
+    background-size: cover
+    background-position: center center
+.layout
+    flex: 1 1 auto
+    display: flex
+    flex-flow: column nowrap
+    justify-content: space-between
+    align-items: center
+.header, .footer
+    flex: 0 0 3rem
+    display: flex
+    justify-content: center
+    width: 100%
+    color: $C5
+.content
+    flex: 1 1 auto
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 100%
+.authForm
+    width: 22rem
+    min-height: 20rem
+    border-radius: 8px 
+    background: $C2
+    color: $C5
+    display: flex
+    flex-flow: column
+    justify-content: space-between
+    align-items: flex-start
+    overflow: hidden
+    .fs-header
+        width: 100%
+        height: 3rem
+        background: $C4
+        font-size: 2rem
+        p
+            margin: 0 1rem
+            height: 3rem
+            line-height: 3rem
+    .fs-body
+        width: 100%
+        fieldset
+            display: flex
+            flex-flow: column nowrap
+            border: none
+            padding: .5rem 1rem
+            margin: 0
+            input
+                height: 2.5rem
+                font-size: 1.3rem
+                border: none
+                padding: 0 .4rem
+                border-radius: 4px
+                &::placeholder
+                    color: $C6
+                &:focus
+                    outline: none
+                    box-shadow: 0px 0px 43px 0px #00000088
+            label
+                font-size: .9rem
+                color: $C6
+                text-transform: lowercase
+                letter-spacing: .1rem
+                margin: .4rem 0
+    .fs-footer
+        width: 100%
+        height: 4rem
+        p
+            margin: 1rem
+    > input
+        height: 3rem
+        min-height: 3rem
+        font-size: 1.5rem
+        border: none
+        margin: 1rem
+        padding: 0 2rem
+        border-radius: 5px 
+        background: $C1
