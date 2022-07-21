@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import * as ICON from '../img';
+import * as ICON from '../assets/img';
 import s from './Auth.module.sass';
 
 interface IFormInputs {
