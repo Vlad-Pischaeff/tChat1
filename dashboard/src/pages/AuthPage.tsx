@@ -6,10 +6,10 @@ export const AuthPage = () => {
         <>
             <aside className="aside"></aside>
             <section className="layout">
-                <header className="header">
-                    <p><Link to="login">Login</Link></p>
+                <nav className="header">
+                    <p><Link to="login">Login</Link></p> 
                     <p><Link to="signup">Sign up</Link></p>
-                </header>
+                </nav>
                 <article className="content">
                     <Outlet />
                 </article>

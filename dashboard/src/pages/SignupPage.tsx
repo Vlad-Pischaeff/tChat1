@@ -1,24 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useAddUserMutation } from "../api/usersApi";
+import { IFormInputs, Warning, InputType } from './Types';
 import * as yup from "yup";
 import * as ICON from '../assets/img';
 import s from './Auth.module.sass';
-
-interface IFormInputs {
-    name: string;
-    email: string;
-    password: string;
-}
-
-type Warning = {
-    name?: string;
-    errors?: string | Array<string>;
-}
-
-enum InputType { 
-    pw = "password", 
-    txt = "text",
-}
 
 const schema = yup.object({
     password: yup.string().min(5).max(20).required(),
@@ -27,6 +13,7 @@ const schema = yup.object({
 }).required();
 
 export const SignupPage = () => {
+    const [ addUser ] = useAddUserMutation();
     const { watch, register, handleSubmit } = useForm<IFormInputs>();
     const [ warning, setWarning ] = useState<Warning>({});
     const [ type, setType ] = useState<InputType>(InputType.pw);
@@ -43,7 +30,10 @@ export const SignupPage = () => {
     const onSubmit = (data: IFormInputs) => {
         schema
             .validate(data)
-            .then(data => console.log('formData..', data))  // здесь вызываем API запросы к базе на валидацию
+            .then(data => {
+                console.log('formData..', data);
+                addUser(data);
+            })  // здесь вызываем API запросы к базе на валидацию
             .catch((err: Warning) => {
                 setWarning({ "name": err.name, "errors": err.errors });
             });
