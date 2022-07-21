@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import EyeBlocked from '@icon/icofont/icons/eye-blocked.svg';
-import Eye from '@icon/icofont/icons/eye.svg';
+import * as ICON from '../img';
+import s from './Auth.module.sass';
 
 interface IFormInputs {
-    login: string;
+    name: string;
     email: string;
     password: string;
 }
@@ -23,7 +23,7 @@ enum InputType {
 const schema = yup.object({
     password: yup.string().min(5).max(20).required(),
     email: yup.string().email().required(),
-    login: yup.string().max(20).required(),
+    name: yup.string().max(20).required(),
 }).required();
 
 export const SignupPage = () => {
@@ -53,19 +53,19 @@ export const SignupPage = () => {
         type === InputType.pw
             ? setType(InputType.txt)
             : setType(InputType.pw);
-    }
+    };
 
     return (
         <>
-            <form onSubmit={handleSubmit(onSubmit)} className="authForm">
-                <div className="fs-header">
+            <form onSubmit={handleSubmit(onSubmit)} className={s.authForm}>
+                <div className={s.header}>
                     <p>Signup</p>
                 </div>
-                
-                <div className="fs-body">
+
+                <div className={s.body}>
                     <fieldset>
                         <label>Login Name</label>
-                        <input {...register("login")} placeholder="John Smith" />
+                        <input {...register("name")} placeholder="John Smith" />
                     </fieldset>
                     <fieldset>
                         <label>Email</label>
@@ -73,15 +73,15 @@ export const SignupPage = () => {
                     </fieldset>
                     <fieldset>
                         <label>Password</label>
-                        <div className="input-container">
+                        <div className={s.inputWrap}>
                             <input {...register("password")} placeholder="password" type={type} />
-                            <img src={type === InputType.pw ? EyeBlocked : Eye} alt="eye blocked" onClick={switchPassVisibility} />
+                            <img src={type === InputType.pw ? ICON.EyeBlocked : ICON.Eye} alt="eye blocked" onClick={switchPassVisibility} />
                         </div>
                     </fieldset>
                 </div>
 
-                <input type="submit" value="Login" />
-                <div className="fs-footer">
+                <input type="submit" value="Submit" />
+                <div className={s.footer}>
                     { warning 
                         && <p>{ warning.errors }</p> 
                     }

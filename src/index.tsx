@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App';
 import './index.sass';
 
@@ -8,5 +9,10 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-    <App />
+    <BrowserRouter>
+        <Routes>
+            <Route path="/*" element={<App />} />
+        </Routes>
+    </BrowserRouter>
+
 );
