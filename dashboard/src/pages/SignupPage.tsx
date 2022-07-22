@@ -29,11 +29,19 @@ export const SignupPage = () => {
 
     const onSubmit = (data: IFormInputs) => {
         schema
-            .validate(data)
+            .validate(data)             // проверяем введенные данные
             .then(data => {
                 console.log('formData..', data);
-                addUser(data);
-            })  // здесь вызываем API запросы к базе на валидацию
+                addUser(data)           // здесь вызываем API запросы к базе на валидацию
+                    .unwrap()                
+                    .then(payload => {  // здесь получаем jwtToken
+                        console.log('register fulfilled', payload);
+                        localStorage.setItem('token', JSON.stringify(payload));
+                    })
+                    .catch(error => {
+                        setWarning({ "errors": error.data.message });
+                    });
+            })
             .catch((err: Warning) => {
                 setWarning({ "name": err.name, "errors": err.errors });
             });

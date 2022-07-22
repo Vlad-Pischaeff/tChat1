@@ -1,11 +1,17 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+let { jwtToken } = JSON.parse(localStorage.getItem('token'));
 
 export const usersApi = createApi({
     reducerPath: 'usersApi',
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3000/api/' }),
     endpoints: (builder) => ({
         Users: builder.query({
-            query: () => `users`,
+            query: () => ({
+                url: 'users',
+                headers: {
+                    "Authorization": `Bearer ${jwtToken}`
+                }
+            }),
         }),
         addUser: builder.mutation({
             query: (user) => ({
@@ -24,4 +30,9 @@ export const usersApi = createApi({
     }),
 });
 
-export const { useUsersQuery, useAddUserMutation, useLoginUserMutation } = usersApi;
+export const {
+    useUsersQuery,
+    useLazyUsersQuery, 
+    useAddUserMutation, 
+    useLoginUserMutation 
+} = usersApi;

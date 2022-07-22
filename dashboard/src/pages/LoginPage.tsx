@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useLoginUserMutation } from '../api/usersApi';
+import { useLoginUserMutation, useLazyUsersQuery } from '../api/usersApi';
 import { IFormInputs, Warning, InputType } from './Types';
 import * as yup from "yup";
 import * as ICON from '../assets/img';
@@ -12,6 +12,7 @@ const schema = yup.object({
 }).required();
 
 export const LoginPage = () => {
+    const [ trigger ] = useLazyUsersQuery();
     const [ loginUser ] = useLoginUserMutation();
     const { watch, register, handleSubmit } = useForm<IFormInputs>();
     const [ warning, setWarning ] = useState<Warning>({});
@@ -28,15 +29,29 @@ export const LoginPage = () => {
 
     const onSubmit = (data: IFormInputs) => {
         schema
-            .validate(data)
+            .validate(data)                 // проверяем введенные данные
             .then(data => {
-                loginUser(data);                // вызываем API '/users/login'
-                console.log('formData..', data)
+                loginUser(data)             // вызываем API '/users/login'
+                    .unwrap()                
+                    .then(payload => {
+                        console.log('login fulfilled', payload);
+                        localStorage.setItem('token', JSON.stringify(payload));
+                    })
+                    .catch(error => {
+                        setWarning({ "errors": error.data.message });
+                    })
             })
             .catch((err: Warning) => {
                 setWarning({ "name": err.name, "errors": err.errors });
             });
     };
+
+    const testQuery = () => {
+        console.log('testQuery')
+        trigger('', false)
+            .then(data => console.log('trigger data...', data))
+            .catch(error => console.log('trigger error...', error));
+    }
 
     const switchPassVisibility = () => {
         type === InputType.pw
@@ -71,6 +86,7 @@ export const LoginPage = () => {
                         && <p>{ warning.errors }</p> 
                     }
                 </div>
+                <input type="button" onClick={testQuery} />
             </form>
         </>
     );
