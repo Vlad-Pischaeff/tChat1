@@ -1,4 +1,7 @@
 const Users = require('../models/users');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+const setJWT = require('./helper/jwtAuth');
 
 const usersController = () => {
     /********************************************
@@ -20,21 +23,36 @@ const usersController = () => {
             const { name, email, password } = req.body;
 
             const candidate = await Users.findOne({ name });
+            const userEmail = await Users.findOne({ email });
 
             if (candidate) {
                 throw new Error(`User login ${name} is already exists...`);
             }
 
-            const user = new Users({ name, email, password });
+            if (userEmail) {
+                throw new Error(`User email ${email} is already exists...`);
+            }
+
+            const salt = await bcrypt.genSaltSync(saltRounds);
+            const hash = await bcrypt.hashSync(password, salt);
+
+            const user = new Users({ name, email, password: hash });
 
             await user.save((err, doc) => {
                 if (err) {
                     throw new Error(`User ${name} not created...`);
                 }
-                res.status(201).json({ ...doc._doc });
+
+                const jwtPayload = {
+                    userId: doc._id.toString(),
+                    userName: doc.name
+                };
+
+                const jwtToken = setJWT(jwtPayload);
+                res.status(201).json({ jwtToken });
             });
         } catch (e) {
-            res.status(500).json({ message: `${e}` });
+            res.status(500).json({ message: `${e.message}` });
         }
     };
     /********************************************
@@ -43,15 +61,33 @@ const usersController = () => {
     const loginUser = async (req, res) => {
         try {
             const { name, password } = req.body;
-            const candidate = await Users.findOne({ name, password });
+            const candidate = await Users.findOne({ name });
 
             if (!candidate) {
-                throw new Error(`User ${name} not found, or wrong password...`);
+                throw new Error('No such user or password...');
             }
 
-            res.status(201).json({ ...candidate._doc });
+            isPasswordMatch = await bcrypt.compare(password, candidate.password);
+            
+            if (!isPasswordMatch) {
+                throw new Error('No such user or password...');
+            }
+
+            const jwtPayload = {
+                userId: candidate._id.toString(),
+                userName: candidate.name
+            };
+            const jwtToken = setJWT(jwtPayload);
+
+            res.status(201).json({ 
+                id: candidate._id.toString(),
+                name: candidate.name,
+                email: candidate.email,
+                photo: candidate.photo,
+                jwtToken 
+            });
         } catch (e) {
-            res.status(500).json({ message: `${e}` });
+            res.status(500).json({ message: `${e.message}` });
         }
     };
     /********************************************

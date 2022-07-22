@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const server = require('http').createServer(app);
 
+require('./startup/env');
 require('./startup/db')();
 require('./startup/cors')(app);
 require('./startup/bodyParser')(app);

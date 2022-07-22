@@ -1,9 +1,10 @@
 const express = require('express');
 const controller = require('../controllers/usersController')();
 const usersRouter = express.Router();
+const auth = require('../controllers/middleware/auth');
 
 usersRouter.route('/users')
-    .get(controller.getUsers);
+    .get(auth, controller.getUsers);
 
 usersRouter.route('/users/register')
     .put(controller.registerUser);
