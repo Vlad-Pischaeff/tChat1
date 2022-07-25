@@ -49,7 +49,13 @@ const usersController = () => {
                 };
 
                 const jwtToken = setJWT(jwtPayload);
-                res.status(201).json({ jwtToken });
+                res.status(201).json({ 
+                    id: doc._id.toString(),
+                    name: doc.name,
+                    email: doc.email,
+                    photo: doc.photo,
+                    jwtToken 
+                });
             });
         } catch (e) {
             res.status(500).json({ message: `${e.message}` });

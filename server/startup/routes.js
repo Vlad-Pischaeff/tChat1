@@ -5,7 +5,7 @@ const ROUTER = require('../routes');
 const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = app => {
-    app.use('/upload', express.static('./upload'));
+    app.use('/upload', express.static(path.join( __dirname, '..', '/public/upload')));
     
     app.use('/api', ROUTER.usersRouter);
     app.use('/api', ROUTER.uploadRouter);

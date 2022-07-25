@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useAddUserMutation } from "../api/usersApi";
+import { useDispatch, useSelector } from "react-redux";
+import { resetMessage, setMessage, selectUI } from "../store/slices/ui";
+import { useAddUserMutation } from "../store/api/usersApi";
 import { IFormInputs, Warning, InputType } from './Types';
 import * as yup from "yup";
 import * as ICON from '../assets/img';
@@ -13,41 +15,34 @@ const schema = yup.object({
 }).required();
 
 export const SignupPage = () => {
+    const dispatch = useDispatch();
+    const ui = useSelector(selectUI);
     const [ addUser ] = useAddUserMutation();
     const { watch, register, handleSubmit } = useForm<IFormInputs>();
-    const [ warning, setWarning ] = useState<Warning>({});
     const [ type, setType ] = useState<InputType>(InputType.pw);
 
     useEffect(() => {
         const subscription = watch(() => {
-            if (warning?.errors) {
-                setWarning({});                             // сбрасываем ошибки при изменении инпутов
+            if (ui.message) {
+                dispatch(resetMessage());
             }
         });
         return () => subscription.unsubscribe();
-    }, [watch, warning]);
+    }, [watch, ui.message, dispatch]);
 
     const onSubmit = (data: IFormInputs) => {
         schema
             .validate(data)             // проверяем введенные данные
             .then(data => {
-                console.log('formData..', data);
                 addUser(data)           // здесь вызываем API запросы к базе на валидацию
-                    .unwrap()                
-                    .then(payload => {  // здесь получаем jwtToken
-                        console.log('register fulfilled', payload);
-                        localStorage.setItem('token', JSON.stringify(payload));
-                    })
-                    .catch(error => {
-                        setWarning({ "errors": error.data.message });
-                    });
             })
             .catch((err: Warning) => {
-                setWarning({ "name": err.name, "errors": err.errors });
+                const message = err.errors?.[0];
+                dispatch(setMessage(message));
             });
     };
 
-    const switchPassVisibility = () => {                    // показать/скрыть пароль
+    const switchPassVisibility = () => { // показать/скрыть пароль
         type === InputType.pw
             ? setType(InputType.txt)
             : setType(InputType.pw);
@@ -80,8 +75,8 @@ export const SignupPage = () => {
 
                 <input type="submit" value="Submit" />
                 <div className={s.footer}>
-                    { warning 
-                        && <p>{ warning.errors }</p> 
+                    { ui.message 
+                        && <p>{ ui.message }</p> 
                     }
                 </div>
             </form>

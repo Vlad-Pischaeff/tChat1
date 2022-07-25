@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useLoginUserMutation, useLazyUsersQuery } from '../api/usersApi';
+import { useDispatch, useSelector } from "react-redux";
+import { resetMessage, setMessage, selectUI } from "../store/slices/ui";
+import { useLoginUserMutation, useLazyUsersQuery } from '../store/api/usersApi';
 import { IFormInputs, Warning, InputType } from './Types';
 import * as yup from "yup";
 import * as ICON from '../assets/img';
@@ -12,45 +14,38 @@ const schema = yup.object({
 }).required();
 
 export const LoginPage = () => {
+    const dispatch = useDispatch();
+    const ui = useSelector(selectUI);
     const [ trigger ] = useLazyUsersQuery();
     const [ loginUser ] = useLoginUserMutation();
     const { watch, register, handleSubmit } = useForm<IFormInputs>();
-    const [ warning, setWarning ] = useState<Warning>({});
     const [ type, setType ] = useState<InputType>(InputType.pw);
 
     useEffect(() => {
         const subscription = watch(() => {
-            if (warning?.errors) {
-                setWarning({});
+            if (ui.message) {
+                dispatch(resetMessage());
             }
         });
         return () => subscription.unsubscribe();
-    }, [watch, warning]);
+    }, [watch, ui.message, dispatch]);
 
     const onSubmit = (data: IFormInputs) => {
         schema
             .validate(data)                 // проверяем введенные данные
             .then(data => {
                 loginUser(data)             // вызываем API '/users/login'
-                    .unwrap()                
-                    .then(payload => {
-                        console.log('login fulfilled', payload);
-                        localStorage.setItem('token', JSON.stringify(payload));
-                    })
-                    .catch(error => {
-                        setWarning({ "errors": error.data.message });
-                    })
             })
             .catch((err: Warning) => {
-                setWarning({ "name": err.name, "errors": err.errors });
+                const message = err.errors?.[0];
+                dispatch(setMessage(message));
             });
     };
 
     const testQuery = () => {
-        console.log('testQuery')
         trigger('', false)
-            .then(data => console.log('trigger data...', data))
-            .catch(error => console.log('trigger error...', error));
+            .then(data => console.log('testQuery trigger data...', data))
+            .catch(error => console.log('testQuery trigger error...', error));
     }
 
     const switchPassVisibility = () => {
@@ -82,8 +77,8 @@ export const LoginPage = () => {
 
                 <input type="submit" value="Login" />
                 <div className={s.footer}>
-                    { warning 
-                        && <p>{ warning.errors }</p> 
+                    { ui.message 
+                        && <p>{ ui.message }</p> 
                     }
                 </div>
                 <input type="button" onClick={testQuery} />
