@@ -51,9 +51,6 @@ const usersController = () => {
                 const jwtToken = setJWT(jwtPayload);
                 res.status(201).json({ 
                     id: doc._id.toString(),
-                    // name: doc.name,
-                    // email: doc.email,
-                    // photo: doc.photo,
                     jwtToken 
                 });
             });
@@ -87,9 +84,6 @@ const usersController = () => {
 
             res.status(201).json({ 
                 id: candidate._id.toString(),
-                // name: candidate.name,
-                // email: candidate.email,
-                // photo: candidate.photo,
                 jwtToken 
             });
         } catch (e) {
