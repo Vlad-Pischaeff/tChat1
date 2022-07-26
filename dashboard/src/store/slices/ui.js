@@ -2,17 +2,23 @@ import { createSlice, PayloadAction  } from "@reduxjs/toolkit";
 import { usersApi } from "../api/usersApi";
 import type { RootState } from '../store';
 
+export type UIType = {
+    message: string;
+}
+
+const initialState: UIType = {
+    message: ''
+}
+
 const slice = createSlice({
     name: "ui",
-    initialState: {
-        message: '',
-    },
+    initialState,
     reducers: {
         resetMessage: (state) => {
             state.message = '';
         },
-        setMessage: (state, action: PayloadAction<string>) => {
-            state.message = action.payload;
+        setMessage: (state, { payload }: PayloadAction<string>) => {
+            state.message = payload;
         },
     },
     extraReducers: (builder) => {
@@ -31,12 +37,8 @@ const slice = createSlice({
     },
 });
 
-export const { resetMessage, setMessage } = slice.actions
+export const { resetMessage, setMessage } = slice.actions;
 
-export default slice.reducer
+export default slice.reducer;
 
-export const selectUI = (state: RootState) => state.ui
-
-export type UIType = {
-    message: string;
-}
+export const selectUI = (state: RootState) => state.ui;

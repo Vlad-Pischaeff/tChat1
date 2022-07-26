@@ -1,14 +1,22 @@
-import { createSlice, isAnyOf, PayloadAction  } from "@reduxjs/toolkit";
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { usersApi } from "../api/usersApi";
 import type { RootState } from '../store';
 
+export type IUser = {
+    id: string;
+    jwtToken: string;
+    isAuthenticated: boolean;
+}
+
+const initialState: IUser = {
+    id: '',
+    jwtToken: '',
+    isAuthenticated: false,
+}
+
 const slice = createSlice({
     name: "auth",
-    initialState: {
-        id: '',
-        jwtToken: '',
-        isAuthenticated: false,
-    },
+    initialState,
     reducers: {
         logout: (state) => {
             state.id = '';
@@ -30,14 +38,8 @@ const slice = createSlice({
     },
 });
 
-export const { logout } = slice.actions
+export const { logout } = slice.actions;
 
-export default slice.reducer
+export default slice.reducer;
 
-export const selectCurrentUser = (state: RootState) => state.auth
-
-export type IUser = {
-    id: string;
-    jwtToken: string;
-    isAuthenticated: boolean;
-}
+export const selectCurrentUser = (state: RootState) => state.auth;

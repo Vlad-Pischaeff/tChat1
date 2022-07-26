@@ -22,12 +22,8 @@ export const AuthPage = () => {
             <section className="layout">
                 <nav className="header">
                     <div>
-                        {data &&
-                            <img src={data.photo} alt="avatar" />
-                        }
-                        {data &&
-                            <p>{data.name}</p>
-                        }
+                        { data && <img src={data.photo} alt="avatar" /> }
+                        { data && <p>{data.name}</p> }
                     </div>
 
                     <div>
