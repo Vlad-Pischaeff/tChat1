@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { resetMessage, setMessage, selectUI } from "../store/slices/ui";
-import { useLoginUserMutation, useLazyUsersQuery } from '../store/api/usersApi';
+import { useLoginUserMutation } from '../store/api/usersApi';
 import { IFormInputs, Warning, InputType } from './Types';
 import * as yup from "yup";
 import * as ICON from '../assets/img';
@@ -16,7 +16,6 @@ const schema = yup.object({
 export const LoginPage = () => {
     const dispatch = useDispatch();
     const ui = useSelector(selectUI);
-    const [ trigger ] = useLazyUsersQuery();
     const [ loginUser ] = useLoginUserMutation();
     const { watch, register, handleSubmit } = useForm<IFormInputs>();
     const [ type, setType ] = useState<InputType>(InputType.pw);
@@ -41,12 +40,6 @@ export const LoginPage = () => {
                 dispatch(setMessage(message));
             });
     };
-
-    const testQuery = () => {
-        trigger('', false)
-            .then(data => console.log('testQuery trigger data...', data))
-            .catch(error => console.log('testQuery trigger error...', error));
-    }
 
     const switchPassVisibility = () => {
         type === InputType.pw
@@ -81,7 +74,6 @@ export const LoginPage = () => {
                         && <p>{ ui.message }</p> 
                     }
                 </div>
-                <input type="button" onClick={testQuery} />
             </form>
         </>
     );

@@ -12,32 +12,43 @@ export const usersApi = createApi({
             return headers;
         }
     }),
+    tagTypes: ['User'],
     endpoints: (builder) => ({
         Users: builder.query({
             query: () => ({
                 url: 'users'
             }),
         }),
+        getUser: builder.query({
+            query: (id) => ({
+                url: `users/${id}`
+            }),
+            providesTags: ['User'],
+        }),
         addUser: builder.mutation({
             query: (user) => ({
                 url: 'users/register',
                 method: 'PUT',
                 body: user
-            })
+            }),
+            invalidatesTags: ['User'],
         }),
         loginUser: builder.mutation({
             query: (user) => ({
                 url: 'users/login',
                 method: 'POST',
                 body: user
-            })
+            }),
+            invalidatesTags: ['User']
         })
     }),
 });
 
 export const {
     useUsersQuery,
-    useLazyUsersQuery, 
+    useLazyUsersQuery,
+    useGetUserQuery,
+    useLazyGetUserQuery, 
     useAddUserMutation, 
     useLoginUserMutation 
 } = usersApi;

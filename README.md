@@ -4,7 +4,8 @@
 - в каталоге программы выполните команды
 ```
  npm install
- npm run client:install
+ npm run client-install
+ npm run server-install
 ```
 - запустите все в режиме разработки
 ```

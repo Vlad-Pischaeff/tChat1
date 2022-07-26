@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Outlet, Link } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { selectCurrentUser } from '../store/slices/auth';
+import { useGetUserQuery } from '../store/api/usersApi';
 
 export const AuthPage = () => {
+    const [ skip, setSkip ] = useState<boolean>(true);
     const user = useSelector(selectCurrentUser);
+    const { data, error, isLoading } = useGetUserQuery(user.id, { skip });
+
+    useEffect(() => {
+        user.id && 
+            setSkip(false);
+    }, [user.id, setSkip]);
+
+    // console.log('AuthPage..data..', data, skip);
 
     return (
         <>
@@ -12,9 +22,14 @@ export const AuthPage = () => {
             <section className="layout">
                 <nav className="header">
                     <div>
-                        <img src={user.photo} alt="avatar" />
-                        <p>{user.name}</p>
+                        {data &&
+                            <img src={data.photo} alt="avatar" />
+                        }
+                        {data &&
+                            <p>{data.name}</p>
+                        }
                     </div>
+
                     <div>
                         <p><Link to="login">Login</Link></p> 
                         <p><Link to="signup">Sign up</Link></p>

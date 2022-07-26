@@ -7,14 +7,14 @@ const usersController = () => {
     /********************************************
      * get all users
      *******************************************/
-    const getUsers = async (req, res) => {
-        try {
-            const users = await Users.find({});
-            res.status(201).json(users);
-        } catch (e) {
-            res.status(500).json({ message: `Something wrong ..., details ${e}` });
-        }
-    };
+    // const getUsers = async (req, res) => {
+    //     try {
+    //         const users = await Users.find({});
+    //         res.status(201).json(users);
+    //     } catch (e) {
+    //         res.status(500).json({ message: `Something wrong ..., details ${e}` });
+    //     }
+    // };
     /********************************************
      * register new user
      *******************************************/
@@ -123,13 +123,27 @@ const usersController = () => {
             res.status(500).json({ message: `Something wrong ..., details ${e}` });
         }
     };
+    /********************************************
+     * get single user
+     *******************************************/
+    const getUser = async (req, res) => {
+        try {
+            const { id } = req.params;
+
+            const user = await Users.findOne({ _id: id });
+            res.status(201).json(user);
+        } catch (e) {
+            res.status(500).json({ message: `Something wrong ..., details ${e}` });
+        }
+    };
 
     return {
-        getUsers,
+        // getUsers,
         registerUser,
         loginUser,
         updateUser,
-        getExcludeUser
+        getExcludeUser,
+        getUser
     };
 };
 
