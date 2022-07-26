@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Outlet, Link } from "react-router-dom";
 import { useAppSelector } from '../store/hook';
-import { selectCurrentUser } from '../store/slices/auth';
+import { selectCurrentUser, IUser } from '../store/slices/auth';
 import { useGetUserQuery } from '../store/api/usersApi';
-import { IUser } from './Types';
 
 export const AuthPage = () => {
     const [ skip, setSkip ] = useState<boolean>(true);

@@ -5,20 +5,14 @@ import type { RootState } from '../store';
 const slice = createSlice({
     name: "auth",
     initialState: {
-        id: null,
-        name: null,
-        email: null,
-        photo: null,
-        jwtToken: null,
+        id: '',
+        jwtToken: '',
         isAuthenticated: false,
     },
     reducers: {
         logout: (state) => {
-            state.id = null;
-            state.name = null;
-            state.email = null;
-            state.photo = null;
-            state.jwtToken = null;
+            state.id = '';
+            state.jwtToken = '';
             state.isAuthenticated = false;
         },
     },
@@ -27,11 +21,8 @@ const slice = createSlice({
                 usersApi.endpoints.addUser.matchFulfilled,
                 usersApi.endpoints.loginUser.matchFulfilled
             ),
-            (state, { payload: { id, name, email, photo, jwtToken } }) => {
+            (state, { payload: { id, jwtToken } }) => {
                 state.id = id;
-                state.name = name;
-                state.email = email;
-                state.photo = photo;
                 state.jwtToken = jwtToken;
                 state.isAuthenticated = true;
             },
@@ -44,3 +35,9 @@ export const { logout } = slice.actions
 export default slice.reducer
 
 export const selectCurrentUser = (state: RootState) => state.auth
+
+export type IUser = {
+    id: string;
+    jwtToken: string;
+    isAuthenticated: boolean;
+}
