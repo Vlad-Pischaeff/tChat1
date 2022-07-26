@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { resetMessage, setMessage, selectUI } from "../store/slices/ui";
+import { useAppSelector, useAppDispatch } from '../store/hook';
+import { resetMessage, setMessage, selectUI, UIType } from "../store/slices/ui";
 import { useAddUserMutation } from "../store/api/usersApi";
 import { IFormInputs, Warning, InputType } from './Types';
 import * as yup from "yup";
@@ -15,8 +15,8 @@ const schema = yup.object({
 }).required();
 
 export const SignupPage = () => {
-    const dispatch = useDispatch();
-    const ui = useSelector(selectUI);
+    const dispatch = useAppDispatch();
+    const ui = useAppSelector<UIType>(selectUI);
     const [ addUser ] = useAddUserMutation();
     const { watch, register, handleSubmit } = useForm<IFormInputs>();
     const [ type, setType ] = useState<InputType>(InputType.pw);
@@ -37,7 +37,7 @@ export const SignupPage = () => {
                 addUser(data)           // здесь вызываем API запросы к базе на валидацию
             })
             .catch((err: Warning) => {
-                const message = err.errors?.[0];
+                const message = err.errors?.[0] || '';
                 dispatch(setMessage(message));
             });
     };

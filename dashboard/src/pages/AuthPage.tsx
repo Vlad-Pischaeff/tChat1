@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Outlet, Link } from "react-router-dom";
-import { useSelector } from 'react-redux';
+import { useAppSelector } from '../store/hook';
 import { selectCurrentUser } from '../store/slices/auth';
 import { useGetUserQuery } from '../store/api/usersApi';
+import { IUser } from './Types';
 
 export const AuthPage = () => {
     const [ skip, setSkip ] = useState<boolean>(true);
-    const user = useSelector(selectCurrentUser);
+    const user = useAppSelector<IUser>(selectCurrentUser);
     const { data, error, isLoading } = useGetUserQuery(user.id, { skip });
 
     useEffect(() => {
@@ -14,7 +15,7 @@ export const AuthPage = () => {
             setSkip(false);
     }, [user.id, setSkip]);
 
-    // console.log('AuthPage..data..', data, skip);
+    console.log('AuthPage..data..', data, skip);
 
     return (
         <>

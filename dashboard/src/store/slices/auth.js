@@ -1,5 +1,6 @@
-import { createSlice, isAnyOf } from "@reduxjs/toolkit";
+import { createSlice, isAnyOf, PayloadAction  } from "@reduxjs/toolkit";
 import { usersApi } from "../api/usersApi";
+import type { RootState } from '../store';
 
 const slice = createSlice({
     name: "auth",
@@ -42,4 +43,4 @@ export const { logout } = slice.actions
 
 export default slice.reducer
 
-export const selectCurrentUser = state => state.auth
+export const selectCurrentUser = (state: RootState) => state.auth
