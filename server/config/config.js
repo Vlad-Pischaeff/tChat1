@@ -7,5 +7,7 @@ config.JWT_HEADER = {
     alg: 'RS256',
     typ: 'JWT',
 };
+config.MDB_SERVER = process.env.MDB_SERVER;
+config.MDB_DATABASE = process.env.MDB_DATABASE;
 
 module.exports = config;
