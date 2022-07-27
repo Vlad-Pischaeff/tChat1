@@ -2,7 +2,6 @@
 
 ## To run
 
-- запустите сервер MongoDB
 - в каталоге программы выполните команды
 ```
  npm install
@@ -16,6 +15,8 @@ TOKEN_LIFETIME='5m'
 MDB_SERVER='192.168.0.1'
 MDB_DATABASE='database'
 ```
+где MDB_SERVER - адрес вервера MongoDB, MDB_DATABASE - имя базы данных на этом сервере
+
 - запустите все в режиме разработки
 ```
  npm run dev

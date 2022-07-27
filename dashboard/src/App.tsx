@@ -12,6 +12,7 @@ function App() {
                     <Route path="login" element={<PAGE.LoginPage />} />
                     <Route path="signup" element={<PAGE.SignupPage />} />
                 </Route>
+                <Route path="/dashboard" element={<PAGE.ChatPage />} />
                 <Route path="*" element={<Navigate to="/login" replace />} />
             </Routes>
         </BrowserRouter>

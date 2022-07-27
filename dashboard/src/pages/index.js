@@ -1,3 +1,4 @@
-export { LoginPage } from './LoginPage';
-export { SignupPage } from './SignupPage';
-export { AuthPage } from './AuthPage';
+export { LoginPage } from './Auth/LoginPage';
+export { SignupPage } from './Auth/SignupPage';
+export { AuthPage } from './Auth/AuthPage';
+export { ChatPage } from './Chat/ChatPage';

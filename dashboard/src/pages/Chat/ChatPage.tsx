@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { Outlet, Link } from "react-router-dom";
-import { useAppSelector } from '../store/hook';
-import { selectCurrentUser, IUser } from '../store/slices/auth';
-import { useGetUserQuery } from '../store/api/usersApi';
+import React from 'react';
+import { Outlet, Link, useNavigate } from "react-router-dom";
+import { useAppSelector, useAppDispatch } from '../../store/hook';
+import { selectCurrentUser, IUser, logout } from '../../store/slices/auth';
+import { useGetUserQuery } from '../../store/api/usersApi';
 
-export const AuthPage = () => {
-    const [ skip, setSkip ] = useState<boolean>(true);
+export const ChatPage = () => {
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
     const user = useAppSelector<IUser>(selectCurrentUser);
-    const { data, error, isLoading } = useGetUserQuery(user.id, { skip });
+    const { data, error, isLoading } = useGetUserQuery(user.id, { skip: !user.id });
 
-    useEffect(() => {
-        user.id && 
-            setSkip(false);
-    }, [user.id, setSkip]);
-
-    console.log('AuthPage..data..', data, skip);
+    console.log('ChatPage..data..', data);
+    
+    const handlerLogout = () => {
+        dispatch(logout());
+        navigate("/", { replace: true });
+    }
 
     return (
         <>
@@ -31,8 +32,7 @@ export const AuthPage = () => {
                     </div>
 
                     <div>
-                        <p><Link to="login">Login</Link></p> 
-                        <p><Link to="signup">Sign up</Link></p>
+                        <p onClick={handlerLogout}><Link to="">Logout</Link></p>
                     </div>
                 </nav>
                 <article className="content">
