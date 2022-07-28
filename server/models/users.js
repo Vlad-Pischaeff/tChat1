@@ -25,9 +25,6 @@ const schema = new Schema({
         required: true,
         default: 'http://localhost:5000/upload/profile.svg',
     },
-    refreshToken: {
-        type: String,
-    }
 });
 
 module.exports = model('Users', schema);
