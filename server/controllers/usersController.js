@@ -1,7 +1,7 @@
 const Users = require('../models/users');
 const bcrypt = require('bcrypt');
-const saltRounds = 10;
 const setJWT = require('./helper/jwtAuth');
+const UserService = require('../services/userService');
 
 const usersController = () => {
     /********************************************
@@ -21,39 +21,11 @@ const usersController = () => {
     const registerUser = async (req, res) => {
         try {
             const { name, email, password } = req.body;
+            const userData = await UserService.registerUser(name, email, password);
+            const { refreshToken, accessToken, id } = userData;
 
-            const candidate = await Users.findOne({ name });
-            const userEmail = await Users.findOne({ email });
-
-            if (candidate) {
-                throw new Error(`User login ${name} is already exists...`);
-            }
-
-            if (userEmail) {
-                throw new Error(`User email ${email} is already exists...`);
-            }
-
-            const salt = await bcrypt.genSaltSync(saltRounds);
-            const hash = await bcrypt.hashSync(password, salt);
-
-            const user = new Users({ name, email, password: hash });
-
-            await user.save((err, doc) => {
-                if (err) {
-                    throw new Error(`User ${name} not created...`);
-                }
-
-                const jwtPayload = {
-                    userId: doc._id.toString(),
-                    userName: doc.name
-                };
-
-                const jwtToken = setJWT(jwtPayload);
-                res.status(201).json({ 
-                    id: doc._id.toString(),
-                    jwtToken 
-                });
-            });
+            res.cookie('refreshToken', refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true });
+            res.status(201).json({ jwtToken: accessToken, id });
         } catch (e) {
             res.status(500).json({ message: `${e.message}` });
         }
@@ -64,28 +36,45 @@ const usersController = () => {
     const loginUser = async (req, res) => {
         try {
             const { name, password } = req.body;
-            const candidate = await Users.findOne({ name });
-
-            if (!candidate) {
-                throw new Error('No such user or password...');
-            }
-
-            isPasswordMatch = await bcrypt.compare(password, candidate.password);
+            const userData = await UserService.loginUser(name, password);
+            const { refreshToken, accessToken, id } = userData;
             
-            if (!isPasswordMatch) {
-                throw new Error('No such user or password...');
-            }
+            res.cookie('refreshToken', refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true });
+            res.status(201).json({ jwtToken: accessToken, id });
+        } catch (e) {
+            res.status(500).json({ message: `${e.message}` });
+        }
+    };
+    /********************************************
+     * logout user
+     *******************************************/
+    const logoutUser = async (req, res) => {
+        try {
+            // const { name, password } = req.body;
+            // const cookies = req.cookies;
+            // const candidate = await Users.findOne({ name });
 
-            const jwtPayload = {
-                userId: candidate._id.toString(),
-                userName: candidate.name
-            };
-            const jwtToken = setJWT(jwtPayload);
+            // if (!candidate) {
+            //     throw new Error('No such user or password...');
+            // }
 
-            res.status(201).json({ 
-                id: candidate._id.toString(),
-                jwtToken 
-            });
+            // isPasswordMatch = await bcrypt.compare(password, candidate.password);
+            
+            // if (!isPasswordMatch) {
+            //     throw new Error('No such user or password...');
+            // }
+
+            // const jwtPayload = {
+            //     userId: candidate._id.toString(),
+            //     userName: candidate.name
+            // };
+            // const accessToken = setJWT(jwtPayload, 'ACCESS');
+            // const refreshToken = setJWT(jwtPayload, 'REFRESH');
+
+            // candidate.refreshToken = refreshToken;
+            // const result = await candidate.save();
+            
+            // res.status(201).json({ jwtToken: accessToken });
         } catch (e) {
             res.status(500).json({ message: `${e.message}` });
         }
@@ -135,6 +124,7 @@ const usersController = () => {
         // getUsers,
         registerUser,
         loginUser,
+        logoutUser,
         updateUser,
         getExcludeUser,
         getUser

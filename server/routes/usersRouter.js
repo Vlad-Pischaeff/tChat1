@@ -1,7 +1,7 @@
 const express = require('express');
-const controller = require('../controllers/usersController')();
 const usersRouter = express.Router();
-const auth = require('../controllers/middleware/auth');
+const controller = require('../controllers/usersController')();
+const auth = require('../middleware/auth');
 
 usersRouter.route('/users/register')
     .put(controller.registerUser);

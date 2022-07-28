@@ -1,16 +1,14 @@
 const config = require('../../config/config');
 const jwt = require('jsonwebtoken');
 
-const setJWT = payload => {
-    const { JWT_SECRET, JWT_LIFETIME, JWT_HEADER } = config;
-
+const setJWT = (payload, type = 'ACCESS') => {
     const jwtOptions = { 
-        expiresIn: JWT_LIFETIME
+        expiresIn: config[`${type}_JWT_LIFETIME`]
     };
 
     const jwtPayload = payload;
 
-    const jwtToken = jwt.sign(jwtPayload, JWT_SECRET, jwtOptions);
+    const jwtToken = jwt.sign(jwtPayload, config[`${type}_JWT_SECRET`], jwtOptions);
 
     return jwtToken;
 }

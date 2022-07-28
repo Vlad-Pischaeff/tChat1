@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const config = require('../../config/config');
+const config = require('../config/config');
 
 module.exports = async (req, res, next) => {
     const { JWT_SECRET } = config;
@@ -17,10 +17,9 @@ module.exports = async (req, res, next) => {
         }
 
         const decoded = await jwt.verify(token, JWT_SECRET);
-        const { userName, userId, iat, exp } = decoded;
-        // console.log('auth decoded...', userName, userId, iat, exp);
-        req.user = userName;
-        req.userId = userId;
+        const { id, iat, exp } = decoded;
+        // console.log('auth decoded...', id, iat, exp);
+        req.id = id;
 
         next();
     } catch (e) {

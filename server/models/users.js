@@ -3,10 +3,12 @@ const { Schema, model } = require('mongoose');
 const schema = new Schema({
     name: {
         type: String,
+        unique: true,
         required: true,
     },
     email: {
         type: String,
+        unique: true,
         required: true,
     },
     password: {
@@ -23,6 +25,9 @@ const schema = new Schema({
         required: true,
         default: 'http://localhost:5000/upload/profile.svg',
     },
+    refreshToken: {
+        type: String,
+    }
 });
 
 module.exports = model('Users', schema);

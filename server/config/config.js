@@ -1,8 +1,10 @@
 const config = {};
 
 config.REQUEST_AUTHKEY = 'Authorization';
-config.JWT_SECRET = process.env.JWT_SECRET;
-config.JWT_LIFETIME = process.env.TOKEN_LIFETIME ;
+config.ACCESS_JWT_SECRET = process.env.ACCESS_JWT_SECRET;
+config.ACCESS_JWT_LIFETIME = process.env.ACCESS_JWT_LIFETIME;
+config.REFRESH_JWT_SECRET = process.env.REFRESH_JWT_SECRET;
+config.REFRESH_JWT_LIFETIME = process.env.REFRESH_JWT_LIFETIME;
 config.JWT_HEADER = {
     alg: 'RS256',
     typ: 'JWT',
