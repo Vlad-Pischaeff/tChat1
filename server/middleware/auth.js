@@ -1,24 +1,27 @@
-const jwt = require('jsonwebtoken');
-const config = require('../config/config');
+const TokenService = require('../services/tokenService');
 
 module.exports = async (req, res, next) => {
-    const { JWT_SECRET } = config;
 
     if (req.method === 'OPTIONS') {
         return next();
     }
 
     try {
-        let token = req.headers.authorization;
-        token = token.split(' ')[1];
+        let token = req.headers?.authorization;
 
         if (!token) {
             return res.status(401).json({ message: 'No authorization...' });
         }
 
-        const decoded = await jwt.verify(token, JWT_SECRET);
-        const { id, iat, exp } = decoded;
-        // console.log('auth decoded...', id, iat, exp);
+        token = token.split(' ')[1];
+
+        const decoded = await TokenService.validateAccessToken(token);
+        const { id, iat, exp, verifyError } = decoded;
+
+        if (verifyError) {
+            return res.status(403).json({ message: verifyError });
+        }
+        // console.log('auth decoded...', id, iat, exp, decoded);
         req.id = id;
 
         next();

@@ -9,6 +9,12 @@ usersRouter.route('/users/register')
 usersRouter.route('/users/login')
     .post(controller.loginUser);
 
+usersRouter.route('/users/logout')
+    .post(controller.logoutUser);
+
+usersRouter.route('/users/refresh')
+    .get(controller.refreshToken);
+
 usersRouter.route('/users/:id')
     .patch(controller.updateUser)
     .get(auth, controller.getUser);
@@ -16,7 +22,7 @@ usersRouter.route('/users/:id')
 usersRouter.route('/users/exclude/:id')
     .get(controller.getExcludeUser);
 
-// usersRouter.route('/users')
-//     .get(auth, controller.getUsers);
+usersRouter.route('/users')
+    .get(auth, controller.getUsers);
 
 module.exports = usersRouter;

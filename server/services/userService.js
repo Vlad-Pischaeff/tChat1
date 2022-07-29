@@ -31,7 +31,7 @@ class UserService {
             refreshToken,
             ...userDTO
         }
-    };
+    }
 
     async loginUser(name, password) {
         const user = await Users.findOne({ name });
@@ -57,7 +57,38 @@ class UserService {
             refreshToken,
             ...userDTO
         }
-    };
+    }
+
+    async logoutUser(refreshToken) {
+        const token = TokenService.removeToken(refreshToken);
+        return token;
+    }
+
+    async refreshToken(refreshToken) {
+        if (!refreshToken) {
+            throw new Error('Unauthorized user...');
+        }
+        
+        const userData = TokenService.validateRefreshToken(refreshToken);
+        const currentToken = await TokenService.findToken(refreshToken);
+
+        if (!userData || !currentToken) {
+            throw new Error('Unauthorized user...');
+        }
+
+        const user = await Users.findById(userData.id);
+        const userDTO = new UserDTO(user);
+        const accessTokenNew = TokenService.generateToken({ ...userDTO }, 'ACCESS');
+        const refreshTokenNew = TokenService.generateToken({ ...userDTO }, 'REFRESH');
+
+        await TokenService.saveToken(userDTO.id, refreshTokenNew);
+
+        return {
+            accessTokenNew,
+            refreshTokenNew,
+            ...userDTO
+        }
+    }
 };
 
 module.exports = new UserService();
