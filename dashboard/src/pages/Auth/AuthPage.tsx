@@ -11,7 +11,7 @@ export const AuthPage = () => {
     useEffect(() => {
         user.id &&
             navigate("/dashboard", { replace: true });
-    }, [user.id]);
+    }, [user.id, navigate]);
 
     return (
         <>

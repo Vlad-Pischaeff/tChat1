@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction  } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction, isAnyOf  } from "@reduxjs/toolkit";
 import { usersApi } from "../api/usersApi";
 import type { RootState } from '../store';
 
@@ -22,14 +22,10 @@ const slice = createSlice({
         },
     },
     extraReducers: (builder) => {
-        builder.addMatcher(
-            usersApi.endpoints.loginUser.matchRejected,
-            (state, { payload }) => {
-                state.message = payload.data.message;
-            },
-        )
-        builder.addMatcher(
-            usersApi.endpoints.addUser.matchRejected,
+        builder.addMatcher( isAnyOf(
+                usersApi.endpoints.loginUser.matchRejected,
+                usersApi.endpoints.addUser.matchRejected
+            ),
             (state, { payload }) => {
                 state.message = payload.data.message;
             },

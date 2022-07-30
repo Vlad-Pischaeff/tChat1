@@ -23,22 +23,26 @@ const slice = createSlice({
             state.jwtToken = '';
             state.isAuthenticated = false;
         },
+        setCredentials: (state, { payload }) => {
+            state.id = payload.id;
+            state.jwtToken = payload.accessToken;
+        }
     },
     extraReducers: (builder) => {
         builder.addMatcher( isAnyOf(
                 usersApi.endpoints.addUser.matchFulfilled,
                 usersApi.endpoints.loginUser.matchFulfilled
             ),
-            (state, { payload: { id, jwtToken } }) => {
-                state.id = id;
-                state.jwtToken = jwtToken;
+            (state, { payload }) => {
+                state.id = payload.id;
+                state.jwtToken = payload.accessToken;
                 state.isAuthenticated = true;
             },
         )
     },
 });
 
-export const { logout } = slice.actions;
+export const { logout, setCredentials } = slice.actions;
 
 export default slice.reducer;
 

@@ -10,7 +10,7 @@ export const ChatPage = () => {
     const user = useAppSelector<IUser>(selectCurrentUser);
     const { data, error, isLoading } = useGetUserQuery(user.id, { skip: !user.id });
 
-    console.log('ChatPage..data..', data);
+    console.log('ChatPage..data..', data, user.id);
     
     const handlerLogout = () => {
         dispatch(logout());
@@ -36,6 +36,7 @@ export const ChatPage = () => {
                     </div>
                 </nav>
                 <article className="content">
+                    DashBoard
                     <Outlet />
                 </article>
                 <footer className="footer">
