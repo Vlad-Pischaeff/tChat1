@@ -8,9 +8,10 @@ const usersController = () => {
     const getUsers = async (req, res) => {
         try {
             const users = await Users.find();
+
             res.status(201).json(users);
         } catch (e) {
-            res.status(500).json({ message: `Something wrong ..., details ${e}` });
+            res.status(500).json({ message: `Something wrong, details... ${e.message}` });
         }
     };
     /********************************************
@@ -25,7 +26,7 @@ const usersController = () => {
             res.cookie('refreshToken', refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true });
             res.status(201).json({ accessToken, id });
         } catch (e) {
-            res.status(500).json({ message: `${e.message}` });
+            res.status(500).json({ message: `Register error, details... ${e.message}` });
         }
     }
     /********************************************
@@ -40,7 +41,7 @@ const usersController = () => {
             res.cookie('refreshToken', refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true });
             res.status(201).json({ accessToken, id });
         } catch (e) {
-            res.status(500).json({ message: `${e.message}` });
+            res.status(500).json({ message: `Login error, details... ${e.message}` });
         }
     }
     /********************************************
@@ -50,10 +51,11 @@ const usersController = () => {
         try {
             const { refreshToken } = req.cookies;
             const token = await UserService.logoutUser(refreshToken);
+
             res.clearCookie('refreshToken');
             res.json({ token });
         } catch (e) {
-            res.status(500).json({ message: `${e.message}` });
+            res.status(500).json({ message: `Logout error, details... ${e.message}` });
         }
     }
     /********************************************
@@ -62,12 +64,12 @@ const usersController = () => {
     const updateUser = async (req, res) => {
         try {
             const { id } = req.params;
-
             await Users.findByIdAndUpdate(id, req.body);
             const newUser = await Users.findOne({ _id: id });
+
             res.status(201).json(newUser);
         } catch (e) {
-            res.status(500).json({ message: `Something wrong ..., details ${e}` });
+            res.status(500).json({ message: `Update user error, details... ${e.message}` });
         }
     }
     /********************************************
@@ -76,11 +78,11 @@ const usersController = () => {
     const getExcludeUser = async (req, res) => {
         try {
             const { id } = req.params;
-
             const users = await Users.find({ _id: { $ne: id } });
+
             res.status(201).json(users);
         } catch (e) {
-            res.status(500).json({ message: `Something wrong ..., details ${e}` });
+            res.status(500).json({ message: `Get exclude user error, details... ${e.message}` });
         }
     }
     /********************************************
@@ -89,11 +91,11 @@ const usersController = () => {
     const getUser = async (req, res) => {
         try {
             const { id } = req.params;
-
             const user = await Users.findOne({ _id: id });
+
             res.status(201).json(user);
         } catch (e) {
-            res.status(500).json({ message: `Something wrong, details... ${e.message}` });
+            res.status(500).json({ message: `Get user error, details... ${e.message}` });
         }
     }
     /********************************************
@@ -103,9 +105,8 @@ const usersController = () => {
         try {
             const { refreshToken } = req.cookies;
             const userData = await UserService.refreshToken(refreshToken);
-            const { refreshTokenNew } = userData;
 
-            res.cookie('refreshToken', refreshTokenNew, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true });
+            res.cookie('refreshToken', userData.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true });
             res.status(201).json(userData);
         } catch(e) {
             res.status(500).json({ message: `Refresh token error, details... ${e.message}` });

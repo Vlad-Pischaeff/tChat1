@@ -64,13 +64,13 @@ class UserService {
         return token;
     }
 
-    async refreshToken(refreshToken) {
-        if (!refreshToken) {
+    async refreshToken(token) {
+        if (!token) {
             throw new Error('Unauthorized user...');
         }
         
-        const userData = await TokenService.validateRefreshToken(refreshToken);
-        const currentToken = await TokenService.findToken(refreshToken);
+        const userData = await TokenService.validateRefreshToken(token);
+        const currentToken = await TokenService.findToken(token);
         
         if (!userData?.id) {
             throw new Error(userData?.verifyError);
@@ -83,14 +83,14 @@ class UserService {
         const user = await Users.findById(userData.id);
 
         const userDTO = new UserDTO(user);
-        const accessTokenNew = TokenService.generateToken({ ...userDTO }, 'ACCESS');
-        const refreshTokenNew = TokenService.generateToken({ ...userDTO }, 'REFRESH');
+        const accessToken = TokenService.generateToken({ ...userDTO }, 'ACCESS');
+        const refreshToken = TokenService.generateToken({ ...userDTO }, 'REFRESH');
 
-        await TokenService.saveToken(userDTO.id, refreshTokenNew);
+        await TokenService.saveToken(userDTO.id, refreshToken);
 
         return {
-            accessTokenNew,
-            refreshTokenNew,
+            accessToken,
+            refreshToken,
             ...userDTO
         }
     }

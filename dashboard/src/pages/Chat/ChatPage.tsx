@@ -2,19 +2,26 @@ import React from 'react';
 import { Outlet, Link, useNavigate } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from '../../store/hook';
 import { selectCurrentUser, IUser, logout } from '../../store/slices/auth';
-import { useGetUserQuery } from '../../store/api/usersApi';
+import { useGetUserQuery, useLazyUsersQuery } from '../../store/api/usersApi';
 
 export const ChatPage = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const user = useAppSelector<IUser>(selectCurrentUser);
     const { data, error, isLoading } = useGetUserQuery(user.id, { skip: !user.id });
+    const [ trigger ] = useLazyUsersQuery();
 
     console.log('ChatPage..data..', data, user.id);
     
     const handlerLogout = () => {
         dispatch(logout());
         navigate("/", { replace: true });
+    }
+
+    const handlerGetUsers = async () => {
+        console.log('query1..', trigger);
+        const data = await trigger('', false);
+        console.log('query2..', data);
     }
 
     return (
@@ -36,7 +43,7 @@ export const ChatPage = () => {
                     </div>
                 </nav>
                 <article className="content">
-                    DashBoard
+                    <input type="button" value="Get users" onClick={handlerGetUsers}/>
                     <Outlet />
                 </article>
                 <footer className="footer">

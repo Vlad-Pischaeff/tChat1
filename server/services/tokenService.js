@@ -41,7 +41,7 @@ class TokenService {
             const verifyData = await jwt.verify(accessToken, config.ACCESS_JWT_SECRET);
             return verifyData;
         } catch(e) {
-            return ({ verifyError: e.message });
+            return ({ verifyError: `AccessToken ${e.message}` });
         }
     }
 
@@ -50,7 +50,7 @@ class TokenService {
             const verifyData = await jwt.verify(refreshToken, config.REFRESH_JWT_SECRET);
             return verifyData;
         } catch(e) {
-            return ({ verifyError: e.message });
+            return ({ verifyError: `RefreshToken ${e.message}` });
         }
     }
 };
