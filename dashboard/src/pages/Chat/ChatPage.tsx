@@ -19,7 +19,6 @@ export const ChatPage = () => {
     }
 
     const handlerGetUsers = async () => {
-        console.log('query1..', trigger);
         const data = await trigger('', false);
         if ( data.status === "rejected") {
             navigate("/logout", { replace: true });
