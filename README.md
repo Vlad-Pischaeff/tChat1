@@ -1,4 +1,4 @@
-# Test redux-toolkit, rtk-query, react-hook-form, jwt
+# Test redux-toolkit, rtk-query, react-hook-form, with automatic renewal jwt
 
 ## To run
 
