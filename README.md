@@ -10,12 +10,15 @@
 ```
 - создайте файл .env в корне проекта
 ```
-JWT_SECRET='jwtSecretKey'
-TOKEN_LIFETIME='5m'
-MDB_SERVER='192.168.0.1'
+ACCESS_JWT_SECRET='jwtAccessSecretKey'
+ACCESS_JWT_LIFETIME='5m'
+REFRESH_JWT_SECRET='jwtRefreshSecretKey'
+REFRESH_JWT_LIFETIME='10d'
+MDB_SERVER='localhost'
 MDB_DATABASE='database'
 ```
-где MDB_SERVER - адрес вервера MongoDB, MDB_DATABASE - имя базы данных на этом сервере
+где MDB_SERVER - адрес вервера MongoDB, 
+    MDB_DATABASE - имя базы данных на этом сервере
 
 - запустите все в режиме разработки
 ```
