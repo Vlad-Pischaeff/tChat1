@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { PrivateRoute } from './components/router';
 import * as PAGE from './pages';
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
                     <Route path="login" element={<PAGE.LoginPage />} />
                     <Route path="signup" element={<PAGE.SignupPage />} />
                 </Route>
-                <Route path="/dashboard" element={<PAGE.ChatPage />} />
+                <Route path="/dashboard" element={ <PrivateRoute> <PAGE.ChatPage /> </PrivateRoute> } />
                 <Route path="*" element={<Navigate to="/login" replace />} />
             </Routes>
         </BrowserRouter>

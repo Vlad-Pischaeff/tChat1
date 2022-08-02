@@ -3,16 +3,6 @@ import { baseQueryWithReAuth } from './baseQuery';
 
 export const usersApi = createApi({
     reducerPath: 'usersApi',
-    // baseQuery: fetchBaseQuery({ 
-    //     baseUrl: 'http://localhost:3000/api/',
-    //     prepareHeaders: (headers, { getState }) => {
-    //         const token = getState().auth.jwtToken;
-    //         if (token) {
-    //             headers.set('authorization', `Bearer ${token}`);
-    //         }
-    //         return headers;
-    //     }
-    // }),
     baseQuery: baseQueryWithReAuth,
     tagTypes: ['User'],
     endpoints: (builder) => ({
