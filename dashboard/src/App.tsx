@@ -1,10 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { PrivateRoute } from './components/router';
+import { PrivateRoute } from '@components/router';
 import * as PAGE from './pages';
 
 function App() {
-
     return (
         <BrowserRouter>
             <Routes>

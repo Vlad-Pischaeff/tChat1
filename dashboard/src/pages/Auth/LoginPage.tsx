@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useAppSelector, useAppDispatch } from '../../store/hook';
-import { resetMessage, setMessage, selectUI, UIType } from "../../store/slices/ui";
-import { useLoginUserMutation } from '../../store/api/usersApi';
+import { useAppSelector, useAppDispatch } from '@store/hook';
+import { resetMessage, setMessage, selectUI, UIType } from "@store/slices/ui";
+import { useLoginUserMutation } from '@store/api/usersApi';
 import { IFormInputs, Warning, InputType } from './Types';
 import * as yup from "yup";
 import * as ICON from '../../assets/img';
@@ -33,7 +33,7 @@ export const LoginPage = () => {
         schema
             .validate(data)                 // проверяем введенные данные
             .then(data => {
-                loginUser(data)             // вызываем API '/users/login'
+                loginUser(data)             // вызываем API '/users/login' для авторизации
             })
             .catch((err: Warning) => {
                 const message = err.errors?.[0] || '';

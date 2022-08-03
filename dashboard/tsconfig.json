@@ -2,6 +2,12 @@
     "compileOnSave": true,
     "compilerOptions": {
         "baseUrl": "./src",
+        "paths": {
+            "@store/*": [ "store/*" ],
+            "@components/*": [ "components/*" ],
+            "@pages/*": [ "pages/*" ],
+            "@assets/*": [ "assets/*" ]
+        },
         // "rootDir": "src",
         "target": "es5",
         "lib": [
