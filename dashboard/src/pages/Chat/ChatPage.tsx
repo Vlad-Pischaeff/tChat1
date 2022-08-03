@@ -13,8 +13,6 @@ export const ChatPage = () => {
     const [ trigger, { isLoading } ] = useLazyUsersQuery();
     const query = useLazyUsersQuery();
 
-    console.log('ChatPage..data..', data, user.id, query);
-    
     const handlerLogout = () => {
         dispatch(logout());
         navigate("/", { replace: true });
@@ -23,7 +21,7 @@ export const ChatPage = () => {
     const handlerGetUsers = async () => {
         const data = await trigger('', false);
         if ( data.status === "rejected") {
-            navigate("/logout", { replace: true });
+            handlerLogout();
         }
     }
 
