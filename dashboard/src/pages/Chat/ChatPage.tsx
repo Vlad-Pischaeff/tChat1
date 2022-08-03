@@ -11,7 +11,6 @@ export const ChatPage = () => {
     const user = useAppSelector<IUser>(selectCurrentUser);
     const { data } = useGetUserQuery(user.id, { skip: !user.id });
     const [ trigger, { isLoading } ] = useLazyUsersQuery();
-    const query = useLazyUsersQuery();
 
     const handlerLogout = () => {
         dispatch(logout());
