@@ -1,5 +1,5 @@
-const Tokens = require('../models/tokens');
-const config = require('../config/config');
+const Tokens = require('#s/models/tokens');
+const config = require('#s/config/config');
 const jwt = require('jsonwebtoken');
 
 class TokenService {

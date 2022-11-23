@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { PrivateRoute } from '@components/router';
-import * as PAGE from './pages';
+import { PrivateRoute } from 'components/router';
+import * as PAGE from 'pages';
 
 function App() {
     return (

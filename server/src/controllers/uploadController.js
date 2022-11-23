@@ -22,7 +22,7 @@ const uploadController = () => {
         }
 
         res.status(200).send({ name });
-    }
+    };
 
     return {
         upload,

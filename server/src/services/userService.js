@@ -1,8 +1,8 @@
-const Users = require('../models/users');
+const Users = require('#s/models/users');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const TokenService = require('./tokenService');
-const UserDTO = require('../dtos/userDTO');
+const UserDTO = require('#s/dtos/userDTO');
 
 class UserService {
     async registerUser(name, email, password) {

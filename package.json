@@ -20,7 +20,7 @@
         "client-install": "npm install --prefix ./dashboard",
         "client-build": "npm run build --prefix ./dashboard",
         "server": "node server/index",
-        "server-install": "npm install --prefix ./server ./server",
+        "server-install": "npm install --prefix ./server",
         "dev-server": "nodemon server/index",
         "dev": "cross-env NODE_ENV=development concurrently --kill-others-on-fail \"npm run dev-server\" \"npm run client\"",
         "start": "cross-env NODE_ENV=production node server/index.js"

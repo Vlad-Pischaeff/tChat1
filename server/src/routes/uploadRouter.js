@@ -1,5 +1,5 @@
 const express = require('express');
-const controller = require('../controllers/uploadController')();
+const controller = require('#s/controllers/uploadController')();
 const uploadRouter = express.Router();
 
 /** old version

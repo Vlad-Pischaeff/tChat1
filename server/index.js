@@ -3,9 +3,9 @@ const express = require('express');
 const app = express();
 const server = require('http').createServer(app);
 
-require('./startup/env');
-require('./startup/db')();
-require('./startup/cors')(app);
-require('./startup/bodyParser')(app);
-require('./startup/routes')(app);
-require('./startup/server')(server);
+require('#s/startup/env');
+require('#s/startup/db')();
+require('#s/startup/cors')(app);
+require('#s/startup/bodyParser')(app);
+require('#s/startup/routes')(app);
+require('#s/startup/server')(server);

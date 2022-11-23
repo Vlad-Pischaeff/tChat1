@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const config = require('../config/config');
+const config = require('#s/config/config');
 const { MDB_SERVER, MDB_DATABASE } = config;
 
 module.exports = async () => {

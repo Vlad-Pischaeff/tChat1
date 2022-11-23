@@ -1,5 +1,5 @@
-const Users = require('../models/users');
-const UserService = require('../services/userService');
+const Users = require('#s/models/users');
+const UserService = require('#s/services/userService');
 
 const usersController = () => {
     /********************************************
@@ -28,7 +28,7 @@ const usersController = () => {
         } catch (e) {
             res.status(500).json({ message: `Register error, details... ${e.message}` });
         }
-    }
+    };
     /********************************************
      * login user
      *******************************************/
@@ -43,7 +43,7 @@ const usersController = () => {
         } catch (e) {
             res.status(500).json({ message: `Login error, details... ${e.message}` });
         }
-    }
+    };
     /********************************************
      * logout user
      *******************************************/
@@ -57,7 +57,7 @@ const usersController = () => {
         } catch (e) {
             res.status(500).json({ message: `Logout error, details... ${e.message}` });
         }
-    }
+    };
     /********************************************
      * update user profile
      *******************************************/
@@ -71,7 +71,7 @@ const usersController = () => {
         } catch (e) {
             res.status(500).json({ message: `Update user error, details... ${e.message}` });
         }
-    }
+    };
     /********************************************
      * get users exclude single user
      *******************************************/
@@ -84,7 +84,7 @@ const usersController = () => {
         } catch (e) {
             res.status(500).json({ message: `Get exclude user error, details... ${e.message}` });
         }
-    }
+    };
     /********************************************
      * get single user
      *******************************************/
@@ -97,7 +97,7 @@ const usersController = () => {
         } catch (e) {
             res.status(500).json({ message: `Get user error, details... ${e.message}` });
         }
-    }
+    };
     /********************************************
      * refresh refreshToken
      *******************************************/
@@ -111,7 +111,7 @@ const usersController = () => {
         } catch(e) {
             res.status(500).json({ message: `Refresh token error, details... ${e.message}` });
         }
-    }
+    };
 
     return {
         getUsers,

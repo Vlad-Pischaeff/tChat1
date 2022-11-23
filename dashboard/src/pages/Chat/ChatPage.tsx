@@ -1,8 +1,8 @@
 import React from 'react';
 import { Outlet, Link, useNavigate } from "react-router-dom";
-import { useAppSelector, useAppDispatch } from '@store/hook';
-import { selectCurrentUser, IUser, logout } from '@store/slices/auth';
-import { useGetUserQuery, useLazyUsersQuery } from '@store/api/usersApi';
+import { useAppSelector, useAppDispatch } from 'store/hook';
+import { selectCurrentUser, IUser, logout } from 'store/slices/auth';
+import { useGetUserQuery, useLazyUsersQuery } from 'store/api/usersApi';
 import s from './Chat.module.sass';
 
 export const ChatPage = () => {

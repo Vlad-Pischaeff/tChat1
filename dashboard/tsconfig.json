@@ -1,38 +1,28 @@
 {
-    "compileOnSave": true,
-    "compilerOptions": {
-        "baseUrl": "./src",
-        "paths": {
-            "@store/*": [ "store/*" ],
-            "@components/*": [ "components/*" ],
-            "@pages/*": [ "pages/*" ],
-            "@assets/*": [ "assets/*" ]
-        },
-        // "rootDir": "src",
-        "target": "es5",
-        "lib": [
-            "dom",
-            "dom.iterable",
-            "esnext",
-            "es5",
-            "es2015",
-            "es2017"
-        ],
-        "allowJs": true,
-        "skipLibCheck": true,
-        "esModuleInterop": true,
-        "allowSyntheticDefaultImports": true,
-        "strict": true,
-        "forceConsistentCasingInFileNames": true,
-        "noFallthroughCasesInSwitch": true,
-        "module": "commonjs",
-        "moduleResolution": "node",
-        "resolveJsonModule": true,
-        "isolatedModules": true,
-        "noEmit": true,
-        "jsx": "react-jsx",
-    },
-    "include": [
-        "src/**/*"
-    ]
+  "compilerOptions": {
+    "target": "es6",
+    "lib": [
+      "es6",
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "jsx": "react-jsx",
+    "baseUrl": "./src",
+  },
 }
