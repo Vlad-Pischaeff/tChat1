@@ -1,3 +1,5 @@
+'use strict';
+
 const express = require('express');
 const todosRouter = express.Router();
 const controller = require('#s/controllers/todosController')();

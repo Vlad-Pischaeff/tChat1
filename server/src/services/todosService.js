@@ -1,3 +1,5 @@
+'use strict';
+
 const Todos = require('#s/models/todos');
 
 class TodosService {
@@ -7,15 +9,17 @@ class TodosService {
 
         if (offset && num) {
             todos = await Todos.aggregate([
-                {$facet: {
-                    "data": [ 
-                        { "$skip": +offset }, 
-                        { "$limit": +num }
-                    ]
-                }},
+                {
+                    $facet: {
+                        data: [
+                            { $skip: +offset },
+                            { $limit: +num }
+                        ]
+                    }
+                }
             ]);
-            const [ value ] = todos;
-            todos = [ ...value.data ];
+            const [value] = todos;
+            todos = [...value.data];
         } else {
             // todos = await Todos.find({ user: req.id });
             todos = await Todos.find();

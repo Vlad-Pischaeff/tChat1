@@ -1,3 +1,5 @@
+'use strict';
+
 const mongoose = require('mongoose');
 const config = require('#s/config/config');
 const { MDB_SERVER, MDB_DATABASE } = config;
@@ -8,8 +10,8 @@ module.exports = async () => {
         {
             useNewUrlParser: true,
             useUnifiedTopology: true,
-            socketTimeoutMS: 3000,
+            socketTimeoutMS: 3000
         },
-        () => { console.log('connected to db'); },
+        () => { console.log('connected to db'); }
     );
 };

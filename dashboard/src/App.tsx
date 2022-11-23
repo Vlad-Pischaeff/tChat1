@@ -12,7 +12,13 @@ function App() {
                     <Route path="login" element={<PAGE.LoginPage />} />
                     <Route path="signup" element={<PAGE.SignupPage />} />
                 </Route>
-                <Route path="/dashboard" element={ <PrivateRoute> <PAGE.ChatPage /> </PrivateRoute> } />
+                <Route 
+                    path="/dashboard" 
+                    element={ 
+                        <PrivateRoute>
+                            <PAGE.ChatPage/>
+                        </PrivateRoute> 
+                    } />
                 <Route path="*" element={<Navigate to="/login" replace />} />
             </Routes>
         </BrowserRouter>

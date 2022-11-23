@@ -1,3 +1,5 @@
+'use strict';
+
 const { Schema, model } = require('mongoose');
 
 const schema = new Schema({
@@ -8,18 +10,18 @@ const schema = new Schema({
     description: {
         type: String,
         unique: true,
-        required: true,
+        required: true
     },
     date: {
         type: String,
         required: true,
-        default: Date.now(),
+        default: Date.now()
     },
     done: {
         type: Boolean,
         required: true,
-        default: false,
-    },
+        default: false
+    }
 });
 
 module.exports = model('Todos', schema);

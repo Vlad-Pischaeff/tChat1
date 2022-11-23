@@ -1,11 +1,12 @@
+'use strict';
+
 const Tokens = require('#s/models/tokens');
 const config = require('#s/config/config');
 const jwt = require('jsonwebtoken');
 
 class TokenService {
     generateToken(jwtPayload, type = 'ACCESS') {
-
-        const jwtOptions = { 
+        const jwtOptions = {
             expiresIn: config[`${type}_JWT_LIFETIME`]
         };
 
@@ -40,7 +41,7 @@ class TokenService {
         try {
             const verifyData = await jwt.verify(accessToken, config.ACCESS_JWT_SECRET);
             return verifyData;
-        } catch(e) {
+        } catch (e) {
             return ({ verifyError: `AccessToken ${e.message}` });
         }
     }
@@ -49,7 +50,7 @@ class TokenService {
         try {
             const verifyData = await jwt.verify(refreshToken, config.REFRESH_JWT_SECRET);
             return verifyData;
-        } catch(e) {
+        } catch (e) {
             return ({ verifyError: `RefreshToken ${e.message}` });
         }
     }

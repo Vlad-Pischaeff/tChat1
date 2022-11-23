@@ -1,3 +1,5 @@
+'use strict';
+
 const express = require('express');
 const path = require('path');
 const ROUTER = require('#s/routes/index');
@@ -5,8 +7,8 @@ const ROUTER = require('#s/routes/index');
 const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = app => {
-    app.use('/upload', express.static(path.join( __dirname, '..', '/public/upload')));
-    
+    app.use('/upload', express.static(path.join(__dirname, '..', '/public/upload')));
+
     app.use('/api', ROUTER.usersRouter);
     app.use('/api', ROUTER.todosRouter);
     app.use('/api', ROUTER.uploadRouter);

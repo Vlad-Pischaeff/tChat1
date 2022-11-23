@@ -1,10 +1,12 @@
+'use strict';
+
 const Users = require('#s/models/users');
 const UserService = require('#s/services/userService');
 
 const usersController = () => {
-    /********************************************
+    /** ******************************************
      * get all users
-     *******************************************/
+     ****************************************** */
     const getUsers = async (req, res) => {
         try {
             const users = await Users.find();
@@ -14,9 +16,9 @@ const usersController = () => {
             res.status(500).json({ message: `Something wrong, details... ${e.message}` });
         }
     };
-    /********************************************
+    /** ******************************************
      * register new user
-     *******************************************/
+     ****************************************** */
     const registerUser = async (req, res) => {
         try {
             const { name, email, password } = req.body;
@@ -29,9 +31,9 @@ const usersController = () => {
             res.status(500).json({ message: `Register error, details... ${e.message}` });
         }
     };
-    /********************************************
+    /** ******************************************
      * login user
-     *******************************************/
+     ****************************************** */
     const loginUser = async (req, res) => {
         try {
             const { name, password } = req.body;
@@ -44,9 +46,9 @@ const usersController = () => {
             res.status(500).json({ message: `Login error, details... ${e.message}` });
         }
     };
-    /********************************************
+    /** ******************************************
      * logout user
-     *******************************************/
+     ****************************************** */
     const logoutUser = async (req, res) => {
         try {
             const { refreshToken } = req.cookies;
@@ -58,9 +60,9 @@ const usersController = () => {
             res.status(500).json({ message: `Logout error, details... ${e.message}` });
         }
     };
-    /********************************************
+    /** ******************************************
      * update user profile
-     *******************************************/
+     ****************************************** */
     const updateUser = async (req, res) => {
         try {
             const { id } = req.params;
@@ -72,9 +74,9 @@ const usersController = () => {
             res.status(500).json({ message: `Update user error, details... ${e.message}` });
         }
     };
-    /********************************************
+    /** ******************************************
      * get users exclude single user
-     *******************************************/
+     ****************************************** */
     const getExcludeUser = async (req, res) => {
         try {
             const { id } = req.params;
@@ -85,9 +87,9 @@ const usersController = () => {
             res.status(500).json({ message: `Get exclude user error, details... ${e.message}` });
         }
     };
-    /********************************************
+    /** ******************************************
      * get single user
-     *******************************************/
+     ****************************************** */
     const getUser = async (req, res) => {
         try {
             const { id } = req.params;
@@ -98,17 +100,17 @@ const usersController = () => {
             res.status(500).json({ message: `Get user error, details... ${e.message}` });
         }
     };
-    /********************************************
+    /** ******************************************
      * refresh refreshToken
-     *******************************************/
+     ****************************************** */
     const refreshToken = async (req, res) => {
         try {
-            const { refreshToken } = req.cookies;
-            const userData = await UserService.refreshToken(refreshToken);
+            const { refreshToken: token } = req.cookies;
+            const userData = await UserService.refreshToken(token);
 
             res.cookie('refreshToken', userData.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true });
             res.status(201).json(userData);
-        } catch(e) {
+        } catch (e) {
             res.status(500).json({ message: `Refresh token error, details... ${e.message}` });
         }
     };

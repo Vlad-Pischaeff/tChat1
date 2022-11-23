@@ -1,3 +1,5 @@
+'use strict';
+
 const Users = require('#s/models/users');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
@@ -30,7 +32,7 @@ class UserService {
             accessToken,
             refreshToken,
             ...userDTO
-        }
+        };
     }
 
     async loginUser(name, password) {
@@ -41,7 +43,7 @@ class UserService {
         }
 
         let isPasswordMatch = await bcrypt.compare(password, user.password);
-        
+
         if (!isPasswordMatch) {
             throw new Error('No such user or password...');
         }
@@ -56,7 +58,7 @@ class UserService {
             accessToken,
             refreshToken,
             ...userDTO
-        }
+        };
     }
 
     async logoutUser(refreshToken) {
@@ -68,10 +70,10 @@ class UserService {
         if (!token) {
             throw new Error('Unauthorized user...');
         }
-        
+
         const userData = await TokenService.validateRefreshToken(token);
         const currentToken = await TokenService.findToken(token);
-        
+
         if (!userData?.id) {
             throw new Error(userData?.verifyError);
         }
@@ -79,7 +81,7 @@ class UserService {
         if (!currentToken) {
             throw new Error('Unauthorized user...');
         }
-        
+
         const user = await Users.findById(userData.id);
 
         const userDTO = new UserDTO(user);
@@ -92,7 +94,7 @@ class UserService {
             accessToken,
             refreshToken,
             ...userDTO
-        }
+        };
     }
 }
 

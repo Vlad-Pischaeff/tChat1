@@ -1,7 +1,8 @@
+'use strict';
+
 const TokenService = require('#s/services/tokenService');
 
 module.exports = async (req, res, next) => {
-
     if (req.method === 'OPTIONS') {
         return next();
     }
@@ -16,7 +17,9 @@ module.exports = async (req, res, next) => {
         token = token.split(' ')[1];
 
         const decoded = await TokenService.validateAccessToken(token);
-        const { id, iat, exp, verifyError } = decoded;
+        const {
+            id, iat, exp, verifyError
+        } = decoded;
 
         if (verifyError) {
             return res.status(403).json({ message: verifyError });
@@ -24,8 +27,8 @@ module.exports = async (req, res, next) => {
         // console.log('auth decoded...', id, iat, exp, decoded);
         req.id = id;
 
-        next();
+        return next();
     } catch (e) {
-        res.status(401).json({ message: `Your ${e.message}` });
+        return res.status(401).json({ message: `Your ${e.message}` });
     }
 };
