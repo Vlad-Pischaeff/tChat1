@@ -94,6 +94,6 @@ class UserService {
             ...userDTO
         }
     }
-};
+}
 
 module.exports = new UserService();

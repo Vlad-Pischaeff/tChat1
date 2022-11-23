@@ -53,6 +53,6 @@ class TokenService {
             return ({ verifyError: `RefreshToken ${e.message}` });
         }
     }
-};
+}
 
 module.exports = new TokenService();

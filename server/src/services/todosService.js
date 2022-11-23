@@ -23,6 +23,6 @@ class TodosService {
 
         return todos;
     }
-};
+}
 
 module.exports = new TodosService();
