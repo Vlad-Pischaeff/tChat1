@@ -10,6 +10,9 @@ class TodosService {
         if (offset && num) {
             todos = await Todos.aggregate([
                 {
+                    $match: { user: req.id }
+                },
+                {
                     $facet: {
                         data: [
                             { $skip: +offset },
