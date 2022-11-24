@@ -30,7 +30,7 @@ export const ChatPage = () => {
             <section className="layout">
                 <nav className="header">
                     <div>
-                        { data && 
+                        { data &&
                             <>
                                 <img src={data.photo} alt="avatar" />
                                 <p>{data.name}</p>
@@ -44,7 +44,7 @@ export const ChatPage = () => {
                 </nav>
                 <article className="content">
                     { isLoading && <div className={s.loader}></div> }
-                    <input type="button" value="Get users" onClick={handlerGetUsers}/>
+                    {/* <input type="button" value="Get users" onClick={handlerGetUsers}/> */}
                     <Outlet />
                 </article>
                 <footer className="footer">

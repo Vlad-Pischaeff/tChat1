@@ -10,7 +10,7 @@ export const AuthPage = () => {
 
     useEffect(() => {
         user.id &&
-            navigate("/dashboard", { replace: true });
+            navigate("/dashboard/todos", { replace: true });
     }, [user.id, navigate]);
 
     return (

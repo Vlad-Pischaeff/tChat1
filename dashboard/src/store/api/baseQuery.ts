@@ -1,6 +1,21 @@
 import { fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import type {
+    BaseQueryFn,
+    FetchArgs,
+    FetchBaseQueryError,
+} from '@reduxjs/toolkit/query'
 import { setCredentials, logout } from '../slices/auth';
 import { RootState } from '../store';
+
+type tData = {
+    accessToken: string,
+    refreshToken: string,
+    id: string,
+};
+
+type tResult = {
+    data: tData,
+}
 
 const baseQuery = fetchBaseQuery({
     baseUrl: 'http://localhost:3000/api/',
@@ -14,7 +29,12 @@ const baseQuery = fetchBaseQuery({
     },
 });
 
-export const baseQueryWithReAuth = async (args: string, api: any, extraOptions: any) => {
+export const baseQueryWithReAuth:
+    BaseQueryFn<
+        string | FetchArgs,
+        unknown,
+        FetchBaseQueryError
+    > = async (args, api, extraOptions) => {
     let result = await baseQuery(args, api, extraOptions);
     console.log('result => ', result);
 
@@ -22,11 +42,11 @@ export const baseQueryWithReAuth = async (args: string, api: any, extraOptions: 
         result?.error?.status === 401 ) {
         console.log('sending refresh token...');
         //! send refresh token to get new access token
-        const refreshResult = await baseQuery('/users/refresh', api, extraOptions);
+        const refreshResult = await baseQuery('/users/refresh', api, extraOptions) as tResult;
         console.log('refreshResult =>', refreshResult);
 
         if (refreshResult?.data) {
-            const id = api.getState().auth.id;
+            const id = (api.getState() as RootState).auth.id;
             //! store new token
             api.dispatch(setCredentials({ ...refreshResult.data, id }));
             //! retry the original query with new access token

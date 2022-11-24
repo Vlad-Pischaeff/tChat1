@@ -26,7 +26,7 @@ const slice = createSlice({
                 usersApi.endpoints.loginUser.matchRejected,
                 usersApi.endpoints.addUser.matchRejected
             ),
-            (state, { payload }) => {
+            (state, { payload }: PayloadAction<any> ) => {
                 state.message = payload.data.message;
             },
         )

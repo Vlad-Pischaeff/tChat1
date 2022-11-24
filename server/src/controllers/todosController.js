@@ -25,8 +25,7 @@ const todosController = () => {
     const getTodo = async (req, res) => {
         try {
             const { id } = req.params;
-            // const todo = await Todos.findOne({ _id: id, user: req.id" });
-            const todo = await Todos.findOne({ _id: id, user: '62de50dac46c200ab819c69c' });
+            const todo = await Todos.findOne({ _id: id, user: req.id });
 
             res.status(201).json(todo);
         } catch (e) {
@@ -40,8 +39,8 @@ const todosController = () => {
         try {
             const { description } = req.body;
             console.log('body...', req.body);
-            // const todo = await Todos.create({ user: req.id, description });
-            const todo = await Todos.create({ user: '62de50dac46c200ab819c69c', description });
+            const todo = await Todos.create({ user: req.id, description });
+            // const todo = await Todos.create({ user: '62de50dac46c200ab819c69c', description });
 
             res.status(201).json({ todo });
         } catch (e) {

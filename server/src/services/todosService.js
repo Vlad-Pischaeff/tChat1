@@ -21,8 +21,11 @@ class TodosService {
             const [value] = todos;
             todos = [...value.data];
         } else {
-            // todos = await Todos.find({ user: req.id });
-            todos = await Todos.find();
+            // use with authorization middleware
+            todos = await Todos.find({ user: req.id });
+
+            // use without authorization middleware
+            // todos = await Todos.find();
         }
 
         return todos;
