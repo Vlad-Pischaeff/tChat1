@@ -9,7 +9,7 @@ const schema = new Schema({
     },
     description: {
         type: String,
-        unique: true,
+        unique: false,
         required: true
     },
     date: {
