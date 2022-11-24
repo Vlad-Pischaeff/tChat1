@@ -5,9 +5,9 @@ const TodosService = require('#s/services/todosService');
 
 const todosController = () => {
     /** ******************************************
-     * get all todos
-     * add offset(number), num(number) to query params for pagination
-     * host/api/todos?offset=2&num=3
+     * get all todos - host/api/todos?offset=2&num=3
+     * @param {number} offset - initial point (optional)
+     * @param {number} num - quantity (optional)
      ****************************************** */
     const getTodos = async (req, res) => {
         try {
@@ -19,8 +19,8 @@ const todosController = () => {
         }
     };
     /** ******************************************
-     * get single todo
-     * host/api/todos/637dafa8efa9a1b203f5f6d1
+     * get single todo - host/api/todos/637dafa8efa9a1b203f5f6d1
+     * @param {string} id - todo ID
      ****************************************** */
     const getTodo = async (req, res) => {
         try {
@@ -38,9 +38,7 @@ const todosController = () => {
     const addTodo = async (req, res) => {
         try {
             const { description } = req.body;
-            console.log('body...', req.body);
             const todo = await Todos.create({ user: req.id, description });
-            // const todo = await Todos.create({ user: '62de50dac46c200ab819c69c', description });
 
             res.status(201).json({ todo });
         } catch (e) {
@@ -48,8 +46,8 @@ const todosController = () => {
         }
     };
     /** ******************************************
-     * update todo
-     * host/api/todos/637dafa8efa9a1b203f5f6d1
+     * update todo - host/api/todos/637dafa8efa9a1b203f5f6d1
+     * @param {string} id - todo ID
      ****************************************** */
     const updateTodo = async (req, res) => {
         try {
