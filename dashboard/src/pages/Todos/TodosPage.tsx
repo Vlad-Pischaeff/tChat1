@@ -31,8 +31,8 @@ export const TodosPage = () => {
                 </div>
                 <div className={s.body}>
 
-                    <form onSubmit={handleSubmit(onSubmit)} className={s.authForm}>
-                        <div className={s.authBody}>
+                    <form onSubmit={handleSubmit(onSubmit)} className={s.todosForm}>
+                        <div className={s.todosBody}>
                             <fieldset>
                                 <label>Description</label>
                                 <input { ...register("description") } placeholder="My todo..." />
@@ -42,14 +42,16 @@ export const TodosPage = () => {
                         <input type="submit" value="Add todo" />
                     </form>
 
-                    {result.isSuccess
-                        ? result.data.map((todo: iTodos, idx: number) => {
-                            return (
-                                <TodosItem key={todo._id} todo={todo} idx={idx} />
-                            )
-                        })
-                        : <div>loading...</div>
-                    }
+                    <div className={s.todosWrapper}>
+                        {result.isSuccess
+                            ? result.data.map((todo: iTodos, idx: number) => {
+                                return (
+                                    <TodosItem key={todo._id} todo={todo} idx={idx} />
+                                )
+                            })
+                            : <div>loading...</div>
+                        }
+                    </div>
 
                 </div>
             </div>
