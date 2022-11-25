@@ -66,23 +66,16 @@ body
     width: 100vw
     height: 100vh
     background: var.$BG
-    display: flex
-.aside, .layout
-    height: 100vh
+    display: grid
+    grid-template-columns: minmax(10rem, 15%) 1fr
 .aside
-    width: 20%
-    min-width: 10rem
     background-image: url('http://localhost:3000/img/image1.jpg')
     background-size: cover
     background-position: center center
 .layout
-    flex: 1 1 auto
-    display: flex
-    flex-flow: column nowrap
-    justify-content: space-between
-    align-items: center
+    display: grid
+    grid-template-rows: 3rem 1fr 3rem
 .header, .footer
-    flex: 0 0 3rem
     display: flex
     width: 100%
     color: var.$C5
@@ -115,4 +108,3 @@ body
     justify-content: center
     align-items: center
     width: 100%
-    height: calc(100% - 6rem)
