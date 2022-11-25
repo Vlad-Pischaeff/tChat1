@@ -43,7 +43,7 @@ export const TodosPage = () => {
                     </form>
 
                     <div className={s.todosWrapper}>
-                        {result.isSuccess
+                        { result.isSuccess
                             ? result.data.map((todo: iTodos, idx: number) => {
                                 return (
                                     <TodosItem key={todo._id} todo={todo} idx={idx} />
@@ -52,7 +52,6 @@ export const TodosPage = () => {
                             : <div>loading...</div>
                         }
                     </div>
-
                 </div>
             </div>
         </>
