@@ -4,7 +4,7 @@ import s from './CheckBox.module.sass';
 interface iProps extends HTMLAttributes<HTMLDivElement> {
     checked: boolean,
     onChange: () => void,
-    idx: number
+    idx: number | string
 }
 
 export const CheckBox: React.FC<PropsWithChildren<iProps>> = ({ checked, idx, onChange }) => {

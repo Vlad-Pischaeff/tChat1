@@ -7,7 +7,7 @@ import s from './Todos.module.sass';
 
 interface iProps extends HTMLAttributes<HTMLDivElement> {
     todo: iTodos,
-    idx: number
+    idx: number | string
 }
 
 export const TodosItem: React.FC<PropsWithChildren<iProps>> = ({ todo, idx }) => {
@@ -29,7 +29,7 @@ export const TodosItem: React.FC<PropsWithChildren<iProps>> = ({ todo, idx }) =>
             <div className={`${s.itemDate} ${todo.done ? s.done : null}`}>
                 { format(new Date(todo.date), 'dd.MMM.yyyy') }
             </div>
-            <CheckBox checked={todo.done} idx={idx} onChange={handleClick}/>
+            <CheckBox checked={todo.done} idx={todo._id} onChange={handleClick}/>
         </div>
     );
 };
