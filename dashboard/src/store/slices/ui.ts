@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction, isAnyOf  } from "@reduxjs/toolkit";
-import { usersApi } from "../api/usersApi";
-import type { RootState } from '../store';
+import { usersApi } from "store/api/usersApi";
+import type { RootState } from 'store/store';
 
 export type UIType = {
     message: string;

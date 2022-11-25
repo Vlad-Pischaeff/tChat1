@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { usersApi } from './api/usersApi';
-import { todosApi } from './api/todosApi';
-import authReducer from './slices/auth';
-import uiReducer from './slices/ui';
+import { usersApi } from 'store/api/usersApi';
+import { todosApi } from 'store/api/todosApi';
+import authReducer from 'store/slices/auth';
+import uiReducer from 'store/slices/ui';
 
 export const store = configureStore({
     reducer: {

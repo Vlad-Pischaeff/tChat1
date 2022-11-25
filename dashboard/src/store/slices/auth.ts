@@ -1,6 +1,6 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-import { usersApi } from "../api/usersApi";
-import type { RootState } from '../store';
+import { usersApi } from "store/api/usersApi";
+import type { RootState } from 'store/store';
 
 export type IUser = {
     id: string;

@@ -4,8 +4,8 @@ import type {
     FetchArgs,
     FetchBaseQueryError,
 } from '@reduxjs/toolkit/query'
-import { setCredentials, logout } from '../slices/auth';
-import { RootState } from '../store';
+import { setCredentials, logout } from 'store/slices/auth';
+import { RootState } from 'store/store';
 
 type tData = {
     accessToken: string,
