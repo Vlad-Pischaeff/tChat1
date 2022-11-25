@@ -20,13 +20,13 @@ export const TodosItem: React.FC<PropsWithChildren<iProps>> = ({ todo, idx }) =>
 
     return (
         <div className={s.item}>
-            <div className={s.itemNum}>
+            <div className={`${s.itemNum} ${todo.done ? s.done : null}`}>
                 {idx}
             </div>
-            <div className={s.itemDesc}>
+            <div className={`${s.itemDesc} ${todo.done ? s.done : null}`}>
                 {todo.description}
             </div>
-            <div className={s.itemDate}>
+            <div className={`${s.itemDate} ${todo.done ? s.done : null}`}>
                 { format(new Date(todo.date), 'dd.MMM.yyyy') }
             </div>
             <CheckBox checked={todo.done} idx={idx} onChange={handleClick}/>
