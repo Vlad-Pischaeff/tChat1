@@ -1,7 +1,8 @@
 import React, { HTMLAttributes, PropsWithChildren } from 'react';
+import { format } from 'date-fns';
 import { useEditTodoMutation } from 'store/api/todosApi';
+import { CheckBox } from 'components/ui/CheckBox';
 import { iTodos } from './Types';
-import { customDate } from 'assets/utils';
 import s from './Todos.module.sass';
 
 interface iProps extends HTMLAttributes<HTMLDivElement> {
@@ -26,11 +27,9 @@ export const TodosItem: React.FC<PropsWithChildren<iProps>> = ({ todo, idx }) =>
                 {todo.description}
             </div>
             <div className={s.itemDate}>
-                {customDate(todo.date)}
+                { format(new Date(todo.date), 'dd.MMM.yyyy') }
             </div>
-            <div className={s.itemCheck} onClick={handleClick}>
-                {todo.done ? '[ V ]' : '[ - ]'}
-            </div>
+            <CheckBox checked={todo.done} idx={idx} onChange={handleClick}/>
         </div>
     );
 };
