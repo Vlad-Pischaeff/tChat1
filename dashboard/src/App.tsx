@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { PrivateRoute } from 'components/router';
 import * as PAGE from 'pages';
+import * as UI from 'components/ui';
 
 function App() {
     return (
@@ -23,6 +24,7 @@ function App() {
                 </Route>
                 <Route path="*" element={<Navigate to="/login" replace />} />
             </Routes>
+            <UI.SnackBar />
         </BrowserRouter>
     );
 }
