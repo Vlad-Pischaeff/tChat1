@@ -3,7 +3,7 @@
 ## To run
 
 - в каталоге программы выполните команды
-```js
+```
  npm run all-install
 ```
 - создайте файл .env в корне проекта
@@ -15,7 +15,7 @@ REFRESH_JWT_LIFETIME='10d'
 MDB_SERVER='localhost'
 MDB_DATABASE='database'
 ```
-где MDB_SERVER - адрес вервера MongoDB, 
+где MDB_SERVER   - адрес сервера MongoDB, 
     MDB_DATABASE - имя базы данных на этом сервере
 
 - запустите все в режиме разработки
