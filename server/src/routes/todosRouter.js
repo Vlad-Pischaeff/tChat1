@@ -11,6 +11,7 @@ todosRouter.route('/todos')
 
 todosRouter.route('/todos/:id')
     .patch(auth, controller.updateTodo)
-    .get(auth, controller.getTodo);
+    .get(auth, controller.getTodo)
+    .delete(auth, controller.deleteTodo);
 
 module.exports = todosRouter;

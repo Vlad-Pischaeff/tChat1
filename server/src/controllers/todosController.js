@@ -60,12 +60,28 @@ const todosController = () => {
             res.status(500).json({ message: `Update todo error, details... ${e.message}` });
         }
     };
+    /** ******************************************
+     * delete todo - host/api/todos/637dafa8efa9a1b203f5f6d1
+     * @param {string} id - todo ID
+     ****************************************** */
+    const deleteTodo = async (req, res) => {
+        try {
+            const { id } = req.params;
+            const newTodo = await Todos.deleteOne({ _id: id });
+            // const newTodo = await Todos.find({ user: req.id });
+
+            res.status(201).json({ newTodo });
+        } catch (e) {
+            res.status(500).json({ message: `Delete todo error, details... ${e.message}` });
+        }
+    };
 
     return {
         getTodos,
         getTodo,
         addTodo,
-        updateTodo
+        updateTodo,
+        deleteTodo
     };
 };
 

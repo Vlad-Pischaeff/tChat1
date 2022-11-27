@@ -1,7 +1,7 @@
 import React, { HTMLAttributes, PropsWithChildren } from 'react';
 import { format } from 'date-fns';
-import { useEditTodoMutation } from 'store/api/todosApi';
-import { CheckBox } from 'components/ui/CheckBox';
+import { useEditTodoMutation, useDeleteTodoMutation } from 'store/api/todosApi';
+import * as UI from 'components/ui';
 import { iTodos } from './Types';
 import s from './Todos.module.sass';
 
@@ -12,10 +12,16 @@ interface iProps extends HTMLAttributes<HTMLDivElement> {
 
 export const TodosItem: React.FC<PropsWithChildren<iProps>> = ({ todo, idx }) => {
     const [ updateTodo ] = useEditTodoMutation();
+    const [ deleteTodo ] = useDeleteTodoMutation();
 
-    const handleClick = () => {
+    const handleChange = () => {
         const data = { id: todo._id, done: !todo.done};
         updateTodo(data);
+    }
+
+    const handleClick = () => {
+        const data = { id: todo._id };
+        deleteTodo(data);
     }
 
     return (
@@ -29,7 +35,8 @@ export const TodosItem: React.FC<PropsWithChildren<iProps>> = ({ todo, idx }) =>
             <div className={`${s.itemDate} ${todo.done ? s.done : null}`}>
                 { format(new Date(todo.date), 'dd.MMM.yyyy') }
             </div>
-            <CheckBox checked={todo.done} idx={todo._id} onChange={handleClick}/>
+            <UI.CheckBox checked={todo.done} idx={todo._id} onChange={handleChange}/>
+            <UI.Delete checked={todo.done} onClick={handleClick}/>
         </div>
     );
 };
