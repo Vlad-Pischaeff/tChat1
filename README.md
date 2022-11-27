@@ -3,10 +3,8 @@
 ## To run
 
 - в каталоге программы выполните команды
-```
- npm install
- npm run client-install
- npm run server-install
+```js
+ npm run all-install
 ```
 - создайте файл .env в корне проекта
 ```
