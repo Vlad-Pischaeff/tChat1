@@ -2,7 +2,7 @@ import React, { HTMLAttributes, PropsWithChildren, useEffect } from 'react';
 import s from './Snack.module.sass';
 
 interface iProps extends HTMLAttributes<HTMLDivElement> {
-    message: string | undefined
+    message: string
 }
 
 export const Snack: React.FC<PropsWithChildren<iProps>> = ({ message }) => {
