@@ -15,7 +15,8 @@ export const TodosItem: React.FC<PropsWithChildren<iProps>> = ({ todo, idx }) =>
     const [ deleteTodo ] = useDeleteTodoMutation();
 
     const handleChange = () => {
-        const data = { id: todo._id, done: !todo.done};
+        const body = { done: !todo.done };
+        const data = { id: todo._id, ...body };
         updateTodo(data);
     }
 
