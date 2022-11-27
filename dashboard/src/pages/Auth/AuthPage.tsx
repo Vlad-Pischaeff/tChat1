@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
 import { useAppSelector } from 'store/hook';
-import { selectCurrentUser, IUser } from 'store/slices/auth';
+import { selectCurrentUser } from 'store/slices/auth';
 
 export const AuthPage = () => {
     const navigate = useNavigate();
-    const user = useAppSelector<IUser>(selectCurrentUser);
+    const user = useAppSelector(selectCurrentUser);
     const { pathname } = useLocation();
 
     useEffect(() => {

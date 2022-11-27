@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useAppSelector, useAppDispatch } from 'store/hook';
-import { resetMessage, setMessage, selectUI, UIType } from "store/slices/ui";
+import { resetMessage, setMessage, selectUI } from "store/slices/ui";
 import { useLoginUserMutation } from 'store/api/usersApi';
 import { IFormInputs, Warning, InputType } from './Types';
 import * as yup from "yup";
@@ -15,7 +15,7 @@ const schema = yup.object({
 
 export const LoginPage = () => {
     const dispatch = useAppDispatch();
-    const ui = useAppSelector<UIType>(selectUI);
+    const ui = useAppSelector(selectUI);
     const [ loginUser ] = useLoginUserMutation();
     const { watch, register, handleSubmit } = useForm<IFormInputs>();
     const [ type, setType ] = useState<InputType>(InputType.pw);
@@ -70,9 +70,12 @@ export const LoginPage = () => {
 
                 <input type="submit" value="Login" />
                 <div className={s.footer}>
-                    { ui.message 
-                        && <p>{ ui.message }</p> 
+                    {/* transfer behavior to SnackBar
+                    { ui.message
+                        && <p>{ ui.message }</p>
                     }
+                    */}
+                    <p>Forgot password?</p>
                 </div>
             </form>
         </>
