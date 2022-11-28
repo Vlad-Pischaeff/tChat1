@@ -33,7 +33,7 @@ export const baseQueryWithReAuth:
     BaseQueryFn<
         string | FetchArgs,
         unknown,
-        FetchBaseQueryError
+        FetchBaseQueryError | { data: { message: string } } | undefined
     > = async (args, api, extraOptions) => {
     let result = await baseQuery(args, api, extraOptions);
     console.log('result => ', result);

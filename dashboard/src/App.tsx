@@ -1,10 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { PrivateRoute } from 'components/router';
+import { selectUI } from "store/slices/ui";
+import { useAppSelector } from 'store/hook';
 import * as PAGE from 'pages';
 import * as UI from 'components/ui';
 
 function App() {
+    const ui = useAppSelector(selectUI);
+
     return (
         <BrowserRouter>
             <Routes>
@@ -24,7 +28,9 @@ function App() {
                 </Route>
                 <Route path="*" element={<Navigate to="/login" replace />} />
             </Routes>
-            <UI.SnackBar />
+
+            <UI.SnackBar message={ui.message} />
+
         </BrowserRouter>
     );
 }

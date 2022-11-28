@@ -31,8 +31,11 @@ const slice = createSlice({
                 todosApi.endpoints.deleteTodo.matchRejected,
                 todosApi.endpoints.editTodo.matchRejected
             ),
-            (state, { payload }: PayloadAction<any> ) => {
-                state.message = payload.data.message;
+            (state, { payload } ) => {
+                if (payload && 'data' in payload) {
+                    const { message } = payload.data as UIType;
+                    state.message = message;
+                }
             },
         )
     },
