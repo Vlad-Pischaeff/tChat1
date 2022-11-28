@@ -17,7 +17,7 @@ export const Snack: React.FC<PropsWithChildren<iProps>> = ({ message }) => {
             +vars.DELAY
         );
         return () => { clearTimeout(timerId) };
-    }, [message]);
+    }, [message, dispatch]);
 
     return (
         <div className={s.container}>
