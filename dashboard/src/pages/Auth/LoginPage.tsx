@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { useAppSelector, useAppDispatch } from 'store/hook';
 import { resetMessage, setMessage, selectUI } from "store/slices/ui";
 import { useLoginUserMutation } from 'store/api/usersApi';
-import { IFormInputs, Warning, InputType } from './Types';
+import { tFormInputs, tWarning, InputType } from './Types';
 import * as yup from "yup";
 import * as ICON from 'assets/img';
 import s from './Auth.module.sass';
@@ -17,7 +17,7 @@ export const LoginPage = () => {
     const dispatch = useAppDispatch();
     const ui = useAppSelector(selectUI);
     const [ loginUser ] = useLoginUserMutation();
-    const { watch, register, handleSubmit } = useForm<IFormInputs>();
+    const { watch, register, handleSubmit } = useForm<tFormInputs>();
     const [ type, setType ] = useState<InputType>(InputType.pw);
 
     useEffect(() => {
@@ -29,13 +29,13 @@ export const LoginPage = () => {
         return () => subscription.unsubscribe();
     }, [watch, ui.message, dispatch]);
 
-    const onSubmit = async (data: IFormInputs) => {
+    const onSubmit: SubmitHandler<tFormInputs> = async (data) => {
         schema
             .validate(data)                 // проверяем введенные данные
             .then(data => {
                 loginUser(data);            // вызываем API '/users/login' для авторизации
             })
-            .catch((err: Warning) => {
+            .catch((err: tWarning) => {
                 const message = err.errors?.[0] || '';
                 dispatch(setMessage(message));
             });

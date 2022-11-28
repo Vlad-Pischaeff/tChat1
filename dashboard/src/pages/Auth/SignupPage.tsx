@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useAppSelector, useAppDispatch } from 'store/hook';
 import { resetMessage, setMessage, selectUI } from "store/slices/ui";
 import { useAddUserMutation } from "store/api/usersApi";
-import { IFormInputs, Warning, InputType } from './Types';
+import { tFormInputs, tWarning, InputType } from './Types';
 import * as yup from "yup";
 import * as ICON from 'assets/img';
 import s from './Auth.module.sass';
@@ -18,7 +18,7 @@ export const SignupPage = () => {
     const dispatch = useAppDispatch();
     const ui = useAppSelector(selectUI);
     const [ addUser ] = useAddUserMutation();
-    const { watch, register, handleSubmit } = useForm<IFormInputs>();
+    const { watch, register, handleSubmit } = useForm<tFormInputs>();
     const [ type, setType ] = useState<InputType>(InputType.pw);
 
     useEffect(() => {
@@ -30,13 +30,13 @@ export const SignupPage = () => {
         return () => subscription.unsubscribe();
     }, [watch, ui.message, dispatch]);
 
-    const onSubmit = async (data: IFormInputs) => {
+    const onSubmit = async (data: tFormInputs) => {
         schema
             .validate(data)             // проверяем введенные данные
             .then(data => {
                 addUser(data);          // здесь вызываем API запросы к базе на регистрацию
             })
-            .catch((err: Warning) => {
+            .catch((err: tWarning) => {
                 const message = err.errors?.[0] || '';
                 dispatch(setMessage(message));
             });
