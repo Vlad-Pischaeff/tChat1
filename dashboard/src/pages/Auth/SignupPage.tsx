@@ -30,11 +30,11 @@ export const SignupPage = () => {
         return () => subscription.unsubscribe();
     }, [watch, ui.message, dispatch]);
 
-    const onSubmit = (data: IFormInputs) => {
+    const onSubmit = async (data: IFormInputs) => {
         schema
             .validate(data)             // проверяем введенные данные
             .then(data => {
-                addUser(data)           // здесь вызываем API запросы к базе на регистрацию
+                addUser(data);          // здесь вызываем API запросы к базе на регистрацию
             })
             .catch((err: Warning) => {
                 const message = err.errors?.[0] || '';

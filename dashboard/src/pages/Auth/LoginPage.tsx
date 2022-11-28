@@ -29,11 +29,11 @@ export const LoginPage = () => {
         return () => subscription.unsubscribe();
     }, [watch, ui.message, dispatch]);
 
-    const onSubmit = (data: IFormInputs) => {
+    const onSubmit = async (data: IFormInputs) => {
         schema
             .validate(data)                 // проверяем введенные данные
             .then(data => {
-                loginUser(data)             // вызываем API '/users/login' для авторизации
+                loginUser(data);            // вызываем API '/users/login' для авторизации
             })
             .catch((err: Warning) => {
                 const message = err.errors?.[0] || '';
