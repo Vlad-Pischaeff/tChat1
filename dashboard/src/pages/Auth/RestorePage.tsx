@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useAppSelector, useAppDispatch } from 'store/hook';
 import { resetMessage, setMessage, selectUI } from "store/slices/ui";
-import { useLoginUserMutation } from 'store/api/usersApi';
+import { useResetUserPasswordMutation } from 'store/api/usersApi';
 import { tFormInputs, tWarning } from './Types';
 import * as yup from "yup";
 import s from './Auth.module.sass';
@@ -16,7 +16,7 @@ type FormInput = Pick<tFormInputs, 'email'>;
 export const RestorePage = () => {
     const dispatch = useAppDispatch();
     const ui = useAppSelector(selectUI);
-    const [ loginUser ] = useLoginUserMutation();
+    const [ resetPassword ] = useResetUserPasswordMutation();
     const { watch, register, handleSubmit } = useForm<tFormInputs>();
 
     useEffect(() => {
@@ -32,7 +32,7 @@ export const RestorePage = () => {
         schema
             .validate(data)                 // проверяем введенные данные
             .then(data => {
-                loginUser(data);            // вызываем API '/users/login' для авторизации
+                resetPassword(data);        // вызываем API '/users/reset' для авторизации
             })
             .catch((err: tWarning) => {
                 const message = err.errors?.[0] || '';

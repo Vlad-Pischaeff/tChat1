@@ -26,6 +26,7 @@ const slice = createSlice({
         builder.addMatcher( isAnyOf(
                 usersApi.endpoints.loginUser.matchRejected,
                 usersApi.endpoints.addUser.matchRejected,
+                usersApi.endpoints.resetUserPassword.matchRejected,
                 todosApi.endpoints.getTodo.matchRejected,
                 todosApi.endpoints.addTodo.matchRejected,
                 todosApi.endpoints.deleteTodo.matchRejected,
