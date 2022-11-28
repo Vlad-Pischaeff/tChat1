@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, PropsWithChildren, useEffect } from 'react';
+import React, { HTMLAttributes, useEffect } from 'react';
 import { useAppDispatch } from 'store/hook';
 import { resetMessage } from "store/slices/ui";
 import vars from 'assets/style/variables.module.sass';
@@ -8,7 +8,7 @@ interface iProps extends HTMLAttributes<HTMLDivElement> {
     message: string
 }
 
-export const Snack: React.FC<PropsWithChildren<iProps>> = ({ message }) => {
+export const Snack = ({ message }: iProps) => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {

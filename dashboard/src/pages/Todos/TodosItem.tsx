@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, PropsWithChildren } from 'react';
+import React, { HTMLAttributes } from 'react';
 import { format } from 'date-fns';
 import { useEditTodoMutation, useDeleteTodoMutation } from 'store/api/todosApi';
 import * as UI from 'components/ui';
@@ -10,7 +10,7 @@ interface iProps extends HTMLAttributes<HTMLDivElement> {
     idx: number | string
 }
 
-export const TodosItem: React.FC<PropsWithChildren<iProps>> = ({ todo, idx }) => {
+export const TodosItem = ({ todo, idx }: iProps) => {
     const [ updateTodo ] = useEditTodoMutation();
     const [ deleteTodo ] = useDeleteTodoMutation();
 

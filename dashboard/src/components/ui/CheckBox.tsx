@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, PropsWithChildren }  from 'react';
+import React, { HTMLAttributes }  from 'react';
 import s from './CheckBox.module.sass';
 
 interface iProps extends HTMLAttributes<HTMLDivElement> {
@@ -7,7 +7,7 @@ interface iProps extends HTMLAttributes<HTMLDivElement> {
     idx: number | string
 }
 
-export const CheckBox: React.FC<PropsWithChildren<iProps>> = ({ checked, idx, onChange }) => {
+export const CheckBox = ({ checked, idx, onChange }: iProps) => {
     return (
         <div className={s.container}>
             <input type="checkbox" id={`cb-${idx}`} checked={checked} onChange={onChange} />

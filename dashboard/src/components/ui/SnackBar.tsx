@@ -1,11 +1,11 @@
-import React, { HTMLAttributes, PropsWithChildren } from 'react';
+import React, { HTMLAttributes } from 'react';
 import { Snack } from './Snack';
 
 interface iProps extends HTMLAttributes<HTMLDivElement> {
     message: string
 }
 
-export const SnackBar: React.FC<PropsWithChildren<iProps>> = ({ message }) => {
+export const SnackBar = ({ message }: iProps) => {
 
     return message
         ?   <Snack message={message} />

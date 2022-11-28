@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, PropsWithChildren } from 'react';
+import React, { HTMLAttributes } from 'react';
 import s from './Delete.module.sass';
 
 interface iProps extends HTMLAttributes<HTMLDivElement> {
@@ -6,7 +6,7 @@ interface iProps extends HTMLAttributes<HTMLDivElement> {
     onClick: () => void
 }
 
-export const Delete: React.FC<PropsWithChildren<iProps>> = ({ checked, onClick }) => {
+export const Delete = ({ checked, onClick }: iProps) => {
     return (
         <div className={s.container} onClick={onClick}>
             <div className={`${checked ? s.itemDone : s.item}`}>
