@@ -1,25 +1,23 @@
-import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
+import React, { useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useAppSelector, useAppDispatch } from 'store/hook';
 import { resetMessage, setMessage, selectUI } from "store/slices/ui";
 import { useLoginUserMutation } from 'store/api/usersApi';
-import { tFormInputs, tWarning, InputType } from './Types';
+import { tFormInputs, tWarning } from './Types';
 import * as yup from "yup";
-import * as ICON from 'assets/img';
 import s from './Auth.module.sass';
 
 const schema = yup.object({
-    password: yup.string().min(5).max(20).required(),
-    name: yup.string().max(20).required(),
+    email: yup.string().email().required(),
 }).required();
 
-export const LoginPage = () => {
+type FormInput = Pick<tFormInputs, 'email'>;
+
+export const RestorePage = () => {
     const dispatch = useAppDispatch();
     const ui = useAppSelector(selectUI);
     const [ loginUser ] = useLoginUserMutation();
     const { watch, register, handleSubmit } = useForm<tFormInputs>();
-    const [ type, setType ] = useState<InputType>(InputType.pw);
 
     useEffect(() => {
         const subscription = watch(() => {
@@ -30,7 +28,7 @@ export const LoginPage = () => {
         return () => subscription.unsubscribe();
     }, [watch, ui.message, dispatch]);
 
-    const onSubmit: SubmitHandler<tFormInputs> = async (data) => {
+    const onSubmit: SubmitHandler<FormInput> = async (data) => {
         schema
             .validate(data)                 // проверяем введенные данные
             .then(data => {
@@ -42,36 +40,30 @@ export const LoginPage = () => {
             });
     };
 
-    const switchPassVisibility = () => {
-        type === InputType.pw
-            ? setType(InputType.txt)
-            : setType(InputType.pw);
-    };
-
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)} className={s.authForm}>
                 <div className={s.header}>
-                    <p>Login</p>
+                    <p>Restore</p>
                 </div>
 
                 <div className={s.body}>
                     <fieldset>
-                        <label>Login Name</label>
-                        <input { ...register("name") } placeholder="John Smith" />
-                    </fieldset>
-                    <fieldset>
-                        <label>Password</label>
-                        <div className={s.inputWrap}>
-                            <input { ...register("password") } placeholder="password" type={type} />
-                            <img src={type === InputType.pw ? ICON.EyeBlocked : ICON.Eye} alt="eye blocked" onClick={switchPassVisibility} />
-                        </div>
+                        <label>Email</label>
+                        <input { ...register("email") } placeholder="mail@mail.com" />
                     </fieldset>
                 </div>
 
-                <input type="submit" value="Login" />
+                <input type="submit" value="Send" />
                 <div className={s.footer}>
-                    <Link to={'/restore'}>Forgot password?</Link>
+                    <div>
+                        <p>
+                            <strong>type Your email</strong>
+                        </p>
+                        <p>
+                            You are not alone. We’ve all been here at some point
+                        </p>
+                    </div>
                 </div>
             </form>
         </>

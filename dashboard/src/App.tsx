@@ -16,6 +16,7 @@ function App() {
                     <Route index element={<PAGE.LoginPage />} />
                     <Route path="login" element={<PAGE.LoginPage />} />
                     <Route path="signup" element={<PAGE.SignupPage />} />
+                    <Route path="restore" element={<PAGE.RestorePage />} />
                 </Route>
                 <Route
                     path="/dashboard"
