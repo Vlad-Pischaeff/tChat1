@@ -2,6 +2,7 @@
 
 const Users = require('#s/models/users');
 const UserService = require('#s/services/userService');
+const MailService = require('#s/services/mailService');
 
 const usersController = () => {
     /** ******************************************
@@ -114,6 +115,19 @@ const usersController = () => {
             res.status(500).json({ message: `Refresh token error, details... ${e.message}` });
         }
     };
+    /** ******************************************
+     * reset user's password
+     ****************************************** */
+    const resetPassword = async (req, res) => {
+        try {
+            const { email } = req.body;
+            await MailService.sendResetPasswordMail(email, 'http://localhost:3000');
+
+            res.status(201).json({ message: `Reset password link sended to ${email}...` });
+        } catch (e) {
+            res.status(500).json({ message: `Reset password error, details... ${e.message}` });
+        }
+    };
 
     return {
         getUsers,
@@ -123,7 +137,8 @@ const usersController = () => {
         updateUser,
         getExcludeUser,
         getUser,
-        refreshToken
+        refreshToken,
+        resetPassword
     };
 };
 

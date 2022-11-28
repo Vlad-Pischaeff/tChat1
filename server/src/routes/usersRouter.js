@@ -27,4 +27,7 @@ usersRouter.route('/users/exclude/:id')
 usersRouter.route('/users')
     .get(auth, controller.getUsers);
 
+usersRouter.route('/users/reset')
+    .post(controller.resetPassword);
+
 module.exports = usersRouter;
