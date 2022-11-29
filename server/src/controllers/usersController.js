@@ -64,7 +64,8 @@ const usersController = () => {
         }
     };
     /** ******************************************
-     * update user profile
+     * update user - host/api/users/637dafa8efa9a1b203f5f6d1
+     * @param {string} id - user ID
      ****************************************** */
     const updateUser = async (req, res) => {
         try {

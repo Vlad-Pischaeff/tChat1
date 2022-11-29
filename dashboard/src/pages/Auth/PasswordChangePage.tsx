@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import { useForm } from "react-hook-form";
+import bcrypt from 'bcryptjs-react';
 import { useAppSelector, useAppDispatch } from 'store/hook';
+import { setCredentials } from 'store/slices/auth';
 import { resetMessage, setMessage, selectUI } from "store/slices/ui";
-import { useGetUserIdFromTokenMutation } from "store/api/usersApi";
+import { useGetUserIdFromTokenMutation, useUpdateUserMutation } from "store/api/usersApi";
 import { tFormPasswords, tWarning, InputType } from './Types';
 import * as yup from "yup";
 import * as ICON from 'assets/img';
@@ -28,6 +30,7 @@ export const PasswordChangePage = () => {
     const dispatch = useAppDispatch();
     const ui = useAppSelector(selectUI);
     const [ getUserId ] = useGetUserIdFromTokenMutation();
+    const [ updateUser ] = useUpdateUserMutation();
     const [ userId, setUserId ] = useState('');
     const { watch, register, handleSubmit } = useForm<tFormPasswords>();
     const [ type, setType ] = useState<InputType>(InputType.pw);
@@ -39,15 +42,13 @@ export const PasswordChangePage = () => {
                 setUserId(user.data.id);
             }
         };
-
+        // как только пользователь открывает ссылку, от получает token из параметра
+        // после этого из токена извлекаем userId
         if (token) fetchUserIdFromToken(token);
     }, [token, getUserId]);
 
     useEffect(() => {
-        if (userId) console.log('useEffect..userId..', userId);
-    }, [userId]);
-
-    useEffect(() => {
+        // это нужно для сброса ошибок до истечения времени показа SnackBar
         const subscription = watch(() => {
             if (ui.message) {
                 dispatch(resetMessage());
@@ -58,10 +59,15 @@ export const PasswordChangePage = () => {
 
     const onSubmit = async (data: tFormPasswords) => {
         schema
-            .validate(data)             // проверяем введенные данные
-            .then((data: tFormPasswords) => {
-                console.log('data...', data)
-                // addUser(data);          // здесь вызываем API запросы к базе на регистрацию
+            // проверяем введенные данные
+            .validate(data)
+            .then(async (data: tFormPasswords) => {
+                // формируем хэш пароля после всех успешных проверок
+                const hash = await bcrypt.hashSync(data.newpassword, 10);
+                // пользователю устанавливаем accessToken для успешного выполнения запроса
+                dispatch(setCredentials({ id: userId, accessToken: token }));
+                // здесь вызываем API запрос к базе на изменение пароля
+                updateUser({ id: userId, body: { password: hash }});
             })
             .catch((err: tWarning) => {
                 const message = err.errors?.[0] || '';
