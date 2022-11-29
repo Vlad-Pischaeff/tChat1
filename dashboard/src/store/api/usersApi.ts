@@ -31,13 +31,19 @@ export const usersApi = createApi({
                 method: 'POST',
                 body: user
             }),
-            invalidatesTags: ['User']
         }),
         resetUserPassword: builder.mutation({
             query: (email) => ({
                 url: 'users/reset',
                 method: 'POST',
                 body: email
+            }),
+        }),
+        getUserIdFromToken: builder.mutation({
+            query: (token) => ({
+                url: 'users/userid',
+                method: 'POST',
+                body: token
             }),
         })
     }),
@@ -50,5 +56,6 @@ export const {
     useLazyGetUserQuery,
     useAddUserMutation,
     useLoginUserMutation,
-    useResetUserPasswordMutation
+    useResetUserPasswordMutation,
+    useGetUserIdFromTokenMutation,
 } = usersApi;

@@ -29,6 +29,7 @@ const slice = createSlice({
                 usersApi.endpoints.loginUser.matchRejected,
                 usersApi.endpoints.addUser.matchRejected,
                 usersApi.endpoints.resetUserPassword.matchRejected,
+                usersApi.endpoints.getUserIdFromToken.matchRejected,
                 todosApi.endpoints.getTodo.matchRejected,
                 todosApi.endpoints.addTodo.matchRejected,
                 todosApi.endpoints.deleteTodo.matchRejected,

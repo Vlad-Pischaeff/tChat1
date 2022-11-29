@@ -30,4 +30,7 @@ usersRouter.route('/users')
 usersRouter.route('/users/reset')
     .post(controller.resetPassword);
 
+usersRouter.route('/users/userid')
+    .post(controller.getUserID);
+
 module.exports = usersRouter;

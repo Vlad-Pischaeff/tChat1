@@ -5,9 +5,9 @@ const config = require('#s/config/config');
 const jwt = require('jsonwebtoken');
 
 class TokenService {
-    generateToken(jwtPayload, type = 'ACCESS') {
+    generateToken(jwtPayload, type = 'ACCESS', expiresIn) {
         const jwtOptions = {
-            expiresIn: config[`${type}_JWT_LIFETIME`]
+            expiresIn: (expiresIn ? expiresIn : config[`${type}_JWT_LIFETIME`])
         };
 
         const jwtToken = jwt.sign(jwtPayload, config[`${type}_JWT_SECRET`], jwtOptions);

@@ -17,6 +17,7 @@ function App() {
                     <Route path="login" element={<PAGE.LoginPage />} />
                     <Route path="signup" element={<PAGE.SignupPage />} />
                     <Route path="restore" element={<PAGE.RestorePage />} />
+                    <Route path="setpw/:token" element={<PAGE.PasswordChangePage />} />
                 </Route>
                 <Route
                     path="/dashboard"

@@ -3,6 +3,8 @@
 const Users = require('#s/models/users');
 const UserService = require('#s/services/userService');
 const MailService = require('#s/services/mailService');
+const TokenService = require('#s/services/tokenService');
+const UserDTO = require('#s/dtos/userDTO');
 
 const usersController = () => {
     /** ******************************************
@@ -117,6 +119,9 @@ const usersController = () => {
     };
     /** ******************************************
      * reset user's password
+     * 1. find user email in db
+     * 2. if email exists then generate token with liftime 10m
+     * 3. send link to user
      ****************************************** */
     const resetPassword = async (req, res) => {
         try {
@@ -125,13 +130,31 @@ const usersController = () => {
 
             // send email only if email existed
             if (user) {
-                await MailService.sendResetPasswordMail(email, 'http://localhost:3000');
+                const userDTO = new UserDTO(user);
+                const accessToken = TokenService.generateToken({ ...userDTO }, 'ACCESS', '10m');
+                // TODO change link definition to .env variable
+                await MailService.sendResetPasswordMail(email, `http://localhost:3000/setpw/${accessToken}`);
             }
 
             // always send successfull message to sender
             res.status(201).json({ message: `Reset password link sended to ${email}...` });
         } catch (e) {
             res.status(500).json({ message: `Reset password error, details... ${e.message}` });
+        }
+    };
+    /** ******************************************
+     * get userID from accessToken
+     ****************************************** */
+    const getUserID = async (req, res) => {
+        try {
+            const { token } = req.body;
+            const user = await TokenService.validateAccessToken(token);
+
+            if ('verifyError' in user) throw new Error(user.verifyError);
+
+            res.status(201).json(user);
+        } catch (e) {
+            res.status(500).json({ message: `Get userID error, details... ${e.message}` });
         }
     };
 
@@ -144,7 +167,8 @@ const usersController = () => {
         getExcludeUser,
         getUser,
         refreshToken,
-        resetPassword
+        resetPassword,
+        getUserID,
     };
 };
 
