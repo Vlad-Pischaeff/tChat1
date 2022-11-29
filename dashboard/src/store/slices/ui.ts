@@ -5,14 +5,16 @@ import type { RootState } from 'store/store';
 
 export type UIType = {
     message: string;
+    type: 'error' | 'warning' | 'info'  // TODO use for styling SnackBar
 }
 
 const initialState: UIType = {
-    message: ''
+    message: '',
+    type: 'info'
 }
 
 const slice = createSlice({
-    name: "ui",
+    name: 'ui',
     initialState,
     reducers: {
         resetMessage: (state) => {
@@ -36,6 +38,7 @@ const slice = createSlice({
                 if (payload && 'data' in payload) {
                     const { message } = payload.data as UIType;
                     state.message = message;
+                    state.type = 'error';
                 }
             },
         )
@@ -47,6 +50,7 @@ const slice = createSlice({
                 if (payload && 'message' in payload) {
                     const { message } = payload;
                     state.message = message;
+                    state.type = 'info';
                 }
             },
         )
