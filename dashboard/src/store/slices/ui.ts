@@ -39,6 +39,16 @@ const slice = createSlice({
                 }
             },
         )
+        builder.addMatcher( isAnyOf(
+                usersApi.endpoints.resetUserPassword.matchFulfilled,
+            ),
+            (state, { payload } ) => {
+                if (payload && 'message' in payload) {
+                    const { message } = payload;
+                    state.message = message;
+                }
+            },
+        )
     },
 });
 

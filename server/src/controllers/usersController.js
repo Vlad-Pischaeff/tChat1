@@ -121,8 +121,14 @@ const usersController = () => {
     const resetPassword = async (req, res) => {
         try {
             const { email } = req.body;
-            await MailService.sendResetPasswordMail(email, 'http://localhost:3000');
+            const user = await Users.findOne({ email });
 
+            // send email only if email existed
+            if (user) {
+                await MailService.sendResetPasswordMail(email, 'http://localhost:3000');
+            }
+
+            // always send successfull message to sender
             res.status(201).json({ message: `Reset password link sended to ${email}...` });
         } catch (e) {
             res.status(500).json({ message: `Reset password error, details... ${e.message}` });

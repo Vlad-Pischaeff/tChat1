@@ -39,7 +39,6 @@ export const usersApi = createApi({
                 method: 'POST',
                 body: email
             }),
-            invalidatesTags: ['User']
         })
     }),
 });

@@ -24,7 +24,8 @@ class MailService {
             test: '',
             html: `
                 <div>
-                    <h3>Reset password</h3>
+                    <p>chat application</p>
+                    </hr>
                     <a href="${link}">Click for reset password</a>
                 </div>
             `
