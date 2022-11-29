@@ -41,6 +41,7 @@ const slice = createSlice({
         )
         builder.addMatcher( isAnyOf(
                 usersApi.endpoints.resetUserPassword.matchFulfilled,
+                todosApi.endpoints.deleteTodo.matchFulfilled,
             ),
             (state, { payload } ) => {
                 if (payload && 'message' in payload) {
