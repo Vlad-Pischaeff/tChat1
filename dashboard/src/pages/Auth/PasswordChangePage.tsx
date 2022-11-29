@@ -65,7 +65,12 @@ export const PasswordChangePage = () => {
                 // формируем хэш пароля после всех успешных проверок
                 const hash = await bcrypt.hashSync(data.newpassword, 10);
                 // пользователю устанавливаем accessToken для успешного выполнения запроса
-                dispatch(setCredentials({ id: userId, accessToken: token }));
+                const credentials = {
+                    id: userId,
+                    accessToken: token ,
+                    isAuthenticated: true
+                };
+                dispatch(setCredentials(credentials));
                 // здесь вызываем API запрос к базе на изменение пароля
                 updateUser({ id: userId, body: { password: hash }});
             })

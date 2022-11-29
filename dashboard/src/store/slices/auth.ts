@@ -26,7 +26,7 @@ const slice = createSlice({
         setCredentials: (state, { payload }) => {
             state.id = payload.id;
             state.jwtToken = payload.accessToken;
-            console.log('setCredentials...', payload.accessToken, payload.id)
+            state.isAuthenticated = payload.isAuthenticated;
         }
     },
     extraReducers: (builder) => {
