@@ -20,6 +20,29 @@ describe('Auth Form Test', () => {
 
         cy.get("input[type='submit']").should('be.visible')
 
+        // тест заполнения формы - начало
+        cy.get("input[type='submit']").click()
+        cy.get('#root').find('div').contains('name is a required').should('be.visible')
+
+        cy.get("input[name='password']").type('testPassword')
+        cy.get("input[type='submit']").click()
+        cy.get('#root').find('div').contains('name is a required').should('be.visible')
+        cy.get("input[name='password']").clear()
+
+        cy.get("input[name='name']").type('testUser')
+        cy.get("input[type='submit']").click()
+        cy.get('#root').find('div').contains('password must be').should('be.visible')
+
+        cy.get("input[name='password']").type('123')
+        cy.get("input[type='submit']").click()
+        cy.get('#root').find('div').contains('password must be').should('be.visible')
+
+        cy.get("input[name='password']").type('testPassword')
+        cy.get("input[type='submit']").click()
+        // здесь мы должны получить ответ от сервера
+        cy.get('#root').find('div').contains('login error', { matchCase: false }).should('be.visible')
+        // тест заполнения формы - конец
+
         cy.get('form').contains('form', 'Login', { matchCase: false }).within(() => {
             cy.contains('Forgot password', { matchCase: false })
                 .should('have.attr', 'href', '/restore')
@@ -32,7 +55,8 @@ describe('Auth Form Test', () => {
         cy.get('nav')
             .contains('sign up', { matchCase: false })
             .should('have.attr', 'href', '/signup')
-            .click()    // переходим на страницу с регистрацией
+            .click()                                // переходим на страницу с регистрацией
+        cy.url().should('include', '/signup')
 
         cy.get('nav')
             .contains('Login', { matchCase: false })
@@ -54,6 +78,32 @@ describe('Auth Form Test', () => {
 
         cy.get("input[type='submit']").should('be.visible')
 
+        // тест заполнения формы - начало
+        cy.get("input[type='submit']").click()
+        cy.get('#root').find('div').contains('name is a required').should('be.visible')
+
+        cy.get("input[name='name']").type('testUser')
+        cy.get("input[type='submit']").click()
+        cy.get('#root').find('div').contains('email is a required').should('be.visible')
+
+        cy.get("input[name='email']").type('mail')
+        cy.get("input[type='submit']").click()
+        cy.get('#root').find('div').contains('email must be').should('be.visible')
+        cy.get("input[name='email']").type('@')
+        cy.get("input[type='submit']").click()
+        cy.get('#root').find('div').contains('email must be').should('be.visible')
+        cy.get("input[name='email']").type('mail')
+        cy.get("input[type='submit']").click()
+        cy.get('#root').find('div').contains('email must be').should('be.visible')
+        cy.get("input[name='email']").type('.com')
+        cy.get("input[type='submit']").click()
+        cy.get('#root').find('div').contains('password must be').should('be.visible')
+
+        cy.get("input[name='password']").type('123')
+        cy.get("input[type='submit']").click()
+        cy.get('#root').find('div').contains('password must be').should('be.visible')
+        // тест заполнения формы - конец
+
         cy.get('nav')
             .contains('Login', { matchCase: false })
             .should('have.attr', 'href', '/login')
@@ -67,6 +117,7 @@ describe('Auth Form Test', () => {
                 .should('have.attr', 'href', '/restore')
                 .click() // переходим на страницу с отправкой ссылки на изменение пароля
         })
+        cy.url().should('include', '/restore')
 
         cy.get('nav')
             .contains('Login', { matchCase: false })
@@ -80,9 +131,24 @@ describe('Auth Form Test', () => {
 
         cy.get("input[type='submit']").should('be.visible')
 
+        // тест заполнения формы - начало
+        cy.get("input[type='submit']").click()
+        cy.get('#root').find('div').contains('email is a required').should('be.visible')
+
+        cy.get("input[name='email']").type('mail')
+        cy.get("input[type='submit']").click()
+        cy.get('#root').find('div').contains('email must be').should('be.visible')
+        cy.get("input[name='email']").clear()
+
+        cy.get("input[name='email']").type('mail@mail.com')
+        cy.get("input[type='submit']").click()
+        cy.get('#root').find('div').contains('reset password link', { matchCase: false }).should('be.visible')
+        // тест заполнения формы - конец
+
         cy.get('nav')
             .contains('Login', { matchCase: false })
             .should('have.attr', 'href', '/login')
             .click()    // возвращаемся на страницу входа
     })
+
 })
