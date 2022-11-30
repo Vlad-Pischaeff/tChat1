@@ -11,12 +11,12 @@ type tFormInputs = {
 
 export const TodosPage = () => {
     const [ addTodo ] = useAddTodoMutation();
-    const { watch, register, handleSubmit } = useForm<tFormInputs>();
+    const { register, handleSubmit } = useForm<tFormInputs>();
     const [ trigger, result ] = useLazyTodosQuery();
 
     useEffect(() => {
         trigger('', false);
-    }, []);
+    }, [trigger]);
 
     const onSubmit = (data: tFormInputs) => {
         // вызываем API '/todos', добавляем 'todo'
