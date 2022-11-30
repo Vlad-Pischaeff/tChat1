@@ -5,7 +5,7 @@ import type { RootState } from 'store/store';
 export type IUser = {
     id: string;
     jwtToken: string;
-    isAuthenticated: boolean;
+    isAuthenticated: boolean;   // надо подумать, а нужно ли это поле
 }
 
 const initialState: IUser = {

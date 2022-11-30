@@ -1,32 +1,35 @@
 'use strict';
 
+const config = require('#s/config/config');
 const nodemailer = require('nodemailer');
 
 class MailService {
 
     constructor() {
         this.transporter = nodemailer.createTransport({
-            host: process.env.SMTP_HOST,
-            port: process.env.SMTP_PORT,
+            host: config.SMTP_HOST,
+            port: config.SMTP_PORT,
             secure: false,
             auth: {
-                user: process.env.SMTP_USER,
-                pass: process.env.SMTP_PASS
+                user: config.SMTP_USER,
+                pass: config.SMTP_PASS
             }
         })
     }
 
     async sendResetPasswordMail(to, link) {
         await this.transporter.sendMail({
-            from: process.env.SMTP_USER,
+            from: config.SMTP_USER,
             to,
             subject: 'Reset password',
             test: '',
             html: `
-                <div>
-                    <p>chat application</p>
-                    </hr>
-                    <a href="${link}">Click for reset password</a>
+                <div style="height: 100%; padding: 1rem; background: aliceblue; border-radius: 12px">
+                    <div>
+                        <h4 style="margin: 0; padding: .5rem 0">chat application</h4>
+                        </hr>
+                        <a href="${link}">Click for reset password, link valid ${config.LIFETIME}</a>
+                    </div>
                 </div>
             `
         })
