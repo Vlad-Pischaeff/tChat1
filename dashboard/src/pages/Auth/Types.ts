@@ -12,6 +12,7 @@ export type tFormPasswords = {
 export type tWarning = {
     name?: string;
     errors?: string | Array<string>;
+    message?: string;
 }
 
 export const enum InputType {

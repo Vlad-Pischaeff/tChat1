@@ -37,7 +37,7 @@ export const LoginPage = () => {
                 loginUser(data);            // вызываем API '/users/login' для авторизации
             })
             .catch((err: tWarning) => {
-                const message = err.errors?.[0] || '';
+                const message = err.message || '';
                 dispatch(setMessage(message));
             });
     };
