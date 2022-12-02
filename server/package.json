@@ -28,8 +28,7 @@
         "jsonwebtoken": "^8.5.1",
         "make-random": "^3.0.2",
         "mongoose": "^6.4.2",
-        "nodemailer": "^6.8.0",
-        "tChat1": "file:.."
+        "nodemailer": "^6.8.0"
     },
     "devDependencies": {
         "cross-env": "^7.0.3",

@@ -50,7 +50,11 @@ export const LoginPage = () => {
 
     return (
         <>
-            <form onSubmit={handleSubmit(onSubmit)} className={s.authForm}>
+            <form
+                onSubmit={handleSubmit(onSubmit)}
+                className={s.authForm}
+                data-testid="login-form"
+            >
                 <div className={s.header}>
                     <p>Login</p>
                 </div>
@@ -58,13 +62,27 @@ export const LoginPage = () => {
                 <div className={s.body}>
                     <fieldset>
                         <label>Login Name</label>
-                        <input { ...register("name") } placeholder="John Smith" />
+                        <input
+                            { ...register("name") }
+                            placeholder="John Smith"
+                            data-testid="login-input"
+                        />
                     </fieldset>
                     <fieldset>
                         <label>Password</label>
                         <div className={s.inputWrap}>
-                            <input { ...register("password") } placeholder="password" type={type} />
-                            <img src={type === InputType.pw ? ICON.EyeBlocked : ICON.Eye} alt="eye blocked" onClick={switchPassVisibility} />
+                            <input
+                                { ...register("password") }
+                                placeholder="password"
+                                type={type}
+                                data-testid="password-input"
+                            />
+                            <img
+                                src={type === InputType.pw ? ICON.EyeBlocked : ICON.Eye}
+                                alt="eye blocked"
+                                onClick={switchPassVisibility}
+                                data-testid="eye-switch"
+                            />
                         </div>
                     </fieldset>
                 </div>
