@@ -7,14 +7,9 @@ import { store } from 'store/store';
 import * as userApi from '../../store/api/usersApi';
 import { useAppSelector, useAppDispatch } from 'store/hook';
 import { useLoginUserMutation } from 'store/api/usersApi';
+import { handleSubmit, useForm } from 'react-hook-form';
 import { LoginPage } from './LoginPage';
 
-// jest.mock("react-redux", () => ({
-//     ...jest.requireActual("react-redux"),
-//     useSelector: jest.fn(),
-//     useDispatch: jest.fn(),
-// }));
-// const mockDispatcher = jest.spyOn(ReactRedux, 'useDispatch');
 const state = {
     ui: {
         message: 'test message',
@@ -23,9 +18,19 @@ const state = {
 };
 
 jest.mock('store/hook');
+const action = jest.fn();
+const mockSubmitAction = jest.fn();
+
+jest.mock('react-hook-form', () => ({
+    ...jest.requireActual('react-hook-form'),
+    useForm: () => ({
+        ...jest.requireActual('react-hook-form').useForm(),
+        handleSubmit: mockSubmitAction, //() => {console.log('handle submit ->')} //() => mockSubmitAction,
+    }),
+}));
 
 describe('Login Form test', () => {
-    const action = jest.fn();
+
     beforeEach(() => {
         useAppSelector.mockImplementation(f => f(state));
         useAppDispatch.mockImplementation(() => action);
@@ -43,7 +48,7 @@ describe('Login Form test', () => {
         jest.clearAllMocks();
     })
 
-    test('renders Login Form', () => {
+    test('renders Login Form properly', () => {
         // const action = jest.fn();
         // mockDispatcher.mockReturnValue(action);
 
@@ -70,19 +75,24 @@ describe('Login Form test', () => {
         expect(useAppSelector).toHaveBeenCalled();
     });
 
-    test("should display correct error message", () => {
+    test("should not fire login event", async () => {
+        const submit = screen.getByTestId('submit-input');
+        fireEvent.submit(submit);
+        expect(mockSubmitAction).toHaveBeenCalled();
+    });
 
-        const login = screen.getByRole('button', {type: /submit/i});
-
-        act(() => {
-            fireEvent.click(login);
-            // expect(useAppDispatch).toHaveBeenCalledWith("any");
-            expect(action).toBeCalledTimes(1);
-            // expect(loginFn).toHaveBeenCalledTimes(1);
-
+    test('submit event while right login and password', () => {
+        const login = screen.getByTestId('login-input');
+        fireEvent.input(login, {
+            target: { value: "LOGINNAME" }
         });
+        const password = screen.getByTestId('password-input');
+        fireEvent.input(password, {
+            target: { value: "PASSWORD" }
+        });
+        const submit = screen.getByTestId('submit-input');
+        fireEvent.submit(submit);
 
-
-        screen.debug();
+        expect(mockSubmitAction).toHaveBeenCalledWith({ arg: 123 });
     });
 })
