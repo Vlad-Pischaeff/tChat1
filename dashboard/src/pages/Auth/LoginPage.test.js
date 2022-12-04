@@ -78,6 +78,8 @@ describe('Login Form test', () => {
     test("should not fire login event", async () => {
         const submit = screen.getByTestId('submit-input');
         fireEvent.submit(submit);
+
+        expect(action).toHaveBeenCalledWith({ arg: 1});
         expect(mockSubmitAction).toHaveBeenCalled();
     });
 
@@ -86,13 +88,18 @@ describe('Login Form test', () => {
         fireEvent.input(login, {
             target: { value: "LOGINNAME" }
         });
+        expect(login.value).toBe("LOGINNAME");
+
         const password = screen.getByTestId('password-input');
         fireEvent.input(password, {
             target: { value: "PASSWORD" }
         });
+        expect(password.value).toBe("PASSWORD");
+
         const submit = screen.getByTestId('submit-input');
         fireEvent.submit(submit);
 
-        expect(mockSubmitAction).toHaveBeenCalledWith({ arg: 123 });
+        expect(action).toHaveBeenCalledWith({ arg: 2});
+        expect(mockSubmitAction).toHaveBeenCalled();
     });
 })
