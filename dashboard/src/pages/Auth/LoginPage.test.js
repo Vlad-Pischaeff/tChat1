@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, act } from '@testing-library/react';
+import { render, screen, fireEvent, act, renderHook } from '@testing-library/react';
 import * as ReactRedux from 'react-redux';
 import * as actions from 'store/slices/ui'
 import * as hooks from 'store/hook';
@@ -19,15 +19,16 @@ const state = {
 
 jest.mock('store/hook');
 const action = jest.fn();
-const mockSubmitAction = jest.fn();
+const mockSubmitAction = jest.fn(action);
 
 jest.mock('react-hook-form', () => ({
     ...jest.requireActual('react-hook-form'),
     useForm: () => ({
         ...jest.requireActual('react-hook-form').useForm(),
-        handleSubmit: mockSubmitAction, //() => {console.log('handle submit ->')} //() => mockSubmitAction,
-    }),
-}));
+        handleSubmit: mockSubmitAction,
+    })
+})
+);
 
 describe('Login Form test', () => {
 
@@ -48,10 +49,7 @@ describe('Login Form test', () => {
         jest.clearAllMocks();
     })
 
-    test('renders Login Form properly', () => {
-        // const action = jest.fn();
-        // mockDispatcher.mockReturnValue(action);
-
+    test('should renders form elements properly', () => {
         const formElement = screen.getByTestId('login-form');
         expect(formElement).toBeInTheDocument();
 
@@ -70,20 +68,9 @@ describe('Login Form test', () => {
         const link = screen.getByRole('link');
         expect(link).toBeInTheDocument();
         expect(link.getAttribute('href')).toBe('/restore');
-
-        expect(useAppDispatch).toHaveBeenCalled();
-        expect(useAppSelector).toHaveBeenCalled();
     });
 
-    test("should not fire login event", async () => {
-        const submit = screen.getByTestId('submit-input');
-        fireEvent.submit(submit);
-
-        expect(action).toHaveBeenCalledWith({ arg: 1});
-        expect(mockSubmitAction).toHaveBeenCalled();
-    });
-
-    test('submit event while right login and password', () => {
+    test('should submit action with input values', async () => {
         const login = screen.getByTestId('login-input');
         fireEvent.input(login, {
             target: { value: "LOGINNAME" }
@@ -98,8 +85,12 @@ describe('Login Form test', () => {
 
         const submit = screen.getByTestId('submit-input');
         fireEvent.submit(submit);
+        expect(action).toHaveBeenCalled();
+    });
 
-        expect(action).toHaveBeenCalledWith({ arg: 2});
-        expect(mockSubmitAction).toHaveBeenCalled();
+    test('should not submit action with empty values', async () => {
+        const submit = screen.getByTestId('submit-input');
+        fireEvent.submit(submit);
+        expect(action).not.toHaveBeenCalled();
     });
 })
