@@ -19,6 +19,7 @@
         "client": "npm run start --prefix dashboard",
         "client-install": "npm install --prefix ./dashboard",
         "client-build": "npm run build --prefix ./dashboard",
+        "client-test": "npm run test --prefix ./dashboard",
         "server": "node server/index",
         "server-install": "npm install --prefix ./server",
         "dev-server": "nodemon server/index",
