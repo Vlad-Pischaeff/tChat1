@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useAppSelector, useAppDispatch } from 'store/hook';
 import { resetMessage, setMessage, selectUI } from "store/slices/ui";
 import { useResetUserPasswordMutation } from 'store/api/usersApi';
@@ -28,7 +28,7 @@ export const RestorePage = () => {
         return () => subscription.unsubscribe();
     }, [watch, ui.message, dispatch]);
 
-    const onSubmit: SubmitHandler<FormInput> = async (data) => {
+    const onSubmit = (data: FormInput) => {
         schema
             .validate(data)                 // проверяем введенные данные
             .then(data => {

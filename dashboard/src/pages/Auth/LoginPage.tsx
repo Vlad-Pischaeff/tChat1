@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useAppSelector, useAppDispatch } from 'store/hook';
 import { resetMessage, setMessage, selectUI } from "store/slices/ui";
 import { useLoginUserMutation } from 'store/api/usersApi';
@@ -30,7 +30,7 @@ export const LoginPage = () => {
         return () => subscription.unsubscribe();
     }, [watch, ui.message, dispatch]);
 
-    const onSubmit: SubmitHandler<tFormInputs> = async (data) => {
+    const onSubmit = (data: tFormInputs) => {
         schema
             .validate(data)                 // проверяем введенные данные
             .then(data => {

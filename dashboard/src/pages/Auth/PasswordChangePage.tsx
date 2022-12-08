@@ -57,7 +57,7 @@ export const PasswordChangePage = () => {
         return () => subscription.unsubscribe();
     }, [watch, ui.message, dispatch]);
 
-    const onSubmit = async (data: tFormPasswords) => {
+    const onSubmit = (data: tFormPasswords) => {
         schema
             // проверяем введенные данные
             .validate(data)

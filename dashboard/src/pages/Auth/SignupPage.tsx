@@ -30,7 +30,7 @@ export const SignupPage = () => {
         return () => subscription.unsubscribe();
     }, [watch, ui.message, dispatch]);
 
-    const onSubmit = async (data: tFormInputs) => {
+    const onSubmit = (data: tFormInputs) => {
         schema
             .validate(data)             // проверяем введенные данные
             .then(data => {
