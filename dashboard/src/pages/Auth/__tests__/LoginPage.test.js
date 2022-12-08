@@ -101,8 +101,7 @@ describe('Login Form test', () => {
             fireEvent.submit(submit);
         });
 
-        const res = await fetch(`/result`);
-        const cred = await res.json();
+        const cred = await fetch(`/result`).then(res => res.json());
 
         expect(cred).toEqual({ name: 'LOGINNAME', password: 'PASSWORD'});
     });
@@ -121,8 +120,7 @@ describe('Login Form test', () => {
             fireEvent.submit(submit);
         });
 
-        const res = await fetch(`/result`);
-        const cred = await res.json();
+        const cred = await fetch(`/result`).then(res => res.json());
 
         expect(cred).toEqual({});
     });
@@ -141,8 +139,7 @@ describe('Login Form test', () => {
             fireEvent.submit(submit);
         });
 
-        const res = await fetch(`/result`);
-        const cred = await res.json();
+        const cred = await fetch(`/result`).then(res => res.json());
 
         expect(cred).toEqual({});
     });
