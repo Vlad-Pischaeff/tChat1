@@ -69,7 +69,7 @@ const todosController = () => {
             const { id } = req.params;
             await Todos.deleteOne({ _id: id });
 
-            res.status(201).json({ message: `Todo deleted succsessfully...` });
+            res.status(201).json({ message: 'Todo deleted succsessfully...' });
         } catch (e) {
             res.status(500).json({ message: `Delete todo error, details... ${e.message}` });
         }

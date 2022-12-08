@@ -4,7 +4,6 @@ const config = require('#s/config/config');
 const nodemailer = require('nodemailer');
 
 class MailService {
-
     constructor() {
         this.transporter = nodemailer.createTransport({
             host: config.SMTP_HOST,
@@ -14,7 +13,7 @@ class MailService {
                 user: config.SMTP_USER,
                 pass: config.SMTP_PASS
             }
-        })
+        });
     }
 
     async sendResetPasswordMail(to, link) {
@@ -32,7 +31,7 @@ class MailService {
                     </div>
                 </div>
             `
-        })
+        });
     }
 }
 

@@ -170,7 +170,7 @@ const usersController = () => {
         getUser,
         refreshToken,
         resetPassword,
-        getUserID,
+        getUserID
     };
 };
 

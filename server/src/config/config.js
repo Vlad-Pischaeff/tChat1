@@ -5,10 +5,10 @@ const config = {};
 config.HOST = 'http://localhost:3000';
 config.LIFETIME = '10m';
 
-config.SMTP_HOST=process.env.SMTP_HOST
-config.SMTP_PORT=process.env.SMTP_PORT
-config.SMTP_USER=process.env.SMTP_USER
-config.SMTP_PASS=process.env.SMTP_PASS
+config.SMTP_HOST = process.env.SMTP_HOST;
+config.SMTP_PORT = process.env.SMTP_PORT;
+config.SMTP_USER = process.env.SMTP_USER;
+config.SMTP_PASS = process.env.SMTP_PASS;
 
 config.REQUEST_AUTHKEY = 'Authorization';
 config.ACCESS_JWT_SECRET = process.env.ACCESS_JWT_SECRET;

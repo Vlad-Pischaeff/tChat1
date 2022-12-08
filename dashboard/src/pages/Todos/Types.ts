@@ -5,4 +5,4 @@ export interface iTodos {
     description: string,
     done: boolean,
     user: string
-};
+}
