@@ -6,7 +6,7 @@ jobs:
         runs-on: ubuntu-latest
         strategy:
             matrix:
-                node-version: [ 17.x ]
+                node-version: [ 18.x ]
         steps:
             -   uses: actions/checkout@v3
             -   name: Setup Node.js ${{ matrix.node-version }}
@@ -20,5 +20,6 @@ jobs:
             -   name: Test Dashboard
                 run: npm run client-test
             -   name: Lint
-                run: npm run lint
+                run: npm run client-lint
+                    npm run server-lint
 
