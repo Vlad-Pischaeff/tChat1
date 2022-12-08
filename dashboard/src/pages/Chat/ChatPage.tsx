@@ -17,12 +17,12 @@ export const ChatPage = () => {
         navigate("/", { replace: true });
     }
 
-    const handlerGetUsers = async () => {
-        const data = await trigger('', false);
-        if ( data.status === "rejected") {
-            handlerLogout();
-        }
-    }
+    // const handlerGetUsers = async () => {
+    //     const data = await trigger('', false);
+    //     if ( data.status === "rejected") {
+    //         handlerLogout();
+    //     }
+    // }
 
     return (
         <>
