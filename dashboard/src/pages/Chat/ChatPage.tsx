@@ -17,12 +17,12 @@ export const ChatPage = () => {
         navigate("/", { replace: true });
     }
 
-    // const handlerGetUsers = async () => {
-    //     const data = await trigger('', false);
-    //     if ( data.status === "rejected") {
-    //         handlerLogout();
-    //     }
-    // }
+    const handlerGetUsers = async () => {
+        const data = await trigger('', false);
+        if ( data.status === "rejected") {
+            handlerLogout();
+        }
+    }
 
     return (
         <>
@@ -44,7 +44,9 @@ export const ChatPage = () => {
                 </nav>
                 <article className="content">
                     { isLoading && <div className={s.loader}></div> }
-                    {/* <input type="button" value="Get users" onClick={handlerGetUsers}/> */}
+                    { isLoading &&
+                        <input type="button" value="Get users" onClick={handlerGetUsers}/>
+                    }
                     <Outlet />
                 </article>
                 <footer className="footer">
