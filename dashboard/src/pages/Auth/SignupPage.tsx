@@ -37,7 +37,7 @@ export const SignupPage = () => {
                 addUser(data);          // здесь вызываем API запросы к базе на регистрацию
             })
             .catch((err: tWarning) => {
-                const message = err.errors?.[0] || '';
+                const message = err.message || '';
                 dispatch(setMessage(message));
             });
     };
@@ -50,7 +50,11 @@ export const SignupPage = () => {
 
     return (
         <>
-            <form onSubmit={handleSubmit(onSubmit)} className={s.authForm}>
+            <form
+                onSubmit={handleSubmit(onSubmit)}
+                className={s.authForm}
+                data-testid="signup-form"
+            >
                 <div className={s.header}>
                     <p>Signup</p>
                 </div>
@@ -58,27 +62,40 @@ export const SignupPage = () => {
                 <div className={s.body}>
                     <fieldset>
                         <label>Login Name</label>
-                        <input {...register("name")} placeholder="John Smith" />
+                        <input
+                            {...register("name")}
+                            placeholder="John Smith"
+                            data-testid="name-input"
+                        />
                     </fieldset>
                     <fieldset>
                         <label>Email</label>
-                        <input {...register("email")} placeholder="mail@mail.com" />
+                        <input
+                            {...register("email")}
+                            placeholder="mail@mail.com"
+                            data-testid="email-input"
+                        />
                     </fieldset>
                     <fieldset>
                         <label>Password</label>
                         <div className={s.inputWrap}>
-                            <input {...register("password")} placeholder="password" type={type} />
-                            <img src={type === InputType.pw ? ICON.EyeBlocked : ICON.Eye} alt="eye blocked" onClick={switchPassVisibility} />
+                            <input
+                                {...register("password")}
+                                placeholder="password"
+                                type={type}
+                                data-testid="password-input"
+                            />
+                            <img
+                                src={type === InputType.pw ? ICON.EyeBlocked : ICON.Eye}
+                                alt="eye blocked"
+                                onClick={switchPassVisibility}
+                                data-testid="eye-switch"
+                            />
                         </div>
                     </fieldset>
                 </div>
 
-                <input type="submit" value="Submit" />
-                {/* <div className={s.footer}>
-                    { ui.message
-                        && <p>{ ui.message }</p>
-                    }
-                </div> */}
+                <input type="submit" value="Submit" data-testid="submit-input" />
             </form>
         </>
     );

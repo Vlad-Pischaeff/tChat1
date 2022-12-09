@@ -36,14 +36,14 @@ export const baseQueryWithReAuth:
         FetchBaseQueryError | { data: { message: string } } | undefined
     > = async (args, api, extraOptions) => {
     let result = await baseQuery(args, api, extraOptions);
-    console.log('result => ', result);
+    // console.log('result => ', result);
 
     if (result?.error?.status === 403 ||
         result?.error?.status === 401 ) {
-        console.log('sending refresh token...');
+        // console.log('sending refresh token =>');
         //! send refresh token to get new access token
         const refreshResult = await baseQuery('/users/refresh', api, extraOptions) as tResult;
-        console.log('refreshResult =>', refreshResult);
+        // console.log('refreshResult =>', refreshResult);
 
         if (refreshResult?.data) {
             const id = (api.getState() as RootState).auth.id;

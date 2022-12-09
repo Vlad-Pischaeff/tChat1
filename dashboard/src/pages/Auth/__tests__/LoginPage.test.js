@@ -6,7 +6,6 @@ import { useAppSelector, useAppDispatch } from 'store/hook';
 import { server } from 'assets/mocks/server';
 import { LoginPage } from '../LoginPage';
 
-
 const state = {
     ui: {
         message: 'test message',
@@ -101,9 +100,15 @@ describe('Login Form test', () => {
             fireEvent.submit(submit);
         });
 
-        const cred = await fetch(`/result`).then(res => res.json());
+        // const cred = await fetch(`/result`).then(res => res.json());
+        // expect(cred).toEqual({ name: 'LOGINNAME', password: 'PASSWORD'});
 
-        expect(cred).toEqual({ name: 'LOGINNAME', password: 'PASSWORD'});
+        // after fire submit event test server intercepts API call
+        // endpoint = `${CONF.URL}/users/login`, with METHOD='POST' and
+        // body = { name: "LOGINNAME", password: "PASSWORD" } and assigns
+        // body to global.__TEST__ variable
+        // it means, that LoginForm works properly
+        expect(global.__TEST__).toEqual({ name: 'LOGINNAME', password: 'PASSWORD'});
     });
 
     test("should not submit with empty login", async () => {
