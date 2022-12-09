@@ -35,14 +35,18 @@ export const RestorePage = () => {
                 resetPassword(data);        // вызываем API '/users/reset' для авторизации
             })
             .catch((err: tWarning) => {
-                const message = err.errors?.[0] || '';
+                const message = err.message || '';
                 dispatch(setMessage(message));
             });
     };
 
     return (
         <>
-            <form onSubmit={handleSubmit(onSubmit)} className={s.authForm}>
+            <form
+                onSubmit={handleSubmit(onSubmit)}
+                className={s.authForm}
+                data-testid="restore-form"
+            >
                 <div className={s.header}>
                     <p>Restore</p>
                 </div>
@@ -50,11 +54,15 @@ export const RestorePage = () => {
                 <div className={s.body}>
                     <fieldset>
                         <label>Email</label>
-                        <input { ...register("email") } placeholder="mail@mail.com" />
+                        <input
+                            { ...register("email") }
+                            placeholder="mail@mail.com"
+                            data-testid="email-input"
+                        />
                     </fieldset>
                 </div>
 
-                <input type="submit" value="Send" />
+                <input type="submit" value="Send" data-testid="submit-input"/>
                 <div className={s.footer}>
                     <div>
                         <p>

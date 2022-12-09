@@ -32,7 +32,21 @@ const reqSignupUser = rest.put(`${CONF.URL}/users/register`, (req, res, ctx) => 
     )
 });
 
-const reqGetUsers = rest.get(`/result`, (req, res, ctx) => {
+const reqResetPassword = rest.post(`${CONF.URL}/users/reset`, (req, res, ctx) => {
+    const { email } = req.body;
+    global.__TEST__ = { email };
+
+    // console.log('handler 1 ->', global.__TEST__);
+
+    return res(
+        ctx.status(200),
+        ctx.response({
+            email
+        })
+    )
+});
+
+const reqGetResult = rest.get(`/result`, (req, res, ctx) => {
     // console.log( 'handler 2 ->', global.__TEST__ );
 
     return res(
@@ -58,6 +72,7 @@ const reqClearResults = rest.get(`/clear`, (req, res, ctx) => {
 export const handlers = [
     reqLoginUser,
     reqSignupUser,
-    reqGetUsers,
+    reqResetPassword,
+    reqGetResult,
     reqClearResults
 ]
