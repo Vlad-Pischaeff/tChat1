@@ -1,11 +1,12 @@
 import { rest } from 'msw';
 import * as CONF from 'assets/config';
+import { log } from 'assets/utils';
 
 const reqLoginUser = rest.post(`${CONF.URL}/users/login`, (req, res, ctx) => {
     const { name, password } = req.body;
     global.__TEST__ = { name, password };
 
-    // console.log('handler -> reqLoginUser ->', global.__TEST__);
+    // log('handler -> reqLoginUser ->', global.__TEST__);
 
     return res(
         ctx.status(200),
@@ -20,7 +21,7 @@ const reqSignupUser = rest.put(`${CONF.URL}/users/register`, (req, res, ctx) => 
     const { name, email, password } = req.body;
     global.__TEST__ = { name, email, password };
 
-    // console.log('handler -> reqSignupUser ->', global.__TEST__);
+    // log('handler -> reqSignupUser ->', global.__TEST__);
 
     return res(
         ctx.status(200),
@@ -36,7 +37,7 @@ const reqResetPassword = rest.post(`${CONF.URL}/users/reset`, (req, res, ctx) =>
     const { email } = req.body;
     global.__TEST__ = { email };
 
-    // console.log('handler -> reqResetPassword ->', global.__TEST__);
+    // log('handler -> reqResetPassword ->', global.__TEST__);
 
     return res(
         ctx.status(200),
@@ -51,7 +52,7 @@ const reqUpdateUser = rest.patch(`${CONF.URL}/users/:id`, (req, res, ctx) => {
     const { id } = req.params;
     global.__TEST__ = { id, password };
 
-    // console.log('handler -> reqUpdateUser ->', global.__TEST__);
+    // log('handler -> reqUpdateUser ->', global.__TEST__);
 
     return res(
         ctx.status(200),
@@ -63,7 +64,7 @@ const reqUpdateUser = rest.patch(`${CONF.URL}/users/:id`, (req, res, ctx) => {
 });
 
 const reqGetResult = rest.get(`/result`, (req, res, ctx) => {
-    // console.log( 'handler 2 ->', global.__TEST__ );
+    // log( 'handler 2 ->', global.__TEST__ );
 
     return res(
         ctx.status(200),
@@ -75,7 +76,7 @@ const reqGetResult = rest.get(`/result`, (req, res, ctx) => {
 
 const reqClearResults = rest.get(`/clear`, (req, res, ctx) => {
     global.__TEST__ = {};
-    // console.log( 'handler 3 ->', global.__TEST__ );
+    // log( 'handler 3 ->', global.__TEST__ );
 
     return res(
         ctx.status(200),
