@@ -1,12 +1,11 @@
 import { rest } from 'msw';
 import * as CONF from 'assets/config';
-const userId = '123321';
 
 const reqLoginUser = rest.post(`${CONF.URL}/users/login`, (req, res, ctx) => {
     const { name, password } = req.body;
     global.__TEST__ = { name, password };
 
-    // console.log('handler 1 ->', global.__TEST__);
+    // console.log('handler -> reqLoginUser ->', global.__TEST__);
 
     return res(
         ctx.status(200),
@@ -21,7 +20,7 @@ const reqSignupUser = rest.put(`${CONF.URL}/users/register`, (req, res, ctx) => 
     const { name, email, password } = req.body;
     global.__TEST__ = { name, email, password };
 
-    // console.log('handler 1 ->', global.__TEST__);
+    // console.log('handler -> reqSignupUser ->', global.__TEST__);
 
     return res(
         ctx.status(200),
@@ -37,7 +36,7 @@ const reqResetPassword = rest.post(`${CONF.URL}/users/reset`, (req, res, ctx) =>
     const { email } = req.body;
     global.__TEST__ = { email };
 
-    // console.log('handler 1 ->', global.__TEST__);
+    // console.log('handler -> reqResetPassword ->', global.__TEST__);
 
     return res(
         ctx.status(200),

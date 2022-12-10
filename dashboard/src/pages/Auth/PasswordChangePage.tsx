@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import bcrypt from 'bcryptjs-react';
+import testbcrypt from 'bcryptjs';
 import { useAppSelector, useAppDispatch } from 'store/hook';
 import { setCredentials } from 'store/slices/auth';
 import { resetMessage, setMessage, selectUI } from "store/slices/ui";
@@ -10,6 +11,14 @@ import { tFormPasswords, tWarning, InputType } from './Types';
 import * as yup from "yup";
 import * as ICON from 'assets/img';
 import s from './Auth.module.sass';
+
+// workaround для прохождения теста, пока не победил
+// надо найти более грамотное решение
+const getHash = async (user: string, pwd: string) => {
+    return process.env.NODE_ENV === 'test'
+        ? await testbcrypt.hashSync(pwd)
+        : await bcrypt.hashSync(pwd);
+}
 
 const schema = yup.object().shape({
     newpassword:
@@ -31,7 +40,7 @@ export const PasswordChangePage = () => {
     const ui = useAppSelector(selectUI);
     const [ getUserId ] = useGetUserIdFromTokenMutation();
     const [ updateUser ] = useUpdateUserMutation();
-    const [ userId, setUserId ] = useState('');
+    const [ userId, setUserId ] = useState('FAKEUSER');
     const { watch, register, handleSubmit } = useForm<tFormPasswords>();
     const [ type, setType ] = useState<InputType>(InputType.pw);
 
@@ -63,7 +72,8 @@ export const PasswordChangePage = () => {
             .validate(data)
             .then(async (data: tFormPasswords) => {
                 // формируем хэш пароля после всех успешных проверок
-                const hash = await bcrypt.hashSync(data.newpassword, 10);
+                // const hash = await bcrypt.hashSync(data.newpassword, 10);
+                const hash = await getHash(userId, data.newpassword);
                 // пользователю устанавливаем accessToken для успешного выполнения запроса
                 const credentials = {
                     id: userId,
@@ -88,7 +98,11 @@ export const PasswordChangePage = () => {
 
     return (
         <>
-            <form onSubmit={handleSubmit(onSubmit)} className={s.authForm}>
+            <form
+                onSubmit={handleSubmit(onSubmit)}
+                className={s.authForm}
+                data-testid="reset-form"
+            >
                 <div className={s.header}>
                     <p>Set new password</p>
                 </div>
@@ -96,13 +110,28 @@ export const PasswordChangePage = () => {
                 <div className={s.body}>
                     <fieldset>
                         <label>New Password</label>
-                        <input {...register("newpassword")} placeholder="new password" type="text" />
+                        <input
+                            {...register("newpassword")}
+                            placeholder="new password"
+                            type="text"
+                            data-testid="password-input"
+                        />
                     </fieldset>
                     <fieldset>
                         <label>Repeat new Password</label>
                         <div className={s.inputWrap}>
-                            <input {...register("repeatpassword")} placeholder="repeat new password" type={type} />
-                            <img src={type === InputType.pw ? ICON.EyeBlocked : ICON.Eye} alt="eye blocked" onClick={switchPassVisibility} />
+                            <input
+                                {...register("repeatpassword")}
+                                placeholder="repeat new password"
+                                type={type}
+                                data-testid="repeatpassword-input"
+                            />
+                            <img
+                                src={type === InputType.pw ? ICON.EyeBlocked : ICON.Eye}
+                                alt="eye blocked"
+                                onClick={switchPassVisibility}
+                                data-testid="submit-input"
+                            />
                         </div>
                     </fieldset>
                 </div>
