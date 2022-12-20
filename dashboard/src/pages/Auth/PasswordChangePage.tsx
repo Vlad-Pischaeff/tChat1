@@ -51,7 +51,7 @@ export const PasswordChangePage = () => {
                 setUserId(user.data.id);
             }
         };
-        // как только пользователь открывает ссылку, от получает token из параметра
+        // как только пользователь открывает ссылку, он получает token из параметра
         // после этого из токена извлекаем userId
         if (token) fetchUserIdFromToken(token);
     }, [token, getUserId]);
