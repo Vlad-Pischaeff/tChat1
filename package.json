@@ -16,7 +16,7 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "lint": "eslint --fix \"./**/*.{js, jsx, ts, tsx}\"",
-        "client": "npm run start --prefix dashboard",
+        "client": "npm start --prefix dashboard",
         "client-install": "npm install --prefix ./dashboard",
         "client-build": "npm run build --prefix ./dashboard",
         "client-test": "npm run test --prefix ./dashboard",

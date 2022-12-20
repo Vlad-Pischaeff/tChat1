@@ -15,7 +15,6 @@
         "bcryptjs": "^2.4.3",
         "bcryptjs-react": "latest",
         "crypto": "npm:crypto-browserify",
-        "stream": "npm:stream-browserify",
         "date-fns": "^2.29.3",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
@@ -23,6 +22,7 @@
         "react-redux": "^8.0.5",
         "react-router-dom": "^6.4.3",
         "react-scripts": "^5.0.1",
+        "stream": "npm:stream-browserify",
         "typescript": "^4.8.4",
         "web-vitals": "^2.1.4",
         "yup": "^0.32.11"
@@ -53,6 +53,7 @@
         "@types/bcryptjs": "^2.4.2",
         "@typescript-eslint/eslint-plugin": "^5.30.7",
         "@typescript-eslint/parser": "^5.30.7",
+        "crypto-browserify": "^3.12.0",
         "cypress": "^11.2.0",
         "eslint": "^8.20.0",
         "eslint-plugin-react": "^7.30.1",
@@ -60,7 +61,6 @@
         "msw": "^0.49.1",
         "sass": "^1.56.1",
         "start-server-and-test": "^1.14.0",
-        "crypto-browserify": "^3.12.0",
         "stream-browserify": "^3.0.0"
     },
     "browser": {
