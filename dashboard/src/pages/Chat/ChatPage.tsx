@@ -3,7 +3,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from 'store/hook';
 import { selectCurrentUser, IUser, logout } from 'store/slices/auth';
 import { useGetUserQuery, useLazyUsersQuery } from 'store/api/usersApi';
-import { ChatPageHeader } from './ChatPageHeader';
+import * as UI from 'components/ui';
 import s from './Chat.module.sass';
 
 export const ChatPage = () => {
@@ -30,7 +30,7 @@ export const ChatPage = () => {
             <aside className="aside"></aside>
             <section className="layout">
 
-                <ChatPageHeader data={data} />
+                <UI.Header data={data} />
 
                 <article className="content">
                     { isLoading && <div className={s.loader}></div> }
@@ -40,9 +40,7 @@ export const ChatPage = () => {
                     <Outlet />
                 </article>
 
-                <footer className="footer">
-                    <p>vlad pischaeff &copy; 2022</p>
-                </footer>
+                <UI.Footer />
 
             </section>
         </>

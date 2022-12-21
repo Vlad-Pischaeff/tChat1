@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
-import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { useAppSelector } from 'store/hook';
 import { selectCurrentUser } from 'store/slices/auth';
+import * as UI from 'components/ui';
 
 export const AuthPage = () => {
     const navigate = useNavigate();
     const user = useAppSelector(selectCurrentUser);
-    const { pathname } = useLocation();
 
     useEffect(() => {
         user.id &&
@@ -17,22 +17,15 @@ export const AuthPage = () => {
         <>
             <aside className="aside"></aside>
             <section className="layout">
-                <nav className="header">
-                    <div></div>
 
-                    <div>
-                        { pathname === '/' || pathname ==='/login'
-                            ? <p><Link to="signup">Sign up</Link></p>
-                            : <p><Link to="login">Login</Link></p>
-                        }
-                    </div>
-                </nav>
+                <UI.Header />
+
                 <article className="content">
                     <Outlet />
                 </article>
-                <footer className="footer">
-                    <p>vlad pischaeff &copy; 2022</p>
-                </footer>
+
+                <UI.Footer />
+
             </section>
         </>
     );
