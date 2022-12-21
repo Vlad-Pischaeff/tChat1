@@ -16,7 +16,7 @@ export const Header = ({ data }: iProps) => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const ui = useAppSelector<UIType>(selectUI);
-    console.log('pathname..', pathname)
+
     const handlerLogout = () => {
         dispatch(logout());
         navigate("/", { replace: true });
