@@ -1,14 +1,17 @@
 import { createSlice, PayloadAction, isAnyOf  } from '@reduxjs/toolkit';
 import { usersApi } from 'store/api/usersApi';
 import { todosApi } from 'store/api/todosApi';
+import { tTheme } from 'assets/style/utils';
 import type { RootState } from 'store/store';
 
 export type UIType = {
+    theme: tTheme;
     message: string;
     type: 'error' | 'warning' | 'info'  // TODO use for styling SnackBar
 }
 
 const initialState: UIType = {
+    theme: 'dark',
     message: '',
     type: 'info'
 }
@@ -22,6 +25,9 @@ const slice = createSlice({
         },
         setMessage: (state, { payload }: PayloadAction<string>) => {
             state.message = payload;
+        },
+        setTheme: (state, { payload }: PayloadAction<tTheme>) => {
+            state.theme = payload;
         },
     },
     extraReducers: (builder) => {
@@ -58,7 +64,7 @@ const slice = createSlice({
     },
 });
 
-export const { resetMessage, setMessage } = slice.actions;
+export const { resetMessage, setMessage, setTheme } = slice.actions;
 
 export default slice.reducer;
 

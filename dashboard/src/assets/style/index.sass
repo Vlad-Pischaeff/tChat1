@@ -65,7 +65,8 @@ body
 #root
     width: 100vw
     height: 100vh
-    background: var.$BG
+    // background: var.$BG
+    background: #{var(--BG)}
     display: grid
     grid-template-columns: minmax(10rem, 15%) 1fr
 .aside
@@ -79,7 +80,7 @@ body
 .header, .footer
     display: flex
     width: 100%
-    color: var.$C5
+    color: #{var(--C5)}
 .header
     justify-content: space-between
     div
@@ -88,21 +89,21 @@ body
             padding: 0 1rem
             line-height: 3rem
             a
-                color: var.$C5
+                color: #{var(--C5)}
                 text-decoration: none
                 &:active
-                    color: var.$C3
+                    color: #{var(--C3)}
         img
             height: 3rem
             margin-left: 1rem
             border-radius: 8px
-            background: var.$C1
+            background: #{var(--C1)}
             border: 2px solid transparent
 .footer
     justify-content: center
     text-transform: uppercase
     font-size: .6rem
-    color: var.$C6
+    color: #{var(--C6)}
     p
         line-height: 3rem
 .content

@@ -1,3 +1,5 @@
+@use "sass:meta"
+
 $ff: 'Roboto', sans-serif
 $ff-strong: 'Strong', sans-serif
 $ff-tech: 'Sharetech', sans-serif
@@ -19,6 +21,18 @@ $C8: #646464
 $CA1: #305d7220
 $BG: #0F1A2B
 $DELAY: 3000            // SnackBar show delay
+
+:root
+    --C1: #{meta.inspect($C1)}
+    --C2: #{meta.inspect($C2)}
+    --C3: #{meta.inspect($C3)}
+    --C4: #{meta.inspect($C4)}
+    --C5: #{meta.inspect($C5)}
+    --C6: #{meta.inspect($C6)}
+    --C7: #{meta.inspect($C7)}
+    --C8: #{meta.inspect($C8)}
+    --CA1: #{meta.inspect($CA1)}
+    --BG: #{meta.inspect($BG)}
 
 :export
     DELAY: $DELAY
