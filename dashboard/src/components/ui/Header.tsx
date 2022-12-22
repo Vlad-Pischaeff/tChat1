@@ -2,20 +2,16 @@ import React from 'react';
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from 'store/hook';
 import { logout } from 'store/slices/auth';
-import { selectUI, setTheme, UIType } from 'store/slices/ui';
+import { selectUI, setTheme } from 'store/slices/ui';
 import { changeTheme } from 'assets/style/utils';
-import { tUser } from 'store/api/apiTypes';
+import { UserLogo } from './UserLogo';
 import s from './Header.module.sass';
 
-interface iProps extends React.HTMLAttributes<HTMLDivElement> {
-    data?: tUser | undefined,
-}
-
-export const Header = ({ data }: iProps) => {
+export const Header = () => {
     const { pathname } = useLocation();
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-    const ui = useAppSelector<UIType>(selectUI);
+    const ui = useAppSelector(selectUI);
 
     const handlerLogout = () => {
         dispatch(logout());
@@ -34,14 +30,7 @@ export const Header = ({ data }: iProps) => {
 
     return (
         <nav className={s.flexHeader}>
-            <div>
-                { data &&
-                    <>
-                        <img src={data.photo} className={s.userImage} alt="avatar" />
-                        <p>{data.name}</p>
-                    </>
-                }
-            </div>
+            <UserLogo />
 
             <div>
                 { (pathname === '/' || pathname ==='/login') &&

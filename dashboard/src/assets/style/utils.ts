@@ -8,8 +8,7 @@ const theme = {
         '--C6': '#B0B0B0',
         '--C7': '#00cad1',
         '--C8': '#646464',
-        '--CA1': '#305d7220',
-        '--BG': '#0F1A2B',
+        '--color-BACKGROUND': '#0F1A2B',
     },
     light: {
         '--C1': '#3F8A8C',
@@ -17,11 +16,10 @@ const theme = {
         '--C3': '#E5340B',
         '--C4': '#F28A0F',
         '--C5': '#0F1A2B',
-        '--C6': '#B0B0B0',
+        '--C6': 'gray',
         '--C7': '#00cad1',
         '--C8': '#B0B0B0',
-        '--CA1': '#305d7220',
-        '--BG': 'ivory',
+        '--color-BACKGROUND': 'ivory',
     },
 };
 
