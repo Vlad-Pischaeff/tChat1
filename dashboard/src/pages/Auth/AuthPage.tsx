@@ -15,7 +15,7 @@ export const AuthPage = () => {
 
     return (
         <>
-            <aside className="aside"></aside>
+            <UI.Aside />
             <section className="layout">
 
                 <UI.Header />

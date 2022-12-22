@@ -9,7 +9,7 @@ export const UserLogo = () => {
     const { data } = useGetUserQuery(user.id, { skip: !user.id });
 
     return (
-        <div>
+        <div className={s.userContainer}>
             { data &&
                 <>
                     <img src={data.photo} className={s.userImage} alt="avatar" />

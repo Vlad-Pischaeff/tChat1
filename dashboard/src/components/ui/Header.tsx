@@ -4,7 +4,6 @@ import { useAppDispatch, useAppSelector } from 'store/hook';
 import { logout } from 'store/slices/auth';
 import { selectUI, setTheme } from 'store/slices/ui';
 import { changeTheme } from 'assets/style/utils';
-import { UserLogo } from './UserLogo';
 import s from './Header.module.sass';
 
 export const Header = () => {
@@ -30,7 +29,8 @@ export const Header = () => {
 
     return (
         <nav className={s.flexHeader}>
-            <UserLogo />
+
+            <div><p>Dashboard</p></div>
 
             <div>
                 { (pathname === '/' || pathname ==='/login') &&

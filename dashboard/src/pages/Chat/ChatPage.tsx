@@ -25,7 +25,7 @@ export const ChatPage = () => {
 
     return (
         <>
-            <aside className="aside"></aside>
+            <UI.Aside />
             <section className="layout">
 
                 <UI.Header />
