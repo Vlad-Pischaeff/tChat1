@@ -43,6 +43,9 @@ export const Header = () => {
                 { pathname === '/signup' &&
                     <p><Link to="login">Login</Link></p>
                 }
+                { pathname === '/restore' &&
+                    <p><Link to="login">Back</Link></p>
+                }
                 { pathname.match(/dashboard/i) &&
                     <>
                         <p onClick={handlerColors}>Theme</p>
