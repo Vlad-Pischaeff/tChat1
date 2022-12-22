@@ -30,7 +30,11 @@ export const Header = () => {
     return (
         <nav className={s.flexHeader}>
 
-            <div><p>Dashboard</p></div>
+            <div>
+                { pathname.match(/dashboard/i) &&
+                    <p>Dashboard</p>
+                }
+            </div>
 
             <div>
                 { (pathname === '/' || pathname ==='/login') &&

@@ -1,4 +1,4 @@
-@use './variables.module' as var
+// @use './variables.module' as var
 
 @font-face
     font-family: 'Roboto'
@@ -58,60 +58,23 @@
     margin: 0
     padding: 0
     box-sizing: border-box
-    font-family: var.$ff-titm
-    font-weight: var.$ff-300
+    font-family: #{var(--font-TITILL)}
+    font-weight: #{var(--font-300)}
 body
     letter-spacing: .1rem
 #root
     width: 100vw
     height: 100vh
-    // background: var.$BG
     background: #{var(--color-BACKGROUND)}
     display: grid
     grid-template-columns: minmax(10rem, 15%) 1fr
-.aside
-    background-image: linear-gradient(0deg, rgba(0,18,34,0.1) 0%, rgba(0,18,34,1) 100%), url('http://localhost:3000/img/image1.jpg')
-    background-size: cover
-    background-position: center center
 .layout
     height: 100%
     display: grid
     grid-template-rows: 3rem 1fr 3rem
-.header, .footer
-    display: flex
-    width: 100%
-    color: #{var(--C5)}
-.header
-    justify-content: space-between
-    div
-        display: flex
-        p
-            padding: 0 1rem
-            line-height: 3rem
-            a
-                color: #{var(--C5)}
-                text-decoration: none
-                &:active
-                    color: #{var(--C3)}
-        img
-            height: 3rem
-            margin-left: 1rem
-            border-radius: 8px
-            background: #{var(--C1)}
-            border: 2px solid transparent
-.footer
-    justify-content: center
-    text-transform: uppercase
-    font-size: .6rem
-    color: #{var(--C6)}
-    p
-        line-height: 3rem
 .content
     display: flex
     justify-content: center
     align-items: center
     width: 100%
 
-@media (max-width: 920px)
-    .aside, #root
-        display: block

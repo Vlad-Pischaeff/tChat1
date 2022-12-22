@@ -9,6 +9,8 @@ const theme = {
         '--C7': '#00cad1',
         '--C8': '#646464',
         '--color-BACKGROUND': '#0F1A2B',
+        '--color-HOVER': '#305d7220',
+        '--color-SHADOW': '#606060aa',
     },
     light: {
         '--C1': '#3F8A8C',
@@ -20,6 +22,8 @@ const theme = {
         '--C7': '#00cad1',
         '--C8': '#B0B0B0',
         '--color-BACKGROUND': 'ivory',
+        '--color-HOVER': '#305d720b',
+        '--color-SHADOW': '#a0a0a066',
     },
 };
 
