@@ -6,6 +6,7 @@ import type {
 } from '@reduxjs/toolkit/query'
 import { setCredentials, logout } from 'store/slices/auth';
 import { RootState } from 'store/store';
+import { URL } from 'assets/config';
 
 type tData = {
     accessToken: string,
@@ -16,9 +17,9 @@ type tData = {
 type tResult = {
     data: tData,
 }
-
+console.log('URL..', URL)
 const baseQuery = fetchBaseQuery({
-    baseUrl: 'http://localhost:3000/api/',
+    baseUrl: `${URL}/api/`,
     credentials: 'include',     //! will send back "httpOnly cookie" for every request
     prepareHeaders: (headers, { getState }) => {
         const token = (getState() as RootState).auth.jwtToken;
