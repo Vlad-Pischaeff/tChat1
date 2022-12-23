@@ -17,7 +17,7 @@ type tData = {
 type tResult = {
     data: tData,
 }
-console.log('URL..', URL)
+
 const baseQuery = fetchBaseQuery({
     baseUrl: `${URL}/api/`,
     credentials: 'include',     //! will send back "httpOnly cookie" for every request
