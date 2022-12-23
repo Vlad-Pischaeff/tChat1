@@ -11,7 +11,7 @@ type tFormInputs = {
 
 export const TodosPage = () => {
     const [ addTodo ] = useAddTodoMutation();
-    const { register, handleSubmit } = useForm<tFormInputs>();
+    const { register, resetField, handleSubmit } = useForm<tFormInputs>();
     const [ trigger, result ] = useLazyTodosQuery();
 
     useEffect(() => {
@@ -21,6 +21,7 @@ export const TodosPage = () => {
     const onSubmit = (data: tFormInputs) => {
         // вызываем API '/todos', добавляем 'todo'
         addTodo(data);
+        resetField('description');
     };
 
     return (
