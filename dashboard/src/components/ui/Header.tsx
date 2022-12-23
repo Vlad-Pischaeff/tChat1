@@ -1,30 +1,17 @@
 import React from 'react';
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from 'store/hook';
+import { useAppDispatch } from 'store/hook';
 import { logout } from 'store/slices/auth';
-import { selectUI, setTheme } from 'store/slices/ui';
-import { changeTheme } from 'assets/style/utils';
 import s from './Header.module.sass';
 
 export const Header = () => {
     const { pathname } = useLocation();
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-    const ui = useAppSelector(selectUI);
 
     const handlerLogout = () => {
         dispatch(logout());
         navigate("/", { replace: true });
-    }
-
-    const handlerColors = () => {
-        if (ui.theme === 'dark') {
-            changeTheme('light');
-            dispatch(setTheme('light'));
-        } else {
-            changeTheme('dark');
-            dispatch(setTheme('dark'));
-        }
     }
 
     return (
@@ -47,10 +34,7 @@ export const Header = () => {
                     <p><Link to="login">Back</Link></p>
                 }
                 { pathname.match(/dashboard/i) &&
-                    <>
-                        <p onClick={handlerColors}>Theme</p>
-                        <p onClick={handlerLogout}><Link to="">Logout</Link></p>
-                    </>
+                    <p onClick={handlerLogout}><Link to="">Logout</Link></p>
                 }
             </div>
         </nav>
