@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from 'store/hook';
 import { changeTheme } from 'assets/style/utils';
 import { selectUI, setTheme } from 'store/slices/ui';
@@ -8,14 +8,14 @@ export const ThemeToggle = () => {
     const dispatch = useAppDispatch();
     const ui = useAppSelector(selectUI);
 
+    useEffect(() => {
+        changeTheme(ui.theme);
+    }, [ui.theme]);
+
     const handlerColors = () => {
-        if (ui.theme === 'dark') {
-            changeTheme('light');
-            dispatch(setTheme('light'));
-        } else {
-            changeTheme('dark');
-            dispatch(setTheme('dark'));
-        }
+        ui.theme === 'dark'
+            ? dispatch(setTheme('light'))
+            : dispatch(setTheme('dark'));
     }
 
     return (
