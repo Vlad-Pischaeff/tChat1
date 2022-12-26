@@ -21,8 +21,6 @@ export const TodosPage = () => {
 
     const filteredData = (data) && filterTodos(checked, data);
 
-    console.log('result..', data)
-
     const onSubmit = (data: tFormInputs) => {
         // вызываем API '/todos', добавляем 'todo'
         addTodo(data);
