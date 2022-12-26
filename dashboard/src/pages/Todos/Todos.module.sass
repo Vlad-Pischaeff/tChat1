@@ -24,32 +24,28 @@
     justify-content: space-between
     align-items: flex-end
     overflow: hidden
-    .todosBody
-        width: 100%
+    fieldset
+        display: flex
+        flex-flow: column nowrap
+        justify-content: space-between
+        border: none
         height: 100%
-        padding: .5rem
-        fieldset
-            display: flex
-            flex-flow: column nowrap
-            justify-content: space-between
+        input
+            height: 2rem
+            font-size: 1.2rem
             border: none
-            height: 100%
-            input
-                height: 2rem
-                font-size: 1.2rem
-                border: none
-                padding: 0 .4rem
-                border-radius: 4px
-                &::placeholder
-                    color: #{var(--C6)}
-                &:focus
-                    outline: none
-                    box-shadow: 0px 0px 10px -2px #{var(--color-SHADOW)}
-            label
-                font-size: .9rem
+            padding: 0 .4rem
+            border-radius: 4px
+            &::placeholder
                 color: #{var(--C6)}
-                text-transform: lowercase
-                letter-spacing: .1rem
+            &:focus
+                outline: none
+                box-shadow: 0px 0px 10px -2px #{var(--color-SHADOW)}
+        label
+            font-size: .9rem
+            color: #{var(--C6)}
+            text-transform: lowercase
+            letter-spacing: .1rem
     > input
         height: 100%
         font-size: 1.5rem
@@ -57,6 +53,10 @@
         padding: 0 1rem
         border-radius: 8px
         background: #{var(--C1)}
+.todosBody
+    width: 100%
+    height: 100%
+    padding: .5rem
 
 .inputWrap
     position: relative
@@ -99,6 +99,19 @@ input[type="submit"]:hover
         cursor: pointer
 .done
     color: #{var(--C7)}
+
+.todosFooter
+    flex: 0 0 3rem
+    width: 100%
+    padding: 0 1rem
+    font-size: .8rem
+    display: flex
+    justify-content: flex-start
+    align-items: center
+    border-top: 1px solid #{var(--color-HOVER)}
+.todosFooterItem
+    display: flex
+    margin: 0 .5rem
 
 @media (max-width: 760px)
     .body

@@ -1,28 +1,39 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
-import { useLazyTodosQuery, useAddTodoMutation } from 'store/api/todosApi';
+import { useTodosQuery, useAddTodoMutation } from 'store/api/todosApi';
 import { TodosItem } from './TodosItem';
-import { iTodos } from './Types';
+import { iTodos } from 'store/api/apiTypes';
+import * as UI from 'components/ui';
 import s from './Todos.module.sass';
+
+const TYPES = [ "All", "Completed", "Pending" ] as const;
+type tTypes = typeof TYPES[number];
 
 type tFormInputs = {
     description: string;
-};
+}
 
 export const TodosPage = () => {
     const [ addTodo ] = useAddTodoMutation();
     const { register, resetField, handleSubmit } = useForm<tFormInputs>();
-    const [ trigger, result ] = useLazyTodosQuery();
+    const [ checked, setChecked ] = useState<tTypes>("All");
+    const { data, isSuccess, isLoading } = useTodosQuery('');
 
-    useEffect(() => {
-        trigger('', false);
-    }, [trigger]);
+    const filteredData = (data) && filterTodos(checked, data);
+
+    console.log('result..', data)
 
     const onSubmit = (data: tFormInputs) => {
         // вызываем API '/todos', добавляем 'todo'
         addTodo(data);
         resetField('description');
     };
+
+    function filterTodos(check: tTypes, data: iTodos[]): iTodos[] | undefined {
+        if (check === "All") return data;
+        if (check === "Completed") return data.filter(todo => todo.done === true);
+        if (check === "Pending") return data.filter(todo => todo.done === false);
+    }
 
     return (
         <>
@@ -44,14 +55,23 @@ export const TodosPage = () => {
                     </form>
 
                     <div className={s.todosWrapper}>
-                        { result.isSuccess
-                            ? result.data.map((todo: iTodos, idx: number) => {
-                                return (
-                                    <TodosItem key={todo._id} todo={todo} idx={idx} />
-                                )
-                            })
-                            : <div>loading...</div>
-                        }
+                        { isSuccess && filteredData &&
+                            filteredData.map((todo, idx) =>
+                                <TodosItem key={todo._id} todo={todo} idx={idx} />
+                        )}
+                        { isLoading && <div>Loading...</div>}
+                    </div>
+
+                    <div className={s.todosFooter}>
+                        { TYPES.map(type =>
+                            <div className={s.todosFooterItem} key={type}>
+                                <p className={checked === type ? s.done : ''}>{type}</p>
+                                <UI.CheckBox
+                                    idx={type}
+                                    checked={checked === type}
+                                    onChange={() => setChecked(type)}/>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

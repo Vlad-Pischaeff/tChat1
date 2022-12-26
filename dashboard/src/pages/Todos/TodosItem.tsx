@@ -2,7 +2,7 @@ import React, { HTMLAttributes } from 'react';
 import { format } from 'date-fns';
 import { useEditTodoMutation, useDeleteTodoMutation } from 'store/api/todosApi';
 import * as UI from 'components/ui';
-import { iTodos } from './Types';
+import { iTodos } from 'store/api/apiTypes';
 import s from './Todos.module.sass';
 
 interface iProps extends HTMLAttributes<HTMLDivElement> {

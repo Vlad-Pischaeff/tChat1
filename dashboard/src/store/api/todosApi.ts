@@ -1,12 +1,13 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { baseQueryWithReAuth } from './baseQuery';
+import { iTodos } from './apiTypes';
 
 export const todosApi = createApi({
     reducerPath: 'todosApi',
     baseQuery: baseQueryWithReAuth,
     tagTypes: ['Todos'],
     endpoints: (builder) => ({
-        Todos: builder.query({
+        Todos: builder.query<iTodos[], string>({
             query: () => ({
                 url: 'todos'
             }),
