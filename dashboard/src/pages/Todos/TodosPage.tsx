@@ -15,9 +15,9 @@ type tFormInputs = {
 
 export const TodosPage = () => {
     const [ addTodo ] = useAddTodoMutation();
+    const { refetch, data, isSuccess, isLoading } = useTodosQuery('');
     const { register, resetField, handleSubmit } = useForm<tFormInputs>();
     const [ checked, setChecked ] = useState<tTypes>("All");
-    const { refetch, data, isSuccess, isLoading } = useTodosQuery('');
 
     useEffect(() => {
         refetch();
