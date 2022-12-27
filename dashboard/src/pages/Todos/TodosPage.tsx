@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { useTodosQuery, useAddTodoMutation } from 'store/api/todosApi';
 import { TodosItem } from './TodosItem';
@@ -9,18 +9,6 @@ import s from './Todos.module.sass';
 const TYPES = [ "All", "Completed", "Pending" ] as const;
 type tTypes = typeof TYPES[number];
 
-const FILTER = {
-    [TYPES[0]](data: iTodos[]) {
-        return data;
-    },
-    [TYPES[1]](data: iTodos[]) {
-        return data.filter(todo => todo.done === true);
-    },
-    [TYPES[2]](data: iTodos[]) {
-        return data.filter(todo => todo.done === false);
-    },
-};
-
 type tFormInputs = {
     description: string;
 };
@@ -29,7 +17,18 @@ export const TodosPage = () => {
     const [ addTodo ] = useAddTodoMutation();
     const { register, resetField, handleSubmit } = useForm<tFormInputs>();
     const [ checked, setChecked ] = useState<tTypes>("All");
-    const { data, isSuccess, isLoading } = useTodosQuery('');
+    const { refetch, data, isSuccess, isLoading } = useTodosQuery('');
+
+    useEffect(() => {
+        refetch();
+        // eslint-disable-next-line
+    }, []);
+
+    const FILTER = useMemo(() => ({
+        [TYPES[0]]: (data: iTodos[]) => data,
+        [TYPES[1]]: (data: iTodos[]) => data.filter(todo => todo.done === true),
+        [TYPES[2]]: (data: iTodos[]) => data.filter(todo => todo.done === false),
+    }), []);
 
     const onSubmit = (data: tFormInputs) => {
         // вызываем API '/todos', добавляем 'todo'
