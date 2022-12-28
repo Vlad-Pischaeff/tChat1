@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useTodosQuery, useAddTodoMutation } from 'store/api/todosApi';
 import { TodosItem } from './TodosItem';
 import { iTodos } from 'store/api/apiTypes';
-import { TodosIcon, NotesIcon, ChatIcon, MailIcon } from 'assets/img';
+import { ServicesHeader } from 'pages/Dashboard/Services';
 import * as UI from 'components/ui';
 import s from './Todos.module.sass';
 
@@ -40,12 +40,8 @@ export const TodosPage = () => {
     return (
         <>
             <div className={s.container}>
-                <div className={s.header}>
-                    <TodosIcon active={false} />
-                    <NotesIcon active={false} />
-                    <ChatIcon active={true} />
-                    <MailIcon active={false} />
-                </div>
+
+                <ServicesHeader />
 
                 <div className={s.body}>
 
