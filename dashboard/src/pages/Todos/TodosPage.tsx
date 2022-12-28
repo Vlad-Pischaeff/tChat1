@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useTodosQuery, useAddTodoMutation } from 'store/api/todosApi';
 import { TodosItem } from './TodosItem';
 import { iTodos } from 'store/api/apiTypes';
+import { TodosIcon } from 'assets/img';
 import * as UI from 'components/ui';
 import s from './Todos.module.sass';
 
@@ -40,14 +41,15 @@ export const TodosPage = () => {
         <>
             <div className={s.container}>
                 <div className={s.header}>
-                    <p>Todos Page</p>
+                    <TodosIcon />
                 </div>
+
                 <div className={s.body}>
 
                     <form onSubmit={handleSubmit(onSubmit)} className={s.todosForm}>
                         <div className={s.todosBody}>
                             <fieldset>
-                                <label>Description</label>
+                                {/* <label>Description</label> */}
                                 <input { ...register("description") } placeholder="My todo..." />
                             </fieldset>
                         </div>
