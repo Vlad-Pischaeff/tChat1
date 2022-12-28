@@ -7,10 +7,9 @@ import s from './Todos.module.sass';
 
 interface iProps extends HTMLAttributes<HTMLDivElement> {
     todo: iTodos,
-    idx: number | string
 }
 
-export const TodosItem = ({ todo, idx }: iProps) => {
+export const TodosItem = ({ todo }: iProps) => {
     const [ updateTodo ] = useEditTodoMutation();
     const [ deleteTodo ] = useDeleteTodoMutation();
 

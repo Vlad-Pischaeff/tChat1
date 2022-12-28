@@ -23,7 +23,7 @@ function App() {
                     path="/dashboard"
                     element={
                         <PrivateRoute>
-                            <PAGE.ChatPage/>
+                            <PAGE.DashboardLayout/>
                         </PrivateRoute>
                     }>
                         <Route path="todos" element={<PAGE.TodosPage />} />

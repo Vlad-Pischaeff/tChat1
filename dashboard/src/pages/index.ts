@@ -4,6 +4,6 @@ export { AuthPage } from './Auth/AuthPage';
 export { RestorePage } from './Auth/RestorePage';
 export { PasswordChangePage } from './Auth/PasswordChangePage';
 
-export { ChatPage } from './Chat/ChatPage';
+export { DashboardLayout } from './Dashboard/DashboardLayout';
 
 export { TodosPage } from './Todos/TodosPage';

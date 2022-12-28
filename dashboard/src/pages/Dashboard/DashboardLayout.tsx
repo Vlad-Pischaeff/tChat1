@@ -4,9 +4,9 @@ import { useAppDispatch } from 'store/hook';
 import { logout } from 'store/slices/auth';
 import { useLazyUsersQuery } from 'store/api/usersApi';
 import * as UI from 'components/ui';
-import s from './Chat.module.sass';
+import s from './DashboardLayout.module.sass';
 
-export const ChatPage = () => {
+export const DashboardLayout = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const [ trigger, { isLoading } ] = useLazyUsersQuery();

@@ -62,8 +62,8 @@ export const TodosPage = () => {
 
                     <div className={s.todosWrapper}>
                         { isSuccess && data &&
-                            FILTER[checked](data).map((todo, idx) =>
-                                <TodosItem key={todo._id} todo={todo} idx={idx} />
+                            FILTER[checked](data).map(todo =>
+                                <TodosItem key={todo._id} todo={todo} />
                             )
                         }
                         { isLoading && <div>Loading...</div>}
