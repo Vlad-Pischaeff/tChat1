@@ -1,0 +1,102 @@
+.Form
+    flex: 0 0 2rem
+    border-radius: 8px
+    background: #{var(--C2)}
+    color: #{var(--C5)}
+    display: flex
+    justify-content: space-between
+    align-items: flex-end
+    overflow: hidden
+    margin: 0 .5rem
+    fieldset
+        display: flex
+        flex-flow: column nowrap
+        justify-content: space-between
+        border: none
+        height: 100%
+        input
+            height: 2rem
+            font-size: 1.125rem
+            border: none
+            padding: 0 .4rem
+            background: bisque
+            &::placeholder
+                color: #{var(--C8)}
+                font-weight: 600
+            &:focus
+                outline: none
+                box-shadow: 0px 0px 10px -2px #{var(--color-SHADOW)}
+        label
+            font-size: .9rem
+            color: #{var(--C6)}
+            text-transform: lowercase
+            letter-spacing: .1rem
+    > input
+        height: 100%
+        font-size: 1.125rem
+        border: none
+        padding: 0 1rem
+        background: #{var(--C1)}
+.FormBody
+    width: 100%
+    height: 100%
+
+.inputWrap
+    position: relative
+    height: 2.5rem
+    & > img
+        position: absolute
+        width: 2rem
+        height: 2rem
+        right: 1rem
+        top: .2rem
+        & path
+            color: gray
+    & > input
+        position: absolute
+        width: 100%
+
+input[type="submit"]:hover
+    cursor: pointer
+    box-shadow: 0px 0px 10px -2px #{var(--color-SHADOW)}
+
+.Main
+    flex: 1 1 5rem
+    display: block
+    overflow: auto
+    margin: .4rem
+.item
+    display: flex
+    padding: 0.3rem 0.4rem 0 0.4rem
+    font-size: .95rem
+    &:hover
+        background: #{var(--color-HOVER)}
+.itemDesc
+    flex: 1 1 auto
+    padding: 0 4px
+.itemDate
+    flex: 0 0 7rem
+    padding: 0 4px
+.itemCheck
+    flex: 0 0 3rem
+    &:hover
+        cursor: pointer
+.done
+    color: #{var(--C7)}
+
+.Footer
+    flex: 0 0 3rem
+    width: 100%
+    padding: 0 1rem
+    font-size: .8rem
+    display: flex
+    justify-content: flex-start
+    align-items: center
+    border-top: 1px solid #{var(--color-HOVER)}
+.todosFooterItem
+    display: flex
+    margin: 0 .5rem
+
+@media (max-width: 760px)
+    .body
+        width: 100%

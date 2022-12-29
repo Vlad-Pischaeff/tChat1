@@ -6,4 +6,6 @@ export { PasswordChangePage } from './Auth/PasswordChangePage';
 
 export { DashboardLayout } from './Dashboard/DashboardLayout';
 
-export { TodosPage } from './Todos/TodosPage';
+export { MainWorkSpace } from './Dashboard/MainWorkSpace';
+
+export { TodosPage } from './Dashboard/Services/Todos/TodosPage';

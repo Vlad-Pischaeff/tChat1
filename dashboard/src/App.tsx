@@ -26,7 +26,7 @@ function App() {
                             <PAGE.DashboardLayout/>
                         </PrivateRoute>
                     }>
-                        <Route path="todos" element={<PAGE.TodosPage />} />
+                        <Route path="main" element={<PAGE.MainWorkSpace />} />
                 </Route>
                 <Route path="*" element={<Navigate to="/login" replace />} />
             </Routes>
