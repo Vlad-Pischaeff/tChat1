@@ -1,13 +1,13 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
 import { useAddTodoMutation } from 'store/api/todosApi';
-import s from './Mail.module.sass';
+import s from './Notes.module.sass';
 
 type tFormInputs = {
     description: string;
 };
 
-export const Mail = () => {
+export const Notes = () => {
     const [ addTodo ] = useAddTodoMutation();
     const { register, resetField, handleSubmit } = useForm<tFormInputs>();
 
@@ -23,19 +23,19 @@ export const Mail = () => {
                 <div className={s.FormBody}>
                     <fieldset>
                         {/* <label>Description</label> */}
-                        <input { ...register("description") } placeholder="My mail..." />
+                        <input { ...register("description") } placeholder="New note..." />
                     </fieldset>
                 </div>
 
-                <input type="submit" value="Add mail" />
+                <input type="submit" value="Add note" />
             </form>
 
             <div className={s.Main}>
-                <p>No mails...</p>
+                <p>No notes...</p>
             </div>
 
             <div className={s.Footer}>
-                Mail service footer
+                Notes service footer
             </div>
         </>
     );
