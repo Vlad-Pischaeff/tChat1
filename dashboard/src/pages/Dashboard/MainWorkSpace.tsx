@@ -10,7 +10,7 @@ export const MainWorkSpace = () => {
                 <Services />
             </div>
             <div className={s.RightWorkSpace}>
-                Right
+                <p>Right workspace...</p>
             </div>
         </div>
     );
