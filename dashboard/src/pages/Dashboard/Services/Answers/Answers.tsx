@@ -31,7 +31,9 @@ export const Answers = () => {
             </form>
 
             <div className={s.Main}>
-                <p>No answers/requests...</p>
+                <div className={s.MainPlaceholder}>
+                    <p>No answers/questions...</p>
+                </div>
             </div>
 
             <div className={s.Footer}>

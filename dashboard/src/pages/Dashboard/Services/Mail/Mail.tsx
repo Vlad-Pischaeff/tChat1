@@ -31,7 +31,9 @@ export const Mail = () => {
             </form>
 
             <div className={s.Main}>
-                <p>No mails...</p>
+                <div className={s.MainPlaceholder}>
+                    <p>No mails...</p>
+                </div>
             </div>
 
             <div className={s.Footer}>

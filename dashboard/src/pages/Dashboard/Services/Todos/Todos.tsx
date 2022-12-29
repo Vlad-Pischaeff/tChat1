@@ -38,8 +38,8 @@ export const Todos = () => {
 
     return (
         <>
-            <form onSubmit={handleSubmit(onSubmit)} className={s.todosForm}>
-                <div className={s.todosBody}>
+            <form onSubmit={handleSubmit(onSubmit)} className={s.Form}>
+                <div className={s.Body}>
                     <fieldset>
                         {/* <label>Description</label> */}
                         <input { ...register("description") } placeholder="My todo..." />
@@ -49,7 +49,12 @@ export const Todos = () => {
                 <input type="submit" value="Add todo" />
             </form>
 
-            <div className={s.todosWrapper}>
+            <div className={s.Main}>
+                { !data &&
+                    <div className={s.MainPlaceholder}>
+                        <p>No todos...</p>
+                    </div>
+                }
                 { isSuccess && data &&
                     FILTER[checked](data).map(todo =>
                         <TodosItem key={todo._id} todo={todo} />

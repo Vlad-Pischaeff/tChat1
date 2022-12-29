@@ -31,7 +31,9 @@ export const Notes = () => {
             </form>
 
             <div className={s.Main}>
-                <p>No notes...</p>
+                <div className={s.MainPlaceholder}>
+                    <p>No notes...</p>
+                </div>
             </div>
 
             <div className={s.Footer}>

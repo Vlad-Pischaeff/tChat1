@@ -12,10 +12,10 @@ export const ServicesBody = () => {
     const ui = useAppSelector(selectUI);
 
     const BODY = [
-        { name: MENU[0], render: () => <Todos />},
-        { name: MENU[1], render: () => <Notes />},
-        { name: MENU[2], render: () => <Mail />},
-        { name: MENU[3], render: () => <Answers />},
+        { name: MENU[0], render: () => <Todos /> },
+        { name: MENU[1], render: () => <Notes /> },
+        { name: MENU[2], render: () => <Mail /> },
+        { name: MENU[3], render: () => <Answers /> },
     ];
 
     return (
