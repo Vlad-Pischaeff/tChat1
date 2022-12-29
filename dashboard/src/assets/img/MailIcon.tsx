@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './MailIcon.module.sass';
+import s from './MenuIcon.module.sass';
 
 export const MailIcon = ({ active }: { active: boolean}) => (
     <div className={`${s.svg} ${active ? s.active : ''}`}>

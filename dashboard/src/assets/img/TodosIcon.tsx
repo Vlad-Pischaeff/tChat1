@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './TodosIcon.module.sass';
+import s from './MenuIcon.module.sass';
 
 export const TodosIcon = ({ active }: { active: boolean}) => (
     <div className={`${s.svg} ${active ? s.active : ''}`}>
