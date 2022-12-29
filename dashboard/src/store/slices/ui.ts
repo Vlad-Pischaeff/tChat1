@@ -2,18 +2,21 @@ import { createSlice, PayloadAction, isAnyOf  } from '@reduxjs/toolkit';
 import { usersApi } from 'store/api/usersApi';
 import { todosApi } from 'store/api/todosApi';
 import { tTheme } from 'assets/style/utils';
+import { tServiceMenu } from 'pages/Dashboard/Services/Types';
 import type { RootState } from 'store/store';
 
 export type UIType = {
     theme: tTheme;
     message: string;
-    type: 'error' | 'warning' | 'info'  // TODO use for styling SnackBar
+    type: 'error' | 'warning' | 'info';  // TODO use for styling SnackBar
+    services: tServiceMenu;
 }
 
 const initialState: UIType = {
     theme: 'dark',
     message: '',
-    type: 'info'
+    type: 'info',
+    services: 'Todos'
 }
 
 const slice = createSlice({
@@ -28,6 +31,9 @@ const slice = createSlice({
         },
         setTheme: (state, { payload }: PayloadAction<tTheme>) => {
             state.theme = payload;
+        },
+        setServiceMenuItem: (state, { payload }: PayloadAction<tServiceMenu>) => {
+            state.services = payload;
         },
     },
     extraReducers: (builder) => {
@@ -64,7 +70,7 @@ const slice = createSlice({
     },
 });
 
-export const { resetMessage, setMessage, setTheme } = slice.actions;
+export const { resetMessage, setMessage, setTheme, setServiceMenuItem } = slice.actions;
 
 export default slice.reducer;
 

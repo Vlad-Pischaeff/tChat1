@@ -1,20 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useAppSelector, useAppDispatch } from 'store/hook';
+import { setServiceMenuItem, selectUI } from "store/slices/ui";
 import * as ICON from 'assets/img';
 import { MENU, tServiceMenu} from './Types';
 import s from './ServicesHeader.module.sass';
 
 export const ServicesHeader = () => {
-    const [ select, setSelect ] = useState<tServiceMenu>('Todos');
+    const dispatch = useAppDispatch();
+    const ui = useAppSelector(selectUI);
 
     const NAVIGATION = [
-        { name: MENU[0], render: () => <ICON.TodosIcon active={select === MENU[0]} />},
-        { name: MENU[1], render: () => <ICON.NotesIcon active={select === MENU[1]} />},
-        { name: MENU[2], render: () => <ICON.MailIcon active={select === MENU[2]} />},
-        { name: MENU[3], render: () => <ICON.ChatIcon active={select === MENU[3]} />},
+        { name: MENU[0], render: () => <ICON.TodosIcon active={ui.services === MENU[0]} />},
+        { name: MENU[1], render: () => <ICON.NotesIcon active={ui.services === MENU[1]} />},
+        { name: MENU[2], render: () => <ICON.MailIcon active={ui.services === MENU[2]} />},
+        { name: MENU[3], render: () => <ICON.ChatIcon active={ui.services === MENU[3]} />},
     ];
 
     const handlerClick = (name: tServiceMenu) => {
-        setSelect(name);
+        dispatch(setServiceMenuItem(name));
     }
 
     return (
