@@ -13,7 +13,6 @@ type tTypes = typeof TYPES[number];
 
 export const Todos = () => {
     const dispatch = useAppDispatch();
-    const ui = useAppSelector(selectUI);
     const { refetch, data, isSuccess, isLoading } = useTodosQuery('');
     const [ checked, setChecked ] = useState<tTypes>("All");
 
