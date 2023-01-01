@@ -1,22 +1,20 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { useForm } from "react-hook-form";
-import { useTodosQuery, useAddTodoMutation } from 'store/api/todosApi';
+import { useAppSelector, useAppDispatch } from 'store/hook';
+import { selectUI, setServicesModalHidden } from "store/slices/ui";
+import { useTodosQuery} from 'store/api/todosApi';
 import { TodosItem } from './TodosItem';
 import { iTodos } from 'store/api/apiTypes';
 import * as UI from 'components/ui';
 import s from './Todos.module.sass';
+import { TodosAddForm } from './TodosAddForm';
 
 const TYPES = [ "All", "Completed", "Pending" ] as const;
 type tTypes = typeof TYPES[number];
 
-type tFormInputs = {
-    description: string;
-};
-
 export const Todos = () => {
-    const [ addTodo ] = useAddTodoMutation();
+    const dispatch = useAppDispatch();
+    const ui = useAppSelector(selectUI);
     const { refetch, data, isSuccess, isLoading } = useTodosQuery('');
-    const { register, resetField, handleSubmit } = useForm<tFormInputs>();
     const [ checked, setChecked ] = useState<tTypes>("All");
 
     useEffect(() => {
@@ -30,24 +28,15 @@ export const Todos = () => {
         [TYPES[2]]: (data: iTodos[]) => data.filter(todo => todo.done === false),
     }), []);
 
-    const onSubmit = (data: tFormInputs) => {
-        // вызываем API '/todos', добавляем 'todo'
-        addTodo(data);
-        resetField('description');
-    };
+    const handlerClick = () => {
+        dispatch(setServicesModalHidden(false));
+    }
 
     return (
         <>
-            <form onSubmit={handleSubmit(onSubmit)} className={s.Form}>
-                <div className={s.Body}>
-                    <fieldset>
-                        {/* <label>Description</label> */}
-                        <input { ...register("description") } placeholder="My todo..." />
-                    </fieldset>
-                </div>
+            <input type="button" className={s.AddItem} value="+ add todo" onClick={handlerClick} />
 
-                <input type="submit" value="Add todo" />
-            </form>
+            <TodosAddForm />
 
             <div className={s.Main}>
                 { !data &&

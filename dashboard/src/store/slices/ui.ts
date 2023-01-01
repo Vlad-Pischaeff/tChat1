@@ -10,13 +10,15 @@ export type UIType = {
     message: string;
     type: 'error' | 'warning' | 'info';  // TODO use for styling SnackBar
     services: tServiceMenu;
+    servicesModalHidden: boolean;
 }
 
 const initialState: UIType = {
     theme: 'dark',
     message: '',
     type: 'info',
-    services: 'Todos'
+    services: 'Todos',
+    servicesModalHidden: true
 }
 
 const slice = createSlice({
@@ -34,6 +36,9 @@ const slice = createSlice({
         },
         setServiceMenuItem: (state, { payload }: PayloadAction<tServiceMenu>) => {
             state.services = payload;
+        },
+        setServicesModalHidden: (state, { payload }: PayloadAction<boolean>) => {
+            state.servicesModalHidden = payload;
         },
     },
     extraReducers: (builder) => {
@@ -70,7 +75,13 @@ const slice = createSlice({
     },
 });
 
-export const { resetMessage, setMessage, setTheme, setServiceMenuItem } = slice.actions;
+export const {
+    resetMessage,
+    setMessage,
+    setTheme,
+    setServiceMenuItem,
+    setServicesModalHidden
+} = slice.actions;
 
 export default slice.reducer;
 

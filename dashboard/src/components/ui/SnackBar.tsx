@@ -1,7 +1,7 @@
-import React, { HTMLAttributes } from 'react';
+import React from 'react';
 import { Snack } from './Snack';
 
-interface iProps extends HTMLAttributes<HTMLDivElement> {
+interface iProps extends React.HTMLAttributes<HTMLDivElement> {
     message: string
 }
 

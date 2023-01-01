@@ -1,13 +1,14 @@
 .Form
-    flex: 0 0 2rem
-    border-radius: 8px
-    background: #{var(--C2)}
-    color: #{var(--C5)}
+    width: 100%
+    height: 100%
+    position: absolute
+    z-index: 2
+    color: var(--C5)
+    padding: 1rem
     display: flex
-    justify-content: space-between
+    flex-flow: column nowrap
+    justify-content: center
     align-items: flex-end
-    overflow: hidden
-    margin: 0 .5rem
     fieldset
         display: flex
         flex-flow: column nowrap
@@ -18,6 +19,7 @@
             height: 2rem
             font-size: 1.125rem
             border: none
+            border-radius: 8px
             padding: 0 .4rem
             background: bisque
             &::placeholder
@@ -28,22 +30,25 @@
                 box-shadow: 0px 0px 10px -2px #{var(--color-SHADOW)}
         label
             font-size: .9rem
-            color: #{var(--C6)}
+            color: var(--C4)
             text-transform: lowercase
             letter-spacing: .1rem
-    > input
-        height: 100%
-        font-size: 1.125rem
-        border: none
-        padding: 0 1rem
-        background: #{var(--C1)}
-.Body
-    width: 100%
-    height: 100%
+            margin-bottom: 1rem
 
-input[type="submit"]:hover
-    cursor: pointer
-    box-shadow: 0px 0px 10px -2px #{var(--color-SHADOW)}
+.FormBody
+    width: 100%
+    margin-bottom: 1rem
+
+input[type="submit"]
+    height: 3rem
+    font-size: 1.125rem
+    border: none
+    border-radius: 8px
+    padding: 0 1rem
+    background: var(--C1)
+    &:hover
+        cursor: pointer
+        box-shadow: 0px 0px 10px -2px #{var(--color-SHADOW)}
 
 .Main
     flex: 1 1 5rem
@@ -79,6 +84,24 @@ input[type="submit"]:hover
 .done
     color: #{var(--C7)}
 
+.AddItem
+    flex: 0 0 2rem
+    text-transform: uppercase
+    font-size: 1rem
+    font-weight: 900
+    line-height: 2rem
+    color: var(--C6)
+    background: transparent
+    padding: 0 .5rem
+    margin: 0 .5rem
+    width: fit-content
+    border-radius: 8px
+    border: 2px solid var(--C2)
+    &:hover
+        color: var(--C4)
+        cursor: pointer
+        background: var(--C2)
+
 .todosFooter
     flex: 0 0 3rem
     width: 100%
@@ -91,3 +114,17 @@ input[type="submit"]:hover
 .todosFooterItem
     display: flex
     margin: 0 .5rem
+
+.ModalWrap
+    width: 100%
+    height: 100%
+    position: absolute
+.ModalBG
+    width: 100%
+    height: 100%
+    position: absolute
+    background: #0f1a2bcf
+    z-index: 1
+
+.hide
+    display: none
