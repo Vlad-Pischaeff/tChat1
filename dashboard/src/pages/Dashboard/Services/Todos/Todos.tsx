@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { useAppSelector, useAppDispatch } from 'store/hook';
-import { selectUI, setServicesModalHidden } from "store/slices/ui";
+import { useAppDispatch } from 'store/hook';
+import { setServicesModalHidden } from "store/slices/ui";
 import { useTodosQuery} from 'store/api/todosApi';
 import { TodosItem } from './TodosItem';
 import { iTodos } from 'store/api/apiTypes';
