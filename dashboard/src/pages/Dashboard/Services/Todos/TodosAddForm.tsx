@@ -17,14 +17,12 @@ export const TodosAddForm = () => {
 
     const onSubmit = (data: tFormInputs) => {
         // вызываем API '/todos', добавляем 'todo'
-        if (data.description) {
-            addTodo(data);
-            resetField('description');
-        }
-        dispatch(setServicesModalHidden(true));
+        addTodo(data);
+        closeForm();
     };
 
-    const hahdlerClick = () => {
+    const closeForm = () => {
+        resetField('description');
         dispatch(setServicesModalHidden(true));
     }
 
@@ -46,7 +44,7 @@ export const TodosAddForm = () => {
                     </fieldset>
                 </div>
                 <div className={s.FormButtons}>
-                    <input type="button" value="Close" onClick={hahdlerClick} />
+                    <input type="button" value="Close" onClick={closeForm} />
                     <input type="submit" value="Add todo" />
                 </div>
             </form>
