@@ -44,8 +44,8 @@ export const TodosAddForm = () => {
                     </fieldset>
                 </div>
                 <div className={s.FormButtons}>
-                    <input type="button" value="Close" onClick={closeModal} />
-                    <input type="submit" value="Add todo" />
+                    <input className={s.Button} type="button" value="Close" onClick={closeModal} />
+                    <input className={s.Button} type="submit" value="Add todo" />
                 </div>
             </form>
 
