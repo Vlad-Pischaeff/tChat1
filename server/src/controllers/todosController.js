@@ -38,9 +38,6 @@ const todosController = () => {
     const addTodo = async (req, res) => {
         try {
             const { description } = req.body;
-
-            if (!description) throw new Error('\'Description\' should be defined');
-
             const todo = await Todos.create({ user: req.id, description });
 
             res.status(201).json({ todo });

@@ -17,18 +17,13 @@ export const Notes = () => {
         resetField('description');
     };
 
+    const openModal = () => {
+        console.log('open modal...')
+    }
+
     return (
         <>
-            <form onSubmit={handleSubmit(onSubmit)} className={s.Form}>
-                <div className={s.FormBody}>
-                    <fieldset>
-                        {/* <label>Description</label> */}
-                        <input { ...register("description") } placeholder="New note..." />
-                    </fieldset>
-                </div>
-
-                <input type="submit" value="Add note" />
-            </form>
+            <input type="button" className={s.AddItem} value="+ add note" onClick={openModal} />
 
             <div className={s.Main}>
                 <div className={s.MainPlaceholder}>
