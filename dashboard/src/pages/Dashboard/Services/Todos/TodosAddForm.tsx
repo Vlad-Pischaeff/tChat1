@@ -18,10 +18,10 @@ export const TodosAddForm = () => {
     const onSubmit = (data: tFormInputs) => {
         // вызываем API '/todos', добавляем 'todo'
         addTodo(data);
-        closeForm();
+        closeModal();
     };
 
-    const closeForm = () => {
+    const closeModal = () => {
         resetField('description');
         dispatch(setServicesModalHidden(true));
     }
@@ -44,7 +44,7 @@ export const TodosAddForm = () => {
                     </fieldset>
                 </div>
                 <div className={s.FormButtons}>
-                    <input type="button" value="Close" onClick={closeForm} />
+                    <input type="button" value="Close" onClick={closeModal} />
                     <input type="submit" value="Add todo" />
                 </div>
             </form>

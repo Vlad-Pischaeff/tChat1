@@ -27,13 +27,13 @@ export const Todos = () => {
         [TYPES[2]]: (data: iTodos[]) => data.filter(todo => todo.done === false),
     }), []);
 
-    const handlerClick = () => {
+    const openModal = () => {
         dispatch(setServicesModalHidden(false));
     }
 
     return (
         <>
-            <input type="button" className={s.AddItem} value="+ add todo" onClick={handlerClick} />
+            <input type="button" className={s.AddItem} value="+ add todo" onClick={openModal} />
 
             <TodosAddForm />
 
