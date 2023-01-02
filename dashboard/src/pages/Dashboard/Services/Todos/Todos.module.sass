@@ -1,14 +1,18 @@
 .Form
-    width: 100%
-    height: 100%
+    width: 80%
+    height: 60%
     position: absolute
     z-index: 2
     color: var(--C5)
     padding: 1rem
     display: flex
     flex-flow: column nowrap
-    justify-content: center
+    justify-content: space-between
     align-items: flex-end
+    transform: translate(10%,20%)
+    background: var(--color-BACKGROUND)
+    border: 2px solid var(--C2)
+    border-radius: 8px
     fieldset
         display: flex
         flex-flow: column nowrap
@@ -39,7 +43,24 @@
     width: 100%
     margin-bottom: 1rem
 
-input[type="submit"]
+.FormTextArea
+    border-radius: 8px
+    overflow: hidden
+    textarea
+        width: 100%
+        resize: none
+        border: none
+        padding: .4rem
+        &:focus-visible
+            background: var(--C5)
+            outline: none
+
+.FormButtons
+    width: 100%
+    display: flex
+    justify-content: space-between
+
+input[type="submit"], input[type="button"]
     height: 3rem
     font-size: 1.125rem
     border: none
@@ -123,7 +144,7 @@ input[type="submit"]
     width: 100%
     height: 100%
     position: absolute
-    background: #0f1a2bcf
+    background: #0f1a2bba
     z-index: 1
 
 .hide

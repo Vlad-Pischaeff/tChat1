@@ -17,10 +17,16 @@ export const TodosAddForm = () => {
 
     const onSubmit = (data: tFormInputs) => {
         // вызываем API '/todos', добавляем 'todo'
-        addTodo(data);
-        resetField('description');
+        if (data.description) {
+            addTodo(data);
+            resetField('description');
+        }
         dispatch(setServicesModalHidden(true));
     };
+
+    const hahdlerClick = () => {
+        dispatch(setServicesModalHidden(true));
+    }
 
     return (
         <div className={`${s.ModalWrap} ${ui.servicesModalHidden ? s.hide : ''}`}>
@@ -31,10 +37,18 @@ export const TodosAddForm = () => {
                 <div className={s.FormBody}>
                     <fieldset>
                         <label>Description</label>
-                        <input { ...register("description") } placeholder="My todo..." />
+                        <div className={s.FormTextArea}>
+                            <textarea
+                                { ...register("description") }
+                                placeholder="My new todo..."
+                                rows={3} />
+                        </div>
                     </fieldset>
                 </div>
-                <input type="submit" value="Add todo" />
+                <div className={s.FormButtons}>
+                    <input type="button" value="Close" onClick={hahdlerClick} />
+                    <input type="submit" value="Add todo" />
+                </div>
             </form>
 
         </div>
