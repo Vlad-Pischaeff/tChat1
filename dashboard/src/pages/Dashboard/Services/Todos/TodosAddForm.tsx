@@ -18,7 +18,7 @@ export const TodosAddForm = () => {
     const onSubmit = (data: tFormInputs) => {
         // вызываем API '/todos', добавляем 'todo'
         addTodo(data);
-        closeModal();
+        if (data.description) closeModal();
     };
 
     const closeModal = () => {
