@@ -67,7 +67,7 @@ const notesController = () => {
     const deleteNote = async (req, res) => {
         try {
             const { id } = req.params;
-            await Notess.deleteOne({ _id: id });
+            await Notes.deleteOne({ _id: id });
 
             res.status(201).json({ message: 'Note deleted succsessfully...' });
         } catch (e) {

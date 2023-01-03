@@ -14,6 +14,7 @@ const uploadController = () => {
      * генерим имя и сохраняем в /upload
      * возвращаем имя файла
      ********************************************** */
+    // eslint-disable-next-line
     const upload = async (req, res, next) => {
         const { photo } = req.body;
         const name = await randomString(15);

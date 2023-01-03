@@ -18,6 +18,7 @@ module.exports = async (req, res, next) => {
 
         const decoded = await TokenService.validateAccessToken(token);
         const {
+            // eslint-disable-next-line
             id, iat, exp, verifyError
         } = decoded;
 
