@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useAppDispatch } from 'store/hook';
-import { setServicesModalHidden } from "store/slices/ui";
+import { setServicesModal, eModal } from "store/slices/ui";
 import { useTodosQuery} from 'store/api/todosApi';
 import { TodosItem } from './TodosItem';
 import { iTodos } from 'store/api/apiTypes';
@@ -28,7 +28,7 @@ export const Todos = () => {
     }), []);
 
     const openModal = () => {
-        dispatch(setServicesModalHidden(false));
+        dispatch(setServicesModal(eModal.todo));
     }
 
     return (

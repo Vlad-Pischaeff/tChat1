@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
 import { useAppSelector, useAppDispatch } from 'store/hook';
-import { selectUI, setServicesModalHidden } from "store/slices/ui";
+import { selectUI, setServicesModal, eModal } from "store/slices/ui";
 // import { useAddTodoMutation } from 'store/api/todosApi';
 import s from './Notes.module.sass';
 
@@ -25,11 +25,11 @@ export const NotesAddForm = () => {
     const closeModal = () => {
         resetField('title');
         resetField('description');
-        dispatch(setServicesModalHidden(true));
+        dispatch(setServicesModal(eModal.none));
     }
 
     return (
-        <div className={`${s.ModalWrap} ${ui.servicesModalHidden ? s.hide : ''}`}>
+        <div className={`${s.ModalWrap} ${ui.servicesModal === eModal.note ? '' : s.hide}`}>
 
             <div className={s.ModalBG}></div>
 

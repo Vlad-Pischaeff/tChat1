@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAppDispatch } from 'store/hook';
-import { setServicesModalHidden } from "store/slices/ui";
+import { setServicesModal, eModal } from "store/slices/ui";
 import s from './Notes.module.sass';
 import { NotesAddForm } from './NotesAddForm';
 
@@ -8,7 +8,7 @@ export const Notes = () => {
     const dispatch = useAppDispatch();
 
     const openModal = () => {
-        dispatch(setServicesModalHidden(false));
+        dispatch(setServicesModal(eModal.note));
     }
 
     return (

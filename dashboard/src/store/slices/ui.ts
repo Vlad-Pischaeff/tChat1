@@ -5,12 +5,20 @@ import { tTheme } from 'assets/style/utils';
 import { tServiceMenu } from 'pages/Dashboard/Services/Types';
 import type { RootState } from 'store/store';
 
+export enum eModal {
+    todo = 'TODO',
+    note = 'NOTE',
+    mail = 'MAIL',
+    ask = 'ASK',
+    none = 'NONE'
+}
+
 export type UIType = {
     theme: tTheme;
     message: string;
     type: 'error' | 'warning' | 'info';  // TODO use for styling SnackBar
     services: tServiceMenu;
-    servicesModalHidden: boolean;
+    servicesModal: eModal;
 }
 
 const initialState: UIType = {
@@ -18,7 +26,7 @@ const initialState: UIType = {
     message: '',
     type: 'info',
     services: 'Todos',
-    servicesModalHidden: true
+    servicesModal: eModal.none
 }
 
 const slice = createSlice({
@@ -37,8 +45,8 @@ const slice = createSlice({
         setServiceMenuItem: (state, { payload }: PayloadAction<tServiceMenu>) => {
             state.services = payload;
         },
-        setServicesModalHidden: (state, { payload }: PayloadAction<boolean>) => {
-            state.servicesModalHidden = payload;
+        setServicesModal: (state, { payload }: PayloadAction<eModal>) => {
+            state.servicesModal = payload;
         },
     },
     extraReducers: (builder) => {
@@ -80,7 +88,7 @@ export const {
     setMessage,
     setTheme,
     setServiceMenuItem,
-    setServicesModalHidden
+    setServicesModal
 } = slice.actions;
 
 export default slice.reducer;
