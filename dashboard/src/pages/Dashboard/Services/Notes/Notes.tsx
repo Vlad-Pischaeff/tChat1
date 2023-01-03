@@ -1,29 +1,21 @@
 import React from 'react';
-import { useForm } from "react-hook-form";
-import { useAddTodoMutation } from 'store/api/todosApi';
+import { useAppDispatch } from 'store/hook';
+import { setServicesModalHidden } from "store/slices/ui";
 import s from './Notes.module.sass';
-
-type tFormInputs = {
-    description: string;
-};
+import { NotesAddForm } from './NotesAddForm';
 
 export const Notes = () => {
-    const [ addTodo ] = useAddTodoMutation();
-    const { register, resetField, handleSubmit } = useForm<tFormInputs>();
-
-    const onSubmit = (data: tFormInputs) => {
-        // вызываем API '/todos', добавляем 'todo'
-        addTodo(data);
-        resetField('description');
-    };
+    const dispatch = useAppDispatch();
 
     const openModal = () => {
-        console.log('open modal...')
+        dispatch(setServicesModalHidden(false));
     }
 
     return (
         <>
             <input type="button" className={s.AddItem} value="+ add note" onClick={openModal} />
+
+            <NotesAddForm />
 
             <div className={s.Main}>
                 <div className={s.MainPlaceholder}>

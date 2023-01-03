@@ -2,26 +2,28 @@ import React from 'react';
 import { useForm } from "react-hook-form";
 import { useAppSelector, useAppDispatch } from 'store/hook';
 import { selectUI, setServicesModalHidden } from "store/slices/ui";
-import { useAddTodoMutation } from 'store/api/todosApi';
+// import { useAddTodoMutation } from 'store/api/todosApi';
 import s from './Notes.module.sass';
 
 type tFormInputs = {
+    title: string;
     description: string;
 }
 
 export const NotesAddForm = () => {
     const dispatch = useAppDispatch();
     const ui = useAppSelector(selectUI);
-    const [ addTodo ] = useAddTodoMutation();
+    // const [ addTodo ] = useAddTodoMutation();
     const { register, resetField, handleSubmit } = useForm<tFormInputs>();
 
     const onSubmit = (data: tFormInputs) => {
         // вызываем API '/notes', добавляем 'note'
-        addTodo(data);
+        // addTodo(data);
         closeModal();
     };
 
     const closeModal = () => {
+        resetField('title');
         resetField('description');
         dispatch(setServicesModalHidden(true));
     }
@@ -34,11 +36,18 @@ export const NotesAddForm = () => {
             <form onSubmit={handleSubmit(onSubmit)} className={s.Form}>
                 <div className={s.FormBody}>
                     <fieldset>
+                        <label>Title</label>
+                        <input
+                            { ...register("title") }
+                            className={s.FormInput}
+                            placeholder="New note title..." />
+                    </fieldset>
+                    <fieldset>
                         <label>Description</label>
                         <div className={s.FormTextArea}>
                             <textarea
                                 { ...register("description") }
-                                placeholder="My new todo..."
+                                placeholder="New note description..."
                                 rows={3} />
                         </div>
                     </fieldset>
