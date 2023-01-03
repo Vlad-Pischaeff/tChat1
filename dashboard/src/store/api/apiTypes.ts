@@ -14,3 +14,13 @@ export interface iTodos {
     done: boolean,
     user: string
 }
+
+export interface iNotes {
+    __v: number,
+    _id: string,
+    date: number,
+    title: string,
+    description: string,
+    type: string,
+    user: string
+}
