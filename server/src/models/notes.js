@@ -22,7 +22,8 @@ const schema = new Schema({
     },
     type: {
         type: String,
-        required: false,
+        required: true,
+        default: 'any'
     }
 });
 

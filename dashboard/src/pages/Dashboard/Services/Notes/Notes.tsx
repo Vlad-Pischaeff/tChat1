@@ -4,6 +4,7 @@ import { useNotesQuery} from 'store/api/notesApi';
 import { setServicesModal, eModal } from "store/slices/ui";
 import s from './Notes.module.sass';
 import { NotesAddForm } from './NotesAddForm';
+import { NotesItem } from './NotesItem';
 
 export const Notes = () => {
     const dispatch = useAppDispatch();
@@ -32,12 +33,7 @@ export const Notes = () => {
                 }
                 { isSuccess && data &&
                     data.map(note =>
-                        <details key={note._id}>
-                            <summary>{note.title}</summary>
-                            <p>
-                                {note.description}
-                            </p>
-                        </details>
+                        <NotesItem key={note._id} note={note} />
                     )
                 }
                 { isLoading && <div>Loading...</div>}
