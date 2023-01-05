@@ -3,6 +3,9 @@ import { useEditNoteMutation } from 'store/api/notesApi';
 import { iNotes } from 'store/api/apiTypes';
 import s from './Notes.module.sass';
 
+const COLORS = [ "none", "orange", "tomato", "darkred", "lawngreen", "aqua", "gray" ] as const;
+// type tColors = typeof COLORS[number];
+
 interface iProps extends React.HtmlHTMLAttributes<HTMLDetailsElement> {
     note: iNotes
 }
@@ -33,13 +36,16 @@ export const NotesItem = ({note}: iProps) => {
                         value={note.type}
                     >
                         <option disabled>Choose color</option>
-                        <option value="none" className={s.TypeImportant}>none</option>
-                        <option value="orange" className={s.TypeImportant}>orange</option>
-                        <option value="tomato" className={s.TypeWarning}>tomato</option>
-                        <option value="darkred" className={s.TypeInfo}>dark red</option>
-                        <option value="lawngreen" className={s.TypeInfo}>lawngreen</option>
-                        <option value="aqua" className={s.TypeInfo}>aqua</option>
-                        <option value="gray" className={s.TypeInfo}>gray</option>
+                        { COLORS.map(color =>
+                                <option
+                                    key={color}
+                                    value={color}
+                                    className={s.TypeSelect}
+                                >
+                                    {color}
+                                </option>
+                            )
+                        }
                     </select>
                 </div>
             </summary>
