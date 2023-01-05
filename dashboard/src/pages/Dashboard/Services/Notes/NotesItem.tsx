@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEditNoteMutation } from 'store/api/notesApi';
 import { iNotes } from 'store/api/apiTypes';
 import s from './Notes.module.sass';
 
@@ -6,29 +7,39 @@ interface iProps extends React.HtmlHTMLAttributes<HTMLDetailsElement> {
     note: iNotes
 }
 
-let tType: "Any" | "Important" | "Warning" | "Info";
-
 export const NotesItem = ({note}: iProps) => {
+    const [ updateNote ] = useEditNoteMutation();
 
     const selectType = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        // e.preventDefault();
-        console.log('select...', e.target.value)
+        const body = { type: e.target.value };
+        const data = { id: note._id, ...body };
+        updateNote(data);
     }
 
     return (
-        <details key={note._id}>
+        <details>
             <summary>
                 <div className={s.SummaryContainer}>
-                    <span>{note.title}</span>
+                    <span className={s.SummaryTitle}
+                        style={{ borderLeft: note.type === 'none' ? '' : `5px solid ${note.type}` }}
+                    >
+                        {note.title}
+                    </span>
                     {/* <div className={s.SummaryType} onClick={selectType}></div> */}
 
-                    <select className={s.SummarySelect} onChange={selectType}>
-                        <option className="fa" selected disabled>
-                            Choose type
-                        </option>
-                        <option value="Important" className={s.TypeImportant}>Important</option>
-                        <option value="Warning" className={s.TypeWarning}>Warning</option>
-                        <option value="Info" className={s.TypeInfo}>Info</option>
+                    <select
+                        className={s.SummarySelect}
+                        onChange={selectType}
+                        value={note.type}
+                    >
+                        <option disabled>Choose color</option>
+                        <option value="none" className={s.TypeImportant}>none</option>
+                        <option value="orange" className={s.TypeImportant}>orange</option>
+                        <option value="tomato" className={s.TypeWarning}>tomato</option>
+                        <option value="darkred" className={s.TypeInfo}>dark red</option>
+                        <option value="lawngreen" className={s.TypeInfo}>lawngreen</option>
+                        <option value="aqua" className={s.TypeInfo}>aqua</option>
+                        <option value="gray" className={s.TypeInfo}>gray</option>
                     </select>
                 </div>
             </summary>

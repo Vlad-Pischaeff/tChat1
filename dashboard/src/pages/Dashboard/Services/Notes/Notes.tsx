@@ -33,7 +33,9 @@ export const Notes = () => {
                 }
                 { isSuccess && data &&
                     data.map(note =>
-                        <NotesItem key={note._id} note={note} />
+                        <div key={note._id}>
+                            <NotesItem note={note} />
+                        </div>
                     )
                 }
                 { isLoading && <div>Loading...</div>}

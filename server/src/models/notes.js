@@ -23,7 +23,7 @@ const schema = new Schema({
     type: {
         type: String,
         required: true,
-        default: 'any'
+        default: 'none'
     }
 });
 

@@ -138,6 +138,8 @@
     justify-content: space-between
     align-items: flex-start
     width: 95%
+    &:hover .SummarySelect
+        visibility: visible
     span
         &:hover
             cursor: pointer
@@ -148,7 +150,10 @@
     margin-left: 1rem
     &:hover
         cursor: pointer
+.SummaryTitle
+    padding-left: .5rem
 .SummarySelect
+    visibility: hidden
     width: 1.5rem
     margin-left: 1rem
     border-radius: 50%
@@ -157,7 +162,9 @@
     appearance: none
     &:hover
         cursor: pointer
+        border: 2px solid var(--C1)
 details
     padding: .2rem
     p
-        padding: 0 1rem
+        padding: 0 2rem
+        background: var(--color-HOVER)
