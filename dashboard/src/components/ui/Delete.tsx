@@ -2,8 +2,8 @@ import React, { HTMLAttributes } from 'react';
 import s from './Delete.module.sass';
 
 interface iProps extends HTMLAttributes<HTMLDivElement> {
-    checked: boolean,
-    onClick: () => void
+    checked?: boolean,
+    onClick?: () => void
 }
 
 export const Delete = ({ checked, onClick }: iProps) => {

@@ -1,5 +1,6 @@
 import React from 'react';
-import { useEditNoteMutation } from 'store/api/notesApi';
+import { useEditNoteMutation, useDeleteNoteMutation } from 'store/api/notesApi';
+import * as UI from 'components/ui';
 import { iNotes } from 'store/api/apiTypes';
 import s from './Notes.module.sass';
 
@@ -12,11 +13,17 @@ interface iProps extends React.HtmlHTMLAttributes<HTMLDetailsElement> {
 
 export const NotesItem = ({note}: iProps) => {
     const [ updateNote ] = useEditNoteMutation();
+    const [ deleteNote ] = useDeleteNoteMutation();
 
     const selectType = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const body = { type: e.target.value };
         const data = { id: note._id, ...body };
         updateNote(data);
+    }
+
+    const removeNote = (e: React.MouseEvent<HTMLDivElement>) => {
+        e.preventDefault();
+        deleteNote({id: note._id });
     }
 
     return (
@@ -28,7 +35,6 @@ export const NotesItem = ({note}: iProps) => {
                     >
                         {note.title}
                     </span>
-                    {/* <div className={s.SummaryType} onClick={selectType}></div> */}
 
                     <select
                         className={s.SummarySelect}
@@ -41,12 +47,18 @@ export const NotesItem = ({note}: iProps) => {
                                     key={color}
                                     value={color}
                                     className={s.TypeSelect}
+                                    style={{ background: color }}
                                 >
-                                    {color}
+                                    &nbsp;
                                 </option>
                             )
                         }
                     </select>
+
+                    <div className={s.SummaryDelete} onClick={removeNote}>
+                        <UI.Delete />
+                    </div>
+
                 </div>
             </summary>
             <p>
