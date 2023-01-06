@@ -4,8 +4,15 @@ import * as ICONS from 'assets/img';
 import { iNotes } from 'store/api/apiTypes';
 import s from './Notes.module.sass';
 
-const COLORS = [ "none", "orange", "tomato", "darkred", "lawngreen", "aqua", "gray" ] as const;
-// type tColors = typeof COLORS[number];
+const COLORS: Record<string, string> = {
+    'none': 'none',
+    'orange': 'orange',
+    'tomato': 'tomato',
+    'dark red': 'darkred',
+    'lawn green': 'lawngreen',
+    'aqua': 'aqua',
+    'gray': 'gray',
+};
 
 interface iProps extends React.HtmlHTMLAttributes<HTMLDetailsElement> {
     note: iNotes
@@ -31,7 +38,7 @@ export const NotesItem = ({note}: iProps) => {
             <summary>
                 <div className={s.SummaryContainer}>
                     <span className={s.SummaryTitle}
-                        style={{ borderLeft: note.type === 'none' ? '' : `5px solid ${note.type}` }}
+                        style={{ borderLeft: note.type !== 'none' ? `5px solid ${COLORS[note.type]}` : '' }}
                     >
                         {note.title}
                     </span>
@@ -42,14 +49,14 @@ export const NotesItem = ({note}: iProps) => {
                         value={note.type}
                     >
                         <option disabled>Choose color</option>
-                        { COLORS.map(color =>
+                        { Object.entries(COLORS).map(([key, value]) =>
                                 <option
-                                    key={color}
-                                    value={color}
+                                    key={key}
+                                    value={key}
                                     className={s.TypeSelect}
-                                    style={{ background: color }}
+                                    style={{ background: value }}
                                 >
-                                    &nbsp;
+                                    { key }
                                 </option>
                             )
                         }
