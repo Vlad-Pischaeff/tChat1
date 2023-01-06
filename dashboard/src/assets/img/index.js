@@ -5,6 +5,7 @@ import { TodosIcon } from './TodosIcon';
 import { NotesIcon } from './NotesIcon';
 import { MailIcon } from './MailIcon';
 import { ChatIcon } from './ChatIcon';
+import { TrashIcon } from './TrashIcon';
 
 export {
     Eye,
@@ -13,5 +14,6 @@ export {
     TodosIcon,
     NotesIcon,
     MailIcon,
-    ChatIcon
+    ChatIcon,
+    TrashIcon
 };

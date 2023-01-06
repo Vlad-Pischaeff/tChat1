@@ -9,7 +9,7 @@ const theme = {
         '--C7': '#00cad1',
         '--C8': '#646464',
         '--color-BACKGROUND': '#0F1A2B',
-        '--color-HOVER': '#305d7220',
+        '--color-HOVER': '#305d7230',
         '--color-SHADOW': '#606060aa',
     },
     light: {
@@ -22,7 +22,7 @@ const theme = {
         '--C7': '#00cad1',
         '--C8': '#B0B0B0',
         '--color-BACKGROUND': 'ivory',
-        '--color-HOVER': '#305d720b',
+        '--color-HOVER': '#305d7216',
         '--color-SHADOW': '#a0a0a066',
     },
 };

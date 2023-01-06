@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEditNoteMutation, useDeleteNoteMutation } from 'store/api/notesApi';
-import * as UI from 'components/ui';
+import * as ICONS from 'assets/img';
 import { iNotes } from 'store/api/apiTypes';
 import s from './Notes.module.sass';
 
@@ -23,7 +23,7 @@ export const NotesItem = ({note}: iProps) => {
 
     const removeNote = (e: React.MouseEvent<HTMLDivElement>) => {
         e.preventDefault();
-        deleteNote({id: note._id });
+        deleteNote({ id: note._id });
     }
 
     return (
@@ -56,7 +56,7 @@ export const NotesItem = ({note}: iProps) => {
                     </select>
 
                     <div className={s.SummaryDelete} onClick={removeNote}>
-                        <UI.Delete />
+                        <ICONS.TrashIcon />
                     </div>
 
                 </div>
