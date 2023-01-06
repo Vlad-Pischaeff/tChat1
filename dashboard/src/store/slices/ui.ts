@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction, isAnyOf  } from '@reduxjs/toolkit';
 import { usersApi } from 'store/api/usersApi';
 import { todosApi } from 'store/api/todosApi';
+import { notesApi } from 'store/api/notesApi';
 import { tTheme } from 'assets/style/utils';
 import { iNotes } from 'store/api/apiTypes';
 import { tServiceMenu } from 'pages/Dashboard/Services/Types';
@@ -64,7 +65,9 @@ const slice = createSlice({
                 todosApi.endpoints.getTodo.matchRejected,
                 todosApi.endpoints.addTodo.matchRejected,
                 todosApi.endpoints.deleteTodo.matchRejected,
-                todosApi.endpoints.editTodo.matchRejected
+                todosApi.endpoints.editTodo.matchRejected,
+                notesApi.endpoints.deleteNote.matchRejected,
+                notesApi.endpoints.editNote.matchRejected,
             ),
             (state, { payload } ) => {
                 if (payload && 'data' in payload) {
@@ -77,6 +80,8 @@ const slice = createSlice({
         builder.addMatcher( isAnyOf(
                 usersApi.endpoints.resetUserPassword.matchFulfilled,
                 todosApi.endpoints.deleteTodo.matchFulfilled,
+                notesApi.endpoints.deleteNote.matchFulfilled,
+                notesApi.endpoints.editNote.matchFulfilled,
             ),
             (state, { payload } ) => {
                 if (payload && 'message' in payload) {

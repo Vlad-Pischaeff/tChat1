@@ -1,11 +1,11 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAppSelector} from 'store/hook';
 import { selectCurrentUser } from 'store/slices/auth';
 
-type Props = { children: ReactElement | null }
+interface iProps { children: React.ReactElement | null }
 
-export const PrivateRoute = ({ children }: Props) => {
+export const PrivateRoute = ({ children }: iProps) => {
     const user = useAppSelector(selectCurrentUser);
 
 	// if (loading) return <div>loading...</div>;
