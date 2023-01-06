@@ -33,6 +33,11 @@ export const NotesItem = ({note}: iProps) => {
         deleteNote({ id: note._id });
     }
 
+    const editNote = (e: React.MouseEvent<HTMLDivElement>) => {
+        e.preventDefault();
+        console.log('edit...')
+    }
+
     return (
         <details>
             <summary>
@@ -56,11 +61,15 @@ export const NotesItem = ({note}: iProps) => {
                                     className={s.TypeSelect}
                                     style={{ background: value }}
                                 >
-                                    { key }
+                                    &nbsp;
                                 </option>
                             )
                         }
                     </select>
+
+                    <div className={s.SummaryEdit} onClick={editNote}>
+                        <ICONS.EditIcon />
+                    </div>
 
                     <div className={s.SummaryDelete} onClick={removeNote}>
                         <ICONS.TrashIcon />

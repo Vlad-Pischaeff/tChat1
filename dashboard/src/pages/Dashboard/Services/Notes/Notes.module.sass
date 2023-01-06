@@ -140,7 +140,9 @@
     justify-content: space-between
     align-items: flex-start
     width: 95%
-    &:hover .SummarySelect, &:hover .SummaryDelete
+    &:hover .SummarySelect,
+    &:hover .SummaryDelete,
+    &:hover .SummaryEdit
         visibility: visible
     span
         &:hover
@@ -167,7 +169,7 @@
     &:hover
         cursor: pointer
         border: 2px solid var(--C1)
-.SummaryDelete
+.SummaryDelete, .SummaryEdit
     visibility: hidden
     margin-left: .5rem
 

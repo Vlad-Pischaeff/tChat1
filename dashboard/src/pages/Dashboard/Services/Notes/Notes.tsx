@@ -18,7 +18,7 @@ export const Notes = () => {
     const openModal = () => {
         dispatch(setServicesModal(eModal.note));
     }
-    console.log('notes...', data)
+    // console.log('notes...', data)
     return (
         <>
             <input type="button" className={s.AddItem} value="+ add note" onClick={openModal} />

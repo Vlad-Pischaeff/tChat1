@@ -6,6 +6,7 @@ import { NotesIcon } from './NotesIcon';
 import { MailIcon } from './MailIcon';
 import { ChatIcon } from './ChatIcon';
 import { TrashIcon } from './TrashIcon';
+import { EditIcon } from './EditIcon';
 
 export {
     Eye,
@@ -15,5 +16,6 @@ export {
     NotesIcon,
     MailIcon,
     ChatIcon,
-    TrashIcon
+    TrashIcon,
+    EditIcon,
 };
