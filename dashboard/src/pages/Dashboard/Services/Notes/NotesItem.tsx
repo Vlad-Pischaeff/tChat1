@@ -1,4 +1,6 @@
 import React from 'react';
+import { useAppDispatch } from 'store/hook';
+import { setEditedNote, setServicesModal, eModal } from 'store/slices/ui';
 import { useEditNoteMutation, useDeleteNoteMutation } from 'store/api/notesApi';
 import * as ICONS from 'assets/img';
 import { iNotes } from 'store/api/apiTypes';
@@ -19,6 +21,7 @@ interface iProps extends React.HtmlHTMLAttributes<HTMLDetailsElement> {
 }
 
 export const NotesItem = ({note}: iProps) => {
+    const dispatch = useAppDispatch();
     const [ updateNote ] = useEditNoteMutation();
     const [ deleteNote ] = useDeleteNoteMutation();
 
@@ -35,7 +38,8 @@ export const NotesItem = ({note}: iProps) => {
 
     const editNote = (e: React.MouseEvent<HTMLDivElement>) => {
         e.preventDefault();
-        console.log('edit...')
+        dispatch(setEditedNote(note));
+        dispatch(setServicesModal(eModal.note));
     }
 
     return (

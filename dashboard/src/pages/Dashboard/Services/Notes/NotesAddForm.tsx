@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { useAppSelector, useAppDispatch } from 'store/hook';
-import { selectUI, setServicesModal, eModal } from "store/slices/ui";
-import { useAddNoteMutation } from 'store/api/notesApi';
+import { selectUI, setServicesModal, setEditedNote, eModal } from "store/slices/ui";
+import { useAddNoteMutation, useEditNoteMutation } from 'store/api/notesApi';
 import s from './Notes.module.sass';
 
 type tFormInputs = {
@@ -14,17 +14,33 @@ export const NotesAddForm = () => {
     const dispatch = useAppDispatch();
     const ui = useAppSelector(selectUI);
     const [ addNote ] = useAddNoteMutation();
-    const { register, resetField, handleSubmit } = useForm<tFormInputs>();
+    const [ updateNote ] = useEditNoteMutation();
+    const { register, setValue, resetField, handleSubmit } = useForm<tFormInputs>();
+
+    useEffect(() => {
+        // invoke when editing note
+        if (ui.editedNote) {
+            setValue('title', ui.editedNote.title);
+            setValue('description', ui.editedNote.description);
+        }
+    }, [ui.editedNote]);
 
     const onSubmit = (data: tFormInputs) => {
-        // вызываем API '/notes', добавляем 'note'
-        addNote(data);
+        if (ui.editedNote) {
+            // вызываем API '/notes', обновляеи 'note'
+            const updatedData = { id: ui.editedNote._id, ...data };
+            updateNote(updatedData);
+        } else {
+            // вызываем API '/notes', добавляем 'note'
+            addNote(data);
+        }
         closeModal();
     };
 
     const closeModal = () => {
         resetField('title');
         resetField('description');
+        dispatch(setEditedNote(null));
         dispatch(setServicesModal(eModal.none));
     }
 
@@ -54,7 +70,7 @@ export const NotesAddForm = () => {
                 </div>
                 <div className={s.FormButtons}>
                     <input className={s.Button} type="button" value="Close" onClick={closeModal} />
-                    <input className={s.Button} type="submit" value="Add note" />
+                    <input className={s.Button} type="submit" value={ui.editedNote ? "Update note" : "Add note"} />
                 </div>
             </form>
 
