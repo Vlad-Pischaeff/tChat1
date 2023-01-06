@@ -23,6 +23,7 @@ export const NotesAddForm = () => {
             setValue('title', ui.editedNote.title);
             setValue('description', ui.editedNote.description);
         }
+        // eslint-disable-next-line
     }, [ui.editedNote]);
 
     const onSubmit = (data: tFormInputs) => {
