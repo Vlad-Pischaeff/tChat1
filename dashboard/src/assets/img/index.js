@@ -7,6 +7,7 @@ import { MailIcon } from './MailIcon';
 import { ChatIcon } from './ChatIcon';
 import { TrashIcon } from './TrashIcon';
 import { EditIcon } from './EditIcon';
+import { LabelIcon } from './LabelIcon';
 
 export {
     Eye,
@@ -18,4 +19,5 @@ export {
     ChatIcon,
     TrashIcon,
     EditIcon,
+    LabelIcon,
 };
