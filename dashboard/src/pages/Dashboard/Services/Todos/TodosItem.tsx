@@ -39,8 +39,6 @@ export const TodosItem = ({ todo }: iProps) => {
             <div className={s.itemDelete} onClick={handleClick}>
                 <ICON.TrashIcon />
             </div>
-
-            {/* <UI.Delete checked={todo.done} onClick={handleClick}/> */}
         </div>
     );
 };

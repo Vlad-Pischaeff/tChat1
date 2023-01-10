@@ -18,7 +18,7 @@ export const Notes = () => {
     const openModal = () => {
         dispatch(setServicesModal(eModal.note));
     }
-    console.log('LabelIcon fill...', data)
+
     return (
         <>
             <input type="button" className={s.AddItem} value="+ add note" onClick={openModal} />
