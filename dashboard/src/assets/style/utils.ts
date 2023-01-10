@@ -9,7 +9,7 @@ const theme = {
         '--C7': '#00cad1',
         '--C8': '#646464',
         '--color-BACKGROUND': '#0F1A2B',
-        '--color-HOVER': '#305d7230',
+        '--color-HOVER': '#305d7240',
         '--color-SHADOW': '#606060aa',
     },
     light: {

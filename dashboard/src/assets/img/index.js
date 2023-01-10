@@ -8,6 +8,7 @@ import { ChatIcon } from './ChatIcon';
 import { TrashIcon } from './TrashIcon';
 import { EditIcon } from './EditIcon';
 import { LabelIcon } from './LabelIcon';
+import { ServiceMenuIcon } from './ServiceMenuIcon';
 
 export {
     Eye,
@@ -20,4 +21,5 @@ export {
     TrashIcon,
     EditIcon,
     LabelIcon,
+    ServiceMenuIcon,
 };

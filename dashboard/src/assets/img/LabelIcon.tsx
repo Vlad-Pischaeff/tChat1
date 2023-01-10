@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './LabelIcon.module.sass';
 
-export const LabelIcon = ({ fill = 'oldlace' }: { fill?: string }) => (
+export const LabelIcon = ({ fill = 'none' }: { fill?: string }) => (
     <div className={s.svg}>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
             <g id="x0020_7">
