@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { useAppDispatch } from 'store/hook';
-import { useEditNoteMutation, useDeleteNoteMutation } from 'store/api/notesApi';
 import * as ICONS from 'assets/img';
 import { iNotes } from 'store/api/apiTypes';
 import s from './Notes.module.sass';
@@ -11,20 +9,7 @@ interface iProps extends React.HtmlHTMLAttributes<HTMLDetailsElement> {
 }
 
 export const NotesItem = ({note}: iProps) => {
-    const dispatch = useAppDispatch();
-    const [ deleteNote ] = useDeleteNoteMutation();
     const [ isMenuVisible, setMenuVisible ] = useState(false);
-
-    // const removeNote = (e: React.MouseEvent<HTMLDivElement>) => {
-    //     e.preventDefault();
-    //     deleteNote({ id: note._id });
-    // }
-
-    // const editNote = (e: React.MouseEvent<HTMLDivElement>) => {
-    //     e.preventDefault();
-    //     dispatch(setEditedNote(note));
-    //     dispatch(setServicesModal(eModal.note));
-    // }
 
     const showMenu = (e: React.MouseEvent<HTMLDivElement>) => {
         e.preventDefault();

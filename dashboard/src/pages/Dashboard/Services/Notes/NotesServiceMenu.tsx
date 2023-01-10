@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import * as ICONS from 'assets/img';
+import { useAppDispatch } from 'store/hook';
+import { setServicesModal, setEditedNote, eModal } from "store/slices/ui";
+import { useDeleteNoteMutation } from 'store/api/notesApi';
 import { NotesMarkServiceMenu } from './NotesMarkServiceMenu';
 import { iNotes } from 'store/api/apiTypes';
 import s from './Notes.module.sass';
@@ -10,10 +13,15 @@ interface iProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export const NotesServiceMenu = ({ note, showMenu }: iProps) => {
+    const dispatch = useAppDispatch();
+    const [ deleteNote ] = useDeleteNoteMutation();
     const [ isVisibleMarkMenu, setVisibleMarkMenu ] = useState(false);
 
     const handlerEditNote = ( e: React.MouseEvent<HTMLDivElement>) => {
         e.preventDefault();
+        dispatch(setEditedNote(note));
+        dispatch(setServicesModal(eModal.note));
+        showMenu(e);    // hide menu after editing
     }
 
     const handlerMarkNote = ( e: React.MouseEvent<HTMLDivElement>) => {
@@ -23,6 +31,8 @@ export const NotesServiceMenu = ({ note, showMenu }: iProps) => {
 
     const handlerDeleteNote = ( e: React.MouseEvent<HTMLDivElement>) => {
         e.preventDefault();
+        deleteNote({ id: note._id });
+        showMenu(e);    // hide menu after deleting
     }
 
     return (

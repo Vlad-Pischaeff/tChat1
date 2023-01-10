@@ -27,7 +27,7 @@ export const NotesMarkServiceMenu = ({ note, showMenu }: iProps) => {
         const body = { type: e.currentTarget.id };
         const data = { id: note._id, ...body };
         updateNote(data);
-        showMenu(e);
+        showMenu(e);    // hide menu after marking
     }
 
     return (
