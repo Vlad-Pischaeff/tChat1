@@ -1,34 +1,32 @@
 import React from 'react';
-import { useForm } from "react-hook-form";
-import { useAddTodoMutation } from 'store/api/todosApi';
+// import { useForm } from "react-hook-form";
+import { useAppDispatch } from 'store/hook';
+import { setServicesModal, eModal } from "store/slices/ui";
+// import { useAddTodoMutation } from 'store/api/todosApi';
 import s from './Answers.module.sass';
 
-type tFormInputs = {
-    description: string;
-};
+// type tFormInputs = {
+//     description: string;
+// };
 
 export const Answers = () => {
-    const [ addTodo ] = useAddTodoMutation();
-    const { register, resetField, handleSubmit } = useForm<tFormInputs>();
+    const dispatch = useAppDispatch();
+    // const [ addTodo ] = useAddTodoMutation();
+    // const { register, resetField, handleSubmit } = useForm<tFormInputs>();
 
-    const onSubmit = (data: tFormInputs) => {
-        // вызываем API '/todos', добавляем 'todo'
-        addTodo(data);
-        resetField('description');
-    };
+    // const onSubmit = (data: tFormInputs) => {
+    //     // вызываем API '/todos', добавляем 'todo'
+    //     addTodo(data);
+    //     resetField('description');
+    // };
+
+    const openModal = () => {
+        dispatch(setServicesModal(eModal.ask));
+    }
 
     return (
         <>
-            <form onSubmit={handleSubmit(onSubmit)} className={s.Form}>
-                <div className={s.FormBody}>
-                    <fieldset>
-                        {/* <label>Description</label> */}
-                        <input { ...register("description") } placeholder="New answer..." />
-                    </fieldset>
-                </div>
-
-                <input type="submit" value="Add answer" />
-            </form>
+            <input type="button" className={s.AddItem} value="+ add answer" onClick={openModal} />
 
             <div className={s.Main}>
                 <div className={s.MainPlaceholder}>
