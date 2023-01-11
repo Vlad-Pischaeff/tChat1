@@ -9,7 +9,8 @@ import type { RootState } from 'store/store';
 
 export interface iItemServiceMenu {
     noteActions?: string | false,
-    noteMark?: string | false
+    noteMark?: string | false,
+    notesFilter?: string | false,
 }
 
 export enum eModal {
@@ -28,6 +29,7 @@ export type UIType = {
     servicesModal: eModal;
     editedNote: iNotes | null;
     serviceMenu: iItemServiceMenu;
+    notesFilterColor: string;
 }
 
 const initialState: UIType = {
@@ -40,7 +42,9 @@ const initialState: UIType = {
     serviceMenu: {
         noteActions: false,
         noteMark: false,
-    }
+        notesFilter: false,
+    },
+    notesFilterColor: 'none',
 }
 
 const slice = createSlice({
@@ -75,6 +79,9 @@ const slice = createSlice({
             if (payload !== null) {
                 state.serviceMenu = { ...state.serviceMenu, ...payload };
             }
+        },
+        setNotesFilterColor: (state, { payload }: PayloadAction<string>) => {
+            state.notesFilterColor = payload;
         },
     },
     extraReducers: (builder) => {
@@ -122,7 +129,8 @@ export const {
     setServiceMenuCategory,
     setServicesModal,
     setEditedNote,
-    setItemServiceMenu
+    setItemServiceMenu,
+    setNotesFilterColor
 } = slice.actions;
 
 export default slice.reducer;
