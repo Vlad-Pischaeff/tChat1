@@ -1,19 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useAppSelector, useAppDispatch } from 'store/hook';
+import { selectUI, setItemServiceMenu } from "store/slices/ui";
 import * as ICONS from 'assets/img';
 import { iNotes } from 'store/api/apiTypes';
 import s from './Notes.module.sass';
 import { NotesServiceMenu } from './NotesServiceMenu';
+import { NotesMarkServiceMenu } from './NotesMarkServiceMenu';
 
 interface iProps extends React.HtmlHTMLAttributes<HTMLDetailsElement> {
     note: iNotes
 }
 
-export const NotesItem = ({note}: iProps) => {
-    const [ isMenuVisible, setMenuVisible ] = useState(false);
+export const NotesItem = ({ note }: iProps) => {
+    const dispatch = useAppDispatch();
+    const ui = useAppSelector(selectUI);
 
     const showMenu = (e: React.MouseEvent<HTMLDivElement>) => {
         e.preventDefault();
-        setMenuVisible(!isMenuVisible);
+        dispatch(setItemServiceMenu({ noteActions: note._id }));
     }
 
     return (
@@ -30,10 +34,13 @@ export const NotesItem = ({note}: iProps) => {
                         <ICONS.ServiceMenuIcon />
                     </div>
 
-                    { isMenuVisible &&
-                        <NotesServiceMenu showMenu={showMenu} note={note} />
+                    { ui.serviceMenu.noteActions === note._id &&
+                        <NotesServiceMenu note={note} />
                     }
 
+                    { ui.serviceMenu.noteMark === note._id &&
+                        <NotesMarkServiceMenu note={note} />
+                    }
                 </div>
             </summary>
             <p>

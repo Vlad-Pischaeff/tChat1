@@ -8,8 +8,8 @@ import { tServiceMenu } from 'pages/Dashboard/Services/Types';
 import type { RootState } from 'store/store';
 
 export interface iItemServiceMenu {
-    noteActions?: boolean,
-    noteMark?: boolean
+    noteActions?: string | false,
+    noteMark?: string | false
 }
 
 export enum eModal {
