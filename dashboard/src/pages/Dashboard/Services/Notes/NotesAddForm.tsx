@@ -18,7 +18,7 @@ export const NotesAddForm = () => {
     const { register, setValue, resetField, handleSubmit } = useForm<tFormInputs>();
 
     useEffect(() => {
-        // invoke when editing note
+        // ✅ invoke when editing note
         if (ui.editedNote) {
             setValue('title', ui.editedNote.title);
             setValue('description', ui.editedNote.description);
@@ -28,11 +28,11 @@ export const NotesAddForm = () => {
 
     const onSubmit = (data: tFormInputs) => {
         if (ui.editedNote) {
-            // вызываем API '/notes', обновляеи 'note'
+            // ✅ вызываем API '/notes', обновляем 'note'
             const updatedData = { id: ui.editedNote._id, ...data };
             updateNote(updatedData);
         } else {
-            // вызываем API '/notes', добавляем 'note'
+            // ✅ вызываем API '/notes', добавляем 'note'
             addNote(data);
         }
         closeModal();

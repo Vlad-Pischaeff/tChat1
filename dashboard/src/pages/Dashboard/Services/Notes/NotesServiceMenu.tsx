@@ -18,7 +18,7 @@ export const NotesServiceMenu = ({ note }: iProps) => {
         e.preventDefault();
         dispatch(setEditedNote(note));
         dispatch(setServicesModal(eModal.note));
-        handlerHideMenu(e);    // hide menu after editing
+        handlerHideMenu(e);    // ✅ hide menu after editing
     }
 
     const handlerMarkNote = ( e: React.MouseEvent<HTMLDivElement>) => {
@@ -29,7 +29,7 @@ export const NotesServiceMenu = ({ note }: iProps) => {
     const handlerDeleteNote = ( e: React.MouseEvent<HTMLDivElement>) => {
         e.preventDefault();
         deleteNote({ id: note._id });
-        handlerHideMenu(e);    // hide menu after deleting
+        handlerHideMenu(e);    // ✅ hide menu after deleting
     }
 
     const handlerHideMenu = (e: React.MouseEvent<HTMLDivElement>) => {

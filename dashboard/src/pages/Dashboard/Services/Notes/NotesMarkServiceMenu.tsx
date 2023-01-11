@@ -29,7 +29,7 @@ export const NotesMarkServiceMenu = ({ note }: iProps) => {
         const body = { type: e.currentTarget.id };
         const data = { id: note._id, ...body };
         updateNote(data);
-        handlerHideMenu(e);    // hide menu after marking
+        handlerHideMenu(e);    // ✅ hide menu after marking
     }
 
     const handlerHideMenu = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -43,16 +43,17 @@ export const NotesMarkServiceMenu = ({ note }: iProps) => {
 
             <div className={s.ServiceMenuWrap} role="menu">
                 { Object.entries(COLORS).map(([key, value]) =>
-                        <div key={key} id={value}
-                            className={s.ServiceMenuItem}
-                            role="menuitem"
-                            onClick={handlerSelectColor}
-                        >
-                            <ICONS.LabelIcon fill={value} />
-                            <p>{key}</p>
-                        </div>
-                    )
-                }
+                    <div
+                        key={key}
+                        id={value}
+                        className={s.ServiceMenuItem}
+                        role="menuitem"
+                        onClick={handlerSelectColor}
+                    >
+                        <ICONS.LabelIcon fill={value} />
+                        <p>{key}</p>
+                    </div>
+                )}
             </div>
         </div>
     );

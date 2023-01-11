@@ -16,7 +16,7 @@ export const TodosAddForm = () => {
     const { register, resetField, handleSubmit } = useForm<tFormInputs>();
 
     const onSubmit = (data: tFormInputs) => {
-        // вызываем API '/todos', добавляем 'todo'
+        // ✅ вызываем API '/todos', добавляем 'todo'
         addTodo(data);
         if (data.description) closeModal();
     };

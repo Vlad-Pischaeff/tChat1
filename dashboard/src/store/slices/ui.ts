@@ -23,7 +23,7 @@ export enum eModal {
 export type UIType = {
     theme: tTheme;
     message: string;
-    type: 'error' | 'warning' | 'info';  // TODO use for styling SnackBar
+    type: 'error' | 'warning' | 'info';  // ✅ TODO use for styling SnackBar
     services: tServiceMenu;
     servicesModal: eModal;
     editedNote: iNotes | null;
@@ -67,11 +67,11 @@ const slice = createSlice({
         },
         setItemServiceMenu: (state, { payload }: PayloadAction<iItemServiceMenu | null>) => {
             const obj = { ...state.serviceMenu };
-            // reset all properties to "false"
+            // ✅ reset all properties to "false"
             (Object.keys(obj) as (keyof typeof obj)[]).forEach(key => {
                 state.serviceMenu[key] = false;
             })
-            // if "payload" not "null" => set property
+            // ✅ if "payload" not "null" => set property
             if (payload !== null) {
                 state.serviceMenu = { ...state.serviceMenu, ...payload };
             }
