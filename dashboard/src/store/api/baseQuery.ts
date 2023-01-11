@@ -20,7 +20,7 @@ type tResult = {
 
 const baseQuery = fetchBaseQuery({
     baseUrl: `${URL}/api/`,
-    credentials: 'include',     //! will send back "httpOnly cookie" for every request
+    credentials: 'include',     // ⚡ will send back "httpOnly cookie" for every request
     prepareHeaders: (headers, { getState }) => {
         const token = (getState() as RootState).auth.jwtToken;
         if (token) {
@@ -42,15 +42,15 @@ export const baseQueryWithReAuth:
     if (result?.error?.status === 403 ||
         result?.error?.status === 401 ) {
         // console.log('sending refresh token =>');
-        //! send refresh token to get new access token
+        // ⚡ send refresh token to get new access token
         const refreshResult = await baseQuery('/users/refresh', api, extraOptions) as tResult;
         // console.log('refreshResult =>', refreshResult);
 
         if (refreshResult?.data) {
             const id = (api.getState() as RootState).auth.id;
-            //! store new token
+            // ⚡ store new token
             api.dispatch(setCredentials({ ...refreshResult.data, id }));
-            //! retry the original query with new access token
+            // ⚡ retry the original query with new access token
             result = await baseQuery(args, api, extraOptions);
         } else {
             api.dispatch(logout());
