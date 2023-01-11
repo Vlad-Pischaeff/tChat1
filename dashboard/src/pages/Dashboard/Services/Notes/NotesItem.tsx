@@ -21,7 +21,7 @@ export const NotesItem = ({ note }: iProps) => {
     }
 
     return (
-        <details>
+        <details className={s.Summary}>
             <summary>
                 <div className={s.SummaryContainer}>
                     <span className={s.SummaryTitle}
@@ -43,7 +43,7 @@ export const NotesItem = ({ note }: iProps) => {
                     }
                 </div>
             </summary>
-            <p>
+            <p className={s.SummaryDescription}>
                 {note.description}
             </p>
         </details>

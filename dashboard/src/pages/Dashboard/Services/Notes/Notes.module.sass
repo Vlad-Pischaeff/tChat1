@@ -141,14 +141,13 @@
 /**
  * accordion styles
  */
+.Summary
+    padding: .188rem
 .SummaryContainer
     display: inline-flex
     justify-content: space-between
     align-items: flex-start
     width: 95%
-    &:hover .SummarySelect,
-    &:hover .SummaryDelete,
-    &:hover .SummaryEdit,
     &:hover .SummaryMenu
         visibility: visible
     span
@@ -157,6 +156,10 @@
 .SummaryTitle
     flex: 1 1 auto
     padding-left: .5rem
+.SummaryDescription
+    margin-left: 1rem
+    padding: .25rem .5rem
+    background: var(--color-HOVER)
 .SummaryMenu
     flex: 0 0 2rem
     height: 2rem
@@ -166,13 +169,6 @@
     visibility: hidden
     margin-left: .188rem
     &:hover
-        background: var(--color-HOVER)
-
-details
-    padding: .188rem
-    p
-        margin-left: 1rem
-        padding: .25rem .5rem
         background: var(--color-HOVER)
 /**
  * service menu styles
