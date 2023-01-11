@@ -23,7 +23,7 @@ export enum eModal {
 export type UIType = {
     theme: tTheme;
     message: string;
-    type: 'error' | 'warning' | 'info';  // ❎✍ TODO use for styling SnackBar
+    type: 'error' | 'warning' | 'info';  // ❎✍⌛ TODO use for styling SnackBar
     services: tServiceMenu;
     servicesModal: eModal;
     editedNote: iNotes | null;
