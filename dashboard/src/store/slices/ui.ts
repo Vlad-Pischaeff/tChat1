@@ -7,6 +7,11 @@ import { iNotes } from 'store/api/apiTypes';
 import { tServiceMenu } from 'pages/Dashboard/Services/Types';
 import type { RootState } from 'store/store';
 
+export interface iItemServiceMenu {
+    noteActions?: boolean,
+    noteMark?: boolean
+}
+
 export enum eModal {
     todo = 'TODO',
     note = 'NOTE',
@@ -21,7 +26,8 @@ export type UIType = {
     type: 'error' | 'warning' | 'info';  // TODO use for styling SnackBar
     services: tServiceMenu;
     servicesModal: eModal;
-    editedNote: iNotes | null
+    editedNote: iNotes | null;
+    serviceMenu: iItemServiceMenu;
 }
 
 const initialState: UIType = {
@@ -30,7 +36,11 @@ const initialState: UIType = {
     type: 'info',
     services: 'Todos',
     servicesModal: eModal.none,
-    editedNote: null
+    editedNote: null,
+    serviceMenu: {
+        noteActions: false,
+        noteMark: false,
+    }
 }
 
 const slice = createSlice({
@@ -46,7 +56,7 @@ const slice = createSlice({
         setTheme: (state, { payload }: PayloadAction<tTheme>) => {
             state.theme = payload;
         },
-        setServiceMenuItem: (state, { payload }: PayloadAction<tServiceMenu>) => {
+        setServiceMenuCategory: (state, { payload }: PayloadAction<tServiceMenu>) => {
             state.services = payload;
         },
         setServicesModal: (state, { payload }: PayloadAction<eModal>) => {
@@ -54,6 +64,17 @@ const slice = createSlice({
         },
         setEditedNote: (state, { payload }: PayloadAction<iNotes | null>) => {
             state.editedNote = payload;
+        },
+        setItemServiceMenu: (state, { payload }: PayloadAction<iItemServiceMenu | null>) => {
+            const obj = { ...state.serviceMenu };
+            // reset all properties to "false"
+            (Object.keys(obj) as (keyof typeof obj)[]).forEach(key => {
+                state.serviceMenu[key] = false;
+            })
+            // if "payload" not "null" => set property
+            if (payload !== null) {
+                state.serviceMenu = { ...state.serviceMenu, ...payload };
+            }
         },
     },
     extraReducers: (builder) => {
@@ -98,9 +119,10 @@ export const {
     resetMessage,
     setMessage,
     setTheme,
-    setServiceMenuItem,
+    setServiceMenuCategory,
     setServicesModal,
-    setEditedNote
+    setEditedNote,
+    setItemServiceMenu
 } = slice.actions;
 
 export default slice.reducer;

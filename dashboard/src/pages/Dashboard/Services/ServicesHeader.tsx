@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAppSelector, useAppDispatch } from 'store/hook';
-import { setServiceMenuItem, selectUI } from "store/slices/ui";
+import { setServiceMenuCategory, selectUI } from "store/slices/ui";
 import * as ICON from 'assets/img';
 import { MENU, tServiceMenu} from './Types';
 import s from './ServicesHeader.module.sass';
@@ -17,7 +17,7 @@ export const ServicesHeader = () => {
     ];
 
     const handlerClick = (name: tServiceMenu) => {
-        dispatch(setServiceMenuItem(name));
+        dispatch(setServiceMenuCategory(name));
     }
 
     return (
