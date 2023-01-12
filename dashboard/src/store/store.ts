@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { usersApi } from 'store/api/usersApi';
 import { todosApi } from 'store/api/todosApi';
 import { notesApi } from 'store/api/notesApi';
+import { answersApi } from 'store/api/answersApi';
 import authReducer from 'store/slices/auth';
 import uiReducer from 'store/slices/ui';
 
@@ -12,12 +13,14 @@ export const store = configureStore({
         [usersApi.reducerPath]: usersApi.reducer,
         [todosApi.reducerPath]: todosApi.reducer,
         [notesApi.reducerPath]: notesApi.reducer,
+        [answersApi.reducerPath]: answersApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware()
             .concat(usersApi.middleware)
             .concat(todosApi.middleware)
             .concat(notesApi.middleware)
+            .concat(answersApi.middleware)
 });
 
 export type RootState = ReturnType<typeof store.getState>;

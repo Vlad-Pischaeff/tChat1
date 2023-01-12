@@ -24,3 +24,12 @@ export interface iNotes {
     type: string,
     user: string
 }
+
+export interface iAnswers {
+    __v: number,
+    _id: string,
+    date: number,
+    description: string,
+    type: string,
+    user: string
+}
