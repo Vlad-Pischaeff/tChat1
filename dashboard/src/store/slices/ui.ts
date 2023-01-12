@@ -18,7 +18,7 @@ export enum eModal {
     todo = 'TODO',
     note = 'NOTE',
     mail = 'MAIL',
-    ask = 'ASK',
+    answer = 'ANSWER',
     none = 'NONE'
 }
 

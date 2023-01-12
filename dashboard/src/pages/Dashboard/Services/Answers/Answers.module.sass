@@ -9,10 +9,10 @@
     justify-content: space-between
     align-items: flex-end
     transform: translate(10%,20%)
-    background: var(--color-BACKGROUND)
+    background: var(--C2)
     border: 2px solid var(--C2)
     border-radius: 8px
-    box-shadow: 0px 0px 33px 0px var(--color-SHADOW)
+    box-shadow: 0px 0px 33px 5px var(--color-SHADOW)
     fieldset
         display: flex
         flex-flow: column nowrap
@@ -37,24 +37,11 @@
         width: 100%
         resize: none
         border: none
-        padding: .375rem
-        &:focus
-            background: bisque
+        padding: .4rem
+        &:focus-visible
+            background: var(--color-INPUTFOCUS)
             color: #0F1A2B
             outline: none
-.FormInput
-    width: 100%
-    border-radius: 8px
-    border: none
-    padding: .375rem
-    margin-bottom: 1rem
-    font-size: 1rem
-    &::placeholder
-        color: var(--C8)
-    &:focus
-        background: bisque
-        color: #0F1A2B
-        outline: none
 
 .FormButtons
     width: 100%
@@ -70,13 +57,13 @@
     background: var(--C1)
     &:hover
         cursor: pointer
-        box-shadow: 0px 0px 10px -2px #{var(--color-SHADOW)}
+        box-shadow: 0px 0px 10px -2px var(--color-SHADOW)
 
 .Main
     flex: 1 1 5rem
     display: block
     overflow: auto
-    margin: .375rem
+    margin: .4rem
 
 .MainPlaceholder
     display: flex
@@ -87,27 +74,33 @@
         font-size: 1.5rem
         font-weight: 600
         color: var(--C2)
-/**
- * footer description
- */
-.Footer
-    flex: 0 0 3rem
-    width: 100%
-    padding: 0 1rem
-    font-size: .813rem
+.item
     display: flex
-    justify-content: flex-start
-    align-items: center
-    border-top: 1px solid #{var(--color-HOVER)}
-.FooterItem
-    display: flex
-    margin: 0 .5rem
-.FooterIcon
-    padding: .5rem
-    margin-left: .25rem
-    border-radius: 50%
+    padding: 0.3rem 0.4rem 0 0.4rem
+    font-size: .938rem
     &:hover
-        background: var(--color-HOVER)
+        background: #{var(--color-HOVER)}
+    &:hover .itemDelete
+        visibility: visible
+.itemDesc
+    flex: 1 1 auto
+    padding: 0 4px
+.itemDate
+    flex: 0 0 7rem
+    padding: 0 4px
+.itemCheck
+    flex: 0 0 2rem
+    &:hover
+        cursor: pointer
+.itemDelete
+    visibility: hidden
+    flex: 0 0 2rem
+.itemCheck, .itemDelete
+    display: flex
+    justify-content: center
+    align-items: flex-start
+.done
+    color: #{var(--C7)}
 /**
  * add item button description
  */
@@ -129,6 +122,21 @@
         cursor: pointer
         background: var(--C2)
 /**
+ * footer description
+ */
+.todosFooter
+    flex: 0 0 3rem
+    width: 100%
+    padding: 0 1rem
+    font-size: .813rem
+    display: flex
+    justify-content: flex-start
+    align-items: center
+    border-top: 1px solid #{var(--color-HOVER)}
+.todosFooterItem
+    display: flex
+    margin: 0 .5rem
+/**
  * modal for input form description
  */
 .ModalWrap
@@ -144,75 +152,3 @@
 
 .hide
     display: none
-/**
- * accordion styles
- */
-.Summary
-    padding: .188rem
-.SummaryContainer
-    display: inline-flex
-    justify-content: space-between
-    align-items: flex-start
-    width: 95%
-    &:hover .SummaryMenu
-        visibility: visible
-    span
-        &:hover
-            cursor: pointer
-.SummaryTitle
-    flex: 1 1 auto
-    padding-left: .5rem
-.SummaryDescription
-    margin-left: 1rem
-    padding: .25rem .5rem
-    background: var(--color-HOVER)
-.SummaryMenu
-    flex: 0 0 2rem
-    height: 2rem
-    display: grid
-    place-items: center
-    border-radius: 50%
-    visibility: hidden
-    margin-left: .188rem
-    &:hover
-        background: var(--color-HOVER)
-/**
- * service menu styles
- */
-.ServiceMenuContainer
-    position: relative
-    width: 0
-    height: 0
-.ServiceMenuBG
-    position: fixed
-    left: 0
-    right: 0
-    top: 0
-    bottom: 0
-.ServiceMenuWrap
-    position: absolute
-    top: 0
-    transform: translate(-100%)
-    border-radius: 8px
-    border: 2px solid var(--C2)
-    background: var(--color-BACKGROUND)
-.ServiceMenuFooterWrap
-    position: absolute
-    top: 0
-    transform: translate(0, -100%)
-    border-radius: 8px
-    border: 2px solid var(--C2)
-    background: var(--color-BACKGROUND)
-.ServiceMenuItem
-    height: 2.25rem
-    display: flex
-    justify-content: flex-start
-    align-items: center
-    padding: 0 4px
-    &:hover
-        background: var(--color-HOVER)
-        cursor: pointer
-    p
-        background: transparent
-        white-space: nowrap
-        padding: 0 4px
