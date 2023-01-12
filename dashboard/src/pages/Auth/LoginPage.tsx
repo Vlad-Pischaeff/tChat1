@@ -87,7 +87,7 @@ export const LoginPage = () => {
                     </fieldset>
                 </div>
 
-                <input type="submit" value="Login" data-testid="submit-input" />
+                <input type="submit" className={s.AuthButton} value="Login" data-testid="submit-input" />
                 <div className={s.footer}>
                     <Link to={'/restore'}>Forgot password?</Link>
                 </div>

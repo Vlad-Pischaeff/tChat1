@@ -11,6 +11,7 @@ const theme = {
         '--color-BACKGROUND': '#0F1A2B',
         '--color-HOVER': '#305d7240',
         '--color-SHADOW': '#606060aa',
+        '--color-INPUTFOCUS': '#fffcc8',
     },
     light: {
         '--C1': '#3F8A8C',
@@ -24,6 +25,7 @@ const theme = {
         '--color-BACKGROUND': 'ivory',
         '--color-HOVER': '#305d7216',
         '--color-SHADOW': '#a0a0a066',
+        '--color-INPUTFOCUS': '#fffcc8',
     },
 };
 

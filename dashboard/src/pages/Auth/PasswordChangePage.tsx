@@ -136,7 +136,7 @@ export const PasswordChangePage = () => {
                     </fieldset>
                 </div>
 
-                <input type="submit" value="Submit" />
+                <input type="submit" className={s.AuthButton} value="Submit" />
 
             </form>
         </>

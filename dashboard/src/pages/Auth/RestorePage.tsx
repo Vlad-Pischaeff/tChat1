@@ -62,7 +62,7 @@ export const RestorePage = () => {
                     </fieldset>
                 </div>
 
-                <input type="submit" value="Send" data-testid="submit-input"/>
+                <input type="submit" className={s.AuthButton} value="Send" data-testid="submit-input"/>
                 <div className={s.footer}>
                     <div>
                         <p>

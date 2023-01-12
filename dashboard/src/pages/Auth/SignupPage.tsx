@@ -95,7 +95,7 @@ export const SignupPage = () => {
                     </fieldset>
                 </div>
 
-                <input type="submit" value="Submit" data-testid="submit-input" />
+                <input type="submit" className={s.AuthButton} value="Submit" data-testid="submit-input" />
             </form>
         </>
     );
