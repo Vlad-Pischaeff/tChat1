@@ -40,7 +40,7 @@ export const Answers = () => {
             </div>
 
             <div className={s.Footer}>
-                Answers service footer
+                <p>Answers service footer</p>
             </div>
         </>
     );
