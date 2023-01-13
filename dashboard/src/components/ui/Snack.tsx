@@ -1,9 +1,9 @@
-import React, { HTMLAttributes } from 'react';
+import React from 'react';
 import { useAppDispatch } from 'store/hook';
 import { resetMessage } from "store/slices/ui";
 import s from './Snack.module.sass';
 
-interface iProps extends HTMLAttributes<HTMLDivElement> {
+interface iProps extends React.HTMLAttributes<HTMLDivElement> {
     message: string
 }
 

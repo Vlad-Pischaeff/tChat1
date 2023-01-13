@@ -35,7 +35,7 @@ export const Notes = () => {
             }
 
             return filteredData.map(note =>
-                <div key={note._id}>
+                <div key={note._id} role='listitem'>
                     <NotesItem note={note} />
                 </div>
             )
@@ -48,7 +48,7 @@ export const Notes = () => {
 
             <NotesAddForm />
 
-            <div className={s.Main}>
+            <div className={s.Main} role='list'>
                 { data && data.length === 0 &&
                     <div className={s.MainPlaceholder}>
                         <p>No notes...</p>

@@ -37,7 +37,7 @@ export const Todos = () => {
 
             <TodosAddForm />
 
-            <div className={s.Main}>
+            <div className={s.Main} role='list'>
                 { data && data.length === 0 &&
                     <div className={s.MainPlaceholder}>
                         <p>No todos...</p>

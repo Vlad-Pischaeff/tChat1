@@ -33,16 +33,16 @@ export const NotesMarkServiceMenu = ({ note }: iProps) => {
             <div className={s.ServiceMenuBG} onClick={handlerHideMenu}></div>
 
             <div className={s.ServiceMenuWrap} role="menu">
-                { Object.entries(COLORS).map(([key, value]) =>
+                { COLORS.map(color =>
                     <div
-                        key={key}
-                        id={value}
+                        key={color.key}
+                        id={color.value}
                         className={s.ServiceMenuItem}
                         role="menuitem"
                         onClick={handlerSelectColor}
                     >
-                        <ICONS.LabelIcon fill={value} />
-                        <p>{key}</p>
+                        <ICONS.LabelIcon fill={color.value} />
+                        <p>{color.key}</p>
                     </div>
                 )}
             </div>
