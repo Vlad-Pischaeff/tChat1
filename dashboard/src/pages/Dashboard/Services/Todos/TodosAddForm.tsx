@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useAppSelector, useAppDispatch } from 'store/hook';
 import { selectUI, setServicesModal, eModal } from "store/slices/ui";
 import { useAddTodoMutation } from 'store/api/todosApi';
-import s from './Todos.module.sass';
+import s from '../Services.module.sass';
 
 type tFormInputs = {
     description: string;

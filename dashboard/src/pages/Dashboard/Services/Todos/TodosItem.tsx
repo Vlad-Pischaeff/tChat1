@@ -4,7 +4,7 @@ import { useEditTodoMutation, useDeleteTodoMutation } from 'store/api/todosApi';
 import * as UI from 'components/ui';
 import * as ICON from 'assets/img';
 import { iTodos } from 'store/api/apiTypes';
-import s from './Todos.module.sass';
+import s from '../Services.module.sass';
 
 interface iProps extends React.HTMLAttributes<HTMLDivElement> {
     todo: iTodos,

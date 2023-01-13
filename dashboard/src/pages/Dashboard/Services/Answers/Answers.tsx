@@ -3,7 +3,7 @@ import { useAppDispatch } from 'store/hook';
 import { setServicesModal, eModal } from "store/slices/ui";
 import { useAnswersQuery } from 'store/api/answersApi';
 import { AnswersAddForm } from './AnswersAddForm';
-import s from './Answers.module.sass';
+import s from '../Services.module.sass';
 
 export const Answers = () => {
     const dispatch = useAppDispatch();

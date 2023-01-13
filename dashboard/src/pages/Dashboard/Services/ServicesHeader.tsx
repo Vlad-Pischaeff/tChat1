@@ -3,7 +3,7 @@ import { useAppSelector, useAppDispatch } from 'store/hook';
 import { setServiceMenuCategory, selectUI } from "store/slices/ui";
 import * as ICON from 'assets/img';
 import { MENU, tServiceMenu} from './Types';
-import s from './ServicesHeader.module.sass';
+import s from './Services.module.sass';
 
 export const ServicesHeader = () => {
     const dispatch = useAppDispatch();
@@ -21,7 +21,7 @@ export const ServicesHeader = () => {
     }
 
     return (
-        <div className={s.header}>
+        <div className={s.header} role='navigation'>
             { NAVIGATION.map(element =>
                 <div key={element.name} onClick={() => handlerClick(element.name)}>
                     {element.render()}

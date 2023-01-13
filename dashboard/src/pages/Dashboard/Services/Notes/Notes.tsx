@@ -6,7 +6,7 @@ import { NotesAddForm } from './NotesAddForm';
 import { NotesItem } from './NotesItem';
 import { NotesFilterServiceMenu } from './NotesFilterServiceMenu';
 import * as ICONS from 'assets/img';
-import s from './Notes.module.sass';
+import s from '../Services.module.sass';
 
 export const Notes = () => {
     const dispatch = useAppDispatch();

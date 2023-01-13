@@ -3,7 +3,7 @@ import { useAppDispatch } from 'store/hook';
 import { setItemServiceMenu, setNotesFilterColor } from "store/slices/ui";
 import { COLORS } from './NotesVariables';
 import * as ICONS from 'assets/img';
-import s from './Notes.module.sass';
+import s from '../Services.module.sass';
 
 export const NotesFilterServiceMenu = () => {
     const dispatch = useAppDispatch();

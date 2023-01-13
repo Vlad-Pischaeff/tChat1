@@ -6,7 +6,7 @@ import { Todos } from 'pages/Dashboard/Services/Todos';
 import { Mail } from 'pages/Dashboard/Services/Mail';
 import { Notes } from 'pages/Dashboard/Services/Notes';
 import { Answers } from 'pages/Dashboard/Services/Answers';
-import s from './ServicesBody.module.sass';
+import s from './Services.module.sass';
 
 export const ServicesBody = () => {
     const ui = useAppSelector(selectUI);
@@ -22,7 +22,7 @@ export const ServicesBody = () => {
         <div>
             { BODY.map(element =>
                 <div key={element.name}
-                    className={`${s.body} ${ui.services !== element.name ? s.hidden : ''}`}>
+                    className={`${s.body} ${ui.services !== element.name ? s.hide : ''}`}>
                     {element.render()}
                 </div>
             )}

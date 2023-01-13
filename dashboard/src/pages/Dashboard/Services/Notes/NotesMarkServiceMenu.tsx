@@ -5,7 +5,7 @@ import { setItemServiceMenu } from "store/slices/ui";
 import { iNotes } from 'store/api/apiTypes';
 import { COLORS } from './NotesVariables';
 import * as ICONS from 'assets/img';
-import s from './Notes.module.sass';
+import s from '../Services.module.sass';
 
 interface iProps extends React.HTMLAttributes<HTMLDivElement> {
     note: iNotes

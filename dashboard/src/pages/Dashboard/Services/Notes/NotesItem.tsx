@@ -3,9 +3,9 @@ import { useAppSelector, useAppDispatch } from 'store/hook';
 import { selectUI, setItemServiceMenu } from "store/slices/ui";
 import * as ICONS from 'assets/img';
 import { iNotes } from 'store/api/apiTypes';
-import s from './Notes.module.sass';
 import { NotesServiceMenu } from './NotesServiceMenu';
 import { NotesMarkServiceMenu } from './NotesMarkServiceMenu';
+import s from '../Services.module.sass';
 
 interface iProps extends React.HtmlHTMLAttributes<HTMLDetailsElement> {
     note: iNotes

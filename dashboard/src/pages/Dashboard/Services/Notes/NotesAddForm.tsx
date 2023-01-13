@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useAppSelector, useAppDispatch } from 'store/hook';
 import { selectUI, setServicesModal, setEditedNote, eModal } from "store/slices/ui";
 import { useAddNoteMutation, useEditNoteMutation } from 'store/api/notesApi';
-import s from './Notes.module.sass';
+import s from '../Services.module.sass';
 
 type tFormInputs = {
     title: string;

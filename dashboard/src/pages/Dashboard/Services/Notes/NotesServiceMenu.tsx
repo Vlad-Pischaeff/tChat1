@@ -4,7 +4,7 @@ import { setServicesModal, setEditedNote, setItemServiceMenu, eModal } from "sto
 import { useDeleteNoteMutation } from 'store/api/notesApi';
 import * as ICONS from 'assets/img';
 import { iNotes } from 'store/api/apiTypes';
-import s from './Notes.module.sass';
+import s from '../Services.module.sass';
 
 interface iProps extends React.HTMLAttributes<HTMLDivElement> {
     note: iNotes

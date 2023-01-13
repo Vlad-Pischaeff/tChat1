@@ -5,8 +5,8 @@ import { useTodosQuery} from 'store/api/todosApi';
 import { TodosItem } from './TodosItem';
 import { iTodos } from 'store/api/apiTypes';
 import * as UI from 'components/ui';
-import s from './Todos.module.sass';
 import { TodosAddForm } from './TodosAddForm';
+import s from '../Services.module.sass';
 
 const TYPES = [ "All", "Completed", "Pending" ] as const;
 type tTypes = typeof TYPES[number];
@@ -51,9 +51,9 @@ export const Todos = () => {
                 { isLoading && <div>Loading...</div>}
             </div>
 
-            <div className={s.todosFooter}>
+            <div className={s.Footer}>
                 { TYPES.map(type =>
-                        <div className={s.todosFooterItem} key={type}>
+                        <div className={s.FooterItem} key={type}>
                             <p className={checked === type ? s.done : ''}>{type}</p>
                             <UI.CheckBox
                                 idx={type}

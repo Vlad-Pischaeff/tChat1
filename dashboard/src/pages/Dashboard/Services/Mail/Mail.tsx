@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
 import { useAddTodoMutation } from 'store/api/todosApi';
-import s from './Mail.module.sass';
+import s from '../Services.module.sass';
 
 type tFormInputs = {
     description: string;
