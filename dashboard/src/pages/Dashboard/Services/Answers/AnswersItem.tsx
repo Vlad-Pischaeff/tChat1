@@ -5,7 +5,7 @@ import * as ICONS from 'assets/img';
 import { iAnswers } from 'store/api/apiTypes';
 import { AnswersServiceMenu } from './AnswersServiceMenu';
 import { AnswersMarkServiceMenu } from './AnswersMarkServiceMenu';
-import { SYMBOLS } from './AnswersVariables';
+import { SYMBOLS_OBJ } from './AnswersVariables';
 import s from '../Services.module.sass';
 
 interface iProps extends React.HtmlHTMLAttributes<HTMLDetailsElement> {
@@ -25,21 +25,10 @@ export const AnswersItem = ({ answer }: iProps) => {
         // TODO add logic
     }
 
-    const iconIndex = (
-            val: string,
-            obj: Array<{key: string, render: () => React.ReactElement}>
-        ) => {
-        // find index of item in array, return 0 if not found
-        const index = obj.findIndex(item => item.key === val);
-        return index === -1
-            ? 0
-            : index;
-    }
-
     return (
         <div className={s.Summary}>
             <div key={answer._id} className={s.SummaryContainer} role='listitem'>
-                <p className={s.itemIcon}>{SYMBOLS[iconIndex(answer.type, SYMBOLS)].render()}</p>
+                <p className={s.itemIcon}>{SYMBOLS_OBJ[answer.type]()}</p>
                 <p className={s.itemDesc}>{answer.description}</p>
 
                 <div className={s.SummaryMenu} onClick={showMenu}>

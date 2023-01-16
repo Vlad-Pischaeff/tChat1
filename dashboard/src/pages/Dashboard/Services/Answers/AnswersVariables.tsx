@@ -198,3 +198,12 @@ export const SYMBOLS = [
         )
     },
 ];
+
+interface iSymbol{
+    [key: string]: () => JSX.Element
+}
+
+export const SYMBOLS_OBJ = SYMBOLS.reduce((next: iSymbol, val) => {
+    next[val.key] = val.render;
+    return next;
+}, {});
