@@ -3,7 +3,7 @@ import { useAppSelector, useAppDispatch } from 'store/hook';
 import { selectUI, setItemServiceMenu } from "store/slices/ui";
 import * as ICONS from 'assets/img';
 import { iAnswers } from 'store/api/apiTypes';
-// import { NotesServiceMenu } from './NotesServiceMenu';
+import { AnswersServiceMenu } from './AnswersServiceMenu';
 // import { NotesMarkServiceMenu } from './NotesMarkServiceMenu';
 import { SYMBOLS } from './AnswersVariables';
 import s from '../Services.module.sass';
@@ -18,7 +18,11 @@ export const AnswersItem = ({ answer }: iProps) => {
 
     const showMenu = (e: React.MouseEvent<HTMLDivElement>) => {
         e.preventDefault();
-        dispatch(setItemServiceMenu({ noteActions: answer._id }));
+        dispatch(setItemServiceMenu({ answerActions: answer._id }));
+    }
+
+    const sendAnswer = () => {
+        // TODO add logic
     }
 
     const iconIndex = (
@@ -42,15 +46,15 @@ export const AnswersItem = ({ answer }: iProps) => {
                     <ICONS.ServiceMenuIcon />
                 </div>
 
-                <div className={s.SummaryMenu} onClick={showMenu}>
+                <div className={s.SummaryMenu} onClick={sendAnswer}>
                     <ICONS.SendIcon />
                 </div>
-                {/* { ui.serviceMenu.noteActions === answer._id &&
-                    <NotesServiceMenu note={answer} />
+                { ui.serviceMenu.answerActions === answer._id &&
+                    <AnswersServiceMenu answer={answer} />
                 }
 
-                { ui.serviceMenu.noteMark === answer._id &&
-                    <NotesMarkServiceMenu note={answer} />
+                {/* { ui.serviceMenu.answerMark === answer._id &&
+                    <NotesMarkServiceMenu answer={answer} />
                 } */}
             </div>
         </div>

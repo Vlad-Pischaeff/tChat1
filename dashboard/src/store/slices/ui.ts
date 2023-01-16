@@ -4,7 +4,7 @@ import { todosApi } from 'store/api/todosApi';
 import { notesApi } from 'store/api/notesApi';
 import { answersApi } from 'store/api/answersApi';
 import { tTheme } from 'assets/style/utils';
-import { iNotes } from 'store/api/apiTypes';
+import { iNotes, iAnswers } from 'store/api/apiTypes';
 import { tServiceMenu } from 'pages/Dashboard/Services/Types';
 import type { RootState } from 'store/store';
 
@@ -12,6 +12,9 @@ export interface iItemServiceMenu {
     noteActions?: string | false,
     noteMark?: string | false,
     notesFilter?: string | false,
+    answerActions?: string | false,
+    answerMark?: string | false,
+    answersFilter?: string | false,
 }
 
 export enum eModal {
@@ -29,6 +32,7 @@ export type UIType = {
     services: tServiceMenu;
     servicesModal: eModal;
     editedNote: iNotes | null;
+    editedAnswer: iAnswers | null;
     serviceMenu: iItemServiceMenu;
     notesFilterColor: string;
 }
@@ -40,10 +44,14 @@ const initialState: UIType = {
     services: 'Todos',
     servicesModal: eModal.none,
     editedNote: null,
+    editedAnswer: null,
     serviceMenu: {
         noteActions: false,
         noteMark: false,
         notesFilter: false,
+        answerActions: false,
+        answerMark: false,
+        answersFilter: false,
     },
     notesFilterColor: 'none',
 }
@@ -69,6 +77,9 @@ const slice = createSlice({
         },
         setEditedNote: (state, { payload }: PayloadAction<iNotes | null>) => {
             state.editedNote = payload;
+        },
+        setEditedAnswer: (state, { payload }: PayloadAction<iAnswers | null>) => {
+            state.editedAnswer = payload;
         },
         setItemServiceMenu: (state, { payload }: PayloadAction<iItemServiceMenu | null>) => {
             const obj = { ...state.serviceMenu };
@@ -132,6 +143,7 @@ export const {
     setServiceMenuCategory,
     setServicesModal,
     setEditedNote,
+    setEditedAnswer,
     setItemServiceMenu,
     setNotesFilterColor
 } = slice.actions;
