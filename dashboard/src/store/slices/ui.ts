@@ -35,6 +35,7 @@ export type UIType = {
     editedAnswer: iAnswers | null;
     serviceMenu: iItemServiceMenu;
     notesFilterColor: string;
+    answersFilterIcon: string;
 }
 
 const initialState: UIType = {
@@ -54,6 +55,7 @@ const initialState: UIType = {
         answersFilter: false,
     },
     notesFilterColor: 'none',
+    answersFilterIcon: 'none',
 }
 
 const slice = createSlice({
@@ -94,6 +96,9 @@ const slice = createSlice({
         },
         setNotesFilterColor: (state, { payload }: PayloadAction<string>) => {
             state.notesFilterColor = payload;
+        },
+        setAnswersFilterIcon: (state, { payload }: PayloadAction<string>) => {
+            state.answersFilterIcon = payload;
         },
     },
     extraReducers: (builder) => {
@@ -145,7 +150,8 @@ export const {
     setEditedNote,
     setEditedAnswer,
     setItemServiceMenu,
-    setNotesFilterColor
+    setNotesFilterColor,
+    setAnswersFilterIcon
 } = slice.actions;
 
 export default slice.reducer;

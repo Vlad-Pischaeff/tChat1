@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react';
-import { useAppDispatch } from 'store/hook';
-import { setServicesModal, eModal } from "store/slices/ui";
+import { useAppSelector, useAppDispatch } from 'store/hook';
+import { setItemServiceMenu, setServicesModal, selectUI, eModal } from "store/slices/ui";
 import { useAnswersQuery } from 'store/api/answersApi';
 import { AnswersAddForm } from './AnswersAddForm';
 import { AnswersItem } from './AnswersItem';
+import { AnswersFilterServiceMenu } from './AnswersFilterServiceMenu';
 import s from '../Services.module.sass';
 
 export const Answers = () => {
     const dispatch = useAppDispatch();
+    const ui = useAppSelector(selectUI);
     const { refetch, data, isSuccess, isLoading } = useAnswersQuery('');
 
     useEffect(() => {
@@ -17,6 +19,10 @@ export const Answers = () => {
 
     const openModal = () => {
         dispatch(setServicesModal(eModal.answer));
+    }
+
+    const handlerShowFilterMenu = (e: React.MouseEvent<HTMLDivElement>) => {
+        dispatch(setItemServiceMenu({ answersFilter: 'none' }));
     }
 
     return (
@@ -42,7 +48,15 @@ export const Answers = () => {
             </div>
 
             <div className={s.Footer}>
-                <p>Answers service footer</p>
+                <p>Filter answers by label</p>
+
+                <div className={s.FooterText} onClick={handlerShowFilterMenu}>
+                    Select...
+                </div>
+
+                { ui.serviceMenu.answersFilter !== false &&
+                    <AnswersFilterServiceMenu />
+                }
             </div>
         </>
     );
