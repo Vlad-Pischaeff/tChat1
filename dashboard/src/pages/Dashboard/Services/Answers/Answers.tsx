@@ -25,6 +25,22 @@ export const Answers = () => {
         dispatch(setItemServiceMenu({ answersFilter: 'none' }));
     }
 
+    const filterData = () => {
+        if (isSuccess && data) {
+            let filteredData = data;
+
+            if (ui.answersFilterIcon !== 'none') {
+                filteredData = data.filter(answer => answer.type === ui.answersFilterIcon);
+            }
+
+            return filteredData.map(answer =>
+                <div key={answer._id} role='listitem'>
+                    <AnswersItem answer={answer} />
+                </div>
+            )
+        }
+    }
+
     return (
         <>
             <input type="button" className={s.AddItem} value="+ add answer" onClick={openModal} />
@@ -37,13 +53,9 @@ export const Answers = () => {
                         <p>No answers/questions...</p>
                     </div>
                 }
-                { isSuccess && data &&
-                    data.map(answer =>
-                        <div key={answer._id} role='listitem'>
-                            <AnswersItem answer={answer} />
-                        </div>
-                    )
-                }
+
+                { filterData() }
+
                 { isLoading && <div>Loading...</div>}
             </div>
 
