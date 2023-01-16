@@ -4,7 +4,7 @@ import { selectUI, setItemServiceMenu } from "store/slices/ui";
 import * as ICONS from 'assets/img';
 import { iAnswers } from 'store/api/apiTypes';
 import { AnswersServiceMenu } from './AnswersServiceMenu';
-// import { NotesMarkServiceMenu } from './NotesMarkServiceMenu';
+import { AnswersMarkServiceMenu } from './AnswersMarkServiceMenu';
 import { SYMBOLS } from './AnswersVariables';
 import s from '../Services.module.sass';
 
@@ -53,9 +53,9 @@ export const AnswersItem = ({ answer }: iProps) => {
                     <AnswersServiceMenu answer={answer} />
                 }
 
-                {/* { ui.serviceMenu.answerMark === answer._id &&
-                    <NotesMarkServiceMenu answer={answer} />
-                } */}
+                { ui.serviceMenu.answerMark === answer._id &&
+                    <AnswersMarkServiceMenu answer={answer} />
+                }
             </div>
         </div>
     );
