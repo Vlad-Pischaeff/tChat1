@@ -5,6 +5,7 @@ import { useAnswersQuery } from 'store/api/answersApi';
 import { AnswersAddForm } from './AnswersAddForm';
 import { AnswersItem } from './AnswersItem';
 import { AnswersFilterServiceMenu } from './AnswersFilterServiceMenu';
+import { SYMBOLS_OBJ } from './AnswersVariables';
 import s from '../Services.module.sass';
 
 export const Answers = () => {
@@ -60,7 +61,13 @@ export const Answers = () => {
             </div>
 
             <div className={s.Footer}>
-                <p>Filter answers by label</p>
+                <span>Filter answers by &nbsp;</span>
+                <span>
+                    { ui.answersFilterIcon === 'none'
+                        ? 'none'
+                        : SYMBOLS_OBJ[ui.answersFilterIcon]()
+                    }
+                </span>
 
                 <div className={s.FooterText} onClick={handlerShowFilterMenu}>
                     Select...
