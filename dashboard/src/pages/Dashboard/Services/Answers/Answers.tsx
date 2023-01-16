@@ -20,6 +20,17 @@ export const Answers = () => {
         dispatch(setServicesModal(eModal.answer));
     }
 
+    const iconIndex = (
+            val: string,
+            obj: Array<{key: string, render: () => React.ReactElement}>
+        ) => {
+        // find index of item in array, return 0 if not found
+        const index = obj.findIndex(item => item.key === val);
+        return index === -1
+            ? 0
+            : index;
+    }
+
     return (
         <>
             <input type="button" className={s.AddItem} value="+ add answer" onClick={openModal} />
@@ -35,8 +46,8 @@ export const Answers = () => {
                 { isSuccess && data &&
                     data.map(answer =>
                         <div key={answer._id} className={s.item} role='listitem'>
-                            <p>{SYMBOLS[0]}</p>
-                            <p>{answer.description}</p>
+                            <p className={s.itemIcon}>{SYMBOLS[iconIndex(answer.type, SYMBOLS)].render()}</p>
+                            <p className={s.itemDesc}>{answer.description}</p>
                         </div>
                     )
                 }
