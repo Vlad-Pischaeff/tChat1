@@ -9,6 +9,7 @@ import { TrashIcon } from './TrashIcon';
 import { EditIcon } from './EditIcon';
 import { LabelIcon } from './LabelIcon';
 import { ServiceMenuIcon } from './ServiceMenuIcon';
+import { SendIcon } from './SendIcon';
 
 export {
     Eye,
@@ -22,4 +23,5 @@ export {
     EditIcon,
     LabelIcon,
     ServiceMenuIcon,
+    SendIcon
 };
