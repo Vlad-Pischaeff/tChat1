@@ -9,26 +9,34 @@ type tFormInputs = {
 
 export const Mail = () => {
     const [ addTodo ] = useAddTodoMutation();
+    // eslint-disable-next-line
     const { register, resetField, handleSubmit } = useForm<tFormInputs>();
 
+    // eslint-disable-next-line
     const onSubmit = (data: tFormInputs) => {
         // вызываем API '/todos', добавляем 'todo'
         addTodo(data);
         resetField('description');
     };
 
+    const openModal = () => {
+        // TODO add logic
+    }
+
     return (
         <>
-            <form onSubmit={handleSubmit(onSubmit)} className={s.Form}>
+            <input type="button" className={s.AddItem} value="+ write mail" onClick={openModal} />
+
+            {/* <form onSubmit={handleSubmit(onSubmit)} className={s.Form}>
                 <div className={s.FormBody}>
                     <fieldset>
-                        {/* <label>Description</label> */}
+                        <label>Description</label>
                         <input { ...register("description") } placeholder="My mail..." />
                     </fieldset>
                 </div>
 
                 <input type="submit" value="Add mail" />
-            </form>
+            </form> */}
 
             <div className={s.Main}>
                 <div className={s.MainPlaceholder}>

@@ -27,7 +27,7 @@ export const AnswersItem = ({ answer }: iProps) => {
 
     return (
         <div className={s.Summary}>
-            <div key={answer._id} className={s.SummaryContainer} role='listitem'>
+            <div className={s.SummaryContainer}>
                 <p className={s.itemIcon}>{SYMBOLS_OBJ[answer.type]()}</p>
                 <p className={s.itemDesc}>{answer.description}</p>
 
