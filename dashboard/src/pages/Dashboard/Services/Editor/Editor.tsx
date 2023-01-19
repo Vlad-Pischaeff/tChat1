@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import ReactQuill from "react-quill"
-import 'react-quill/dist/quill.snow.css'
+import ReactQuill from "react-quill";
+// import 'react-quill/dist/quill.snow.css'
 import { useAppSelector, useAppDispatch } from 'store/hook';
 import { selectUI, setServicesModal, setEditedAnswer, eModal } from "store/slices/ui";
 import { useEditAnswerMutation } from 'store/api/answersApi';
