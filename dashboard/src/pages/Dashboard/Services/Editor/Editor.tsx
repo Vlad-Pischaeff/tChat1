@@ -13,7 +13,7 @@ export const Editor = () => {
     const [ convertedText, setConvertedText ] = useState('');
 
     useEffect(() => {
-        // ✅ invoke when editing note
+        // ✅ invoke when editing answers
         if (ui.editedAnswer) {
             setConvertedText(ui.editedAnswer.description);
         }
