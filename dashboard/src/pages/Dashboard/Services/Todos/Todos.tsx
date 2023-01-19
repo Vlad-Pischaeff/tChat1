@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { useAppDispatch } from 'store/hook';
-import { setServicesModal, eModal } from "store/slices/ui";
+import { useAppDispatch, useAppSelector } from 'store/hook';
+import { setServicesModal, selectUI, eModal } from "store/slices/ui";
 import { useTodosQuery} from 'store/api/todosApi';
 import { TodosItem } from './TodosItem';
 import { iTodos } from 'store/api/apiTypes';
@@ -13,6 +13,7 @@ type tTypes = typeof TYPES[number];
 
 export const Todos = () => {
     const dispatch = useAppDispatch();
+    const ui = useAppSelector(selectUI);
     const { refetch, data, isSuccess, isLoading } = useTodosQuery('');
     const [ checked, setChecked ] = useState<tTypes>("All");
 
@@ -35,7 +36,9 @@ export const Todos = () => {
         <>
             <input type="button" className={s.AddItem} value="+ add todo" onClick={openModal} />
 
-            <TodosAddForm />
+            { ui.servicesModal === eModal.todo &&
+                <TodosAddForm />
+            }
 
             <div className={s.Main} role='list'>
                 { data && data.length === 0 &&

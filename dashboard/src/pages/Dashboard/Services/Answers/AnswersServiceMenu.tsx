@@ -37,6 +37,11 @@ export const AnswersServiceMenu = ({ answer }: iProps) => {
         dispatch(setItemServiceMenu(null));
     }
 
+    const handlerOpenEditor = () => {
+        dispatch(setEditedAnswer(answer));
+        dispatch(setServicesModal(eModal.editor));
+    }
+
     return (
         <div className={s.ServiceMenuContainer}>
             <div className={s.ServiceMenuBG} onClick={handlerHideMenu}></div>
@@ -45,6 +50,11 @@ export const AnswersServiceMenu = ({ answer }: iProps) => {
                 <div className={s.ServiceMenuItem} role="menuitem" onClick={handlerEditAnswer}>
                     <ICONS.EditIcon />
                     <p>Edit answer</p>
+                </div>
+
+                <div className={s.ServiceMenuItem} role="menuitem" onClick={handlerOpenEditor}>
+                    <ICONS.OpenEditorIcon />
+                    <p>Edit answer in Editor</p>
                 </div>
 
                 <div className={s.ServiceMenuItem} role="menuitem" onClick={handlerMarkAnswer}>

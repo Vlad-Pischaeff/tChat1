@@ -46,7 +46,7 @@ export const NotesAddForm = () => {
     }
 
     return (
-        <div className={`${s.ModalWrap} ${ui.servicesModal === eModal.note ? '' : s.hide}`}>
+        <div className={s.ModalWrap}>
 
             <div className={s.ModalBG}></div>
 

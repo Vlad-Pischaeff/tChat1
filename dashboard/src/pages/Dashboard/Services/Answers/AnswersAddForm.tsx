@@ -43,7 +43,7 @@ export const AnswersAddForm = () => {
     }
 
     return (
-        <div className={`${s.ModalWrap} ${ui.servicesModal === eModal.answer ? '' : s.hide}`}>
+        <div className={s.ModalWrap}>
 
             <div className={s.ModalBG}></div>
 

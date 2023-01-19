@@ -22,7 +22,7 @@
 /**
  * services add/edit form description
  */
-.Form
+.Form, .FormEditor
     width: 80%
     position: absolute
     z-index: 2
@@ -48,11 +48,18 @@
             color: var(--C4)
             text-transform: lowercase
             margin-bottom: 1rem
-.FormBody
+.FormEditor
+    width: 95%
+    transform: translate(2.5%,3%)
+.FormBody, .FormBodyEditor
     width: 100%
     margin-bottom: 1rem
+.FormBodyEditor
+    border-radius: 6px
+    background: white
+    color: black
 .FormTextArea
-    border-radius: 8px
+    border-radius: 6px
     overflow: hidden
     margin-bottom: 1rem
     textarea
@@ -66,7 +73,7 @@
             outline: none
 .FormInput
     width: 100%
-    border-radius: 8px
+    border-radius: 6px
     border: none
     padding: 6px
     margin-bottom: 1rem
@@ -85,12 +92,19 @@
     height: 3rem
     font-size: 1.125rem
     border: none
-    border-radius: 8px
+    border-radius: 6px
     padding: 0 1rem
     background: var(--C1)
     &:hover
         cursor: pointer
         box-shadow: 0px 0px 10px -2px var(--color-SHADOW)
+/**
+ * quill editor description
+ */
+.Quill
+    min-width: 200px
+    & > div
+        border-radius: 6px
 /**
  * services main body description
  */
@@ -177,14 +191,12 @@
     align-items: flex-start
     width: 95%
     &:hover .SummaryTitle
+        cursor: pointer
         background: var(--color-HOVER)
     &:hover .SummaryMenu
         visibility: visible
     &:hover .itemDesc
         background: var(--color-HOVER)
-    span
-        &:hover
-            cursor: pointer
 .SummaryTitle
     flex: 1 1 auto
     padding-left: .5rem

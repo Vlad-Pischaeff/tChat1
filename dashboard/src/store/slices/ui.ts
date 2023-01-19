@@ -22,6 +22,7 @@ export enum eModal {
     note = 'NOTE',
     mail = 'MAIL',
     answer = 'ANSWER',
+    editor = 'EDITOR',
     none = 'NONE'
 }
 

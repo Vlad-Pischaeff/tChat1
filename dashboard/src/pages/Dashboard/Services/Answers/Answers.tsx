@@ -5,6 +5,7 @@ import { useAnswersQuery } from 'store/api/answersApi';
 import { AnswersAddForm } from './AnswersAddForm';
 import { AnswersItem } from './AnswersItem';
 import { AnswersFilterServiceMenu } from './AnswersFilterServiceMenu';
+import { Editor } from '../Editor';
 import { SYMBOLS_OBJ } from './AnswersVariables';
 import s from '../Services.module.sass';
 
@@ -46,7 +47,13 @@ export const Answers = () => {
         <>
             <input type="button" className={s.AddItem} value="+ add answer" onClick={openModal} />
 
-            <AnswersAddForm />
+            { ui.servicesModal === eModal.answer &&
+                <AnswersAddForm />
+            }
+
+            { ui.servicesModal === eModal.editor &&
+                <Editor />
+            }
 
             <div className={s.Main} role='list'>
                 { data && data.length === 0 &&

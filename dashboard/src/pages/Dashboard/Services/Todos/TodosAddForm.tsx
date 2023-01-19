@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
-import { useAppSelector, useAppDispatch } from 'store/hook';
-import { selectUI, setServicesModal, eModal } from "store/slices/ui";
+import { useAppDispatch } from 'store/hook';
+import { setServicesModal, eModal } from "store/slices/ui";
 import { useAddTodoMutation } from 'store/api/todosApi';
 import s from '../Services.module.sass';
 
@@ -11,7 +11,6 @@ type tFormInputs = {
 
 export const TodosAddForm = () => {
     const dispatch = useAppDispatch();
-    const ui = useAppSelector(selectUI);
     const [ addTodo ] = useAddTodoMutation();
     const { register, resetField, handleSubmit } = useForm<tFormInputs>();
 
@@ -27,7 +26,7 @@ export const TodosAddForm = () => {
     }
 
     return (
-        <div className={`${s.ModalWrap} ${ui.servicesModal === eModal.todo ? '' : s.hide}`}>
+        <div className={s.ModalWrap}>
 
             <div className={s.ModalBG}></div>
 

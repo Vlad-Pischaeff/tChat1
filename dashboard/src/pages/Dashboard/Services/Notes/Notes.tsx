@@ -46,7 +46,9 @@ export const Notes = () => {
         <>
             <input type="button" className={s.AddItem} value="+ add note" onClick={openModal} />
 
-            <NotesAddForm />
+            { ui.servicesModal === eModal.note &&
+                <NotesAddForm />
+            }
 
             <div className={s.Main} role='list'>
                 { data && data.length === 0 &&

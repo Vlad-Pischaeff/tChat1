@@ -1,10 +1,11 @@
 import React from 'react';
+import parse from 'html-react-parser';
 import { useAppSelector, useAppDispatch } from 'store/hook';
 import { selectUI, setItemServiceMenu } from "store/slices/ui";
-import * as ICONS from 'assets/img';
 import { iAnswers } from 'store/api/apiTypes';
 import { AnswersServiceMenu } from './AnswersServiceMenu';
 import { AnswersMarkServiceMenu } from './AnswersMarkServiceMenu';
+import * as ICONS from 'assets/img';
 import { SYMBOLS_OBJ } from './AnswersVariables';
 import s from '../Services.module.sass';
 
@@ -29,7 +30,7 @@ export const AnswersItem = ({ answer }: iProps) => {
         <div className={s.Summary}>
             <div className={s.SummaryContainer}>
                 <p className={s.itemIcon}>{SYMBOLS_OBJ[answer.type]()}</p>
-                <p className={s.itemDesc}>{answer.description}</p>
+                <div className={s.itemDesc}>{parse(answer.description)}</div>
 
                 <div className={s.SummaryMenu} onClick={showMenu}>
                     <ICONS.ServiceMenuIcon />
