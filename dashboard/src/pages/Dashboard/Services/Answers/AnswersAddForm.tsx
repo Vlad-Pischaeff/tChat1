@@ -55,7 +55,7 @@ export const AnswersAddForm = () => {
                             <textarea
                                 { ...register("description") }
                                 placeholder="My new answer..."
-                                rows={3} />
+                                rows={5} />
                         </div>
                     </fieldset>
                 </div>

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReactQuill from "react-quill";
-// import 'react-quill/dist/quill.snow.css'
 import { useAppSelector, useAppDispatch } from 'store/hook';
-import { selectUI, setServicesModal, setEditedAnswer, eModal } from "store/slices/ui";
+import { selectUI, setServicesModal, setEditedAnswer, setItemServiceMenu, eModal } from "store/slices/ui";
 import { useEditAnswerMutation } from 'store/api/answersApi';
 import { modules } from './EditorConfig';
 import s from '../Services.module.sass';
@@ -24,7 +23,10 @@ export const Editor = () => {
     const onSubmit = () => {
         if (ui.editedAnswer) {
             // ✅ вызываем API '/answers', обновляем 'answers'
-            const updatedData = { id: ui.editedAnswer._id, description: convertedText };
+            const updatedData = {
+                id: ui.editedAnswer._id,
+                description: convertedText
+            };
             updateAnswer(updatedData);
         }
         closeModal();
@@ -33,6 +35,7 @@ export const Editor = () => {
     const closeModal = () => {
         dispatch(setEditedAnswer(null));
         dispatch(setServicesModal(eModal.none));
+        dispatch(setItemServiceMenu(null));
     }
 
     return (

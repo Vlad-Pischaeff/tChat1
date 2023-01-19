@@ -30,7 +30,7 @@ export const AnswersItem = ({ answer }: iProps) => {
         <div className={s.Summary}>
             <div className={s.SummaryContainer}>
                 <p className={s.itemIcon}>{SYMBOLS_OBJ[answer.type]()}</p>
-                <div className={s.itemDesc}>{parse(answer.description)}</div>
+                <div className={s.answerDesc}>{parse(answer.description)}</div>
 
                 <div className={s.SummaryMenu} onClick={showMenu}>
                     <ICONS.ServiceMenuIcon />

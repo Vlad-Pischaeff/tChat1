@@ -197,6 +197,8 @@
         visibility: visible
     &:hover .itemDesc
         background: var(--color-HOVER)
+    &:hover .answerDesc
+        background: var(--color-HOVER)
 .SummaryTitle
     flex: 1 1 auto
     padding-left: .5rem
@@ -283,6 +285,8 @@
     & a
         text-decoration: underline dotted
         color: coral
+    & p
+        padding-bottom: 4px
 .itemDate
     flex: 0 0 7rem
 .itemCheck
@@ -297,6 +301,19 @@
     justify-content: center
     align-items: flex-start
 /**
+ * answers icons styles description
+ */
+.answerDesc
+    flex: 1 1 auto
+    padding: 0 4px
+    border-radius: 6px
+    border: 1px solid #444
+    & a
+        text-decoration: underline dotted
+        color: coral
+    & p
+        padding-bottom: 4px
+/**
  * symbols icons styles description
  */
 .SymbolsSvg
@@ -307,18 +324,7 @@
     fill: coral
 .SymbolsSvgOuter
     fill: none
-    // fill-rule: nonzero
     stroke: none
-    // stroke-width: 1
-    // stroke-linecap: butt
-    // stroke-linejoin: miter
-    // stroke-miterlimit: 10
-    // stroke-dasharray: ""
-    // stroke-dashoffset: 0
-    // font-family: none
-    // font-weight: none
-    // font-size: none
-    // text-anchor: none
 /**
  * additional styles description
  */
