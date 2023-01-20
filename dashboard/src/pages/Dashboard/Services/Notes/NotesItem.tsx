@@ -1,10 +1,11 @@
 import React from 'react';
+import parse from 'html-react-parser';
 import { useAppSelector, useAppDispatch } from 'store/hook';
 import { selectUI, setItemServiceMenu } from "store/slices/ui";
-import * as ICONS from 'assets/img';
-import { iNotes } from 'store/api/apiTypes';
 import { NotesServiceMenu } from './NotesServiceMenu';
 import { NotesMarkServiceMenu } from './NotesMarkServiceMenu';
+import { iNotes } from 'store/api/apiTypes';
+import * as ICONS from 'assets/img';
 import s from '../Services.module.sass';
 
 interface iProps extends React.HtmlHTMLAttributes<HTMLDetailsElement> {
@@ -43,9 +44,9 @@ export const NotesItem = ({ note }: iProps) => {
                     }
                 </div>
             </summary>
-            <p className={s.SummaryDescription}>
-                {note.description}
-            </p>
+            <div className={s.SummaryDescription}>
+                {parse(note.description)}
+            </div>
         </details>
     );
 };

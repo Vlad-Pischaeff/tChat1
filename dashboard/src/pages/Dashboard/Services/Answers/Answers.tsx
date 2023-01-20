@@ -5,7 +5,7 @@ import { useAnswersQuery } from 'store/api/answersApi';
 import { AnswersAddForm } from './AnswersAddForm';
 import { AnswersItem } from './AnswersItem';
 import { AnswersFilterServiceMenu } from './AnswersFilterServiceMenu';
-import { Editor } from '../Editor';
+import { AnswersEditor } from './AnswersEditor';
 import { SYMBOLS_OBJ } from './AnswersVariables';
 import s from '../Services.module.sass';
 
@@ -52,7 +52,7 @@ export const Answers = () => {
             }
 
             { ui.servicesModal === eModal.editor &&
-                <Editor />
+                <AnswersEditor />
             }
 
             <div className={s.Main} role='list'>

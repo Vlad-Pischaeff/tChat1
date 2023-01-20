@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import ReactQuill from "react-quill";
 import { useAppSelector, useAppDispatch } from 'store/hook';
 import { selectUI, setServicesModal, setEditedAnswer, setItemServiceMenu, eModal } from "store/slices/ui";
 import { useEditAnswerMutation } from 'store/api/answersApi';
-import { modules } from './EditorConfig';
+import * as UI from 'components/ui';
 import s from '../Services.module.sass';
 
-export const Editor = () => {
+export const AnswersEditor = () => {
     const dispatch = useAppDispatch();
     const ui = useAppSelector(selectUI);
     const [ updateAnswer ] = useEditAnswerMutation();
@@ -44,27 +43,15 @@ export const Editor = () => {
             <div className={s.ModalBG}></div>
 
             <div className={s.FormEditor}>
-                <div className={s.FormBodyEditor}>
-                    <ReactQuill
-                        className={s.Quill}
-                        modules={modules}
-                        theme='snow'
-                        value={convertedText}
-                        onChange={setConvertedText}
-                    />
-                </div>
-                <div className={s.FormButtons}>
-                    <input className={s.Button}
-                        type="button"
-                        value="Close"
-                        onClick={closeModal} />
-                    <input className={s.Button}
-                        type="submit"
-                        value={ui.editedAnswer ? "Update answer" : "Add answer"}
-                        onClick={onSubmit} />
-                </div>
+                <UI.Editor
+                    content={convertedText}
+                    setContent={setConvertedText}
+                    onClose={closeModal}
+                    onSubmit={onSubmit}
+                />
             </div>
 
         </div>
     );
 };
+

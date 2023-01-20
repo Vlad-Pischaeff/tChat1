@@ -5,3 +5,4 @@ export { Footer } from './Footer';
 export { Header } from './Header';
 export { Aside } from './Aside';
 export { UserLogo } from './UserLogo';
+export { Editor } from './Editor';

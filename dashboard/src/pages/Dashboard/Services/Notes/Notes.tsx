@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from 'store/hook';
 import { useNotesQuery} from 'store/api/notesApi';
 import { setItemServiceMenu, setServicesModal, eModal, selectUI } from "store/slices/ui";
 import { NotesAddForm } from './NotesAddForm';
+import { NotesEditor } from './NotesEditor';
 import { NotesItem } from './NotesItem';
 import { NotesFilterServiceMenu } from './NotesFilterServiceMenu';
 import * as ICONS from 'assets/img';
@@ -48,6 +49,10 @@ export const Notes = () => {
 
             { ui.servicesModal === eModal.note &&
                 <NotesAddForm />
+            }
+
+            { ui.servicesModal === eModal.editor &&
+                <NotesEditor />
             }
 
             <div className={s.Main} role='list'>
