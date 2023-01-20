@@ -1,5 +1,7 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
+import { useAppSelector } from 'store/hook';
+import { selectUI } from "store/slices/ui";
 import { useAddTodoMutation } from 'store/api/todosApi';
 import s from '../Services.module.sass';
 
@@ -8,6 +10,8 @@ type tFormInputs = {
 };
 
 export const Mail = () => {
+    // eslint-disable-next-line
+    const ui = useAppSelector(selectUI);
     const [ addTodo ] = useAddTodoMutation();
     // eslint-disable-next-line
     const { register, resetField, handleSubmit } = useForm<tFormInputs>();
