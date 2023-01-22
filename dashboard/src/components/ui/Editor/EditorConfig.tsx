@@ -1,3 +1,14 @@
+import { Quill } from "react-quill";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import quillEmoji from "react-quill-emoji";
+
+Quill.register({
+    "formats/emoji": quillEmoji.EmojiBlot,
+    "modules/emoji-toolbar": quillEmoji.ToolbarEmoji,
+    "modules/emoji-shortname": quillEmoji.ShortNameEmoji
+}, true);
+
 export const modules = {
     toolbar: [
         [{ font: [] }],
@@ -8,7 +19,11 @@ export const modules = {
         ["blockquote", "code-block"],
         [{ list:  "ordered" }, { list:  "bullet" }],
         // [{ indent:  "-1" }, { indent:  "+1" }, { align: [] }],
+        ['emoji'],
         ["link", "image", "video"],
         ["clean"],
-    ]
+    ],
+    'emoji-toolbar': true,
+    // "emoji-textarea": true,
+    "emoji-shortname": true,
 }
