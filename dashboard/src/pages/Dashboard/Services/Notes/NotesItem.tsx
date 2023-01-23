@@ -4,6 +4,7 @@ import { useAppSelector, useAppDispatch } from 'store/hook';
 import { selectUI, setItemServiceMenu } from "store/slices/ui";
 import { NotesServiceMenu } from './NotesServiceMenu';
 import { NotesMarkServiceMenu } from './NotesMarkServiceMenu';
+import { removeContentEditableAttr } from 'assets/utils';
 import { iNotes } from 'store/api/apiTypes';
 import * as ICONS from 'assets/img';
 import s from '../Services.module.sass';
@@ -45,7 +46,7 @@ export const NotesItem = ({ note }: iProps) => {
                 </div>
             </summary>
             <div className={s.SummaryDescription}>
-                {parse(note.description)}
+                {parse(removeContentEditableAttr(note.description))}
             </div>
         </details>
     );

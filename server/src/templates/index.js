@@ -1,6 +1,7 @@
 'use strict';
 
 const Answers = require('#s/models/answers');
+const Notes = require('#s/models/notes');
 
 const answers = [
     {
@@ -16,6 +17,30 @@ exports.fillAnswersTemplates = async user => {
         await Answers.create({
             user: user,
             description: answer.description
+        });
+    })
+};
+
+const notes = [
+    {
+        title: 'Простая заметка',
+        description: 'Этот раздел предназначен для хранения заметок, справочной информации и т.п. Эта заметка создана с помощью пункта меню \"Edit note\"',
+        type: 'darkred'
+    },
+    {
+        title: 'Продвинутая заметка',
+        description: '<div style=\"background:beige;color:black;padding:8px;margin:4px 0;border-radius:4px\"><p>Эта заметка создана с помощью простого встроенного редактора.</p><p>Редактировать можно только тело заметки, а не ее заголовок.</p><p>С помощью редактора Вы можете определять</p><ol><li><span style=\"color: rgb(204, 232, 204); background-color: rgb(0, 71, 178);\">цвет текста</span> и <span style=\"color: rgb(255, 255, 0); background-color: rgb(161, 0, 0);\">фона</span></li><li>вставлять картинки</li><li><a href=\"https://google.com\" rel=\"noopener noreferrer\" target=\"_blank\">ссылки</a></li><li>видео</li><li>эмодзи <span class=\"ql-emojiblot\" data-name=\"grapes\">﻿<span contenteditable=\"false\"><span class=\"ap ap-grapes\">🍇</span></span>﻿</span> и т.д.</li></ol><p>Если Вы знаете <strong style=\"background-color: rgb(255, 194, 102); color: rgb(0, 41, 102);\">HTML</strong><span style=\"background-color: rgb(255, 194, 102); color: rgb(0, 41, 102);\"> и </span><strong style=\"background-color: rgb(255, 194, 102); color: rgb(0, 41, 102);\">CSS</strong>, то возможности кастомизации безграничны…</p></div>',
+        type: 'aqua'
+    }
+]
+
+exports.fillNotesTemplates = async user => {
+    notes.forEach(async note => {
+        await Notes.create({
+            user: user,
+            title: note.title,
+            description: note.description,
+            type: note.type
         });
     })
 };
