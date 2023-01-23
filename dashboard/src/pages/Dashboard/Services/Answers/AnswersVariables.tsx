@@ -3,7 +3,7 @@ import s from '../Services.module.sass';
 
 export const SYMBOLS = [
     {
-        key: 'question',
+        key: 'answer',
         render: () => (
             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0 0 50 50" className={s.SymbolsSvg}>
                 <g className={s.SymbolsSvgOuter}>

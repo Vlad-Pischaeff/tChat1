@@ -19,7 +19,7 @@ const schema = new Schema({
     type: {
         type: String,
         required: true,
-        default: 'question'
+        default: 'answer'
     }
 });
 

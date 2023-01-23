@@ -37,8 +37,8 @@ const answersController = () => {
      ****************************************** */
     const addAnswer = async (req, res) => {
         try {
-            const { title, description } = req.body;
-            const answer = await Answers.create({ user: req.id, title, description });
+            const { description } = req.body;
+            const answer = await Answers.create({ user: req.id, description });
 
             res.status(201).json({ answer });
         } catch (e) {

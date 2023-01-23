@@ -5,6 +5,7 @@ import { selectUI, setItemServiceMenu } from "store/slices/ui";
 import { iAnswers } from 'store/api/apiTypes';
 import { AnswersServiceMenu } from './AnswersServiceMenu';
 import { AnswersMarkServiceMenu } from './AnswersMarkServiceMenu';
+import { removeContentEditableAttr } from 'assets/utils';
 import * as ICONS from 'assets/img';
 import { SYMBOLS_OBJ } from './AnswersVariables';
 import s from '../Services.module.sass';
@@ -30,7 +31,7 @@ export const AnswersItem = ({ answer }: iProps) => {
         <div className={s.Summary}>
             <div className={s.SummaryContainer}>
                 <p className={s.itemIcon}>{SYMBOLS_OBJ[answer.type]()}</p>
-                <div className={s.answerDesc}>{parse(answer.description)}</div>
+                <div className={s.answerDesc}>{parse(removeContentEditableAttr(answer.description))}</div>
 
                 <div className={s.SummaryMenu} onClick={showMenu}>
                     <ICONS.ServiceMenuIcon />

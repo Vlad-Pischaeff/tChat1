@@ -6,6 +6,7 @@ const UserService = require('#s/services/userService');
 const MailService = require('#s/services/mailService');
 const TokenService = require('#s/services/tokenService');
 const UserDTO = require('#s/dtos/userDTO');
+const { fillAnswersTemplates } = require('#s/templates/answersTemplate');
 
 const usersController = () => {
     /** ******************************************
@@ -28,6 +29,8 @@ const usersController = () => {
             const { name, email, password } = req.body;
             const userData = await UserService.registerUser(name, email, password);
             const { refreshToken, accessToken, id } = userData;
+
+            await fillAnswersTemplates(id); // add answers templates to new user
 
             res.cookie('refreshToken', refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true });
             res.status(201).json({ accessToken, id });
