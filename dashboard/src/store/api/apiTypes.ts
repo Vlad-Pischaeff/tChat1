@@ -3,7 +3,7 @@ export type tUser = {
     email: string,
     password?: string,
     date: string,
-    photo: string
+    image: string
 }
 
 export interface iTodos {

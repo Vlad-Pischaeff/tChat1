@@ -11,6 +11,7 @@ import { LabelIcon } from './LabelIcon';
 import { ServiceMenuIcon } from './ServiceMenuIcon';
 import { SendIcon } from './SendIcon';
 import { OpenEditorIcon } from './OpenEditorIcon';
+import { ProfileIcon } from './ProfileIcon';
 
 export {
     Eye,
@@ -25,5 +26,6 @@ export {
     LabelIcon,
     ServiceMenuIcon,
     SendIcon,
-    OpenEditorIcon
+    OpenEditorIcon,
+    ProfileIcon
 };

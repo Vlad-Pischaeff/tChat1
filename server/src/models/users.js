@@ -25,7 +25,7 @@ const schema = new Schema({
     photo: {
         type: String,
         required: true,
-        default: 'http://localhost:5000/upload/profile.svg'
+        default: 'none'
     }
 });
 

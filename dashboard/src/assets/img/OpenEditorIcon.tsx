@@ -10,4 +10,3 @@ export const OpenEditorIcon = ({ active }: { active?: boolean}) => (
         </svg>
     </div>
 );
-
