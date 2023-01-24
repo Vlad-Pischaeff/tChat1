@@ -13,7 +13,7 @@ export const UserLogo = () => {
         <div className={s.userContainer}>
             { data &&
                 <>
-                    { data.image === 'none'
+                    { data.image !== 'none'
                         ? <img src={data.image} className={s.userImage} alt="avatar" />
                         : <ICON.ProfileIcon />
                     }

@@ -1,0 +1,1 @@
+export { hiddenMouseClickArea } from './hiddenMouseClickArea';
