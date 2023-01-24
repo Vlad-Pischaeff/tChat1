@@ -2,7 +2,7 @@ import React from 'react';
 import { useAppDispatch } from 'store/hook';
 import { setItemServiceMenu, setNotesFilterColor } from "store/slices/ui";
 import { COLORS } from './NotesVariables';
-import * as ICONS from 'assets/img';
+import * as ICONS from 'assets/icons';
 import s from '../Services.module.sass';
 
 export const NotesFilterServiceMenu = () => {

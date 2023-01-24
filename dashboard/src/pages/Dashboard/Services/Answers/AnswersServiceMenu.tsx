@@ -3,7 +3,7 @@ import { useAppDispatch } from 'store/hook';
 import { setServicesModal, setEditedAnswer, setItemServiceMenu, eModal } from "store/slices/ui";
 import { useDeleteAnswerMutation } from 'store/api/answersApi';
 import { hiddenMouseClickArea } from 'components/HOC';
-import * as ICONS from 'assets/img';
+import * as ICONS from 'assets/icons';
 import { iAnswers } from 'store/api/apiTypes';
 import s from '../Services.module.sass';
 

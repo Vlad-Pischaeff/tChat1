@@ -6,7 +6,7 @@ import { NotesServiceMenu } from './NotesServiceMenu';
 import { NotesMarkServiceMenu } from './NotesMarkServiceMenu';
 import { removeContentEditableAttr } from 'assets/utils';
 import { iNotes } from 'store/api/apiTypes';
-import * as ICONS from 'assets/img';
+import * as ICONS from 'assets/icons';
 import s from '../Services.module.sass';
 
 interface iProps extends React.HtmlHTMLAttributes<HTMLDetailsElement> {

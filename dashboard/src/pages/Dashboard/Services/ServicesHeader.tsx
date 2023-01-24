@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAppSelector, useAppDispatch } from 'store/hook';
 import { setServiceMenuCategory, selectUI } from "store/slices/ui";
-import * as ICON from 'assets/img';
+import * as ICON from 'assets/icons';
 import { MENU, tServiceMenu} from './Types';
 import s from './Services.module.sass';
 

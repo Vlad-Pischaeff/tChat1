@@ -2,7 +2,7 @@ import React from 'react';
 import { format } from 'date-fns';
 import { useEditTodoMutation, useDeleteTodoMutation } from 'store/api/todosApi';
 import * as UI from 'components/ui';
-import * as ICON from 'assets/img';
+import * as ICON from 'assets/icons';
 import { iTodos } from 'store/api/apiTypes';
 import s from '../Services.module.sass';
 

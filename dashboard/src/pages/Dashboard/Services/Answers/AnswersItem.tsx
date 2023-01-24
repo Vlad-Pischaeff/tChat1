@@ -6,7 +6,7 @@ import { iAnswers } from 'store/api/apiTypes';
 import { AnswersServiceMenu } from './AnswersServiceMenu';
 import { AnswersMarkServiceMenu } from './AnswersMarkServiceMenu';
 import { removeContentEditableAttr } from 'assets/utils';
-import * as ICONS from 'assets/img';
+import * as ICONS from 'assets/icons';
 import { SYMBOLS_OBJ } from './AnswersVariables';
 import s from '../Services.module.sass';
 

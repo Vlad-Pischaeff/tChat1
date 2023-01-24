@@ -4,7 +4,7 @@ import { useEditNoteMutation } from 'store/api/notesApi';
 import { setItemServiceMenu } from "store/slices/ui";
 import { iNotes } from 'store/api/apiTypes';
 import { COLORS } from './NotesVariables';
-import * as ICONS from 'assets/img';
+import * as ICONS from 'assets/icons';
 import s from '../Services.module.sass';
 
 interface iProps extends React.HTMLAttributes<HTMLDivElement> {

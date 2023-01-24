@@ -2,7 +2,7 @@ import React from 'react';
 import { useAppDispatch } from 'store/hook';
 import { setServicesModal, setEditedNote, setItemServiceMenu, eModal } from "store/slices/ui";
 import { useDeleteNoteMutation } from 'store/api/notesApi';
-import * as ICONS from 'assets/img';
+import * as ICONS from 'assets/icons';
 import { iNotes } from 'store/api/apiTypes';
 import s from '../Services.module.sass';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { useAppSelector } from 'store/hook';
 import { useGetUserQuery } from 'store/api/usersApi';
 import { selectCurrentUser } from 'store/slices/auth';
-import * as ICON from 'assets/img';
+import * as ICON from 'assets/icons';
 import s from './UserLogo.module.sass';
 
 export const UserLogo = () => {

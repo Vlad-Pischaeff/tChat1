@@ -6,7 +6,7 @@ import { NotesAddForm } from './NotesAddForm';
 import { NotesEditor } from './NotesEditor';
 import { NotesItem } from './NotesItem';
 import { NotesFilterServiceMenu } from './NotesFilterServiceMenu';
-import * as ICONS from 'assets/img';
+import * as ICONS from 'assets/icons';
 import s from '../Services.module.sass';
 
 export const Notes = () => {
