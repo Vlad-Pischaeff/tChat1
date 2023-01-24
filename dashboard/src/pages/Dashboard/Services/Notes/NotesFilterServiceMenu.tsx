@@ -1,40 +1,39 @@
 import React from 'react';
 import { useAppDispatch } from 'store/hook';
-import { setItemServiceMenu, setNotesFilterColor } from "store/slices/ui";
+import { setNotesFilterColor } from "store/slices/ui";
+import { hiddenMouseClickArea } from 'components/HOC';
 import { COLORS } from './NotesVariables';
 import * as ICONS from 'assets/icons';
 import s from '../Services.module.sass';
 
-export const NotesFilterServiceMenu = () => {
+interface iProps extends React.HTMLAttributes<HTMLDivElement> {
+    closeMenu: (e: React.MouseEvent<HTMLDivElement>) => void,
+}
+
+export const NotesFilterSM = ({ closeMenu }: iProps) => {
     const dispatch = useAppDispatch();
 
     const handlerSelectColor = (e: React.MouseEvent<HTMLDivElement>) => {
         dispatch(setNotesFilterColor(e.currentTarget.id));
-        handlerHideMenu();         // ✅ hide menu after filtering
-    }
-
-    const handlerHideMenu = () => {
-        dispatch(setItemServiceMenu(null));
+        closeMenu(e);           // ✅ hide menu after filtering
     }
 
     return (
-        <div className={s.ServiceMenuContainer}>
-            <div className={s.ServiceMenuBG} onClick={handlerHideMenu}></div>
-
-            <div className={s.ServiceMenuFooterWrap} role="menu">
-                { COLORS.map(color =>
-                    <div
-                        key={color.key}
-                        id={color.value}
-                        className={s.ServiceMenuItem}
-                        role="menuitem"
-                        onClick={handlerSelectColor}
-                    >
-                        <ICONS.LabelIcon fill={color.value} />
-                        <p>{color.key}</p>
-                    </div>
-                )}
-            </div>
+        <div className={s.ServiceMenuFooterWrap} role="menu">
+            { COLORS.map(color =>
+                <div
+                    key={color.key}
+                    id={color.value}
+                    className={s.ServiceMenuItem}
+                    role="menuitem"
+                    onClick={handlerSelectColor}
+                >
+                    <ICONS.LabelIcon fill={color.value} />
+                    <p>{color.key}</p>
+                </div>
+            )}
         </div>
     );
 };
+
+export const NotesFilterServiceMenu = hiddenMouseClickArea(NotesFilterSM);

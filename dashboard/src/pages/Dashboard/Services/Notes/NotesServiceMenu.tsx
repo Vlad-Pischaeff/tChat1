@@ -2,15 +2,17 @@ import React from 'react';
 import { useAppDispatch } from 'store/hook';
 import { setServicesModal, setEditedNote, setItemServiceMenu, eModal } from "store/slices/ui";
 import { useDeleteNoteMutation } from 'store/api/notesApi';
+import { hiddenMouseClickArea } from 'components/HOC';
 import * as ICONS from 'assets/icons';
 import { iNotes } from 'store/api/apiTypes';
 import s from '../Services.module.sass';
 
 interface iProps extends React.HTMLAttributes<HTMLDivElement> {
-    note: iNotes
+    note: iNotes,
+    closeMenu: (e: React.MouseEvent<HTMLDivElement>) => void,
 }
 
-export const NotesServiceMenu = ({ note }: iProps) => {
+export const NotesSM = ({ note, closeMenu }: iProps) => {
     const dispatch = useAppDispatch();
     const [ deleteNote ] = useDeleteNoteMutation();
 
@@ -33,8 +35,7 @@ export const NotesServiceMenu = ({ note }: iProps) => {
     }
 
     const handlerHideMenu = (e: React.MouseEvent<HTMLDivElement>) => {
-        e.preventDefault();
-        dispatch(setItemServiceMenu(null));
+        closeMenu(e);
     }
 
     const handlerOpenEditor = () => {
@@ -43,30 +44,28 @@ export const NotesServiceMenu = ({ note }: iProps) => {
     }
 
     return (
-        <div className={s.ServiceMenuContainer}>
-            <div className={s.ServiceMenuBG} onClick={handlerHideMenu}></div>
+        <div className={s.ServiceMenuWrap} role="menu">
+            <div className={s.ServiceMenuItem} role="menuitem" onClick={handlerEditNote}>
+                <ICONS.EditIcon />
+                <p>Edit note</p>
+            </div>
 
-            <div className={s.ServiceMenuWrap} role="menu">
-                <div className={s.ServiceMenuItem} role="menuitem" onClick={handlerEditNote}>
-                    <ICONS.EditIcon />
-                    <p>Edit note</p>
-                </div>
+            <div className={s.ServiceMenuItem} role="menuitem" onClick={handlerOpenEditor}>
+                <ICONS.OpenEditorIcon />
+                <p>Edit note in Editor</p>
+            </div>
 
-                <div className={s.ServiceMenuItem} role="menuitem" onClick={handlerOpenEditor}>
-                    <ICONS.OpenEditorIcon />
-                    <p>Edit note in Editor</p>
-                </div>
+            <div className={s.ServiceMenuItem} role="menuitem" onClick={handlerMarkNote}>
+                <ICONS.LabelIcon />
+                <p>Mark note</p>
+            </div>
 
-                <div className={s.ServiceMenuItem} role="menuitem" onClick={handlerMarkNote}>
-                    <ICONS.LabelIcon />
-                    <p>Mark note</p>
-                </div>
-
-                <div className={s.ServiceMenuItem} role="menuitem" onClick={handlerDeleteNote}>
-                    <ICONS.TrashIcon />
-                    <p>Delete note</p>
-                </div>
+            <div className={s.ServiceMenuItem} role="menuitem" onClick={handlerDeleteNote}>
+                <ICONS.TrashIcon />
+                <p>Delete note</p>
             </div>
         </div>
     );
 };
+
+export const NotesServiceMenu = hiddenMouseClickArea(NotesSM);
