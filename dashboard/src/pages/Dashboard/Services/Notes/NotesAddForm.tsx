@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { useAppSelector, useAppDispatch } from 'store/hook';
-import { selectUI, setServicesModal, setEditedNote, eModal } from "store/slices/ui";
+import { selectUIEditedNote, setServicesModal, setEditedNote, eModal } from "store/slices/ui";
 import { useAddNoteMutation, useEditNoteMutation } from 'store/api/notesApi';
 import s from '../Services.module.sass';
 
@@ -12,24 +12,24 @@ type tFormInputs = {
 
 export const NotesAddForm = () => {
     const dispatch = useAppDispatch();
-    const ui = useAppSelector(selectUI);
+    const editedNote = useAppSelector(selectUIEditedNote);
     const [ addNote ] = useAddNoteMutation();
     const [ updateNote ] = useEditNoteMutation();
     const { register, setValue, resetField, handleSubmit } = useForm<tFormInputs>();
 
     useEffect(() => {
         // ✅ invoke when editing note
-        if (ui.editedNote) {
-            setValue('title', ui.editedNote.title);
-            setValue('description', ui.editedNote.description);
+        if (editedNote) {
+            setValue('title', editedNote.title);
+            setValue('description', editedNote.description);
         }
         // eslint-disable-next-line
-    }, [ui.editedNote]);
+    }, [editedNote]);
 
     const onSubmit = (data: tFormInputs) => {
-        if (ui.editedNote) {
+        if (editedNote) {
             // ✅ вызываем API '/notes', обновляем 'note'
-            const updatedData = { id: ui.editedNote._id, ...data };
+            const updatedData = { id: editedNote._id, ...data };
             updateNote(updatedData);
         } else {
             // ✅ вызываем API '/notes', добавляем 'note'
@@ -71,7 +71,7 @@ export const NotesAddForm = () => {
                 </div>
                 <div className={s.FormButtons}>
                     <input className={s.Button} type="button" value="Close" onClick={closeModal} />
-                    <input className={s.Button} type="submit" value={ui.editedNote ? "Update note" : "Add note"} />
+                    <input className={s.Button} type="submit" value={editedNote ? "Update note" : "Add note"} />
                 </div>
             </form>
 

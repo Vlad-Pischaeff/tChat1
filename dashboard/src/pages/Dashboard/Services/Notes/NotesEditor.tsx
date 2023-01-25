@@ -1,29 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from 'store/hook';
-import { selectUI, setServicesModal, setEditedNote, setItemServiceMenu, eModal } from "store/slices/ui";
+import {
+    selectUIEditedNote,
+    setServicesModal,
+    setEditedNote,
+    setItemServiceMenu,
+    eModal
+} from "store/slices/ui";
 import { useEditNoteMutation } from 'store/api/notesApi';
 import * as UI from 'components/ui';
 import s from '../Services.module.sass';
 
 export const NotesEditor = () => {
     const dispatch = useAppDispatch();
-    const ui = useAppSelector(selectUI);
+    const editedNote = useAppSelector(selectUIEditedNote);
     const [ updateNote ] = useEditNoteMutation();
     const [ convertedText, setConvertedText ] = useState('');
 
     useEffect(() => {
         // ✅ invoke when editing note's description
-        if (ui.editedNote) {
-            setConvertedText(ui.editedNote.description);
+        if (editedNote) {
+            setConvertedText(editedNote.description);
         }
         // eslint-disable-next-line
-    }, [ui.editedNote]);
+    }, [editedNote]);
 
     const onSubmit = () => {
-        if (ui.editedNote) {
+        if (editedNote) {
             // ✅ вызываем API '/notes', обновляем 'note'
             const updatedData = {
-                id: ui.editedNote._id,
+                id: editedNote._id,
                 description: convertedText
             };
             updateNote(updatedData);
@@ -54,4 +60,3 @@ export const NotesEditor = () => {
         </div>
     );
 };
-

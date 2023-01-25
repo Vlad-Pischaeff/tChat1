@@ -1,7 +1,7 @@
 import React from 'react';
 import parse from 'html-react-parser';
 import { useAppSelector, useAppDispatch } from 'store/hook';
-import { selectUI, setItemServiceMenu } from "store/slices/ui";
+import { selectUIServiceMenu, setItemServiceMenu } from "store/slices/ui";
 import { NotesServiceMenu } from './NotesServiceMenu';
 import { NotesMarkServiceMenu } from './NotesMarkServiceMenu';
 import { removeContentEditableAttr } from 'assets/utils';
@@ -15,7 +15,7 @@ interface iProps extends React.HtmlHTMLAttributes<HTMLDetailsElement> {
 
 export const NotesItem = ({ note }: iProps) => {
     const dispatch = useAppDispatch();
-    const ui = useAppSelector(selectUI);
+    const serviceMenu = useAppSelector(selectUIServiceMenu);
 
     const showMenu = (e: React.MouseEvent<HTMLDivElement>) => {
         e.preventDefault();
@@ -36,11 +36,11 @@ export const NotesItem = ({ note }: iProps) => {
                         <ICONS.ServiceMenuIcon />
                     </div>
 
-                    { ui.serviceMenu.noteActions === note._id &&
+                    { serviceMenu.noteActions === note._id &&
                         <NotesServiceMenu note={note} />
                     }
 
-                    { ui.serviceMenu.noteMark === note._id &&
+                    { serviceMenu.noteMark === note._id &&
                         <NotesMarkServiceMenu note={note} />
                     }
                 </div>

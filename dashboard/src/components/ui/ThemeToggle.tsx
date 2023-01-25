@@ -1,28 +1,28 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from 'store/hook';
 import { changeTheme } from 'assets/style/utils';
-import { selectUI, setTheme } from 'store/slices/ui';
+import { selectUITheme, setTheme } from 'store/slices/ui';
 import s from './ThemeToggle.module.sass';
 
 export const ThemeToggle = () => {
     const dispatch = useAppDispatch();
-    const ui = useAppSelector(selectUI);
+    const theme = useAppSelector(selectUITheme);
 
     useEffect(() => {
-        changeTheme(ui.theme);
-    }, [ui.theme]);
+        changeTheme(theme);
+    }, [theme]);
 
     const handlerColors = () => {
-        ui.theme === 'dark'
+        theme === 'dark'
             ? dispatch(setTheme('light'))
             : dispatch(setTheme('dark'));
     }
-
+    console.log('theme toggle...', Date.now());
     return (
         <div className={s.Container}>
             <button className={`${s.Button} ${s.Container}`} onClick={handlerColors}>
                 <svg
-                    className={`${s.Icon} ${ui.theme === 'dark' ? s.Hidden : null}`}
+                    className={`${s.Icon} ${theme === 'dark' ? s.Hidden : null}`}
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -30,7 +30,7 @@ export const ThemeToggle = () => {
                     </path>
                 </svg>
                 <svg
-                    className={`${s.Icon} ${ui.theme === 'light' ? s.Hidden : null}`}
+                    className={`${s.Icon} ${theme === 'light' ? s.Hidden : null}`}
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
