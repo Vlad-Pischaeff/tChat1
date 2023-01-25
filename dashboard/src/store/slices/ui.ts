@@ -159,7 +159,9 @@ export default slice.reducer;
 
 export const selectUI = (state: RootState) => state.ui;
 export const selectUITheme = (state: RootState) => state.ui.theme;
+export const selectUIMessage = (state: RootState) => state.ui.message;
 export const selectUIServices = (state: RootState) => state.ui.services;
 export const selectUIServicesModal = (state: RootState) => state.ui.servicesModal;
 export const selectUIServiceMenu = (state: RootState) => state.ui.serviceMenu;
 export const selectUIEditedNote = (state: RootState) => state.ui.editedNote;
+export const selectUIEditedAnswer = (state: RootState) => state.ui.editedAnswer;

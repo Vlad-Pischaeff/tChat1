@@ -1,7 +1,7 @@
 import React from 'react';
 import parse from 'html-react-parser';
 import { useAppSelector, useAppDispatch } from 'store/hook';
-import { selectUI, setItemServiceMenu } from "store/slices/ui";
+import { selectUIServiceMenu, setItemServiceMenu } from "store/slices/ui";
 import { iAnswers } from 'store/api/apiTypes';
 import { AnswersServiceMenu } from './AnswersServiceMenu';
 import { AnswersMarkServiceMenu } from './AnswersMarkServiceMenu';
@@ -16,7 +16,7 @@ interface iProps extends React.HtmlHTMLAttributes<HTMLDetailsElement> {
 
 export const AnswersItem = ({ answer }: iProps) => {
     const dispatch = useAppDispatch();
-    const ui = useAppSelector(selectUI);
+    const serviceMenu = useAppSelector(selectUIServiceMenu);
 
     const showMenu = (e: React.MouseEvent<HTMLDivElement>) => {
         e.preventDefault();
@@ -40,11 +40,11 @@ export const AnswersItem = ({ answer }: iProps) => {
                 <div className={s.SummaryMenu} onClick={sendAnswer}>
                     <ICONS.SendIcon />
                 </div>
-                { ui.serviceMenu.answerActions === answer._id &&
+                { serviceMenu.answerActions === answer._id &&
                     <AnswersServiceMenu answer={answer} />
                 }
 
-                { ui.serviceMenu.answerMark === answer._id &&
+                { serviceMenu.answerMark === answer._id &&
                     <AnswersMarkServiceMenu answer={answer} />
                 }
             </div>

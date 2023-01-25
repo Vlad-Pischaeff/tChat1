@@ -1,29 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from 'store/hook';
-import { selectUI, setServicesModal, setEditedAnswer, setItemServiceMenu, eModal } from "store/slices/ui";
+import { selectUIEditedAnswer, setServicesModal, setEditedAnswer, setItemServiceMenu, eModal } from "store/slices/ui";
 import { useEditAnswerMutation } from 'store/api/answersApi';
 import * as UI from 'components/ui';
 import s from '../Services.module.sass';
 
 export const AnswersEditor = () => {
     const dispatch = useAppDispatch();
-    const ui = useAppSelector(selectUI);
+    const editedAnswer = useAppSelector(selectUIEditedAnswer);
     const [ updateAnswer ] = useEditAnswerMutation();
     const [ convertedText, setConvertedText ] = useState('');
 
     useEffect(() => {
         // ✅ invoke when editing answers
-        if (ui.editedAnswer) {
-            setConvertedText(ui.editedAnswer.description);
+        if (editedAnswer) {
+            setConvertedText(editedAnswer.description);
         }
         // eslint-disable-next-line
-    }, [ui.editedAnswer]);
+    }, [editedAnswer]);
 
     const onSubmit = () => {
-        if (ui.editedAnswer) {
+        if (editedAnswer) {
             // ✅ вызываем API '/answers', обновляем 'answers'
             const updatedData = {
-                id: ui.editedAnswer._id,
+                id: editedAnswer._id,
                 description: convertedText
             };
             updateAnswer(updatedData);
