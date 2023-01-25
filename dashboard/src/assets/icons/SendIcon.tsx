@@ -1,9 +1,9 @@
 import React from 'react';
-import s from './SendIcon.module.sass';
+import s from './StyleTypeII.module.sass';
 
 export const SendIcon = () => {
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0 0 50 50" className={s.svg}>
+        <svg className={s.svg} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" >
             <g className={s.strokeStyle}>
                 <path d="M0,172v-172h172v172z"></path>
                 <g className={s.fillStyle}>

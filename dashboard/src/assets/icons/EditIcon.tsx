@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './EditIcon.module.sass';
+import s from './StyleTypeI.module.sass';
 
 export const EditIcon = () => (
     <div className={s.svg}>
