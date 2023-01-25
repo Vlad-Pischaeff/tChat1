@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from 'store/hook';
 import { selectUIEditedAnswer, setServicesModal, setEditedAnswer, setItemServiceMenu, eModal } from "store/slices/ui";
 import { useEditAnswerMutation } from 'store/api/answersApi';
+import { withModalBG } from 'components/HOC';
 import * as UI from 'components/ui';
 import s from '../Services.module.sass';
 
-export const AnswersEditor = () => {
+const AnswersEditorTmp = () => {
     const dispatch = useAppDispatch();
     const editedAnswer = useAppSelector(selectUIEditedAnswer);
     const [ updateAnswer ] = useEditAnswerMutation();
@@ -38,19 +39,15 @@ export const AnswersEditor = () => {
     }
 
     return (
-        <div className={s.ModalWrap}>
-
-            <div className={s.ModalBG}></div>
-
-            <div className={s.FormEditor}>
-                <UI.Editor
-                    content={convertedText}
-                    setContent={setConvertedText}
-                    onClose={closeModal}
-                    onSubmit={onSubmit}
-                />
-            </div>
-
+        <div className={s.FormEditor}>
+            <UI.Editor
+                content={convertedText}
+                setContent={setConvertedText}
+                onClose={closeModal}
+                onSubmit={onSubmit}
+            />
         </div>
     );
 };
+
+export const AnswersEditor = withModalBG(AnswersEditorTmp);

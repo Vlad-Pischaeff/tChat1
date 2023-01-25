@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEditNoteMutation } from 'store/api/notesApi';
-import { hiddenMouseClickArea } from 'components/HOC';
+import { withHiddenMouseClickArea } from 'components/HOC';
 import { iNotes } from 'store/api/apiTypes';
 import { COLORS } from './NotesVariables';
 import * as ICONS from 'assets/icons';
@@ -40,4 +40,4 @@ export const NotesMarkSM = ({ note, closeMenu }: iProps) => {
     );
 };
 
-export const NotesMarkServiceMenu = hiddenMouseClickArea(NotesMarkSM);
+export const NotesMarkServiceMenu = withHiddenMouseClickArea(NotesMarkSM);

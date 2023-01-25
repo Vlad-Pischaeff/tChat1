@@ -3,13 +3,14 @@ import { useForm } from "react-hook-form";
 import { useAppSelector, useAppDispatch } from 'store/hook';
 import { selectUI, setServicesModal, setEditedAnswer, eModal } from "store/slices/ui";
 import { useAddAnswerMutation, useEditAnswerMutation } from 'store/api/answersApi';
+import { withModalBG } from 'components/HOC';
 import s from '../Services.module.sass';
 
 type tFormInputs = {
     description: string;
 }
 
-export const AnswersAddForm = () => {
+const AnswersAddFormTmp = () => {
     const dispatch = useAppDispatch();
     const ui = useAppSelector(selectUI);
     const [ addAnswer ] = useAddAnswerMutation();
@@ -43,28 +44,24 @@ export const AnswersAddForm = () => {
     }
 
     return (
-        <div className={s.ModalWrap}>
-
-            <div className={s.ModalBG}></div>
-
-            <form onSubmit={handleSubmit(onSubmit)} className={s.Form}>
-                <div className={s.FormBody}>
-                    <fieldset>
-                        <label>Description</label>
-                        <div className={s.FormTextArea}>
-                            <textarea
-                                { ...register("description") }
-                                placeholder="My new answer..."
-                                rows={5} />
-                        </div>
-                    </fieldset>
-                </div>
-                <div className={s.FormButtons}>
-                    <input className={s.Button} type="button" value="Close" onClick={closeModal} />
-                    <input className={s.Button} type="submit" value={ui.editedAnswer ? "Update answer" : "Add answer"} />
-                </div>
-            </form>
-
-        </div>
+        <form onSubmit={handleSubmit(onSubmit)} className={s.Form}>
+            <div className={s.FormBody}>
+                <fieldset>
+                    <label>Description</label>
+                    <div className={s.FormTextArea}>
+                        <textarea
+                            { ...register("description") }
+                            placeholder="My new answer..."
+                            rows={5} />
+                    </div>
+                </fieldset>
+            </div>
+            <div className={s.FormButtons}>
+                <input className={s.Button} type="button" value="Close" onClick={closeModal} />
+                <input className={s.Button} type="submit" value={ui.editedAnswer ? "Update answer" : "Add answer"} />
+            </div>
+        </form>
     );
 };
+
+export const AnswersAddForm = withModalBG(AnswersAddFormTmp);

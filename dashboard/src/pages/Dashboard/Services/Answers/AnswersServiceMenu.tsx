@@ -2,7 +2,7 @@ import React from 'react';
 import { useAppDispatch } from 'store/hook';
 import { setServicesModal, setEditedAnswer, setItemServiceMenu, eModal } from "store/slices/ui";
 import { useDeleteAnswerMutation } from 'store/api/answersApi';
-import { hiddenMouseClickArea } from 'components/HOC';
+import { withHiddenMouseClickArea } from 'components/HOC';
 import * as ICONS from 'assets/icons';
 import { iAnswers } from 'store/api/apiTypes';
 import s from '../Services.module.sass';
@@ -64,4 +64,4 @@ export const AnswersSM = ({ answer, closeMenu }: iProps) => {
     );
 };
 
-export const AnswersServiceMenu = hiddenMouseClickArea(AnswersSM);
+export const AnswersServiceMenu = withHiddenMouseClickArea(AnswersSM);

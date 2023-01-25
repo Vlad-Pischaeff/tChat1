@@ -2,7 +2,7 @@ import React from 'react';
 import { useAppDispatch } from 'store/hook';
 import { setServicesModal, setEditedNote, setItemServiceMenu, eModal } from "store/slices/ui";
 import { useDeleteNoteMutation } from 'store/api/notesApi';
-import { hiddenMouseClickArea } from 'components/HOC';
+import { withHiddenMouseClickArea } from 'components/HOC';
 import * as ICONS from 'assets/icons';
 import { iNotes } from 'store/api/apiTypes';
 import s from '../Services.module.sass';
@@ -68,4 +68,4 @@ export const NotesSM = ({ note, closeMenu }: iProps) => {
     );
 };
 
-export const NotesServiceMenu = hiddenMouseClickArea(NotesSM);
+export const NotesServiceMenu = withHiddenMouseClickArea(NotesSM);

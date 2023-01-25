@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEditAnswerMutation } from 'store/api/answersApi';
-import { hiddenMouseClickArea } from 'components/HOC';
+import { withHiddenMouseClickArea } from 'components/HOC';
 import { iAnswers } from 'store/api/apiTypes';
 import { SYMBOLS } from './AnswersVariables';
 import s from '../Services.module.sass';
@@ -38,4 +38,4 @@ export const AnswersMarkSM = ({ answer, closeMenu }: iProps) => {
     );
 };
 
-export const AnswersMarkServiceMenu = hiddenMouseClickArea(AnswersMarkSM);
+export const AnswersMarkServiceMenu = withHiddenMouseClickArea(AnswersMarkSM);

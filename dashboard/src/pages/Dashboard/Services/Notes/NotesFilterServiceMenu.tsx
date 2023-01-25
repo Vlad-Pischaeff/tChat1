@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAppDispatch } from 'store/hook';
 import { setNotesFilterColor } from "store/slices/ui";
-import { hiddenMouseClickArea } from 'components/HOC';
+import { withHiddenMouseClickArea } from 'components/HOC';
 import { COLORS } from './NotesVariables';
 import * as ICONS from 'assets/icons';
 import s from '../Services.module.sass';
@@ -36,4 +36,4 @@ export const NotesFilterSM = ({ closeMenu }: iProps) => {
     );
 };
 
-export const NotesFilterServiceMenu = hiddenMouseClickArea(NotesFilterSM);
+export const NotesFilterServiceMenu = withHiddenMouseClickArea(NotesFilterSM);

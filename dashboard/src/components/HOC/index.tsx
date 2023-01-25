@@ -1,1 +1,2 @@
-export { hiddenMouseClickArea } from './hiddenMouseClickArea';
+export { withHiddenMouseClickArea } from './withHiddenMouseClickArea';
+export { withModalBG } from './withModalBG';

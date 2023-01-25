@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useAppSelector, useAppDispatch } from 'store/hook';
 import { selectUIEditedNote, setServicesModal, setEditedNote, eModal } from "store/slices/ui";
 import { useAddNoteMutation, useEditNoteMutation } from 'store/api/notesApi';
+import { withModalBG } from 'components/HOC';
 import s from '../Services.module.sass';
 
 type tFormInputs = {
@@ -10,7 +11,7 @@ type tFormInputs = {
     description: string;
 }
 
-export const NotesAddForm = () => {
+export const NotesAddFormTmp = () => {
     const dispatch = useAppDispatch();
     const editedNote = useAppSelector(selectUIEditedNote);
     const [ addNote ] = useAddNoteMutation();
@@ -46,35 +47,31 @@ export const NotesAddForm = () => {
     }
 
     return (
-        <div className={s.ModalWrap}>
-
-            <div className={s.ModalBG}></div>
-
-            <form onSubmit={handleSubmit(onSubmit)} className={s.Form}>
-                <div className={s.FormBody}>
-                    <fieldset>
-                        <label>Title</label>
-                        <input
-                            { ...register("title") }
-                            className={s.FormInput}
-                            placeholder="New note title..." />
-                    </fieldset>
-                    <fieldset>
-                        <label>Description</label>
-                        <div className={s.FormTextArea}>
-                            <textarea
-                                { ...register("description") }
-                                placeholder="New note description..."
-                                rows={3} />
-                        </div>
-                    </fieldset>
-                </div>
-                <div className={s.FormButtons}>
-                    <input className={s.Button} type="button" value="Close" onClick={closeModal} />
-                    <input className={s.Button} type="submit" value={editedNote ? "Update note" : "Add note"} />
-                </div>
-            </form>
-
-        </div>
+        <form onSubmit={handleSubmit(onSubmit)} className={s.Form}>
+            <div className={s.FormBody}>
+                <fieldset>
+                    <label>Title</label>
+                    <input
+                        { ...register("title") }
+                        className={s.FormInput}
+                        placeholder="New note title..." />
+                </fieldset>
+                <fieldset>
+                    <label>Description</label>
+                    <div className={s.FormTextArea}>
+                        <textarea
+                            { ...register("description") }
+                            placeholder="New note description..."
+                            rows={3} />
+                    </div>
+                </fieldset>
+            </div>
+            <div className={s.FormButtons}>
+                <input className={s.Button} type="button" value="Close" onClick={closeModal} />
+                <input className={s.Button} type="submit" value={editedNote ? "Update note" : "Add note"} />
+            </div>
+        </form>
     );
 };
+
+export const NotesAddForm = withModalBG(NotesAddFormTmp);

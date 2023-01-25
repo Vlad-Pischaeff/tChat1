@@ -1,13 +1,13 @@
 import React from 'react';
 import { useAppDispatch } from 'store/hook';
 import { setItemServiceMenu } from "store/slices/ui";
-import s from './hiddenMouseClickArea.module.sass';
+import s from './hocStyles.module.sass';
 
 interface iProps {
     closeMenu: (e: React.MouseEvent<HTMLDivElement>) => void,
 }
 
-export const hiddenMouseClickArea = <T,>(ChildComp: React.ComponentType<T>) => {
+export const withHiddenMouseClickArea = <T,>(ChildComp: React.ComponentType<T>) => {
 
     const NewComp = (props: Omit<T, keyof iProps>) => {
         const dispatch = useAppDispatch();

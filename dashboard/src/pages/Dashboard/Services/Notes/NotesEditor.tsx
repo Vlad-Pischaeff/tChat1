@@ -8,10 +8,11 @@ import {
     eModal
 } from "store/slices/ui";
 import { useEditNoteMutation } from 'store/api/notesApi';
+import { withModalBG } from 'components/HOC';
 import * as UI from 'components/ui';
 import s from '../Services.module.sass';
 
-export const NotesEditor = () => {
+const NotesEditorTmp = () => {
     const dispatch = useAppDispatch();
     const editedNote = useAppSelector(selectUIEditedNote);
     const [ updateNote ] = useEditNoteMutation();
@@ -44,19 +45,15 @@ export const NotesEditor = () => {
     }
 
     return (
-        <div className={s.ModalWrap}>
-
-            <div className={s.ModalBG}></div>
-
-            <div className={s.FormEditor}>
-                <UI.Editor
-                    content={convertedText}
-                    setContent={setConvertedText}
-                    onClose={closeModal}
-                    onSubmit={onSubmit}
-                />
-            </div>
-
+        <div className={s.FormEditor}>
+            <UI.Editor
+                content={convertedText}
+                setContent={setConvertedText}
+                onClose={closeModal}
+                onSubmit={onSubmit}
+            />
         </div>
     );
 };
+
+export const NotesEditor = withModalBG(NotesEditorTmp);

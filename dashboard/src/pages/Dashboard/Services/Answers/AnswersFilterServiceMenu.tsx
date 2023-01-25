@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAppDispatch } from 'store/hook';
 import { setAnswersFilterIcon } from "store/slices/ui";
-import { hiddenMouseClickArea } from 'components/HOC';
+import { withHiddenMouseClickArea } from 'components/HOC';
 import { SYMBOLS } from './AnswersVariables';
 import s from '../Services.module.sass';
 
@@ -44,4 +44,4 @@ const AnswersFilterSM = ({ closeMenu }: iProps) => {
     );
 };
 
-export const AnswersFilterServiceMenu = hiddenMouseClickArea(AnswersFilterSM);
+export const AnswersFilterServiceMenu = withHiddenMouseClickArea(AnswersFilterSM);
