@@ -12,13 +12,7 @@ import s from '../Services.module.sass';
 export const Notes = () => {
     const dispatch = useAppDispatch();
     const ui = useAppSelector(selectUI);
-    // eslint-disable-next-line
-    const { refetch, data, isSuccess, isLoading } = useNotesQuery('');
-
-    // useEffect(() => {
-    //     refetch();
-    //     // eslint-disable-next-line
-    // }, []);
+    const { data, isSuccess, isLoading } = useNotesQuery('');
 
     const openModal = () => {
         dispatch(setServicesModal(eModal.note));

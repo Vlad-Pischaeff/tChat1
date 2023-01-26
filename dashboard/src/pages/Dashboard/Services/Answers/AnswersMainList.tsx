@@ -7,13 +7,7 @@ import s from '../Services.module.sass';
 
 export const AnswersMainList = () => {
     const answersFilterIcon = useAppSelector(selectUIAnswersFilterIcon);
-    // eslint-disable-next-line
-    const { refetch, data, isSuccess, isLoading } = useAnswersQuery('');
-
-    // useEffect(() => {
-    //     refetch();
-    //     // eslint-disable-next-line
-    // }, []);
+    const { data, isSuccess, isLoading } = useAnswersQuery('');
 
     const filterData = () => {
         if (isSuccess && data) {
