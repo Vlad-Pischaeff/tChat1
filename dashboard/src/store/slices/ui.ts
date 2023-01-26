@@ -37,6 +37,7 @@ export type UIType = {
     serviceMenu: iItemServiceMenu;
     notesFilterColor: string;
     answersFilterIcon: string;
+    hiddenPanelServices: boolean;
 }
 
 const initialState: UIType = {
@@ -57,6 +58,7 @@ const initialState: UIType = {
     },
     notesFilterColor: 'none',
     answersFilterIcon: 'none',
+    hiddenPanelServices: false,
 }
 
 const slice = createSlice({
@@ -100,6 +102,9 @@ const slice = createSlice({
         },
         setAnswersFilterIcon: (state, { payload }: PayloadAction<string>) => {
             state.answersFilterIcon = payload;
+        },
+        setHiddenPanelServices: (state, { payload }: PayloadAction<boolean>) => {
+            state.hiddenPanelServices = payload;
         },
     },
     extraReducers: (builder) => {
@@ -152,7 +157,8 @@ export const {
     setEditedAnswer,
     setItemServiceMenu,
     setNotesFilterColor,
-    setAnswersFilterIcon
+    setAnswersFilterIcon,
+    setHiddenPanelServices
 } = slice.actions;
 
 export default slice.reducer;
@@ -170,3 +176,5 @@ export const selectUIEditedNote = (state: RootState) => state.ui.editedNote;
 export const selectUIEditedAnswer = (state: RootState) => state.ui.editedAnswer;
 
 export const selectUIAnswersFilterIcon = (state: RootState) => state.ui.answersFilterIcon;
+
+export const selectUIHiddenPanelServices = (state: RootState) => state.ui.hiddenPanelServices;

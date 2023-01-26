@@ -1,6 +1,10 @@
 import React from 'react';
 import { useAppSelector, useAppDispatch } from 'store/hook';
-import { setServiceMenuCategory, selectUIServices } from "store/slices/ui";
+import {
+    setServiceMenuCategory,
+    setHiddenPanelServices,
+    selectUIServices
+} from "store/slices/ui";
 import * as ICON from 'assets/icons';
 import { MENU, tServiceMenu} from './Types';
 import s from './Services.module.sass';
@@ -20,13 +24,22 @@ export const ServicesHeader = () => {
         dispatch(setServiceMenuCategory(name));
     }
 
+    const hidePanelServices = () => {
+        dispatch(setHiddenPanelServices(true));
+    }
+
     return (
         <div className={s.header} role='navigation'>
-            { NAVIGATION.map(element =>
-                <div key={element.name} onClick={() => handlerClick(element.name)}>
-                    {element.render()}
-                </div>
-            )}
+            <div className={s.RowFlexContainer}>
+                { NAVIGATION.map(element =>
+                    <div key={element.name} onClick={() => handlerClick(element.name)}>
+                        {element.render()}
+                    </div>
+                )}
+            </div>
+            <div onClick={hidePanelServices}>
+                <ICON.DblArrowLeft />
+            </div>
         </div>
     );
 };

@@ -10,3 +10,4 @@ export { SendIcon } from './SendIcon';
 export { OpenEditorIcon } from './OpenEditorIcon';
 export { ProfileIcon } from './ProfileIcon';
 export { GithubIcon } from './GithubIcon';
+export { DblArrowLeft } from './DblArrowLeft';
