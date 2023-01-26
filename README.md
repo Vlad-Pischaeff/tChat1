@@ -14,6 +14,10 @@ REFRESH_JWT_SECRET='jwtRefreshSecretKey'
 REFRESH_JWT_LIFETIME='10d'
 MDB_SERVER='localhost'
 MDB_DATABASE='database'
+SMTP_HOST="smtp.gmail.com"
+SMTP_PORT="587"
+SMTP_USER="YourMail@gmail.com"
+SMTP_PASS="YourPassKey"
 ```
 где MDB_SERVER   - адрес сервера MongoDB, 
     MDB_DATABASE - имя базы данных на этом сервере
