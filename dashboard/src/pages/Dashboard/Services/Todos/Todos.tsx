@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'store/hook';
 import { setServicesModal, selectUIServicesModal, eModal } from "store/slices/ui";
 import { useTodosQuery} from 'store/api/todosApi';
@@ -14,13 +14,14 @@ type tTypes = typeof TYPES[number];
 export const Todos = () => {
     const dispatch = useAppDispatch();
     const servicesModal = useAppSelector(selectUIServicesModal);
+    // eslint-disable-next-line
     const { refetch, data, isSuccess, isLoading } = useTodosQuery('');
     const [ checked, setChecked ] = useState<tTypes>("All");
 
-    useEffect(() => {
-        refetch();
-        // eslint-disable-next-line
-    }, []);
+    // useEffect(() => {
+    //     refetch();
+    //     // eslint-disable-next-line
+    // }, []);
 
     const FILTER = useMemo(() => ({
         [TYPES[0]]: (data: iTodos[]) => data,

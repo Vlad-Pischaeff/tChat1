@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useAppSelector } from 'store/hook';
 import { selectUIAnswersFilterIcon } from "store/slices/ui";
 import { useAnswersQuery } from 'store/api/answersApi';
@@ -7,12 +7,13 @@ import s from '../Services.module.sass';
 
 export const AnswersMainList = () => {
     const answersFilterIcon = useAppSelector(selectUIAnswersFilterIcon);
+    // eslint-disable-next-line
     const { refetch, data, isSuccess, isLoading } = useAnswersQuery('');
 
-    useEffect(() => {
-        refetch();
-        // eslint-disable-next-line
-    }, []);
+    // useEffect(() => {
+    //     refetch();
+    //     // eslint-disable-next-line
+    // }, []);
 
     const filterData = () => {
         if (isSuccess && data) {

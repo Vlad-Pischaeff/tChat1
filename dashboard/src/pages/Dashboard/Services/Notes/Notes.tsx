@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useAppDispatch, useAppSelector } from 'store/hook';
 import { useNotesQuery} from 'store/api/notesApi';
 import { setItemServiceMenu, setServicesModal, eModal, selectUI } from "store/slices/ui";
@@ -12,12 +12,13 @@ import s from '../Services.module.sass';
 export const Notes = () => {
     const dispatch = useAppDispatch();
     const ui = useAppSelector(selectUI);
+    // eslint-disable-next-line
     const { refetch, data, isSuccess, isLoading } = useNotesQuery('');
 
-    useEffect(() => {
-        refetch();
-        // eslint-disable-next-line
-    }, []);
+    // useEffect(() => {
+    //     refetch();
+    //     // eslint-disable-next-line
+    // }, []);
 
     const openModal = () => {
         dispatch(setServicesModal(eModal.note));

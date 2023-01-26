@@ -34,6 +34,7 @@ export const Header = () => {
                     <p><Link to="login">Back</Link></p>
                 }
                 { pathname.match(/profile/i) &&
+                    // eslint-disable-next-line
                     <p><Link to={-1 as any}>Back</Link></p>
                 }
                 { pathname.match(/dashboard/i) &&
