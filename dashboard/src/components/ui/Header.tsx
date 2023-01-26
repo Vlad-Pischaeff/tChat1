@@ -33,6 +33,9 @@ export const Header = () => {
                 { pathname === '/restore' &&
                     <p><Link to="login">Back</Link></p>
                 }
+                { pathname.match(/profile/i) &&
+                    <p><Link to={-1 as any}>Back</Link></p>
+                }
                 { pathname.match(/dashboard/i) &&
                     <p onClick={handlerLogout}><Link to="">Logout</Link></p>
                 }
