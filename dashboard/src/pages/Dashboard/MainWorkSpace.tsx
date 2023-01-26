@@ -17,16 +17,16 @@ export const MainWorkSpace = () => {
         <div className={hiddenPanelServices ? s.WorkSpaceFull : s.WorkSpaceSplited}>
 
             { hiddenPanelServices
-                ? <>
+                ? (
                     <div className={s.ShowServiceMenuButton} onClick={showPanelServices}>
                         <ICON.DblArrowLeft />
                     </div>
-                </>
-                : <>
+                )
+                : (
                     <div className={s.LeftWorkSpace}>
                         <Services />
                     </div>
-                </>
+                )
             }
 
             <div className={s.RightWorkSpace}>
