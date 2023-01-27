@@ -3,22 +3,24 @@
     height: 100%
     padding: 1rem
     color: var(--C5)
-.ImageContainer
-    width: 4rem
-    height: 4rem
-    display: grid
-    place-content: center
-    margin-bottom: .5rem
+.SubContainer
+    padding: 1rem
+    width: 60%
+    min-width: 500px
+    border-radius: 6px
+    border: 1px solid #a0a0a060
 .Image
-    width: 4rem
-    height: 4rem
+    width: 6rem
+    height: 6rem
+    padding: .5rem
+    border-radius: 6px
+    border: 1px solid #a0a0a060
 .ImageFill
     fill: #bbbbbbee
 .Item
     display: flex
     justify-content: flex-start
     align-items: flex-start
-    width: 80%
     padding: 4px 0
 .ItemTitle
     flex: 0 0 5rem
@@ -38,10 +40,34 @@
         visibility: visible
 .PropertySite,
 .PropertyHash
-    flex: 0 0 auto
-    min-width: 12rem
+    flex: 1 1 auto
+    margin-right: 8px
+    padding-right: 4px
+    overflow: hidden
+    white-space: nowrap
+    text-overflow: ellipsis
 .PropertyIcon
     flex: 0 0 2rem
     visibility: hidden
 hr
     margin: 12px 0
+/**
+ * add item button description
+ */
+.AddItem
+    flex: 0 0 2rem
+    text-transform: uppercase
+    font-size: 1rem
+    font-weight: 900
+    line-height: 2rem
+    color: var(--C6)
+    background: transparent
+    margin: 8px 0
+    padding: 0 8px
+    width: fit-content
+    border-radius: 8px
+    border: 2px solid var(--C2)
+    &:hover
+        color: var(--C4)
+        cursor: pointer
+        background: var(--C2)
