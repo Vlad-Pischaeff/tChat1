@@ -3,6 +3,7 @@
 const Answers = require('#s/models/answers');
 const Notes = require('#s/models/notes');
 const Todos = require('#s/models/todos');
+const Users = require('#s/models/users');
 
 const answers = [
     {
@@ -63,3 +64,22 @@ exports.fillTodosTemplates = async user => {
         });
     })
 };
+// use for development
+/*
+const websites = [
+    {
+        site: 'www.twitter.com',
+        key: 'cqr8q9erhvq039r7vg',
+        hash: 'usdfvoieubvlkenrvboaidsf'
+    },
+    {
+        site: 'www.facebook.eu',
+        key: 'trv978q35g04t7vgb4807r5',
+        hash: 'adfvlsdfkjvhbsldfkjhjlasd'
+    }
+]
+
+exports.fillWebTemplates = async user => {
+    await Users.findByIdAndUpdate(user, { websites: websites });
+};
+*/

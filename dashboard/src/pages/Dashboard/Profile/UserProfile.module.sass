@@ -1,26 +1,38 @@
-.ProfileContainer
+.Container
     width: 100%
     height: 100%
     padding: 1rem
     color: var(--C5)
-.ProfileImageContainer
+.ImageContainer
     width: 4rem
     height: 4rem
     display: grid
     place-content: center
     margin-bottom: .5rem
-.ProfileImage
+.Image
     width: 4rem
     height: 4rem
-.ProfileImageFill
+.ImageFill
     fill: #bbbbbbee
-.ProfileItemContainer
+.ItemContainer
     display: flex
     justify-content: flex-start
     align-items: flex-start
-    width: 40%
+    width: 80%
     padding: 4px 0
-.ProfileItemTitle
+.ItemTitle
     flex: 0 0 5rem
     color: gray
-.ProfileItemValue
+.ItemValue
+    flex: 1 1 auto
+.ItemNoValue
+    color: gray
+.PropertyContainer
+    display: flex
+    justify-content: flex-start
+    align-items: center
+    padding-bottom: 4px
+.PropertySite,
+.PropertyHash
+    flex: 0 0 auto
+    min-width: 12rem

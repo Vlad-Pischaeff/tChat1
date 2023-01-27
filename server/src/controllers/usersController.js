@@ -9,7 +9,8 @@ const UserDTO = require('#s/dtos/userDTO');
 const {
     fillAnswersTemplates,
     fillNotesTemplates,
-    fillTodosTemplates
+    fillTodosTemplates,
+    // fillWebTemplates         // use for development
 } = require('#s/templates/index');
 
 const usersController = () => {
@@ -52,6 +53,8 @@ const usersController = () => {
             const { name, password } = req.body;
             const userData = await UserService.loginUser(name, password);
             const { refreshToken, accessToken, id } = userData;
+
+            // await fillWebTemplates(id);          // use for development
 
             res.cookie('refreshToken', refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true });
             res.status(201).json({ accessToken, id });
