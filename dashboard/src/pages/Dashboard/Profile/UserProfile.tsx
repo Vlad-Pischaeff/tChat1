@@ -2,7 +2,7 @@ import React from 'react';
 import { useAppSelector } from 'store/hook';
 import { useGetUserQuery } from 'store/api/usersApi';
 import { selectCurrentUser } from 'store/slices/auth';
-// import * as ICON from 'assets/icons';
+import * as ICON from 'assets/icons';
 import s from './UserProfile.module.sass';
 
 export const UserProfile = () => {
@@ -26,17 +26,18 @@ export const UserProfile = () => {
                                 </div>
                             )
                         }
-                        <div className={s.ItemContainer}>
+                        <div className={s.Item}>
                             <p className={s.ItemTitle}>Name: </p>
                             <p className={s.ItemValue}>{data.name}</p>
                         </div>
-                        <div className={s.ItemContainer}>
+                        <div className={s.Item}>
                             <p className={s.ItemTitle}>E-mail: </p>
                             <p className={s.ItemValue}>{data.email}</p>
                         </div>
-                        <div className={s.ItemContainer}>
+                        <hr/>
+                        <div className={s.Item}>
                             <p className={s.ItemTitle}>Web-sites: </p>
-                            <div className={s.ItemValue} role="listbox">
+                            <div className={s.ItemContainer} role="listbox">
                                 { data.websites.length === 0
                                     ? <div className={s.ItemNoValue}>No controllered sites...</div>
                                     : <>
@@ -49,6 +50,12 @@ export const UserProfile = () => {
                                                         <p className={s.PropertySite}>{item.site}</p>
                                                         <p className={s.ItemTitle}>hash:</p>
                                                         <p className={s.PropertyHash}>{item.hash}</p>
+                                                        <div className={s.PropertyIcon}>
+                                                            <ICON.EditIcon />
+                                                        </div>
+                                                        <div className={s.PropertyIcon}>
+                                                            <ICON.TrashIcon />
+                                                        </div>
                                                     </div>
                                             })
                                         }

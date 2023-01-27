@@ -14,7 +14,7 @@
     height: 4rem
 .ImageFill
     fill: #bbbbbbee
-.ItemContainer
+.Item
     display: flex
     justify-content: flex-start
     align-items: flex-start
@@ -23,7 +23,7 @@
 .ItemTitle
     flex: 0 0 5rem
     color: gray
-.ItemValue
+.ItemContainer
     flex: 1 1 auto
 .ItemNoValue
     color: gray
@@ -32,7 +32,16 @@
     justify-content: flex-start
     align-items: center
     padding-bottom: 4px
+    &:hover
+        background: var(--color-HOVER)
+    &:hover .PropertyIcon
+        visibility: visible
 .PropertySite,
 .PropertyHash
     flex: 0 0 auto
     min-width: 12rem
+.PropertyIcon
+    flex: 0 0 2rem
+    visibility: hidden
+hr
+    margin: 12px 0
