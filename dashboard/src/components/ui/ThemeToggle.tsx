@@ -17,7 +17,7 @@ export const ThemeToggle = () => {
             ? dispatch(setTheme('light'))
             : dispatch(setTheme('dark'));
     }
-    console.log('theme toggle...', Date.now())
+
     return (
         <div className={s.Container}>
             <button className={`${s.Button} ${s.Container}`} onClick={handlerColors}>

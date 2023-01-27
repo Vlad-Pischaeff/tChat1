@@ -22,11 +22,16 @@ const schema = new Schema({
         required: true,
         default: Date.now()
     },
-    photo: {
+    image: {
         type: String,
         required: true,
         default: 'none'
-    }
+    },
+    websites: [{
+        site: String,
+        key: String,
+        hash: String
+    }]
 });
 
 module.exports = model('Users', schema);
