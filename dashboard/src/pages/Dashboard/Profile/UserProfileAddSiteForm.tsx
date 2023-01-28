@@ -1,8 +1,9 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
-import { useAppDispatch } from 'store/hook';
+import { useAppDispatch, useAppSelector } from 'store/hook';
+import { selectCurrentUser } from 'store/slices/auth';
 import { setServicesModal, eModal } from "store/slices/ui";
-import { useAddTodoMutation } from 'store/api/todosApi';
+import { useUpdateUserMutation } from 'store/api/usersApi';
 import { withModalBG } from 'components/HOC';
 import s from 'pages/Dashboard/Services/Services.module.sass';
 
@@ -12,12 +13,14 @@ type tFormInputs = {
 
 const UserProfileAddSiteFormTmp = () => {
     const dispatch = useAppDispatch();
-    const [ addTodo ] = useAddTodoMutation();
+    const user = useAppSelector(selectCurrentUser);
+    const [ updateUser ] = useUpdateUserMutation();
     const { register, resetField, handleSubmit } = useForm<tFormInputs>();
 
     const onSubmit = (data: tFormInputs) => {
         // ✅ вызываем API '/users', обновляем 'websites'
-        addTodo(data);
+        const updatedData = { id: user.id, ...data }; // TODO data надо определить
+        updateUser(updatedData);
         if (data.siteName) closeModal();
     };
 

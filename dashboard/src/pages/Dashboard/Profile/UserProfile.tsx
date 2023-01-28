@@ -22,7 +22,7 @@ export const UserProfile = () => {
         <div className={s.Container}>
 
             { servicesModal === eModal.addSite &&
-                    <UserProfileAddSiteForm />
+                <UserProfileAddSiteForm />
             }
 
             <div className={s.SubContainer}>
