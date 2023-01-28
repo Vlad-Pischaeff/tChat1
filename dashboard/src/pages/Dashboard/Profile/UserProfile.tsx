@@ -29,13 +29,15 @@ export const UserProfile = () => {
 
                 { data &&
                     <>
+                    <div className={s.LeftSubContainer}>
                         <UserProfileImage user={data} />
                         <input
                             type="button"
                             className={s.AddItem}
                             value="load image"
                         />
-                        <hr/>
+                    </div>
+                    <div className={s.RightSubContainer}>
                         <div className={s.Item}>
                             <p className={s.ItemTitle}>Name: </p>
                             <p className={s.ItemValue}>{data.name}</p>
@@ -44,7 +46,7 @@ export const UserProfile = () => {
                             <p className={s.ItemTitle}>E-mail: </p>
                             <p className={s.ItemValue}>{data.email}</p>
                         </div>
-                        <hr/>
+                        {/* <hr/> */}
                         <div className={s.Item}>
                             <div className={s.ItemTitle}>Web-sites: </div>
                             <div className={s.ItemContainer} role="listbox">
@@ -58,8 +60,8 @@ export const UserProfile = () => {
                                                         className={s.PropertyContainer}
                                                     >
                                                         <p className={s.PropertySite}>{item.site}</p>
-                                                        <p className={s.ItemTitle}>hash:</p>
-                                                        <p className={s.PropertyHash}>{item.hash}</p>
+                                                        {/* <p className={s.ItemTitle}>hash:</p>
+                                                        <p className={s.PropertyHash}>{item.hash}</p> */}
                                                         <div className={s.PropertyIcon}>
                                                             <ICON.EditIcon />
                                                         </div>
@@ -80,6 +82,9 @@ export const UserProfile = () => {
                             value="+ add site"
                             onClick={openModalAddSite}
                         />
+                    </div>
+                        {/* <hr/> */}
+
                     </>
                 }
             </div>

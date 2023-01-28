@@ -4,6 +4,8 @@
     color: var(--C5)
     position: relative
 .SubContainer
+    display: grid
+    grid-template-columns: minmax(8rem, 15%) 1fr
     margin: 1rem
     padding: 1rem
     width: 60%
@@ -12,6 +14,17 @@
     border: 1px solid #a0a0a030
     &:hover
         box-shadow: 0px 0px 15px 15px rgba(219, 193, 147, 0.1)
+.LeftSubContainer,
+.RightSubContainer
+    display: flex
+    flex-flow: column nowrap
+    justify-content: space-between
+    align-items: flex-start
+.LeftSubContainer
+    margin-right: 1rem
+    padding-right: 1rem
+    border-right: 1px solid var(--C1)
+
 .Image
     width: 6rem
     height: 6rem
@@ -23,6 +36,7 @@
 .Item
     display: grid
     grid-template-columns: minmax(6rem, 15%) 1fr
+    width: 100%
     padding: 4px 0
 .ItemTitle
     flex: 0 0 5rem
@@ -33,7 +47,7 @@
     color: gray
 .PropertyContainer
     display: flex
-    justify-content: flex-start
+    justify-content: space-between
     align-items: center
     padding-bottom: 4px
     &:hover
@@ -42,7 +56,7 @@
         visibility: visible
 .PropertySite,
 .PropertyHash
-    flex: 0 0 10rem
+    flex: 1 1 10rem
     margin-right: 8px
     padding-right: 4px
     overflow: hidden
