@@ -35,8 +35,6 @@ const UserProfileAddSiteFormTmp = () => {
         if (formData.siteName) closeModal();
     };
 
-    console.log('UserProfileAddSiteFormTmp...', data, user)
-
     const closeModal = () => {
         resetField('siteName');
         dispatch(setServicesModal(eModal.none));
