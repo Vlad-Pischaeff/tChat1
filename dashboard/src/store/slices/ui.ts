@@ -23,6 +23,7 @@ export enum eModal {
     mail = 'MAIL',
     answer = 'ANSWER',
     editor = 'EDITOR',
+    addSite = 'ADD_SITE',
     none = 'NONE'
 }
 
