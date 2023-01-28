@@ -21,9 +21,8 @@
 .ImageFill
     fill: #bbbbbbee
 .Item
-    display: flex
-    justify-content: flex-start
-    align-items: flex-start
+    display: grid
+    grid-template-columns: minmax(6rem, 15%) 1fr
     padding: 4px 0
 .ItemTitle
     flex: 0 0 5rem
@@ -43,7 +42,7 @@
         visibility: visible
 .PropertySite,
 .PropertyHash
-    flex: 1 1 auto
+    flex: 0 0 10rem
     margin-right: 8px
     padding-right: 4px
     overflow: hidden

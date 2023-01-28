@@ -4,7 +4,7 @@ export type tUser = {
     password?: string,
     date: string,
     image: string,
-    websites: Array<{site: string, key: string, hash: string}>,
+    websites: {site: string, key: string, hash: string}[],
 }
 
 export interface iTodos {

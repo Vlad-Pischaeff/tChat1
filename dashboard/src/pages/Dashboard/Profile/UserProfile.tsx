@@ -46,7 +46,7 @@ export const UserProfile = () => {
                         </div>
                         <hr/>
                         <div className={s.Item}>
-                            <p className={s.ItemTitle}>Web-sites: </p>
+                            <div className={s.ItemTitle}>Web-sites: </div>
                             <div className={s.ItemContainer} role="listbox">
                                 { data.websites.length === 0
                                     ? <div className={s.ItemNoValue}>No managed sites...</div>
