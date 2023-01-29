@@ -1,9 +1,11 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
+import bcrypt from 'bcryptjs-react';
+import { v4 as uuidv4 } from 'uuid';
 import { useAppDispatch, useAppSelector } from 'store/hook';
 import { selectCurrentUser } from 'store/slices/auth';
 import { setServicesModal, eModal } from "store/slices/ui";
-import { useUpdateUserMutation } from 'store/api/usersApi';
+import { useUpdateUserMutation, useGetUserQuery } from 'store/api/usersApi';
 import { withModalBG } from 'components/HOC';
 import s from 'pages/Dashboard/Services/Services.module.sass';
 
@@ -14,14 +16,23 @@ type tFormInputs = {
 const UserProfileAddSiteFormTmp = () => {
     const dispatch = useAppDispatch();
     const user = useAppSelector(selectCurrentUser);
+    const { data } = useGetUserQuery(user.id, { skip: !user.id });
     const [ updateUser ] = useUpdateUserMutation();
     const { register, resetField, handleSubmit } = useForm<tFormInputs>();
 
-    const onSubmit = (data: tFormInputs) => {
+    const onSubmit = async (formData: tFormInputs) => {
         // ✅ вызываем API '/users', обновляем 'websites'
-        const updatedData = { id: user.id, ...data }; // TODO data надо определить
-        updateUser(updatedData);
-        if (data.siteName) closeModal();
+        let websites;
+        const key = uuidv4();
+        const hash = await bcrypt.hashSync(key);
+        const site = formData.siteName.trim();
+
+        if (data) {
+            websites = [ ...data.websites, { key, hash, site } ];
+        }
+
+        updateUser({ id: user.id, body: { websites }});
+        if (formData.siteName) closeModal();
     };
 
     const closeModal = () => {

@@ -4,6 +4,8 @@
     color: var(--C5)
     position: relative
 .SubContainer
+    display: grid
+    grid-template-columns: minmax(8rem, 15%) 1fr
     margin: 1rem
     padding: 1rem
     width: 60%
@@ -12,6 +14,17 @@
     border: 1px solid #a0a0a030
     &:hover
         box-shadow: 0px 0px 15px 15px rgba(219, 193, 147, 0.1)
+.LeftSubContainer,
+.RightSubContainer
+    display: flex
+    flex-flow: column nowrap
+    justify-content: space-between
+    align-items: flex-start
+.LeftSubContainer
+    margin-right: 1rem
+    padding-right: 1rem
+    border-right: 1px solid var(--C2)
+
 .Image
     width: 6rem
     height: 6rem
@@ -21,9 +34,9 @@
 .ImageFill
     fill: #bbbbbbee
 .Item
-    display: flex
-    justify-content: flex-start
-    align-items: flex-start
+    display: grid
+    grid-template-columns: minmax(6rem, 15%) 1fr
+    width: 100%
     padding: 4px 0
 .ItemTitle
     flex: 0 0 5rem
@@ -34,27 +47,28 @@
     color: gray
 .PropertyContainer
     display: flex
-    justify-content: flex-start
+    justify-content: space-between
     align-items: center
-    padding-bottom: 4px
+    padding: 0 4px
     &:hover
         background: var(--color-HOVER)
     &:hover .PropertyIcon
         visibility: visible
 .PropertySite,
 .PropertyHash
-    flex: 1 1 auto
+    flex: 1 1 10rem
     margin-right: 8px
     padding-right: 4px
     overflow: hidden
     white-space: nowrap
     text-overflow: ellipsis
 .PropertyIcon
-    flex: 0 0 2rem
+    margin-left: 8px
     visibility: hidden
 hr
+    width: 100%
     margin: 12px 0
-    color: var(--C2)
+    color: #a0a0a030
 /**
  * add item button description
  */

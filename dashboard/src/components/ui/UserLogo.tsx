@@ -14,7 +14,7 @@ export const UserLogo = () => {
     const showProfile = () => {
         navigate("/dashboard/profile");
     }
-    console.log('theme toggle...', data, user)
+
     return (
         <div className={s.userContainer} onClick={showProfile}>
             { data &&
