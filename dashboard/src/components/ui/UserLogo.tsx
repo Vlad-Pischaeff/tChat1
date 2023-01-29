@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useAppSelector } from 'store/hook';
 import { useGetUserQuery } from 'store/api/usersApi';
 import { selectCurrentUser } from 'store/slices/auth';
@@ -8,11 +8,15 @@ import s from './UserLogo.module.sass';
 
 export const UserLogo = () => {
     const navigate = useNavigate();
+    const location = useLocation();
     const user = useAppSelector(selectCurrentUser);
     const { data } = useGetUserQuery(user.id, { skip: !user.id });
 
     const showProfile = () => {
-        navigate("/dashboard/profile");
+        // чтобы маршрут не попадал в историю 2 и более раз
+        if (location.pathname !== "/dashboard/profile") {
+            navigate("/dashboard/profile");
+        }
     }
 
     return (

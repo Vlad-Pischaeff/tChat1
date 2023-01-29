@@ -6,7 +6,9 @@ export const withModalBG = <T extends JSX.IntrinsicElements>(Component: React.Co
         return (
             <div className={s.ModalWrap}>
                 <div className={s.ModalBG}></div>
-                <Component { ...(props as T) } />
+                <div className={s.ModalComponentContainer}>
+                    <Component { ...(props as T) } />
+                </div>
             </div>
         )
     };
