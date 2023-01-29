@@ -41,8 +41,11 @@
 .ItemTitle
     color: gray
 .ItemContainer
+    display: block
     width: 100%
     margin: .5rem
+    overflow: auto
+    max-height: 10rem
 .ItemNoValue
     color: gray
 /**
@@ -51,7 +54,7 @@
 .PropertyContainer
     display: flex
     justify-content: space-between
-    align-items: center
+    align-items: flex-start
     padding:4px
     &:hover
         background: var(--color-HOVER)
@@ -64,11 +67,9 @@
 .PropertySite,
 .PropertyHash
     padding-right: 8px
-    overflow: hidden
-    white-space: nowrap
-    text-overflow: ellipsis
+    word-break: break-all
 .PropertySite
-    flex: 0 0 8rem
+    flex: 0 0 10rem
 .PropertyHash
     flex: 1 1 auto
 .PropertyIcon
@@ -90,7 +91,6 @@
     line-height: 2rem
     color: var(--C6)
     background: transparent
-    margin: 8px 0
     padding: 0 8px
     width: fit-content
     border-radius: 8px

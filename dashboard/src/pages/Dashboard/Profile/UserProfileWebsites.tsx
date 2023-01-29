@@ -30,7 +30,7 @@ export const UserProfileWebsites = () => {
                                     <div className={s.PropertyTitle}>site: </div>
                                     <div className={s.PropertySite}>{item.site}</div>
                                     <div className={s.PropertyTitle}>hash:</div>
-                                    <div className={s.PropertyHash}>{item.hash}</div>
+                                    <div className={s.PropertyHash}>{item.hash.substring(7)}</div>
                                     <div className={s.PropertyIcon}>
                                         <ICON.EditIcon />
                                     </div>

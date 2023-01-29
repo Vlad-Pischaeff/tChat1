@@ -24,8 +24,8 @@ const UserProfileAddSiteFormTmp = () => {
         // ✅ вызываем API '/users', обновляем 'websites'
         let websites;
         const key = uuidv4();
-        const hash = await bcrypt.hashSync(key);
         const site = formData.siteName.trim();
+        const hash = await bcrypt.hashSync(key + site);
 
         if (data) {
             websites = [ ...data.websites, { key, hash, site } ];
