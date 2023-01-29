@@ -13,34 +13,35 @@ export const UserProfileWebsites = () => {
     const user = useAppSelector(selectCurrentUser);
     const { data } = useGetUserQuery(user.id, { skip: !user.id });
 
-    return (
-        <div className={s.Item}>
-            <div className={s.ItemTitle}>Web-sites: </div>
-            <div className={s.ItemContainer} role="listbox">
-                { data && data.websites.length === 0
-                    ? <div className={s.ItemNoValue}>No managed sites...</div>
-                    : <>
-                        { data && data.websites.map(item => {
-                            return <div
-                                        role="listitem"
-                                        key={item.hash}
-                                        className={s.PropertyContainer}
-                                    >
-                                        <p className={s.PropertySite}>{item.site}</p>
-                                        {/* <p className={s.ItemTitle}>hash:</p>
-                                        <p className={s.PropertyHash}>{item.hash}</p> */}
-                                        <div className={s.PropertyIcon}>
-                                            <ICON.EditIcon />
-                                        </div>
-                                        <div className={s.PropertyIcon}>
-                                            <ICON.TrashIcon />
-                                        </div>
+    return <>
+        <div className={s.divider}></div>
+        <div className={s.ItemTitle}>Web-sites: </div>
+
+        <div className={s.ItemContainer} role="listbox">
+            { data && data.websites.length === 0
+                ? <div className={s.ItemNoValue}>No managed sites...</div>
+                : <>
+                    { data && data.websites.map(item => {
+                        return <div
+                                    role="listitem"
+                                    key={item.hash}
+                                    className={s.PropertyContainer}
+                                >
+                                    <div className={s.PropertyTitle}>site: </div>
+                                    <div className={s.PropertySite}>{item.site}</div>
+                                    <div className={s.PropertyTitle}>hash:</div>
+                                    <div className={s.PropertyHash}>{item.hash}</div>
+                                    <div className={s.PropertyIcon}>
+                                        <ICON.EditIcon />
                                     </div>
-                            })
-                        }
-                    </>
-                }
-            </div>
+                                    <div className={s.PropertyIcon}>
+                                        <ICON.TrashIcon />
+                                    </div>
+                                </div>
+                        })
+                    }
+                </>
+            }
         </div>
-    );
+    </>
 };

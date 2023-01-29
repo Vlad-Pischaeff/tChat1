@@ -46,7 +46,6 @@ export const UserProfile = () => {
                             <p className={s.ItemTitle}>E-mail: </p>
                             <p className={s.ItemValue}>{data.email}</p>
                         </div>
-                        <hr/>
 
                         <UserProfileWebsites />
 

@@ -8,8 +8,8 @@
     grid-template-columns: minmax(8rem, 15%) 1fr
     margin: 1rem
     padding: 1rem
-    width: 60%
-    min-width: 500px
+    width: 80%
+    min-width: 640px
     border-radius: 6px
     border: 1px solid #a0a0a030
     &:hover
@@ -39,36 +39,46 @@
     width: 100%
     padding: 4px 0
 .ItemTitle
-    flex: 0 0 5rem
     color: gray
 .ItemContainer
-    flex: 1 1 auto
+    width: 100%
+    margin: .5rem
 .ItemNoValue
     color: gray
+/**
+ * web sites item description
+ */
 .PropertyContainer
     display: flex
     justify-content: space-between
     align-items: center
-    padding: 0 4px
+    padding:4px
     &:hover
         background: var(--color-HOVER)
     &:hover .PropertyIcon
         visibility: visible
+.PropertyTitle
+    color: gray
+    flex: 0 0 2.5rem
+.PropertyValue,
 .PropertySite,
 .PropertyHash
-    flex: 1 1 10rem
-    margin-right: 8px
-    padding-right: 4px
+    padding-right: 8px
     overflow: hidden
     white-space: nowrap
     text-overflow: ellipsis
+.PropertySite
+    flex: 0 0 8rem
+.PropertyHash
+    flex: 1 1 auto
 .PropertyIcon
     margin-left: 8px
     visibility: hidden
-hr
+.divider
     width: 100%
+    height: 1px
     margin: 12px 0
-    color: #a0a0a030
+    background: #a0a0a030
 /**
  * add item button description
  */
