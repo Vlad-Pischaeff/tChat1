@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
 import bcrypt from 'bcryptjs-react';
-import { v4 as uuidv4 } from 'uuid';
+import randomstring from 'randomstring';
 import { useAppDispatch, useAppSelector } from 'store/hook';
 import { selectCurrentUser } from 'store/slices/auth';
 import { setServicesModal, eModal } from "store/slices/ui";
@@ -23,10 +23,10 @@ const UserProfileAddSiteFormTmp = () => {
     const onSubmit = async (formData: tFormInputs) => {
         // ✅ вызываем API '/users', обновляем 'websites'
         let websites;
-        const key = uuidv4();
+        const key = randomstring.generate();
         const site = formData.siteName.trim();
         const hash = await bcrypt.hashSync(key + site);
-
+        console.log('onsubmit', key, site, hash)
         if (data) {
             websites = [ ...data.websites, { key, hash, site } ];
         }
