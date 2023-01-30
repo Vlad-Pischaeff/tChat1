@@ -17,33 +17,35 @@ export const UserProfileWebsites = () => {
 
     return (
         <div className={s.ManagedSitesContainer}>
-            <div className={s.ItemsListTitle}>Web-sites: </div>
+            <div className={s.ManagedSitesSubContainer}>
+                <div className={s.ItemsListTitle}>Web-sites: </div>
 
-            <div className={s.ItemsContainer} role="listbox">
-                { data && data.websites.length === 0
-                    ? <div className={s.ItemNoValue}>No managed sites...</div>
-                    : <>
-                        { data && data.websites.map(item => {
-                            return <div
-                                        role="listitem"
-                                        key={item.hash}
-                                        className={s.PropertyContainer}
-                                    >
-                                        <div className={s.PropertyTitle}>site: </div>
-                                        <div className={s.PropertySite}>{item.site}</div>
-                                        <div className={s.PropertyTitle}>hash:</div>
-                                        <div className={s.PropertyHash}>{item.hash.substring(7)}</div>
-                                        <div className={s.PropertyIcon}>
-                                            <ICON.EditIcon />
+                <div className={s.ItemsContainer} role="listbox">
+                    { data && data.websites.length === 0
+                        ? <div className={s.ItemNoValue}>No managed sites...</div>
+                        : <>
+                            { data && data.websites.map(item => {
+                                return <div
+                                            role="listitem"
+                                            key={item.hash}
+                                            className={s.PropertyContainer}
+                                        >
+                                            <div className={s.PropertyTitle}>site: </div>
+                                            <div className={s.PropertySite}>{item.site}</div>
+                                            <div className={s.PropertyTitle}>hash:</div>
+                                            <div className={s.PropertyHash}>{item.hash.substring(7)}</div>
+                                            <div className={s.PropertyIcon}>
+                                                <ICON.EditIcon />
+                                            </div>
+                                            <div className={s.PropertyIcon}>
+                                                <ICON.TrashIcon />
+                                            </div>
                                         </div>
-                                        <div className={s.PropertyIcon}>
-                                            <ICON.TrashIcon />
-                                        </div>
-                                    </div>
-                            })
-                        }
-                    </>
-                }
+                                })
+                            }
+                        </>
+                    }
+                </div>
             </div>
 
             <input
