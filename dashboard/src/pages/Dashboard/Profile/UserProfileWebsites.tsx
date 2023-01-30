@@ -3,6 +3,8 @@ import { useAppSelector, useAppDispatch } from 'store/hook';
 import { useUpdateUserMutation, useGetUserQuery } from 'store/api/usersApi';
 import { selectCurrentUser } from 'store/slices/auth';
 import { setServicesModal, setEditedSite, eModal } from "store/slices/ui";
+// import { checkIfImageExists } from 'assets/utils';
+// import { Site } from 'assets/img';
 import { tWebsite } from 'store/api/apiTypes';
 import * as ICON from 'assets/icons';
 import s from './UserProfile.module.sass';
@@ -27,6 +29,18 @@ export const UserProfileWebsites = () => {
         updateUser({ id: user.id, body: { websites }});
     }
 
+    // const renderFavIcon = (site: string) => {
+    //     checkIfImageExists(`https://${item.site}/favicon.ico`, (exists) => {
+    //         if (exists) {
+    //             return <img className={s.PropertyFavIcon} src={`https://${site}/favicon.ico`} alt="favicon" />
+    //         } else {
+    //             return <div className={s.PropertyFavIcon}>
+    //                 <Site />
+    //             </div>
+    //         }
+    //     });
+    // }
+
     return (
         <div className={s.ManagedSitesContainer}>
             <div className={s.ManagedSitesSubContainer}>
@@ -42,6 +56,9 @@ export const UserProfileWebsites = () => {
                                             key={item.hash}
                                             className={s.PropertyContainer}
                                         >
+
+                                            <img className={s.PropertyFavIcon} src={`https://${item.site}/favicon.ico`} alt="favicon" />
+
                                             <div className={s.PropertyTitle}>site: </div>
                                             <div className={s.PropertySite}>{item.site}</div>
                                             <div className={s.PropertyTitle}>hash:</div>
