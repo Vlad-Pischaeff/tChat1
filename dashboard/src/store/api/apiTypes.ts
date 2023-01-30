@@ -1,10 +1,16 @@
+export type tWebsite = {
+    site: string,
+    key: string,
+    hash: string
+}
+
 export type tUser = {
     name: string,
     email: string,
     password?: string,
     date: string,
     image: string,
-    websites: {site: string, key: string, hash: string}[],
+    websites: tWebsite[],
 }
 
 export interface iTodos {

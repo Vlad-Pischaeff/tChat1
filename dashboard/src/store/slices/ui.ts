@@ -4,7 +4,7 @@ import { todosApi } from 'store/api/todosApi';
 import { notesApi } from 'store/api/notesApi';
 import { answersApi } from 'store/api/answersApi';
 import { tTheme } from 'assets/style/utils';
-import { iNotes, iAnswers } from 'store/api/apiTypes';
+import { iNotes, iAnswers, tWebsite } from 'store/api/apiTypes';
 import { tServiceMenu } from 'pages/Dashboard/Services/Types';
 import type { RootState } from 'store/store';
 
@@ -35,6 +35,7 @@ export type UIType = {
     servicesModal: eModal;
     editedNote: iNotes | null;
     editedAnswer: iAnswers | null;
+    editedSite: tWebsite | null;
     serviceMenu: iItemServiceMenu;
     notesFilterColor: string;
     answersFilterIcon: string;
@@ -49,6 +50,7 @@ const initialState: UIType = {
     servicesModal: eModal.none,
     editedNote: null,
     editedAnswer: null,
+    editedSite: null,
     serviceMenu: {
         noteActions: false,
         noteMark: false,
@@ -86,6 +88,9 @@ const slice = createSlice({
         },
         setEditedAnswer: (state, { payload }: PayloadAction<iAnswers | null>) => {
             state.editedAnswer = payload;
+        },
+        setEditedSite: (state, { payload }: PayloadAction<tWebsite | null>) => {
+            state.editedSite = payload;
         },
         setItemServiceMenu: (state, { payload }: PayloadAction<iItemServiceMenu | null>) => {
             const obj = { ...state.serviceMenu };
@@ -156,6 +161,7 @@ export const {
     setServicesModal,
     setEditedNote,
     setEditedAnswer,
+    setEditedSite,
     setItemServiceMenu,
     setNotesFilterColor,
     setAnswersFilterIcon,
@@ -175,6 +181,7 @@ export const selectUIServiceMenu = (state: RootState) => state.ui.serviceMenu;
 
 export const selectUIEditedNote = (state: RootState) => state.ui.editedNote;
 export const selectUIEditedAnswer = (state: RootState) => state.ui.editedAnswer;
+export const selectUIEditedSite = (state: RootState) => state.ui.editedSite;
 
 export const selectUIAnswersFilterIcon = (state: RootState) => state.ui.answersFilterIcon;
 
