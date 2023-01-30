@@ -47,8 +47,10 @@ const UserProfileAddSiteFormTmp = () => {
             }
         }
 
-        updateUser({ id: user.id, body: { websites }});
-        if (formData.siteName) closeModal();
+        if (formData.siteName) {
+            updateUser({ id: user.id, body: { websites }});
+            closeModal();
+        }
     };
 
     const closeModal = () => {
