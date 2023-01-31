@@ -35,7 +35,11 @@ export const UserProfileWebsites = () => {
 
                 <div className={s.ItemsContainer} role="listbox">
                     { data && data.websites.length === 0
-                        ? <div className={s.ItemNoValue}>No managed sites...</div>
+                        ? <>
+                            <div className={s.MainPlaceholder}>
+                                <p>No managed sites...</p>
+                            </div>
+                        </>
                         : <>
                             { data && data.websites.map(item => {
                                 return <div
@@ -43,9 +47,15 @@ export const UserProfileWebsites = () => {
                                             key={item.hash}
                                             className={s.PropertyContainer}
                                         >
-                                            <object className={s.PropertyFavIcon} data={`https://${item.site}/favicon.ico`} type="image/svg+xml">
-                                                <img className={s.PropertyFavIcon} src={Site} alt="favicon" loading="lazy" />
-                                            </object>
+
+                                            <img
+                                                className={s.PropertyFavIcon}
+                                                src={`https://${item.site}/favicon.ico`}
+                                                alt=""
+                                                onError={(e) => {
+                                                    e.currentTarget.src = `${Site}`
+                                                }}
+                                            />
 
                                             <div className={s.PropertyTitle}>site: </div>
                                             <div className={s.PropertySite}>{item.site}</div>
