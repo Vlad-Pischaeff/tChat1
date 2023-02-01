@@ -16,7 +16,6 @@ export const UserProfileChangeImageButton = () => {
 
     const onSelectFile = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files.length > 0) {
-            // setCrop(undefined);     // Makes crop preview update between images.
             const reader = new FileReader();
             reader.onload = () => {
                 dispatch(setEditedImage(reader.result?.toString() || null))
