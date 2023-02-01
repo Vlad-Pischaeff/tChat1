@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useForm } from "react-hook-form";
 import ReactCrop, { Crop, PixelCrop } from 'react-image-crop';
-import { canvasPreview, centerAspectCrop } from './UserProfileUtils';
+import { canvasPreview, canvasHidden, centerAspectCrop } from './UserProfileUtils';
 import { useAppDispatch, useAppSelector } from 'store/hook';
 import { selectCurrentUser } from 'store/slices/auth';
 import { setServicesModal, setEditedImage, selectUIEditedImage, eModal } from "store/slices/ui";
 import { useUpdateUserMutation, useGetUserQuery } from 'store/api/usersApi';
 import { withModalBG } from 'components/HOC';
 import s from 'pages/Dashboard/Services/Services.module.sass';
+import sl from './UserProfile.module.sass';
 import 'react-image-crop/dist/ReactCrop.css';
 
 const ASPECT = 1;
@@ -24,6 +25,7 @@ const UserProfileChangeImageFormTmp = () => {
     const imgSrc = useAppSelector(selectUIEditedImage);
     const imgRef = useRef<HTMLImageElement>(null);
     const previewCanvasRef = useRef<HTMLCanvasElement>(null);
+    const hiddenCanvasRef = useRef<HTMLCanvasElement>(null);
     const [ crop, setCrop ] = useState<Crop>();
     const [ completedCrop, setCompletedCrop ] = useState<PixelCrop>();
     // eslint-disable-next-line
@@ -34,23 +36,35 @@ const UserProfileChangeImageFormTmp = () => {
     const { setValue, register, resetField, handleSubmit } = useForm<tFormInputs>();
 
     useEffect(() => {
+        setCroppedImage();
+        // eslint-disable-next-line
+    }, [completedCrop]);
+
+    const setCroppedImage = async () => {
+        let avatar;
         if (
             completedCrop?.width &&
             completedCrop?.height &&
             imgRef.current &&
-            previewCanvasRef.current
+            previewCanvasRef.current &&
+            hiddenCanvasRef.current
         ) {
-            canvasPreview(
+            await canvasPreview(
                 imgRef.current,
                 previewCanvasRef.current,
                 completedCrop,
                 SCALE,
                 ROTATE,
             );
+            avatar = await canvasHidden(
+                previewCanvasRef.current,
+                hiddenCanvasRef.current
+            );
+            console.log('avatar...', avatar);
         }
-    }, [completedCrop]);
+    }
 
-    console.log('crop..', completedCrop)
+    // console.log('crop..', completedCrop)
 
     const onImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
         if (ASPECT) {
@@ -116,15 +130,18 @@ const UserProfileChangeImageFormTmp = () => {
 
             <div  className={s.FormBody}>
                 { !!completedCrop && (
-                    <canvas
-                        ref={previewCanvasRef}
-                        style={{
-                            borderRadius: '8px',
-                            objectFit: 'contain',
-                            width: '6rem',
-                            height: '6rem'
-                        }}
-                    />
+                    <div>
+                        <canvas
+                            ref={previewCanvasRef}
+                            className={sl.previewCanvas}
+                        />
+                        <canvas
+                            ref={hiddenCanvasRef}
+                            className={sl.hiddenCanvas}
+                            width='64'
+                            height='64'
+                        />
+                    </div>
                 )}
             </div>
 

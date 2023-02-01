@@ -60,8 +60,18 @@ export async function canvasPreview(
         image.naturalWidth,
         image.naturalHeight,
     )
-
     ctx.restore()
+}
+
+export async function canvasHidden(
+        canvas: HTMLCanvasElement,
+        hcanvas: HTMLCanvasElement
+    ) {
+    const hctx = hcanvas.getContext('2d');
+    if (hctx) {
+        hctx.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, 64, 64);
+    }
+    return hcanvas.toDataURL('image/jpeg');
 }
 
 export function centerAspectCrop(
