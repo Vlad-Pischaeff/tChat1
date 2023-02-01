@@ -24,6 +24,7 @@ export enum eModal {
     answer = 'ANSWER',
     editor = 'EDITOR',
     addSite = 'ADD_SITE',
+    changeImage = 'CHANGE_IMAGE',
     none = 'NONE'
 }
 
@@ -36,6 +37,7 @@ export type UIType = {
     editedNote: iNotes | null;
     editedAnswer: iAnswers | null;
     editedSite: tWebsite | null;
+    editedImage: string | null;
     serviceMenu: iItemServiceMenu;
     notesFilterColor: string;
     answersFilterIcon: string;
@@ -51,6 +53,7 @@ const initialState: UIType = {
     editedNote: null,
     editedAnswer: null,
     editedSite: null,
+    editedImage: null,
     serviceMenu: {
         noteActions: false,
         noteMark: false,
@@ -91,6 +94,9 @@ const slice = createSlice({
         },
         setEditedSite: (state, { payload }: PayloadAction<tWebsite | null>) => {
             state.editedSite = payload;
+        },
+        setEditedImage: (state, { payload }: PayloadAction<string | null>) => {
+            state.editedImage = payload;
         },
         setItemServiceMenu: (state, { payload }: PayloadAction<iItemServiceMenu | null>) => {
             const obj = { ...state.serviceMenu };
@@ -162,6 +168,7 @@ export const {
     setEditedNote,
     setEditedAnswer,
     setEditedSite,
+    setEditedImage,
     setItemServiceMenu,
     setNotesFilterColor,
     setAnswersFilterIcon,
@@ -182,6 +189,7 @@ export const selectUIServiceMenu = (state: RootState) => state.ui.serviceMenu;
 export const selectUIEditedNote = (state: RootState) => state.ui.editedNote;
 export const selectUIEditedAnswer = (state: RootState) => state.ui.editedAnswer;
 export const selectUIEditedSite = (state: RootState) => state.ui.editedSite;
+export const selectUIEditedImage = (state: RootState) => state.ui.editedImage;
 
 export const selectUIAnswersFilterIcon = (state: RootState) => state.ui.answersFilterIcon;
 

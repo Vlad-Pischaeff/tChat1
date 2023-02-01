@@ -13,18 +13,13 @@ type tFormInputs = {
     siteName: string;
 }
 
-const UserProfileAddSiteFormTmp = () => {
+const UserProfileChangeImageFormTmp = () => {
     const dispatch = useAppDispatch();
     const user = useAppSelector(selectCurrentUser);
     const editedSite = useAppSelector(selectUIEditedSite);
     const { data } = useGetUserQuery(user.id, { skip: !user.id });
     const [ updateUser ] = useUpdateUserMutation();
-    const { setFocus, setValue, register, resetField, handleSubmit } = useForm<tFormInputs>();
-
-    useEffect(() => {
-        setFocus("siteName", { shouldSelect: false });
-        // eslint-disable-next-line
-    }, []);
+    const { setValue, register, resetField, handleSubmit } = useForm<tFormInputs>();
 
     useEffect(() => {
         // ✅ invoke when editing site
@@ -83,4 +78,4 @@ const UserProfileAddSiteFormTmp = () => {
     );
 };
 
-export const UserProfileAddSiteForm = withModalBG(UserProfileAddSiteFormTmp);
+export const UserProfileChangeImageForm = withModalBG(UserProfileChangeImageFormTmp);

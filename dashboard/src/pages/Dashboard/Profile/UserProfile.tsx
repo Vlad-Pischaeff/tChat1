@@ -4,9 +4,13 @@ import { useGetUserQuery } from 'store/api/usersApi';
 import { selectCurrentUser } from 'store/slices/auth';
 import { selectUIServicesModal, eModal } from "store/slices/ui";
 import { UserProfileImage } from './UserProfileImage';
+import { UserProfileChangeImageButton} from './UserProfileChangeImageButton';
 import { UserProfileWebsites } from './UserProfileWebsites';
 import { UserProfileAddSiteForm } from './UserProfileAddSiteForm';
+import { UserProfileChangeImageForm } from './UserProfileChangeImageForm';
 import s from './UserProfile.module.sass';
+
+type eProfileModals = Extract<eModal, eModal.addSite | eModal.changeImage >;
 
 export const UserProfile = () => {
     const user = useAppSelector(selectCurrentUser);
@@ -16,8 +20,11 @@ export const UserProfile = () => {
     return (
         <div className={s.Container}>
 
-            { servicesModal === eModal.addSite &&
-                <UserProfileAddSiteForm />
+            {
+                {
+                    'ADD_SITE':     <UserProfileAddSiteForm />,
+                    'CHANGE_IMAGE': <UserProfileChangeImageForm />
+                }[servicesModal as eProfileModals]
             }
 
             { data &&
@@ -38,18 +45,11 @@ export const UserProfile = () => {
                             </div>
                         </div>
 
-
-                        <input
-                            type="button"
-                            className={s.AddItem}
-                            value="load image"
-                        />
+                        <UserProfileChangeImageButton />
                     </div>
 
                     <div className={s.RightSubContainer}>
-
                         <UserProfileWebsites />
-
                     </div>
                 </>
             }
