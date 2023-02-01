@@ -22,8 +22,8 @@ export const UserProfile = () => {
 
             {
                 {
-                    'ADD_SITE':     <UserProfileAddSiteForm />,
-                    'CHANGE_IMAGE': <UserProfileChangeImageForm />
+                    [eModal.addSite]:     <UserProfileAddSiteForm />,
+                    [eModal.changeImage]: <UserProfileChangeImageForm />
                 }[servicesModal as eProfileModals]
             }
 
