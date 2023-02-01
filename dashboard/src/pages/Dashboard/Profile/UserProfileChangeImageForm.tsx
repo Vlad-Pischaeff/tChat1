@@ -5,7 +5,7 @@ import { canvasPreview, canvasHidden, centerAspectCrop } from './UserProfileUtil
 import { useAppDispatch, useAppSelector } from 'store/hook';
 import { selectCurrentUser } from 'store/slices/auth';
 import { setServicesModal, setEditedImage, selectUIEditedImage, eModal } from "store/slices/ui";
-import { useUpdateUserMutation, useGetUserQuery } from 'store/api/usersApi';
+import { useUpdateUserMutation } from 'store/api/usersApi';
 import { withModalBG } from 'components/HOC';
 import s from 'pages/Dashboard/Services/Services.module.sass';
 import sl from './UserProfile.module.sass';
@@ -14,10 +14,6 @@ import 'react-image-crop/dist/ReactCrop.css';
 const ASPECT = 1;
 const ROTATE = 0;
 const SCALE = 1;
-
-type tFormInputs = {
-    editedImage: string;
-}
 
 const UserProfileChangeImageFormTmp = () => {
     const dispatch = useAppDispatch();
@@ -28,12 +24,9 @@ const UserProfileChangeImageFormTmp = () => {
     const hiddenCanvasRef = useRef<HTMLCanvasElement>(null);
     const [ crop, setCrop ] = useState<Crop>();
     const [ completedCrop, setCompletedCrop ] = useState<PixelCrop>();
-    // eslint-disable-next-line
-    const { data } = useGetUserQuery(user.id, { skip: !user.id });
-    // eslint-disable-next-line
+    const [ image64, setImage64 ] = useState('none');
     const [ updateUser ] = useUpdateUserMutation();
-    // eslint-disable-next-line
-    const { setValue, register, resetField, handleSubmit } = useForm<tFormInputs>();
+    const { handleSubmit } = useForm();
 
     useEffect(() => {
         setCroppedImage();
@@ -41,7 +34,6 @@ const UserProfileChangeImageFormTmp = () => {
     }, [completedCrop]);
 
     const setCroppedImage = async () => {
-        let avatar;
         if (
             completedCrop?.width &&
             completedCrop?.height &&
@@ -56,15 +48,13 @@ const UserProfileChangeImageFormTmp = () => {
                 SCALE,
                 ROTATE,
             );
-            avatar = await canvasHidden(
+            const avatar = await canvasHidden(
                 previewCanvasRef.current,
                 hiddenCanvasRef.current
             );
-            console.log('avatar...', avatar);
+            setImage64(avatar);
         }
     }
-
-    // console.log('crop..', completedCrop)
 
     const onImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
         if (ASPECT) {
@@ -73,32 +63,16 @@ const UserProfileChangeImageFormTmp = () => {
         }
     }
 
-    const onSubmit = async (formData: tFormInputs) => {
-        // // ✅ вызываем API '/users', обновляем 'image'
-        // let websites;
-        // const key = randomstring.generate();
-        // const site = formData.siteName.trim();
-        // const hash = await bcrypt.hashSync(key + site);
-
-        // if (data) {
-        //     if (editedSite) {
-        //         // ✅ invoke when edit site
-        //         const newWebsites = data.websites.filter(item => item.key !== editedSite.key)
-        //         websites = [ ...newWebsites, { key, hash, site } ];
-        //     } else {
-        //         // ✅ invoke when add site
-        //         websites = [ ...data.websites, { key, hash, site } ];
-        //     }
-        // }
-
-        // if (formData.siteName) {
-        //     updateUser({ id: user.id, body: { websites }});
-        //     closeModal();
-        // }
+    const onSubmit = async () => {
+        // ✅ вызываем API '/users', обновляем 'image'
+        if (image64 !== 'none') {
+            updateUser({ id: user.id, body: { image: image64 }});
+            closeModal();
+        }
     };
 
     const closeModal = () => {
-        resetField('editedImage');
+        setImage64('none');
         dispatch(setEditedImage(null));
         dispatch(setServicesModal(eModal.none));
     }
