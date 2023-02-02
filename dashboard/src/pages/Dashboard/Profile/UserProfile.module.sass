@@ -124,6 +124,12 @@
 /**
  * canvas description
  */
+.previewContainer,
+.imageContainer
+    width: 100%
+    margin-bottom: 1rem
+    display: grid
+    place-items: center
 .previewCanvas
     border-radius: 8px
     object-fit: contain
@@ -131,18 +137,14 @@
     height: 6rem
 .hiddenCanvas
     display: none
-    width: 64px
-    height: 64px
-.loader
-    width: 100%
-    margin-bottom: 1rem
-    height: 10rem
-    display: grid
-    place-items: center
-    & p
-        font-size: 1.5rem
-        font-weight: var(--font-700)
-        color: var(--C4)
+.imageContainer
+    min-height: 10rem
+    font-size: 1.5rem
+    font-weight: var(--font-700)
+    color: var(--C4)
+/**
+ * change image button description
+ */
 .label
     display: inline-block
     height: 100%

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useForm } from "react-hook-form";
 import ReactCrop, { Crop, PixelCrop } from 'react-image-crop';
-import { canvasPreview, canvasHidden, centerAspectCrop, WIDTH64, HEIGHT64 } from './UserProfileUtils';
+import { canvasPreview, canvasHidden, customCenterCrop } from './UserProfileUtils';
 import { useAppDispatch, useAppSelector } from 'store/hook';
 import { selectCurrentUser } from 'store/slices/auth';
 import { setServicesModal, setEditedImage, selectUIEditedImage, eModal } from "store/slices/ui";
@@ -57,10 +57,8 @@ const UserProfileChangeImageFormTmp = () => {
     }
 
     const onImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
-        if (ASPECT) {
-            const { width, height } = e.currentTarget;
-            setCrop(centerAspectCrop(width, height, ASPECT));
-        }
+        const { width, height } = e.currentTarget;
+        setCrop(customCenterCrop(width, height, ASPECT));
     }
 
     const onSubmit = async () => {
@@ -79,7 +77,7 @@ const UserProfileChangeImageFormTmp = () => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className={s.Form}>
-            <div className={s.FormBody}>
+            <div className={sl.imageContainer}>
                 { !!imgSrc
                     ? ( <ReactCrop
                             crop={crop}
@@ -99,25 +97,15 @@ const UserProfileChangeImageFormTmp = () => {
                                 onLoad={onImageLoad}
                             />
                         </ReactCrop> )
-                    : ( <div className={sl.loader}>
-                            <p>loading image...</p>
-                        </div> )
+                    : ( <p>loading image...</p> )
                 }
             </div>
 
-            <div  className={s.FormBody}>
+            <div className={sl.previewContainer}>
                 { !!completedCrop && (
                     <div>
-                        <canvas
-                            ref={previewCanvasRef}
-                            className={sl.previewCanvas}
-                        />
-                        <canvas
-                            ref={hiddenCanvasRef}
-                            className={sl.hiddenCanvas}
-                            width={WIDTH64}
-                            height={HEIGHT64}
-                        />
+                        <canvas className={sl.previewCanvas} ref={previewCanvasRef} />
+                        <canvas className={sl.hiddenCanvas} ref={hiddenCanvasRef} />
                     </div>
                 )}
             </div>

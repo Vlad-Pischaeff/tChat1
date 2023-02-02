@@ -1,8 +1,7 @@
-import { PixelCrop, centerCrop, makeAspectCrop } from 'react-image-crop';
+import { PixelCrop, centerCrop, makeAspectCrop, Crop } from 'react-image-crop';
 
 const TO_RADIANS = Math.PI / 180
-
-export const WIDTH64 = 64, HEIGHT64 = 64;
+const WIDTH64 = 64, HEIGHT64 = 64;
 
 export async function canvasPreview(
         image: HTMLImageElement,
@@ -28,7 +27,7 @@ export async function canvasPreview(
 
     canvas.width = Math.floor(crop.width * scaleX * pixelRatio)
     canvas.height = Math.floor(crop.height * scaleY * pixelRatio)
-
+    console.log('canvas...', canvas.width, canvas.height, crop)
     ctx.scale(pixelRatio, pixelRatio)
     ctx.imageSmoothingQuality = 'high'
 
@@ -70,6 +69,8 @@ export async function canvasHidden(
         hcanvas: HTMLCanvasElement
     ) {
     const hctx = hcanvas.getContext('2d');
+    hcanvas.width = WIDTH64;
+    hcanvas.height = HEIGHT64;
     if (hctx) {
         hctx.drawImage(
             canvas,
@@ -105,3 +106,26 @@ export function centerAspectCrop(
         mediaHeight,
     )
 }
+
+export function customCenterCrop(
+    mediaWidth: number,
+    mediaHeight: number,
+    aspect: number,
+): Crop {
+    let cropHeight, cropWidth;
+    if (mediaWidth > mediaHeight) {
+        cropHeight = mediaWidth / 2;
+        cropWidth = cropHeight * aspect;
+    } else {
+        cropWidth = mediaHeight / 2;
+        cropHeight = cropWidth / aspect;
+    }
+    return ({
+        unit: "px",
+        x: (mediaWidth - cropWidth) / 2,
+        y: (mediaHeight - cropHeight) / 2,
+        width: cropWidth,
+        height: cropHeight
+    })
+}
+// Object { unit: "px", x: 60.515, y: 0, width: 242.97, height: 266.6666564941406 }
