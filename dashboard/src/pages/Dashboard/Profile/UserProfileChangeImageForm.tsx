@@ -79,7 +79,7 @@ const UserProfileChangeImageFormTmp = () => {
         <form onSubmit={handleSubmit(onSubmit)} className={s.Form}>
             <div className={sl.imageContainer}>
                 { !!imgSrc
-                    ? ( <ReactCrop
+                    ?   <ReactCrop
                             crop={crop}
                             onChange={(_, percentCrop) => setCrop(percentCrop)}
                             onComplete={(c) => setCompletedCrop(c)}
@@ -96,8 +96,8 @@ const UserProfileChangeImageFormTmp = () => {
                                 }}
                                 onLoad={onImageLoad}
                             />
-                        </ReactCrop> )
-                    : ( <p>loading image...</p> )
+                        </ReactCrop>
+                    :   <p>loading image...</p>
                 }
             </div>
 

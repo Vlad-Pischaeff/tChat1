@@ -29,12 +29,7 @@ export const UserProfileWebsitesItem = ({ item }: iProps) => {
     }
 
     return (
-        <div
-            role="listitem"
-            key={item.hash}
-            className={s.PropertyContainer}
-        >
-
+        <div className={s.PropertyContainer}>
             <img
                 className={s.PropertyFavIcon}
                 src={`https://${item.site}/favicon.ico`}

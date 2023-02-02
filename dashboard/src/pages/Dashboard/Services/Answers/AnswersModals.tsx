@@ -4,21 +4,19 @@ import { selectUIServicesModal, eModal } from "store/slices/ui";
 import { AnswersAddForm } from './AnswersAddForm';
 import { AnswersEditor } from './AnswersEditor';
 
+type eProfileModals = Extract<eModal, eModal.answer | eModal.editor >;
+
+const MODAL_FORMS = {
+    [eModal.answer]: <AnswersAddForm />,
+    [eModal.editor]: <AnswersEditor />
+}
+
 export const AnswersModals = () => {
-    const servicesModal = useAppSelector(selectUIServicesModal);
-
-    interface iSymbol{
-        [key: string]: JSX.Element
-    }
-
-    const MODAL_FORMS: iSymbol = {
-        [eModal.answer]: <AnswersAddForm />,
-        [eModal.editor]: <AnswersEditor />
-    }
+    const modal = useAppSelector(selectUIServicesModal);
 
     return (
         <>
-            { MODAL_FORMS[servicesModal] }
+            { MODAL_FORMS[modal as eProfileModals] }
         </>
     );
 };

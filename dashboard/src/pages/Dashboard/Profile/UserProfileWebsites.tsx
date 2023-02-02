@@ -1,15 +1,16 @@
 import React from 'react';
-import { useAppSelector, useAppDispatch } from 'store/hook';
-import { useGetUserQuery } from 'store/api/usersApi';
-import { selectCurrentUser } from 'store/slices/auth';
+import { useAppDispatch } from 'store/hook';
 import { setServicesModal, eModal } from "store/slices/ui";
 import { UserProfileWebsitesItem } from './UserProfileWebsitesItem';
+import { tUser } from 'store/api/apiTypes';
 import s from './UserProfile.module.sass';
 
-export const UserProfileWebsites = () => {
+interface iProps extends React.HTMLAttributes<HTMLDivElement> {
+    user: tUser
+}
+
+export const UserProfileWebsites = ({ user }: iProps) => {
     const dispatch = useAppDispatch();
-    const user = useAppSelector(selectCurrentUser);
-    const { data } = useGetUserQuery(user.id, { skip: !user.id });
 
     const openModalAddSite = () => {
         dispatch(setServicesModal(eModal.addSite));
@@ -21,21 +22,17 @@ export const UserProfileWebsites = () => {
                 <div className={s.ItemsListTitle}>Web-sites: </div>
 
                 <div className={s.ItemsContainer} role="listbox">
-                    { data && data.websites.length === 0
-                        ? (
-                            <div className={s.MainPlaceholder}>
+                    { user.websites.length === 0
+                        ?   <div className={s.MainPlaceholder} role="listitem">
                                 <p>No managed sites...</p>
                             </div>
-                        )
-                        : (
-                            data && data.websites.map(item => {
+                        :   user.websites.map(item => {
                                 return (
-                                    <div key={item.key}>
+                                    <div key={item.key} role="listitem">
                                         <UserProfileWebsitesItem item={item} />
                                     </div>
                                 )
                             })
-                        )
                     }
                 </div>
             </div>
