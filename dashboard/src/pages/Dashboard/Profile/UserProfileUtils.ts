@@ -2,6 +2,8 @@ import { PixelCrop, centerCrop, makeAspectCrop } from 'react-image-crop';
 
 const TO_RADIANS = Math.PI / 180
 
+export const WIDTH64 = 64, HEIGHT64 = 64;
+
 export async function canvasPreview(
         image: HTMLImageElement,
         canvas: HTMLCanvasElement,
@@ -69,7 +71,17 @@ export async function canvasHidden(
     ) {
     const hctx = hcanvas.getContext('2d');
     if (hctx) {
-        hctx.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, 64, 64);
+        hctx.drawImage(
+            canvas,
+            0,
+            0,
+            canvas.width,
+            canvas.height,
+            0,
+            0,
+            WIDTH64,
+            HEIGHT64
+        );
     }
     return hcanvas.toDataURL('image/jpeg');
 }

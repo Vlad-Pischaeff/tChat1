@@ -23,7 +23,7 @@ export const UserLogo = () => {
         <div className={s.userContainer} onClick={showProfile}>
             { data &&
                 <>
-                    { data.image !== 'none'
+                    { data.image !== ''
                         ? <img src={data.image} className={s.userImage} alt="avatar" />
                         : <ICON.ProfileIcon />
                     }

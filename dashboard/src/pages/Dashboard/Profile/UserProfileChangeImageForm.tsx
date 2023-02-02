@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useForm } from "react-hook-form";
 import ReactCrop, { Crop, PixelCrop } from 'react-image-crop';
-import { canvasPreview, canvasHidden, centerAspectCrop } from './UserProfileUtils';
+import { canvasPreview, canvasHidden, centerAspectCrop, WIDTH64, HEIGHT64 } from './UserProfileUtils';
 import { useAppDispatch, useAppSelector } from 'store/hook';
 import { selectCurrentUser } from 'store/slices/auth';
 import { setServicesModal, setEditedImage, selectUIEditedImage, eModal } from "store/slices/ui";
@@ -24,7 +24,7 @@ const UserProfileChangeImageFormTmp = () => {
     const hiddenCanvasRef = useRef<HTMLCanvasElement>(null);
     const [ crop, setCrop ] = useState<Crop>();
     const [ completedCrop, setCompletedCrop ] = useState<PixelCrop>();
-    const [ image64, setImage64 ] = useState('none');
+    const [ image64, setImage64 ] = useState('');
     const [ updateUser ] = useUpdateUserMutation();
     const { handleSubmit } = useForm();
 
@@ -65,41 +65,44 @@ const UserProfileChangeImageFormTmp = () => {
 
     const onSubmit = async () => {
         // ✅ вызываем API '/users', обновляем 'image'
-        if (image64 !== 'none') {
+        if (image64 !== '') {
             updateUser({ id: user.id, body: { image: image64 }});
             closeModal();
         }
     };
 
     const closeModal = () => {
-        setImage64('none');
-        dispatch(setEditedImage(null));
+        setImage64('');
+        dispatch(setEditedImage(''));
         dispatch(setServicesModal(eModal.none));
     }
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className={s.Form}>
             <div className={s.FormBody}>
-                { !!imgSrc && (
-                    <ReactCrop
-                        crop={crop}
-                        onChange={(_, percentCrop) => setCrop(percentCrop)}
-                        onComplete={(c) => setCompletedCrop(c)}
-                        aspect={ASPECT}
-                    >
-                        <img
-                            ref={imgRef}
-                            alt="Crop me"
-                            src={imgSrc}
-                            style={{
-                                maxWidth: '400px',
-                                maxHeight: '300px',
-                                transform: `scale(${SCALE}) rotate(${ROTATE}deg)`
-                            }}
-                            onLoad={onImageLoad}
-                        />
-                    </ReactCrop>
-                )}
+                { !!imgSrc
+                    ? ( <ReactCrop
+                            crop={crop}
+                            onChange={(_, percentCrop) => setCrop(percentCrop)}
+                            onComplete={(c) => setCompletedCrop(c)}
+                            aspect={ASPECT}
+                        >
+                            <img
+                                ref={imgRef}
+                                alt="Crop me"
+                                src={imgSrc}
+                                style={{
+                                    maxWidth: '400px',
+                                    maxHeight: '300px',
+                                    transform: `scale(${SCALE}) rotate(${ROTATE}deg)`
+                                }}
+                                onLoad={onImageLoad}
+                            />
+                        </ReactCrop> )
+                    : ( <div className={sl.loader}>
+                            <p>loading image...</p>
+                        </div> )
+                }
             </div>
 
             <div  className={s.FormBody}>
@@ -112,8 +115,8 @@ const UserProfileChangeImageFormTmp = () => {
                         <canvas
                             ref={hiddenCanvasRef}
                             className={sl.hiddenCanvas}
-                            width='64'
-                            height='64'
+                            width={WIDTH64}
+                            height={HEIGHT64}
                         />
                     </div>
                 )}

@@ -37,7 +37,7 @@ export type UIType = {
     editedNote: iNotes | null;
     editedAnswer: iAnswers | null;
     editedSite: tWebsite | null;
-    editedImage: string | null;
+    editedImage: string;
     serviceMenu: iItemServiceMenu;
     notesFilterColor: string;
     answersFilterIcon: string;
@@ -53,7 +53,7 @@ const initialState: UIType = {
     editedNote: null,
     editedAnswer: null,
     editedSite: null,
-    editedImage: null,
+    editedImage: '',
     serviceMenu: {
         noteActions: false,
         noteMark: false,
@@ -95,7 +95,7 @@ const slice = createSlice({
         setEditedSite: (state, { payload }: PayloadAction<tWebsite | null>) => {
             state.editedSite = payload;
         },
-        setEditedImage: (state, { payload }: PayloadAction<string | null>) => {
+        setEditedImage: (state, { payload }: PayloadAction<string>) => {
             state.editedImage = payload;
         },
         setItemServiceMenu: (state, { payload }: PayloadAction<iItemServiceMenu | null>) => {

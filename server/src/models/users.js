@@ -25,7 +25,7 @@ const schema = new Schema({
     image: {
         type: String,
         required: true,
-        default: 'none'
+        default: ''
     },
     websites: [{
         site: String,

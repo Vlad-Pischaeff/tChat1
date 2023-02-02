@@ -1,24 +1,18 @@
-import React, { useEffect } from 'react';
-import { useAppSelector, useAppDispatch } from 'store/hook';
-import { setServicesModal, setEditedImage, selectUIEditedImage, eModal } from "store/slices/ui";
+import React from 'react';
+import { useAppDispatch } from 'store/hook';
+import { setServicesModal, setEditedImage, eModal } from "store/slices/ui";
 import s from './UserProfile.module.sass';
 
 export const UserProfileChangeImageButton = () => {
     const dispatch = useAppDispatch();
-    const imgSrc = useAppSelector(selectUIEditedImage);
-
-    useEffect(() => {
-        if (imgSrc) {
-            dispatch(setServicesModal(eModal.changeImage));
-        }
-        // eslint-disable-next-line
-    }, [imgSrc])
 
     const onSelectFile = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files.length > 0) {
+            dispatch(setServicesModal(eModal.changeImage));
+
             const reader = new FileReader();
             reader.onload = () => {
-                dispatch(setEditedImage(reader.result?.toString() || null))
+                dispatch(setEditedImage(reader.result?.toString() || ''))
             };
             reader.readAsDataURL(e.target.files[0]);
         }
