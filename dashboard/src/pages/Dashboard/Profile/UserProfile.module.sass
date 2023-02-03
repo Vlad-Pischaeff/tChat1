@@ -30,10 +30,20 @@
     display: grid
     grid-template-columns: minmax(4rem, 15%) 1fr
     width: 100%
-    padding: 4px 0
+    padding: 4px
     color: var(--C5)
 .ItemTitle
     color: gray
+.ItemIcon
+    margin: 4px
+.ItemContainer
+    display: flex
+    justify-content: space-between
+    align-items: flex-start
+    color: var(--C5)
+    &:hover
+        background: var(--color-HOVER)
+
 .ItemsContainer
     flex: 1 1 8rem
     width: 95%
@@ -66,7 +76,7 @@
     justify-content: space-between
     align-items: flex-start
     color: var(--C5)
-    padding:4px
+    padding: 4px
     &:hover
         background: var(--color-HOVER)
     &:hover .PropertyIcon

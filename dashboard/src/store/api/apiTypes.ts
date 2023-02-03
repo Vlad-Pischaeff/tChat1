@@ -6,6 +6,7 @@ export type tWebsite = {
 
 export type tUser = {
     name: string,
+    alias: string,
     email: string,
     password?: string,
     date: string,

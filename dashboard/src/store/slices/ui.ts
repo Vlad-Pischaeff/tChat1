@@ -25,6 +25,7 @@ export enum eModal {
     editor = 'EDITOR',
     addSite = 'ADD_SITE',
     changeImage = 'CHANGE_IMAGE',
+    changeAlias = 'CHANGE_ALIAS',
     none = 'NONE'
 }
 

@@ -21,7 +21,7 @@ export const UserProfile = () => {
             { data &&
                 <>
                     <div className={s.LeftSubContainer}>
-                        <div>
+                        <div style={{ width: '100%' }}>
                             <UserProfileImage user={data} />
 
                             <UserProfileDescriptions user={data} />

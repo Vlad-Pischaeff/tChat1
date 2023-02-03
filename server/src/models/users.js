@@ -8,6 +8,11 @@ const schema = new Schema({
         unique: true,
         required: true
     },
+    alias: {
+        type: String,
+        required: false,
+        default: ''
+    },
     email: {
         type: String,
         unique: true,
