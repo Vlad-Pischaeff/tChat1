@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAppDispatch } from 'store/hook';
 import { setServicesModal, setEditedImage, eModal } from "store/slices/ui";
+import * as ICON from 'assets/icons';
 import s from './UserProfile.module.sass';
 
 export const UserProfileChangeImageButton = () => {
@@ -19,12 +20,11 @@ export const UserProfileChangeImageButton = () => {
     }
 
     return (
-        <div className={s.AddItem}>
-            <label
-                htmlFor="file-input"
-                className={s.label}
-            >
-                change image
+        <div>
+            <label htmlFor="file-input" className={s.label}>
+                <div className={s.ItemIcon}>
+                    <ICON.EditIcon />
+                </div>
             </label>
             <input
                 id="file-input"

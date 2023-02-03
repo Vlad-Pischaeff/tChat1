@@ -22,10 +22,7 @@ export const UserProfileDescriptions = ({ user }: iProps) => {
             <ItemDescription title="E-mail: " desc={user.email} />
             <div className={s.ItemContainer}>
                 <ItemDescription title="Alias: " desc={user.alias} />
-                <div
-                    className={s.ItemIcon}
-                    onClick={openModalEditAlias}
-                >
+                <div className={s.ItemIcon} onClick={openModalEditAlias}>
                     <ICON.EditIcon />
                 </div>
             </div>
