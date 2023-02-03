@@ -27,7 +27,7 @@ export async function canvasPreview(
 
     canvas.width = Math.floor(crop.width * scaleX * pixelRatio)
     canvas.height = Math.floor(crop.height * scaleY * pixelRatio)
-    console.log('canvas...', canvas.width, canvas.height, crop)
+
     ctx.scale(pixelRatio, pixelRatio)
     ctx.imageSmoothingQuality = 'high'
 
