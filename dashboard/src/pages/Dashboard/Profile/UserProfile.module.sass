@@ -47,13 +47,16 @@
  */
 .ItemsContainer
     flex: 1 1 8rem
-    width: 95%
+    width: 100%
     padding: 4px
     overflow: auto
     border: 1px solid #a0a0a030
     border-radius: 8px
 .ItemsListTitle
     flex: 0 0 2rem
+    display: flex
+    justify-content: space-between
+    align-items: center
     color: gray
     margin-bottom: 1rem
 
@@ -114,7 +117,7 @@
     width: fit-content
     border-radius: 8px
     border: 2px solid var(--C2)
-    margin-top: 1rem
+    // margin-top: 1rem
     &:hover
         color: var(--C4)
         cursor: pointer

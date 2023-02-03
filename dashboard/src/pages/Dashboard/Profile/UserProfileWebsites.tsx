@@ -19,7 +19,15 @@ export const UserProfileWebsites = ({ user }: iProps) => {
     return (
         <div className={s.ManagedSitesContainer}>
             <div className={s.ManagedSitesSubContainer}>
-                <div className={s.ItemsListTitle}>Web-sites: </div>
+                <div className={s.ItemsListTitle}>
+                    <p>Web-sites:</p>
+                    <input
+                        type="button"
+                        className={s.AddItem}
+                        value="+ add site"
+                        onClick={openModalAddSite}
+                    />
+                </div>
 
                 <div className={s.ItemsContainer} role="listbox">
                     { user.websites.length === 0
@@ -36,13 +44,6 @@ export const UserProfileWebsites = ({ user }: iProps) => {
                     }
                 </div>
             </div>
-
-            <input
-                type="button"
-                className={s.AddItem}
-                value="+ add site"
-                onClick={openModalAddSite}
-            />
         </div>
     );
 };
