@@ -1,21 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import ReactCrop, { Crop, PixelCrop } from 'react-image-crop';
-import { canvasPreview, canvasHidden, customCenterCrop } from './UserProfileUtils';
+import { canvasPreview, canvasHidden, customCenterCrop } from './ProfileUtils';
 import { useAppDispatch, useAppSelector } from 'store/hook';
 import { selectCurrentUser } from 'store/slices/auth';
 import { setServicesModal, setEditedImage, selectUIEditedImage, eModal } from 'store/slices/ui';
 import { useUpdateUserMutation } from 'store/api/usersApi';
 import { withModalBG } from 'components/HOC';
 import s from 'pages/Dashboard/Services/Services.module.sass';
-import sl from './UserProfile.module.sass';
+import sl from './Profile.module.sass';
 import 'react-image-crop/dist/ReactCrop.css';
 
 const ASPECT = 1;
 const ROTATE = 0;
 const SCALE = 1;
 
-const UserProfileChangeImageFormTmp = () => {
+const ProfileChangeImageFormTmp = () => {
     const dispatch = useAppDispatch();
     const user = useAppSelector(selectCurrentUser);
     const imgSrc = useAppSelector(selectUIEditedImage);
@@ -118,4 +118,4 @@ const UserProfileChangeImageFormTmp = () => {
     );
 };
 
-export const UserProfileChangeImageForm = withModalBG(UserProfileChangeImageFormTmp);
+export const ProfileChangeImageForm = withModalBG(ProfileChangeImageFormTmp);

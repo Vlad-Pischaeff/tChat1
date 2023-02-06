@@ -2,32 +2,32 @@ import React from 'react';
 import { useAppSelector } from 'store/hook';
 import { useGetUserQuery } from 'store/api/usersApi';
 import { selectCurrentUser } from 'store/slices/auth';
-import { UserProfileDescriptions } from './UserProfileDescriptions';
-import { UserProfileImage } from './UserProfileImage';
-import { UserProfileWebsites } from './UserProfileWebsites';
-import { UserProfileModals } from './UserProfileModals';
-import s from './UserProfile.module.sass';
+import { ProfileDescriptions } from './ProfileDescriptions';
+import { ProfileImage } from './ProfileImage';
+import { ProfileWebsites } from './ProfileWebsites';
+import { ProfileModals } from './ProfileModals';
+import s from './Profile.module.sass';
 
-export const UserProfile = () => {
+export const Profile = () => {
     const user = useAppSelector(selectCurrentUser);
     const { data } = useGetUserQuery(user.id, { skip: !user.id });
 
     return (
         <div className={s.Container}>
 
-            <UserProfileModals />
+            <ProfileModals />
 
             { data &&
                 <>
                     <div className={s.LeftSubContainer}>
                         <div style={{ width: '100%' }}>
-                            <UserProfileImage user={data} />
-                            <UserProfileDescriptions user={data} />
+                            <ProfileImage user={data} />
+                            <ProfileDescriptions user={data} />
                         </div>
                     </div>
 
                     <div className={s.RightSubContainer}>
-                        <UserProfileWebsites user={data} />
+                        <ProfileWebsites user={data} />
                     </div>
                 </>
             }

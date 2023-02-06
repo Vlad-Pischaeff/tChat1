@@ -6,13 +6,13 @@ import { setServicesModal, setEditedSite, eModal } from 'store/slices/ui';
 import { Site } from 'assets/img';
 import { tWebsite } from 'store/api/apiTypes';
 import * as ICON from 'assets/icons';
-import s from './UserProfile.module.sass';
+import s from './Profile.module.sass';
 
 interface iProps extends React.HTMLAttributes<HTMLDivElement> {
     item: tWebsite
 }
 
-export const UserProfileWebsitesItem = ({ item }: iProps) => {
+export const ProfileWebsitesItem = ({ item }: iProps) => {
     const dispatch = useAppDispatch();
     const user = useAppSelector(selectCurrentUser);
     const [ updateUser ] = useUpdateUserMutation();

@@ -27,7 +27,7 @@ function App() {
                         </PrivateRoute>
                     }>
                         <Route path="main" element={<PAGE.MainWorkSpace />} />
-                        <Route path="profile" element={<PAGE.UserProfile />} />
+                        <Route path="profile" element={<PAGE.Profile />} />
                 </Route>
                 <Route path="*" element={<Navigate to="/login" replace />} />
             </Routes>

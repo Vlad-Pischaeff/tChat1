@@ -3,13 +3,13 @@ import { useAppDispatch } from 'store/hook';
 import { setServicesModal, eModal } from 'store/slices/ui';
 import { tUser } from 'store/api/apiTypes';
 import * as ICON from 'assets/icons';
-import s from './UserProfile.module.sass';
+import s from './Profile.module.sass';
 
 interface iProps extends React.HTMLAttributes<HTMLDivElement> {
     user: tUser
 }
 
-export const UserProfileDescriptions = ({ user }: iProps) => {
+export const ProfileDescriptions = ({ user }: iProps) => {
     const dispatch = useAppDispatch();
 
     const openModalEditAlias = () => {

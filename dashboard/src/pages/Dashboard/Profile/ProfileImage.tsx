@@ -1,13 +1,13 @@
 import React from 'react';
-import { UserProfileChangeImageButton } from './UserProfileChangeImageButton';
+import { ProfileChangeImageButton } from './ProfileChangeImageButton';
 import { tUser } from 'store/api/apiTypes';
-import s from './UserProfile.module.sass';
+import s from './Profile.module.sass';
 
 interface iProps extends React.HTMLAttributes<HTMLDivElement> {
     user: tUser
 }
 
-export const UserProfileImage = ({ user }: iProps) => {
+export const ProfileImage = ({ user }: iProps) => {
 
     return (
         <div className={s.ItemContainer} style={{ marginBottom: '1rem' }}>
@@ -20,7 +20,7 @@ export const UserProfileImage = ({ user }: iProps) => {
                     </svg>
             }
 
-            <UserProfileChangeImageButton />
+            <ProfileChangeImageButton />
         </div>
     );
 };

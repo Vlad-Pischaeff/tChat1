@@ -1,15 +1,15 @@
 import React from 'react';
 import { useAppDispatch } from 'store/hook';
 import { setServicesModal, eModal } from 'store/slices/ui';
-import { UserProfileWebsitesItem } from './UserProfileWebsitesItem';
+import { ProfileWebsitesItem } from './ProfileWebsitesItem';
 import { tUser } from 'store/api/apiTypes';
-import s from './UserProfile.module.sass';
+import s from './Profile.module.sass';
 
 interface iProps extends React.HTMLAttributes<HTMLDivElement> {
     user: tUser
 }
 
-export const UserProfileWebsites = ({ user }: iProps) => {
+export const ProfileWebsites = ({ user }: iProps) => {
     const dispatch = useAppDispatch();
 
     const openModalAddSite = () => {
@@ -37,7 +37,7 @@ export const UserProfileWebsites = ({ user }: iProps) => {
                         :   user.websites.map(item => {
                                 return (
                                     <div key={item.key} role="listitem">
-                                        <UserProfileWebsitesItem item={item} />
+                                        <ProfileWebsitesItem item={item} />
                                     </div>
                                 )
                             })

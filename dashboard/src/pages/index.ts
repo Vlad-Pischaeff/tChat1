@@ -8,4 +8,4 @@ export { DashboardLayout } from './Dashboard/DashboardLayout';
 
 export { MainWorkSpace } from './Dashboard/MainWorkSpace';
 
-export { UserProfile } from './Dashboard/Profile';
+export { Profile } from './Dashboard/Profile';
