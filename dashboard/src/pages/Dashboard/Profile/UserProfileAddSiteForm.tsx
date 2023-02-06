@@ -23,15 +23,13 @@ const UserProfileAddSiteFormTmp = () => {
     const { setFocus, setValue, register, resetField, handleSubmit } = useForm<tFormInputs>();
 
     useEffect(() => {
-        setFocus("siteName", { shouldSelect: false });
+        setFocus('siteName', { shouldSelect: false });
         // eslint-disable-next-line
     }, []);
 
     useEffect(() => {
         // ✅ invoke when editing site
-        if (editedSite) {
-            setValue('siteName', editedSite.site);
-        }
+        !!editedSite && setValue('siteName', editedSite.site);
         // eslint-disable-next-line
     }, [editedSite]);
 

@@ -9,9 +9,7 @@ export const ServicesBody = () => {
 
     return (
         <div className={s.body}>
-
             { BODY_OBJ[services]() }
-
         </div>
     );
 };

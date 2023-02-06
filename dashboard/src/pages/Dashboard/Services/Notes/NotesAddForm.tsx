@@ -16,7 +16,12 @@ export const NotesAddFormTmp = () => {
     const editedNote = useAppSelector(selectUIEditedNote);
     const [ addNote ] = useAddNoteMutation();
     const [ updateNote ] = useEditNoteMutation();
-    const { register, setValue, resetField, handleSubmit } = useForm<tFormInputs>();
+    const { setFocus, register, setValue, resetField, handleSubmit } = useForm<tFormInputs>();
+
+    useEffect(() => {
+        setFocus('title', { shouldSelect: false });
+        // eslint-disable-next-line
+    }, []);
 
     useEffect(() => {
         // ✅ invoke when editing note

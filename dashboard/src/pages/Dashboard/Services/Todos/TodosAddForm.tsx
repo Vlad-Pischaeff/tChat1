@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { useAppDispatch } from 'store/hook';
 import { setServicesModal, eModal } from "store/slices/ui";
@@ -13,7 +13,12 @@ type tFormInputs = {
 const TodosAddFormTmp = () => {
     const dispatch = useAppDispatch();
     const [ addTodo ] = useAddTodoMutation();
-    const { register, resetField, handleSubmit } = useForm<tFormInputs>();
+    const { setFocus, register, resetField, handleSubmit } = useForm<tFormInputs>();
+
+    useEffect(() => {
+        setFocus('description', { shouldSelect: false });
+        // eslint-disable-next-line
+    }, []);
 
     const onSubmit = (data: tFormInputs) => {
         // ✅ вызываем API '/todos', добавляем 'todo'

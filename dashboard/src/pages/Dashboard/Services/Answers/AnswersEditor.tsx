@@ -14,9 +14,7 @@ const AnswersEditorTmp = () => {
 
     useEffect(() => {
         // ✅ invoke when editing answers
-        if (editedAnswer) {
-            setConvertedText(editedAnswer.description);
-        }
+        !!editedAnswer && setConvertedText(editedAnswer.description);
         // eslint-disable-next-line
     }, [editedAnswer]);
 

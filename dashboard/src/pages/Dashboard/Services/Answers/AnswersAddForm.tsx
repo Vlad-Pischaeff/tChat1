@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { useAppSelector, useAppDispatch } from 'store/hook';
-import { selectUI, setServicesModal, setEditedAnswer, eModal } from "store/slices/ui";
+import { selectUIEditedAnswer, setServicesModal, setEditedAnswer, eModal } from "store/slices/ui";
 import { useAddAnswerMutation, useEditAnswerMutation } from 'store/api/answersApi';
 import { withModalBG } from 'components/HOC';
 import s from '../Services.module.sass';
@@ -12,23 +12,26 @@ type tFormInputs = {
 
 const AnswersAddFormTmp = () => {
     const dispatch = useAppDispatch();
-    const ui = useAppSelector(selectUI);
+    const editedAnswer = useAppSelector(selectUIEditedAnswer);
     const [ addAnswer ] = useAddAnswerMutation();
     const [ updateAnswer ] = useEditAnswerMutation();
-    const { setValue, register, resetField, handleSubmit } = useForm<tFormInputs>();
+    const { setFocus, setValue, register, resetField, handleSubmit } = useForm<tFormInputs>();
+
+    useEffect(() => {
+        setFocus('description', { shouldSelect: false });
+        // eslint-disable-next-line
+    }, []);
 
     useEffect(() => {
         // ✅ invoke when editing note
-        if (ui.editedAnswer) {
-            setValue('description', ui.editedAnswer.description);
-        }
+        !!editedAnswer && setValue('description', editedAnswer.description);
         // eslint-disable-next-line
-    }, [ui.editedAnswer]);
+    }, [editedAnswer]);
 
     const onSubmit = (data: tFormInputs) => {
-        if (ui.editedAnswer) {
+        if (editedAnswer) {
             // ✅ вызываем API '/answers', обновляем 'answers'
-            const updatedData = { id: ui.editedAnswer._id, ...data };
+            const updatedData = { id: editedAnswer._id, ...data };
             updateAnswer(updatedData);
         } else {
             // ✅ вызываем API '/answers', добавляем 'answers'
@@ -58,7 +61,7 @@ const AnswersAddFormTmp = () => {
             </div>
             <div className={s.FormButtons}>
                 <input className={s.Button} type="button" value="Close" onClick={closeModal} />
-                <input className={s.Button} type="submit" value={ui.editedAnswer ? "Update answer" : "Add answer"} />
+                <input className={s.Button} type="submit" value={editedAnswer ? "Update answer" : "Add answer"} />
             </div>
         </form>
     );
