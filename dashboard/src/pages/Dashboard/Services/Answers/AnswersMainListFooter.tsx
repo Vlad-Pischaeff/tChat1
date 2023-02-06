@@ -4,7 +4,7 @@ import {
     setItemServiceMenu,
     selectUIServiceMenu,
     selectUIAnswersFilterIcon
-} from "store/slices/ui";
+} from 'store/slices/ui';
 import { AnswersFilterServiceMenu } from './AnswersFilterServiceMenu';
 import { SYMBOLS_OBJ } from './AnswersVariables';
 import s from '../Services.module.sass';

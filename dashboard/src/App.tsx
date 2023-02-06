@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { PrivateRoute } from 'components/router';
-import { selectUIMessage } from "store/slices/ui";
+import { selectUIMessage } from 'store/slices/ui';
 import { useAppSelector } from 'store/hook';
 import * as PAGE from 'pages';
 import * as UI from 'components/ui';

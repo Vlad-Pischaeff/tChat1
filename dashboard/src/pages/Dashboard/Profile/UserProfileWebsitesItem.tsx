@@ -2,7 +2,7 @@ import React from 'react';
 import { useAppSelector, useAppDispatch } from 'store/hook';
 import { useUpdateUserMutation, useGetUserQuery } from 'store/api/usersApi';
 import { selectCurrentUser } from 'store/slices/auth';
-import { setServicesModal, setEditedSite, eModal } from "store/slices/ui";
+import { setServicesModal, setEditedSite, eModal } from 'store/slices/ui';
 import { Site } from 'assets/img';
 import { tWebsite } from 'store/api/apiTypes';
 import * as ICON from 'assets/icons';

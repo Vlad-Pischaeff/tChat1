@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useForm } from "react-hook-form";
+import { useForm } from 'react-hook-form';
 import bcrypt from 'bcryptjs-react';
 import randomstring from 'randomstring';
 import { useAppDispatch, useAppSelector } from 'store/hook';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAppSelector } from 'store/hook';
-import { selectUIAnswersFilterIcon } from "store/slices/ui";
+import { selectUIAnswersFilterIcon } from 'store/slices/ui';
 import { useAnswersQuery } from 'store/api/answersApi';
 import { AnswersItem } from './AnswersItem';
 import s from '../Services.module.sass';
@@ -18,7 +18,7 @@ export const AnswersMainList = () => {
             }
 
             return filteredData.map(answer =>
-                <div key={answer._id} role='listitem'>
+                <div key={answer._id} role="listitem">
                     <AnswersItem answer={answer} />
                 </div>
             )
@@ -26,7 +26,7 @@ export const AnswersMainList = () => {
     }
 
     return (
-        <div className={s.Main} role='list'>
+        <div className={s.Main} role="list">
             { data && data.length === 0 &&
                 <div className={s.MainPlaceholder}>
                     <p>No answers/questions...</p>

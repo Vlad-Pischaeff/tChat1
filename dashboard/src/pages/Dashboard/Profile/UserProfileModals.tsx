@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAppSelector } from 'store/hook';
-import { selectUIServicesModal, eModal } from "store/slices/ui";
+import { selectUIServicesModal, eModal } from 'store/slices/ui';
 import { UserProfileAddSiteForm } from './UserProfileAddSiteForm';
 import { UserProfileChangeImageForm } from './UserProfileChangeImageForm';
 import { UserProfileChangeAliasForm } from './UserProfileChangeAliasForm';

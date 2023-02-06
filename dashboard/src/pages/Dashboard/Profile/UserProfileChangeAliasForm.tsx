@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import { useForm } from "react-hook-form";
+import { useForm } from 'react-hook-form';
 import { useAppDispatch, useAppSelector } from 'store/hook';
 import { selectCurrentUser } from 'store/slices/auth';
-import { setServicesModal, eModal } from "store/slices/ui";
+import { setServicesModal, eModal } from 'store/slices/ui';
 import { useUpdateUserMutation, useGetUserQuery } from 'store/api/usersApi';
 import { withModalBG } from 'components/HOC';
 import s from 'pages/Dashboard/Services/Services.module.sass';

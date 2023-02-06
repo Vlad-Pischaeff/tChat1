@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAppDispatch } from 'store/hook';
-import { setServicesModal, setEditedAnswer, setItemServiceMenu, eModal } from "store/slices/ui";
+import { setServicesModal, setEditedAnswer, setItemServiceMenu, eModal } from 'store/slices/ui';
 import { useDeleteAnswerMutation } from 'store/api/answersApi';
 import { withHiddenMouseClickArea } from 'components/HOC';
 import * as ICONS from 'assets/icons';

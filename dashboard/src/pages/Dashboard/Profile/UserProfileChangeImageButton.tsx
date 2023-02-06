@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAppDispatch } from 'store/hook';
-import { setServicesModal, setEditedImage, eModal } from "store/slices/ui";
+import { setServicesModal, setEditedImage, eModal } from 'store/slices/ui';
 import * as ICON from 'assets/icons';
 import s from './UserProfile.module.sass';
 

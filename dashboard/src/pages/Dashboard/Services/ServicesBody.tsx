@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAppSelector } from 'store/hook';
-import { selectUIServices } from "store/slices/ui";
+import { selectUIServices } from 'store/slices/ui';
 import { BODY_OBJ } from './ServicesVariables';
 import s from './Services.module.sass';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAppDispatch } from 'store/hook';
-import { setServicesModal, eModal } from "store/slices/ui";
+import { setServicesModal, eModal } from 'store/slices/ui';
 import { UserProfileWebsitesItem } from './UserProfileWebsitesItem';
 import { tUser } from 'store/api/apiTypes';
 import s from './UserProfile.module.sass';

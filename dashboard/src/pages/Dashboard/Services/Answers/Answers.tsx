@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAppDispatch } from 'store/hook';
-import { setServicesModal, eModal } from "store/slices/ui";
+import { setServicesModal, eModal } from 'store/slices/ui';
 import { AnswersModals } from './AnswersModals';
 import { AnswersMainList } from './AnswersMainList';
 import { AnswersMainListFooter } from './AnswersMainListFooter';

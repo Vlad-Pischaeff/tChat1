@@ -1,7 +1,7 @@
 import React from 'react';
-import { useForm } from "react-hook-form";
+import { useForm } from 'react-hook-form';
 import { useAppSelector } from 'store/hook';
-import { selectUI } from "store/slices/ui";
+import { selectUI } from 'store/slices/ui';
 import { useAddTodoMutation } from 'store/api/todosApi';
 import s from '../Services.module.sass';
 

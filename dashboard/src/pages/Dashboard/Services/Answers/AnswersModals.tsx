@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAppSelector } from 'store/hook';
-import { selectUIServicesModal, eModal } from "store/slices/ui";
+import { selectUIServicesModal, eModal } from 'store/slices/ui';
 import { AnswersAddForm } from './AnswersAddForm';
 import { AnswersEditor } from './AnswersEditor';
 

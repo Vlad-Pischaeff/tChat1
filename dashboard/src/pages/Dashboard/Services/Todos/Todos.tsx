@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'store/hook';
-import { setServicesModal, selectUIServicesModal, eModal } from "store/slices/ui";
+import { setServicesModal, selectUIServicesModal, eModal } from 'store/slices/ui';
 import { useTodosQuery} from 'store/api/todosApi';
 import { TodosItem } from './TodosItem';
 import { iTodos } from 'store/api/apiTypes';
@@ -41,7 +41,7 @@ export const Todos = () => {
                 <TodosAddForm />
             }
 
-            <div className={s.Main} role='list'>
+            <div className={s.Main} role="list">
                 { data && data.length === 0 &&
                     <div className={s.MainPlaceholder}>
                         <p>No todos...</p>

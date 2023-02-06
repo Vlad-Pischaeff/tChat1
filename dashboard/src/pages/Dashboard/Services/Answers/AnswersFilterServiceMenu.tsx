@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAppDispatch } from 'store/hook';
-import { setAnswersFilterIcon } from "store/slices/ui";
+import { setAnswersFilterIcon } from 'store/slices/ui';
 import { withHiddenMouseClickArea } from 'components/HOC';
 import { SYMBOLS } from './AnswersVariables';
 import s from '../Services.module.sass';

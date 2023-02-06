@@ -1,7 +1,7 @@
 import React from 'react';
 import parse from 'html-react-parser';
 import { useAppSelector, useAppDispatch } from 'store/hook';
-import { selectUIServiceMenu, setItemServiceMenu } from "store/slices/ui";
+import { selectUIServiceMenu, setItemServiceMenu } from 'store/slices/ui';
 import { iAnswers } from 'store/api/apiTypes';
 import { AnswersServiceMenu } from './AnswersServiceMenu';
 import { AnswersMarkServiceMenu } from './AnswersMarkServiceMenu';

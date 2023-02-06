@@ -30,12 +30,3 @@ export const asyncImageLoader = (url: string) => {
         image.onerror = () => reject(new Error('could not load image'));
     });
 };
-
-// then use it like this
-
-// var image = asyncImageLoader(url)
-
-
-// image.then( res => {
-//     console.log(res)
-// })

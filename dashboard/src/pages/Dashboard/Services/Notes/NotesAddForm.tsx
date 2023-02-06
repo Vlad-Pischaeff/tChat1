@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { useForm } from "react-hook-form";
+import { useForm } from 'react-hook-form';
 import { useAppSelector, useAppDispatch } from 'store/hook';
-import { selectUIEditedNote, setServicesModal, setEditedNote, eModal } from "store/slices/ui";
+import { selectUIEditedNote, setServicesModal, setEditedNote, eModal } from 'store/slices/ui';
 import { useAddNoteMutation, useEditNoteMutation } from 'store/api/notesApi';
 import { withModalBG } from 'components/HOC';
 import s from '../Services.module.sass';

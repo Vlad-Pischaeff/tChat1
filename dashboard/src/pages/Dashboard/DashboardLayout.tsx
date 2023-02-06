@@ -11,7 +11,7 @@ export const DashboardLayout = () => {
     const dispatch = useAppDispatch();
     const [ trigger, { isLoading } ] = useLazyUsersQuery();
 
-    const handlerLogout = () => {
+    const Logout = () => {
         dispatch(logout());
         navigate("/", { replace: true });
     }
@@ -19,7 +19,7 @@ export const DashboardLayout = () => {
     const handlerGetUsers = async () => {
         const data = await trigger('', false);
         if ( data.status === "rejected") {
-            handlerLogout();
+            Logout();
         }
     }
 

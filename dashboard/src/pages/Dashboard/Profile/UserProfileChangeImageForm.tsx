@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useForm } from "react-hook-form";
+import { useForm } from 'react-hook-form';
 import ReactCrop, { Crop, PixelCrop } from 'react-image-crop';
 import { canvasPreview, canvasHidden, customCenterCrop } from './UserProfileUtils';
 import { useAppDispatch, useAppSelector } from 'store/hook';
 import { selectCurrentUser } from 'store/slices/auth';
-import { setServicesModal, setEditedImage, selectUIEditedImage, eModal } from "store/slices/ui";
+import { setServicesModal, setEditedImage, selectUIEditedImage, eModal } from 'store/slices/ui';
 import { useUpdateUserMutation } from 'store/api/usersApi';
 import { withModalBG } from 'components/HOC';
 import s from 'pages/Dashboard/Services/Services.module.sass';

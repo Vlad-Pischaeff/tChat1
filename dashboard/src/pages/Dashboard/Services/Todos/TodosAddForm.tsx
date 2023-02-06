@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { useForm } from "react-hook-form";
+import { useForm } from 'react-hook-form';
 import { useAppDispatch } from 'store/hook';
-import { setServicesModal, eModal } from "store/slices/ui";
+import { setServicesModal, eModal } from 'store/slices/ui';
 import { useAddTodoMutation } from 'store/api/todosApi';
 import { withModalBG } from 'components/HOC';
 import s from '../Services.module.sass';

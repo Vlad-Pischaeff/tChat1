@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAppDispatch } from 'store/hook';
-import { setServicesModal, setEditedNote, setItemServiceMenu, eModal } from "store/slices/ui";
+import { setServicesModal, setEditedNote, setItemServiceMenu, eModal } from 'store/slices/ui';
 import { useDeleteNoteMutation } from 'store/api/notesApi';
 import { withHiddenMouseClickArea } from 'components/HOC';
 import * as ICONS from 'assets/icons';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAppDispatch, useAppSelector } from 'store/hook';
 import { useNotesQuery} from 'store/api/notesApi';
-import { setItemServiceMenu, setServicesModal, eModal, selectUI } from "store/slices/ui";
+import { setItemServiceMenu, setServicesModal, eModal, selectUI } from 'store/slices/ui';
 import { NotesAddForm } from './NotesAddForm';
 import { NotesEditor } from './NotesEditor';
 import { NotesItem } from './NotesItem';
@@ -50,7 +50,7 @@ export const Notes = () => {
                 <NotesEditor />
             }
 
-            <div className={s.Main} role='list'>
+            <div className={s.Main} role="list">
                 { data && data.length === 0 &&
                     <div className={s.MainPlaceholder}>
                         <p>No notes...</p>

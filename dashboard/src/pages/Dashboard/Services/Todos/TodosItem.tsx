@@ -26,7 +26,7 @@ export const TodosItem = ({ todo }: iProps) => {
     }
 
     return (
-        <div className={`${s.item} ${todo.done ? s.done : null}`} role='listitem'>
+        <div className={`${s.item} ${todo.done ? s.done : null}`} role="listitem">
             <div className={s.itemDesc}>
                 {todo.description}
             </div>
