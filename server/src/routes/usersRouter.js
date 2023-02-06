@@ -21,6 +21,9 @@ usersRouter.route('/users/:id')
     .patch(auth, controller.updateUser)
     .get(auth, controller.getUser);
 
+usersRouter.route('/users/website/:siteID')
+    .patch(auth, controller.updateUserWebsite)
+
 usersRouter.route('/users/exclude/:id')
     .get(auth, controller.getExcludeUser);
 

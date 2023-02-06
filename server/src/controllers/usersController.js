@@ -92,6 +92,33 @@ const usersController = () => {
         }
     };
     /** ******************************************
+     * update user - host/api/users/website/${siteID}
+     * @param {string} siteID - site ID
+     ****************************************** */
+    const updateUserWebsite = async (req, res) => {
+        try {
+            const { siteID } = req.params;
+            const userID = req.id;
+            const { site, key, hash } = req.body;
+
+            await Users.updateOne(
+                { _id: userID, 'websites._id': siteID },
+                { $set: {
+                        "websites.$.site": site,
+                        "websites.$.hash": hash,
+                        "websites.$.key": key,
+                    }
+                }
+            );
+
+            const newUser = await Users.findOne({ _id: userID });
+
+            res.status(201).json(newUser);
+        } catch (e) {
+            res.status(500).json({ message: `Update user websites error, details... ${e.message}` });
+        }
+    };
+    /** ******************************************
      * get users exclude single user
      ****************************************** */
     const getExcludeUser = async (req, res) => {
@@ -178,6 +205,7 @@ const usersController = () => {
         loginUser,
         logoutUser,
         updateUser,
+        updateUserWebsite,
         getExcludeUser,
         getUser,
         refreshToken,

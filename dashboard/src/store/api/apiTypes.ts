@@ -1,4 +1,5 @@
 export type tWebsite = {
+    _id: string,
     site: string,
     key: string,
     hash: string

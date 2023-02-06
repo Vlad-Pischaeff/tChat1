@@ -5,7 +5,7 @@ import randomstring from 'randomstring';
 import { useAppDispatch, useAppSelector } from 'store/hook';
 import { selectCurrentUser } from 'store/slices/auth';
 import { setServicesModal, setEditedSite, selectUIEditedSite, eModal } from "store/slices/ui";
-import { useUpdateUserMutation, useGetUserQuery } from 'store/api/usersApi';
+import { useUpdateUserMutation, useUpdateUserWebsiteMutation, useGetUserQuery } from 'store/api/usersApi';
 import { withModalBG } from 'components/HOC';
 import s from 'pages/Dashboard/Services/Services.module.sass';
 
@@ -19,6 +19,7 @@ const UserProfileAddSiteFormTmp = () => {
     const editedSite = useAppSelector(selectUIEditedSite);
     const { data } = useGetUserQuery(user.id, { skip: !user.id });
     const [ updateUser ] = useUpdateUserMutation();
+    const [ updateWebsite ] = useUpdateUserWebsiteMutation();
     const { setFocus, setValue, register, resetField, handleSubmit } = useForm<tFormInputs>();
 
     useEffect(() => {
@@ -41,19 +42,15 @@ const UserProfileAddSiteFormTmp = () => {
         const site = formData.siteName.trim();
         const hash = await bcrypt.hashSync(key + site);
 
-        if (data) {
+        if (data && formData.siteName) {
             if (editedSite) {
                 // ✅ invoke when edit site
-                const newWebsites = data.websites.filter(item => item.key !== editedSite.key)
-                websites = [ ...newWebsites, { key, hash, site } ];
+                updateWebsite({ id: editedSite._id, body: { key, hash, site } });
             } else {
                 // ✅ invoke when add site
                 websites = [ ...data.websites, { key, hash, site } ];
+                updateUser({ id: user.id, body: { websites }});
             }
-        }
-
-        if (formData.siteName) {
-            updateUser({ id: user.id, body: { websites }});
             closeModal();
         }
     };

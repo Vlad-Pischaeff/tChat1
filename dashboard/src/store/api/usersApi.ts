@@ -26,6 +26,14 @@ export const usersApi = createApi({
             }),
             invalidatesTags: ['User'],
         }),
+        updateUserWebsite: builder.mutation({
+            query: (arg) => ({
+                url: `users/website/${arg.id}`,
+                method: 'PATCH',
+                body: { ...arg.body }
+            }),
+            invalidatesTags: ['User'],
+        }),
         addUser: builder.mutation({
             query: (user) => ({
                 url: 'users/register',
@@ -65,6 +73,7 @@ export const {
     useLazyGetUserQuery,
     useAddUserMutation,
     useUpdateUserMutation,
+    useUpdateUserWebsiteMutation,
     useLoginUserMutation,
     useResetUserPasswordMutation,
     useGetUserIdFromTokenMutation,
