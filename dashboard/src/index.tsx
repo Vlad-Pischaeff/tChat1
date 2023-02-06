@@ -5,7 +5,7 @@ import { store } from 'store/store';
 import App from './App';
 import 'assets/style/index.sass';
 import 'assets/style/quill.snow.css';
-import "react-quill-emoji/dist/quill-emoji.css";
+import 'react-quill-emoji/dist/quill-emoji.css';
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
