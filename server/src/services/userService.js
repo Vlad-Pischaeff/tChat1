@@ -22,7 +22,7 @@ class UserService {
         const hash = await bcrypt.hashSync(password, saltRounds);
         const user = await Users.create({ name, email, password: hash });
 
-        const userDTO = new UserDTO(user);
+        const userDTO = new UserDTO(user);          // ⚠️ it is extra code, should be removed
         const accessToken = TokenService.generateToken({ ...userDTO }, 'ACCESS');
         const refreshToken = TokenService.generateToken({ ...userDTO }, 'REFRESH');
 
@@ -48,7 +48,7 @@ class UserService {
             throw new Error('No such user or password...');
         }
 
-        const userDTO = new UserDTO(user);
+        const userDTO = new UserDTO(user);          // ⚠️ it is extra code, should be removed
         const accessToken = TokenService.generateToken({ ...userDTO }, 'ACCESS');
         const refreshToken = TokenService.generateToken({ ...userDTO }, 'REFRESH');
 
@@ -84,7 +84,7 @@ class UserService {
 
         const user = await Users.findById(userData.id);
 
-        const userDTO = new UserDTO(user);
+        const userDTO = new UserDTO(user);          // ⚠️ it is extra code, should be removed
         const accessToken = TokenService.generateToken({ ...userDTO }, 'ACCESS');
         const refreshToken = TokenService.generateToken({ ...userDTO }, 'REFRESH');
 

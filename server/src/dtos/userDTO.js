@@ -1,5 +1,7 @@
 'use strict';
 
+// ⚠️ it is extra code, should be removed
+
 module.exports = class UserDTO {
     id;
 

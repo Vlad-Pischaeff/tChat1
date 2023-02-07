@@ -171,7 +171,7 @@ const usersController = () => {
 
             // send email only if email existed
             if (user) {
-                const userDTO = new UserDTO(user);
+                const userDTO = new UserDTO(user);          // ⚠️ it is extra code, should be removed
                 const accessToken = TokenService.generateToken({ ...userDTO }, 'ACCESS', config.LIFETIME);
                 // TODO change link definition to .env variable
                 await MailService.sendResetPasswordMail(email, `${config.HOST}/setpw/${accessToken}`);

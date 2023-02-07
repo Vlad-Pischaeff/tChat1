@@ -1,5 +1,5 @@
 export type tWebsite = {
-    _id: string,
+    _id: string,        // ⚠️ it is extra code, should be removed
     id: string,
     site: string,
     key: string,
@@ -20,7 +20,7 @@ export type tUser = {
 
 export interface iTodos {
     // __v: number,
-    _id: string,
+    _id: string,        // ⚠️ it is extra code, should be removed
     id: string,
     date: number,
     description: string,
@@ -30,7 +30,7 @@ export interface iTodos {
 
 export interface iNotes {
     // __v: number,
-    _id: string,
+    _id: string,        // ⚠️ it is extra code, should be removed
     id: string,
     date: number,
     title: string,
@@ -41,7 +41,7 @@ export interface iNotes {
 
 export interface iAnswers {
     // __v: number,
-    _id: string,
+    _id: string,        // ⚠️ it is extra code, should be removed
     id: string,
     date: number,
     description: string,
