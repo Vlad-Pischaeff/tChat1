@@ -10,7 +10,7 @@ import {
 import { useEditNoteMutation } from 'store/api/notesApi';
 import { withModalBG } from 'components/HOC';
 import * as UI from 'components/ui';
-import s from '../Services.module.sass';
+import s from 'assets/style/forms.module.sass';
 
 const NotesEditorTmp = () => {
     const dispatch = useAppDispatch();

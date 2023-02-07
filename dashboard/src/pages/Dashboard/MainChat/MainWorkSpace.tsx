@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAppSelector, useAppDispatch } from 'store/hook';
 import { selectUIHiddenPanelServices, setHiddenPanelServices } from 'store/slices/ui';
-import { Services } from 'pages/Dashboard/Services';
+import { Services } from 'pages/Dashboard/MainChat/Services';
 import * as ICON from 'assets/icons';
 import s from './MainWorkSpace.module.sass';
 

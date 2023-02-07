@@ -4,7 +4,7 @@ import { useAppDispatch } from 'store/hook';
 import { setServicesModal, eModal } from 'store/slices/ui';
 import { useAddTodoMutation } from 'store/api/todosApi';
 import { withModalBG } from 'components/HOC';
-import s from '../Services.module.sass';
+import s from 'assets/style/forms.module.sass';
 
 type tFormInputs = {
     description: string;

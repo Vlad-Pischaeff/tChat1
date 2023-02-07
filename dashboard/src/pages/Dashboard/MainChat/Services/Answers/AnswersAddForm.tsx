@@ -4,7 +4,7 @@ import { useAppSelector, useAppDispatch } from 'store/hook';
 import { selectUIEditedAnswer, setServicesModal, setEditedAnswer, eModal } from 'store/slices/ui';
 import { useAddAnswerMutation, useEditAnswerMutation } from 'store/api/answersApi';
 import { withModalBG } from 'components/HOC';
-import s from '../Services.module.sass';
+import s from 'assets/style/forms.module.sass';
 
 type tFormInputs = {
     description: string;

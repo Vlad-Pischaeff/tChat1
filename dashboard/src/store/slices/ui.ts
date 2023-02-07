@@ -5,7 +5,7 @@ import { notesApi } from 'store/api/notesApi';
 import { answersApi } from 'store/api/answersApi';
 import { tTheme } from 'assets/style/utils';
 import { iNotes, iAnswers, tWebsite } from 'store/api/apiTypes';
-import { tServiceMenu } from 'pages/Dashboard/Services/Types';
+import { tServiceMenu } from 'pages/Dashboard/MainChat/Services/Types';
 import type { RootState } from 'store/store';
 
 export interface iItemServiceMenu {

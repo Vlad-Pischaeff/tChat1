@@ -1,9 +1,9 @@
 import React from 'react';
 import { MENU } from './Types';
-import { Todos } from 'pages/Dashboard/Services/Todos';
-import { Mail } from 'pages/Dashboard/Services/Mail';
-import { Notes } from 'pages/Dashboard/Services/Notes';
-import { Answers } from 'pages/Dashboard/Services/Answers';
+import { Todos } from 'pages/Dashboard/MainChat/Services/Todos';
+import { Mail } from 'pages/Dashboard/MainChat/Services/Mail';
+import { Notes } from 'pages/Dashboard/MainChat/Services/Notes';
+import { Answers } from 'pages/Dashboard/MainChat/Services/Answers';
 
 export const BODY = [
     { name: MENU[0], render: () => <Todos /> },

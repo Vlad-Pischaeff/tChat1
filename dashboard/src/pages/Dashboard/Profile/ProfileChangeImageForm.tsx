@@ -7,7 +7,7 @@ import { selectCurrentUser } from 'store/slices/auth';
 import { setServicesModal, setEditedImage, selectUIEditedImage, eModal } from 'store/slices/ui';
 import { useUpdateUserMutation } from 'store/api/usersApi';
 import { withModalBG } from 'components/HOC';
-import s from 'pages/Dashboard/Services/Services.module.sass';
+import s from 'assets/style/forms.module.sass';
 import sl from './Profile.module.sass';
 import 'react-image-crop/dist/ReactCrop.css';
 

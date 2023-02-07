@@ -4,7 +4,7 @@ import { selectUIEditedAnswer, setServicesModal, setEditedAnswer, setItemService
 import { useEditAnswerMutation } from 'store/api/answersApi';
 import { withModalBG } from 'components/HOC';
 import * as UI from 'components/ui';
-import s from '../Services.module.sass';
+import s from 'assets/style/forms.module.sass';
 
 const AnswersEditorTmp = () => {
     const dispatch = useAppDispatch();

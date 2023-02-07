@@ -5,7 +5,7 @@ import { selectCurrentUser } from 'store/slices/auth';
 import { setServicesModal, eModal } from 'store/slices/ui';
 import { useUpdateUserMutation, useGetUserQuery } from 'store/api/usersApi';
 import { withModalBG } from 'components/HOC';
-import s from 'pages/Dashboard/Services/Services.module.sass';
+import s from 'assets/style/forms.module.sass';
 
 type tFormInputs = {
     alias: string;

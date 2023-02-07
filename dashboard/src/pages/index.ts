@@ -6,6 +6,6 @@ export { PasswordChangePage } from './Auth/PasswordChangePage';
 
 export { DashboardLayout } from './Dashboard/DashboardLayout';
 
-export { MainWorkSpace } from './Dashboard/MainWorkSpace';
+export { MainWorkSpace } from './Dashboard/MainChat/MainWorkSpace';
 
 export { Profile } from './Dashboard/Profile';

@@ -4,7 +4,7 @@ import { useAppSelector, useAppDispatch } from 'store/hook';
 import { selectUIEditedNote, setServicesModal, setEditedNote, eModal } from 'store/slices/ui';
 import { useAddNoteMutation, useEditNoteMutation } from 'store/api/notesApi';
 import { withModalBG } from 'components/HOC';
-import s from '../Services.module.sass';
+import s from 'assets/style/forms.module.sass';
 
 type tFormInputs = {
     title: string;
