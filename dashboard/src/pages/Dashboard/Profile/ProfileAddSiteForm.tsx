@@ -43,7 +43,7 @@ const ProfileAddSiteFormTmp = () => {
         if (data && formData.siteName) {
             if (editedSite) {
                 // ✅ invoke when edit site
-                updateWebsite({ id: editedSite._id, body: { key, hash, site } });
+                updateWebsite({ id: editedSite.id, body: { key, hash, site } });
             } else {
                 // ✅ invoke when add site
                 websites = [ ...data.websites, { key, hash, site } ];

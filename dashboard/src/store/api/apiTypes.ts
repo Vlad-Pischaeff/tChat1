@@ -1,11 +1,13 @@
 export type tWebsite = {
     _id: string,
+    id: string,
     site: string,
     key: string,
     hash: string
 }
 
 export type tUser = {
+    id: string,
     name: string,
     nickname: string,
     alias: string,
@@ -17,8 +19,9 @@ export type tUser = {
 }
 
 export interface iTodos {
-    __v: number,
+    // __v: number,
     _id: string,
+    id: string,
     date: number,
     description: string,
     done: boolean,
@@ -26,8 +29,9 @@ export interface iTodos {
 }
 
 export interface iNotes {
-    __v: number,
+    // __v: number,
     _id: string,
+    id: string,
     date: number,
     title: string,
     description: string,
@@ -36,8 +40,9 @@ export interface iNotes {
 }
 
 export interface iAnswers {
-    __v: number,
+    // __v: number,
     _id: string,
+    id: string,
     date: number,
     description: string,
     type: string,

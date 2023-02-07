@@ -19,6 +19,7 @@ export const ProfileDescriptions = ({ user }: iProps) => {
     return (
         <div role="listbox">
             <ItemDescription title="Name: " desc={user.name} />
+            <ItemDescription title="NickName: " desc={user.nickname} />
             <ItemDescription title="E-mail: " desc={user.email} />
             <div className={s.ItemContainer}>
                 <ItemDescription title="Alias: " desc={user.alias} />

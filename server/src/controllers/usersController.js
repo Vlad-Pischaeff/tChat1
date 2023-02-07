@@ -35,9 +35,9 @@ const usersController = () => {
             const userData = await UserService.registerUser(name, email, password);
             const { refreshToken, accessToken, id } = userData;
 
-            // await fillAnswersTemplates(id); // add answers templates to new user
-            // await fillNotesTemplates(id);   // add notes templates to new user
-            // await fillTodosTemplates(id);   // add todos templates to new user
+            await fillAnswersTemplates(id); // add answers templates to new user
+            await fillNotesTemplates(id);   // add notes templates to new user
+            await fillTodosTemplates(id);   // add todos templates to new user
 
             res.cookie('refreshToken', refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true });
             res.status(201).json({ accessToken, id });

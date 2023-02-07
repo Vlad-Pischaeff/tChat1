@@ -14,4 +14,8 @@ module.exports = async () => {
         },
         () => { console.log('connected to db'); }
     );
+    await mongoose.set('toJSON', {
+        virtuals: true,
+        versionKey: false,
+    });
 };

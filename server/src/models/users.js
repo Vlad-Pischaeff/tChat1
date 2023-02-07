@@ -14,8 +14,8 @@ const schema = new Schema({
         required: true,
         default: function() {
             let n = this.name
-                        .replace(/[^\w\d ]/gi, '')
-                        .replace(/\s+/g, '_')
+                        .replace(/[^\w\d ]/gi, '')  // удаляем спецсимволы
+                        .replace(/\s+/g, '_')       // заменяем пробелы
                         .toLowerCase();
             return '@' + n;
         }
