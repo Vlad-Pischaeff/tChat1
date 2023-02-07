@@ -8,6 +8,18 @@ const schema = new Schema({
         unique: true,
         required: true
     },
+    nickname: {
+        type: String,
+        unique: true,
+        required: true,
+        default: function() {
+            let n = this.name
+                        .replace(/[^\w\d ]/gi, '')
+                        .replace(/\s+/g, '_')
+                        .toLowerCase();
+            return '@' + n;
+        }
+    },
     alias: {
         type: String,
         required: false,
