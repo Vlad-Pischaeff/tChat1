@@ -30,7 +30,7 @@ const NotesEditorTmp = () => {
         if (editedNote) {
             // ✅ вызываем API '/notes', обновляем 'note'
             const updatedData = {
-                id: editedNote._id,
+                id: editedNote.id,
                 description: convertedText
             };
             updateNote(updatedData);

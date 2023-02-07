@@ -35,7 +35,7 @@ export const NotesAddFormTmp = () => {
     const onSubmit = (data: tFormInputs) => {
         if (editedNote) {
             // ✅ вызываем API '/notes', обновляем 'note'
-            const updatedData = { id: editedNote._id, ...data };
+            const updatedData = { id: editedNote.id, ...data };
             updateNote(updatedData);
         } else {
             // ✅ вызываем API '/notes', добавляем 'note'

@@ -31,7 +31,7 @@ const AnswersAddFormTmp = () => {
     const onSubmit = (data: tFormInputs) => {
         if (editedAnswer) {
             // ✅ вызываем API '/answers', обновляем 'answers'
-            const updatedData = { id: editedAnswer._id, ...data };
+            const updatedData = { id: editedAnswer.id, ...data };
             updateAnswer(updatedData);
         } else {
             // ✅ вызываем API '/answers', добавляем 'answers'

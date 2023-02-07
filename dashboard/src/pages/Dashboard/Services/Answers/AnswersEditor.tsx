@@ -22,7 +22,7 @@ const AnswersEditorTmp = () => {
         if (editedAnswer) {
             // ✅ вызываем API '/answers', обновляем 'answers'
             const updatedData = {
-                id: editedAnswer._id,
+                id: editedAnswer.id,
                 description: convertedText
             };
             updateAnswer(updatedData);

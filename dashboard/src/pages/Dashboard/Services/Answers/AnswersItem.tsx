@@ -20,7 +20,7 @@ export const AnswersItem = ({ answer }: iProps) => {
 
     const showMenu = (e: React.MouseEvent<HTMLDivElement>) => {
         e.preventDefault();
-        dispatch(setItemServiceMenu({ answerActions: answer._id }));
+        dispatch(setItemServiceMenu({ answerActions: answer.id }));
     }
 
     const sendAnswer = () => {
@@ -40,11 +40,12 @@ export const AnswersItem = ({ answer }: iProps) => {
                 <div className={s.SummaryMenu} onClick={sendAnswer}>
                     <ICONS.SendIcon />
                 </div>
-                { serviceMenu.answerActions === answer._id &&
+
+                { serviceMenu.answerActions === answer.id &&
                     <AnswersServiceMenu answer={answer} />
                 }
 
-                { serviceMenu.answerMark === answer._id &&
+                { serviceMenu.answerMark === answer.id &&
                     <AnswersMarkServiceMenu answer={answer} />
                 }
             </div>

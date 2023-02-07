@@ -17,7 +17,7 @@ export const NotesMarkSM = ({ note, closeMenu }: iProps) => {
     const handlerSelectColor = (e: React.MouseEvent<HTMLDivElement>) => {
         e.preventDefault();
         const body = { type: e.currentTarget.id };
-        const data = { id: note._id, ...body };
+        const data = { id: note.id, ...body };
         updateNote(data);
         closeMenu(e);       // ✅ hide menu after marking
     }

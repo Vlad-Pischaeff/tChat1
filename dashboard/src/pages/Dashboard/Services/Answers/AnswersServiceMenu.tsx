@@ -25,12 +25,12 @@ export const AnswersSM = ({ answer, closeMenu }: iProps) => {
 
     const handlerMarkAnswer = ( e: React.MouseEvent<HTMLDivElement>) => {
         e.preventDefault();
-        dispatch(setItemServiceMenu({ answerMark: answer._id }));
+        dispatch(setItemServiceMenu({ answerMark: answer.id }));
     }
 
     const handlerDeleteAnswer = ( e: React.MouseEvent<HTMLDivElement>) => {
         e.preventDefault();
-        deleteAnswer({ id: answer._id });
+        deleteAnswer({ id: answer.id });
         closeMenu(e);           // ✅ hide menu after deleting
     }
 

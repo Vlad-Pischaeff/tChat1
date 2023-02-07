@@ -19,7 +19,7 @@ export const NotesItem = ({ note }: iProps) => {
 
     const showMenu = (e: React.MouseEvent<HTMLDivElement>) => {
         e.preventDefault();
-        dispatch(setItemServiceMenu({ noteActions: note._id }));
+        dispatch(setItemServiceMenu({ noteActions: note.id }));
     }
 
     return (
@@ -36,17 +36,17 @@ export const NotesItem = ({ note }: iProps) => {
                         <ICONS.ServiceMenuIcon />
                     </div>
 
-                    { serviceMenu.noteActions === note._id &&
+                    { serviceMenu.noteActions === note.id &&
                         <NotesServiceMenu note={note} />
                     }
 
-                    { serviceMenu.noteMark === note._id &&
+                    { serviceMenu.noteMark === note.id &&
                         <NotesMarkServiceMenu note={note} />
                     }
                 </div>
             </summary>
             <div className={s.SummaryDescription}>
-                {parse(removeContentEditableAttr(note.description))}
+                { parse(removeContentEditableAttr(note.description)) }
             </div>
         </details>
     );

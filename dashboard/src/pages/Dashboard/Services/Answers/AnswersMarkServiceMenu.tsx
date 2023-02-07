@@ -16,7 +16,7 @@ export const AnswersMarkSM = ({ answer, closeMenu }: iProps) => {
     const handlerSelectColor = (e: React.MouseEvent<HTMLDivElement>) => {
         e.preventDefault();
         const body = { type: e.currentTarget.id };
-        const data = { id: answer._id, ...body };
+        const data = { id: answer.id, ...body };
         updateAnswer(data);
         closeMenu(e);           // ✅ hide menu after marking
     }

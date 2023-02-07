@@ -25,12 +25,12 @@ export const NotesSM = ({ note, closeMenu }: iProps) => {
 
     const handlerMarkNote = ( e: React.MouseEvent<HTMLDivElement>) => {
         e.preventDefault();
-        dispatch(setItemServiceMenu({ noteMark: note._id }));
+        dispatch(setItemServiceMenu({ noteMark: note.id }));
     }
 
     const handlerDeleteNote = ( e: React.MouseEvent<HTMLDivElement>) => {
         e.preventDefault();
-        deleteNote({ id: note._id });
+        deleteNote({ id: note.id });
         handlerHideMenu(e);    // ✅ hide menu after deleting
     }
 

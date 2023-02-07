@@ -194,5 +194,6 @@ export const selectUIEditedSite = (state: RootState) => state.ui.editedSite;
 export const selectUIEditedImage = (state: RootState) => state.ui.editedImage;
 
 export const selectUIAnswersFilterIcon = (state: RootState) => state.ui.answersFilterIcon;
+export const selectUINotesFilterColor = (state: RootState) => state.ui.notesFilterColor;
 
 export const selectUIHiddenPanelServices = (state: RootState) => state.ui.hiddenPanelServices;

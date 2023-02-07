@@ -18,7 +18,7 @@ export const AnswersMainList = () => {
             }
 
             return filteredData.map(answer =>
-                <div key={answer._id} role="listitem">
+                <div key={answer.id} role="listitem">
                     <AnswersItem answer={answer} />
                 </div>
             )

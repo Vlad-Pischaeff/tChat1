@@ -5,7 +5,7 @@ import { ProfileAddSiteForm } from './ProfileAddSiteForm';
 import { ProfileChangeImageForm } from './ProfileChangeImageForm';
 import { ProfileChangeAliasForm } from './ProfileChangeAliasForm';
 
-type eProfileModals = Extract<eModal, eModal.addSite | eModal.changeImage| eModal.changeAlias >;
+type eProfileModals = Extract<eModal, eModal.addSite | eModal.changeImage | eModal.changeAlias>;
 
 const MODAL_FORMS = {
     [eModal.addSite]:     <ProfileAddSiteForm />,

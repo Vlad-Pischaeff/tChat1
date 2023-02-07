@@ -16,12 +16,12 @@ export const TodosItem = ({ todo }: iProps) => {
 
     const handleChange = () => {
         const body = { done: !todo.done };
-        const data = { id: todo._id, ...body };
+        const data = { id: todo.id, ...body };
         updateTodo(data);
     }
 
     const handleClick = () => {
-        const data = { id: todo._id };
+        const data = { id: todo.id };
         deleteTodo(data);
     }
 
@@ -34,7 +34,7 @@ export const TodosItem = ({ todo }: iProps) => {
                 { format(new Date(todo.date), 'dd.MMM.yyyy') }
             </div>
             <div className={s.itemCheck}>
-                <UI.CheckBox checked={todo.done} idx={todo._id} onChange={handleChange}/>
+                <UI.CheckBox checked={todo.done} idx={todo.id} onChange={handleChange}/>
             </div>
             <div className={s.itemDelete} onClick={handleClick}>
                 <ICON.TrashIcon />

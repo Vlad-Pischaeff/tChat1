@@ -32,7 +32,7 @@ export const AnswersMainListFooter = () => {
                 Select...
             </div>
 
-            { serviceMenu.answersFilter !== false &&
+            { !!serviceMenu.answersFilter &&
                 <AnswersFilterServiceMenu />
             }
         </div>

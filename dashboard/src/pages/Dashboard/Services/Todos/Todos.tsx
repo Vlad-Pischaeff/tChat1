@@ -49,7 +49,7 @@ export const Todos = () => {
                 }
                 { isSuccess && data &&
                     FILTER[checked](data).map(todo =>
-                        <TodosItem key={todo._id} todo={todo} />
+                        <TodosItem key={todo.id} todo={todo} />
                     )
                 }
                 { isLoading && <div>Loading...</div>}
