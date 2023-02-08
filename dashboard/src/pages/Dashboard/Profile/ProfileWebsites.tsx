@@ -14,36 +14,34 @@ export const ProfileWebsites = () => {
     }
 
     return (
-        <div className={s.ManagedSitesContainer}>
-            <div className={s.ManagedSitesSubContainer}>
-                <div className={s.ItemsListTitle}>
-                    <p>Web-sites:</p>
-                    <input
-                        type="button"
-                        className={s.AddItem}
-                        value="+ add site"
-                        onClick={openModalAddSite}
-                    />
-                </div>
-
-                <div className={s.ItemsContainer} role="listbox">
-                    { !!data && isSuccess && (
-                        data.length === 0
-                            ?   <div className={s.MainPlaceholder} role="listitem">
-                                    <p>No managed sites...</p>
-                                </div>
-                            :   data.map(item => {
-                                    return (
-                                        <div key={item.key} role="listitem">
-                                            <ProfileWebsitesItem item={item} />
-                                        </div>
-                                    )
-                                })
-                    )}
-                </div>
-
-                { isLoading && <div>Loading...</div>}
+        <div className={s.ManagedSitesSubContainer}>
+            <div className={s.ItemsListTitle}>
+                <p>Web-sites:</p>
+                <input
+                    type="button"
+                    className={s.AddItem}
+                    value="+ add site"
+                    onClick={openModalAddSite}
+                />
             </div>
+
+            <div className={s.ItemsContainer} role="listbox">
+                { !!data && isSuccess && (
+                    data.length === 0
+                        ?   <div className={s.MainPlaceholder} role="listitem">
+                                <p>No managed sites...</p>
+                            </div>
+                        :   data.map(item => {
+                                return (
+                                    <div key={item.key} role="listitem">
+                                        <ProfileWebsitesItem item={item} />
+                                    </div>
+                                )
+                            })
+                )}
+            </div>
+
+            { isLoading && <div>Loading...</div>}
         </div>
     );
 };

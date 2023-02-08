@@ -47,11 +47,18 @@ const schema = new Schema({
         required: false,
         default: ''
     },
-    // websites: [{
-    //     site: String,
-    //     key: String,
-    //     hash: String
-    // }]
+    team: [{
+        member: {
+            type: Schema.Types.ObjectId,
+            ref: 'Users'
+        },
+        sites: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Websites'
+            }
+        ]
+    }],
 });
 
 module.exports = model('Users', schema);

@@ -119,6 +119,34 @@ const usersController = () => {
         }
     };
     /** ******************************************
+     * add member to user's team - host/api/users/team
+     ****************************************** */
+    const addMemberToUserTeam = async (req, res) => {
+        try {
+            const userID = req.id;
+            const { nickname } = req.body;
+
+            const newMember = await Users.findOne({ nickname });
+
+            await Users.updateOne(
+                { _id: userID },
+                { $push: {
+                    team: {
+                            member: newMember.id,
+                            sites: []
+                        }
+                    }
+                }
+            );
+
+            const newUser = await Users.findOne({ _id: userID });
+
+            res.status(201).json(newUser);
+        } catch (e) {
+            res.status(500).json({ message: `Update user websites error, details... ${e.message}` });
+        }
+    };
+    /** ******************************************
      * get users exclude single user
      ****************************************** */
     const getExcludeUser = async (req, res) => {
@@ -173,7 +201,7 @@ const usersController = () => {
             if (user) {
                 const userDTO = new UserDTO(user);          // ⚠️ it is extra code, should be removed
                 const accessToken = TokenService.generateToken({ ...userDTO }, 'ACCESS', config.LIFETIME);
-                // TODO change link definition to .env variable
+                // ⚠️ TODO change link definition to .env variable
                 await MailService.sendResetPasswordMail(email, `${config.HOST}/setpw/${accessToken}`);
             }
 
@@ -206,6 +234,7 @@ const usersController = () => {
         logoutUser,
         updateUser,
         updateUserWebsite,
+        addMemberToUserTeam,
         getExcludeUser,
         getUser,
         refreshToken,

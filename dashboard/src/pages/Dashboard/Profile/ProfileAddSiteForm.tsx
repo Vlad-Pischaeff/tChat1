@@ -33,7 +33,7 @@ const ProfileAddSiteFormTmp = () => {
     const onSubmit = async (formData: tFormInputs) => {
         // ✅ вызываем API '/websites', обновляем 'website'
         const key = randomstring.generate();
-        const site = formData.siteName.trim();
+        const site = formData.siteName;
         const hash = await bcrypt.hashSync(key + site);
 
         if (formData.siteName) {

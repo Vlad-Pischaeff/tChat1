@@ -5,6 +5,7 @@ import { selectCurrentUser } from 'store/slices/auth';
 import { ProfileDescriptions } from './ProfileDescriptions';
 import { ProfileImage } from './ProfileImage';
 import { ProfileWebsites } from './ProfileWebsites';
+import { ProfileTeam } from './ProfileTeam';
 import { ProfileModals } from './ProfileModals';
 import s from './Profile.module.sass';
 
@@ -28,6 +29,8 @@ export const Profile = () => {
 
                     <div className={s.RightSubContainer}>
                         <ProfileWebsites />
+                        <br/>
+                        <ProfileTeam user={data} />
                     </div>
                 </>
             }

@@ -6,7 +6,8 @@ export type tUser = {
     email: string,
     password?: string,
     date: string,
-    image: string
+    image: string,
+    team: string[]
 }
 
 export interface iTodos {

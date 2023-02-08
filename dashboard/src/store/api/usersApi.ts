@@ -34,6 +34,14 @@ export const usersApi = createApi({
             }),
             invalidatesTags: ['User'],
         }),
+        addUserTeamMembers: builder.mutation({
+            query: (arg) => ({
+                url: `users/team`,
+                method: 'POST',
+                body: { ...arg.body }
+            }),
+            invalidatesTags: ['User'],
+        }),
         addUser: builder.mutation({
             query: (user) => ({
                 url: 'users/register',
@@ -74,6 +82,7 @@ export const {
     useAddUserMutation,
     useUpdateUserMutation,
     useUpdateUserWebsiteMutation,
+    useAddUserTeamMembersMutation,
     useLoginUserMutation,
     useResetUserPasswordMutation,
     useGetUserIdFromTokenMutation,

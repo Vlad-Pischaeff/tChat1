@@ -15,12 +15,12 @@ export const ProfileWebsitesItem = ({ item }: iProps) => {
     const dispatch = useAppDispatch();
     const [ deleteSite ] = useDeleteWebsiteMutation();
 
-    const openModalEditSite = (website: iWebsites) => {
-        dispatch(setEditedSite(website));
+    const openModalEditSite = () => {
+        dispatch(setEditedSite(item));
         dispatch(setServicesModal(eModal.addSite));
     }
 
-    const removeItem = (key: string) => {
+    const removeItem = () => {
         deleteSite({ id: item.id });
     }
 
@@ -41,13 +41,13 @@ export const ProfileWebsitesItem = ({ item }: iProps) => {
             <div className={s.PropertyHash}>{item.hash.substring(7)}</div>
             <div
                 className={s.PropertyIcon}
-                onClick={() => openModalEditSite(item)}
+                onClick={openModalEditSite}
             >
                 <ICON.EditIcon />
             </div>
             <div
                 className={s.PropertyIcon}
-                onClick={() => removeItem(item.key)}
+                onClick={removeItem}
             >
                 <ICON.TrashIcon />
             </div>

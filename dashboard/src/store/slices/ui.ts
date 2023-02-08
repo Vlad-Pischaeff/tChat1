@@ -27,6 +27,7 @@ export enum eModal {
     addSite = 'ADD_SITE',
     changeImage = 'CHANGE_IMAGE',
     changeAlias = 'CHANGE_ALIAS',
+    addMember = 'ADD_MEMBER',
     none = 'NONE'
 }
 
