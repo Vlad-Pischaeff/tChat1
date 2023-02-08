@@ -6,7 +6,8 @@ const schema = new Schema({
     name: {
         type: String,
         unique: true,
-        required: true
+        required: true,
+        trim: true
     },
     nickname: {
         type: String,
@@ -16,19 +17,21 @@ const schema = new Schema({
             let n = this.name
                         .replace(/[^\w\d ]/gi, '')  // удаляем спецсимволы
                         .replace(/\s+/g, '_')       // заменяем пробелы
-                        .toLowerCase();
+                        .toLowerCase();             // переводим в нижний регистр
             return '@' + n;
         }
     },
     alias: {
         type: String,
         required: false,
+        trim: true,
         default: ''
     },
     email: {
         type: String,
         unique: true,
-        required: true
+        required: true,
+        trim: true
     },
     password: {
         type: String,
@@ -44,11 +47,11 @@ const schema = new Schema({
         required: false,
         default: ''
     },
-    websites: [{
-        site: String,
-        key: String,
-        hash: String
-    }]
+    // websites: [{
+    //     site: String,
+    //     key: String,
+    //     hash: String
+    // }]
 });
 
 module.exports = model('Users', schema);

@@ -13,6 +13,7 @@ module.exports = app => {
     app.use('/api', ROUTER.todosRouter);
     app.use('/api', ROUTER.notesRouter);
     app.use('/api', ROUTER.answersRouter);
+    app.use('/api', ROUTER.websitesRouter);
     app.use('/api', ROUTER.uploadRouter);
 
     if (isProduction) {

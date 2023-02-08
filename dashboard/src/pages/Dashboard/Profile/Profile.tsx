@@ -27,7 +27,7 @@ export const Profile = () => {
                     </div>
 
                     <div className={s.RightSubContainer}>
-                        <ProfileWebsites user={data} />
+                        <ProfileWebsites />
                     </div>
                 </>
             }

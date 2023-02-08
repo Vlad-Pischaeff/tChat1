@@ -3,8 +3,9 @@ import { usersApi } from 'store/api/usersApi';
 import { todosApi } from 'store/api/todosApi';
 import { notesApi } from 'store/api/notesApi';
 import { answersApi } from 'store/api/answersApi';
+import { websitesApi } from 'store/api/websitesApi';
 import { tTheme } from 'assets/style/utils';
-import { iNotes, iAnswers, tWebsite } from 'store/api/apiTypes';
+import { iNotes, iAnswers, iWebsites } from 'store/api/apiTypes';
 import { tServiceMenu } from 'pages/Dashboard/MainChat/Services/Types';
 import type { RootState } from 'store/store';
 
@@ -37,7 +38,7 @@ export type UIType = {
     servicesModal: eModal;
     editedNote: iNotes | null;
     editedAnswer: iAnswers | null;
-    editedSite: tWebsite | null;
+    editedSite: iWebsites | null;
     editedImage: string;
     serviceMenu: iItemServiceMenu;
     notesFilterColor: string;
@@ -93,7 +94,7 @@ const slice = createSlice({
         setEditedAnswer: (state, { payload }: PayloadAction<iAnswers | null>) => {
             state.editedAnswer = payload;
         },
-        setEditedSite: (state, { payload }: PayloadAction<tWebsite | null>) => {
+        setEditedSite: (state, { payload }: PayloadAction<iWebsites | null>) => {
             state.editedSite = payload;
         },
         setEditedImage: (state, { payload }: PayloadAction<string>) => {
@@ -135,6 +136,8 @@ const slice = createSlice({
                 notesApi.endpoints.editNote.matchRejected,
                 answersApi.endpoints.deleteAnswer.matchRejected,
                 answersApi.endpoints.editAnswer.matchRejected,
+                websitesApi.endpoints.deleteWebsite.matchRejected,
+                websitesApi.endpoints.editWebsite.matchRejected,
             ),
             (state, { payload } ) => {
                 if (payload && 'data' in payload) {
@@ -149,6 +152,7 @@ const slice = createSlice({
                 todosApi.endpoints.deleteTodo.matchFulfilled,
                 notesApi.endpoints.deleteNote.matchFulfilled,
                 answersApi.endpoints.deleteAnswer.matchFulfilled,
+                websitesApi.endpoints.deleteWebsite.matchFulfilled,
             ),
             (state, { payload } ) => {
                 if (payload && 'message' in payload) {

@@ -3,9 +3,8 @@ import { useForm } from 'react-hook-form';
 import bcrypt from 'bcryptjs-react';
 import randomstring from 'randomstring';
 import { useAppDispatch, useAppSelector } from 'store/hook';
-import { selectCurrentUser } from 'store/slices/auth';
+import { useAddWebsiteMutation, useEditWebsiteMutation } from 'store/api/websitesApi';
 import { setServicesModal, setEditedSite, selectUIEditedSite, eModal } from "store/slices/ui";
-import { useUpdateUserMutation, useUpdateUserWebsiteMutation, useGetUserQuery } from 'store/api/usersApi';
 import { withModalBG } from 'components/HOC';
 import s from 'assets/style/forms.module.sass';
 
@@ -15,11 +14,9 @@ type tFormInputs = {
 
 const ProfileAddSiteFormTmp = () => {
     const dispatch = useAppDispatch();
-    const user = useAppSelector(selectCurrentUser);
     const editedSite = useAppSelector(selectUIEditedSite);
-    const { data } = useGetUserQuery(user.id, { skip: !user.id });
-    const [ updateUser ] = useUpdateUserMutation();
-    const [ updateWebsite ] = useUpdateUserWebsiteMutation();
+    const [ addSite ] = useAddWebsiteMutation();
+    const [ updateSite ] = useEditWebsiteMutation();
     const { setFocus, setValue, register, resetField, handleSubmit } = useForm<tFormInputs>();
 
     useEffect(() => {
@@ -34,20 +31,18 @@ const ProfileAddSiteFormTmp = () => {
     }, [editedSite]);
 
     const onSubmit = async (formData: tFormInputs) => {
-        // ✅ вызываем API '/users', обновляем 'websites'
-        let websites;
+        // ✅ вызываем API '/websites', обновляем 'website'
         const key = randomstring.generate();
         const site = formData.siteName.trim();
         const hash = await bcrypt.hashSync(key + site);
 
-        if (data && formData.siteName) {
+        if (formData.siteName) {
             if (editedSite) {
                 // ✅ invoke when edit site
-                updateWebsite({ id: editedSite.id, body: { key, hash, site } });
+                updateSite({ id: editedSite.id, key, hash, site });
             } else {
                 // ✅ invoke when add site
-                websites = [ ...data.websites, { key, hash, site } ];
-                updateUser({ id: user.id, body: { websites }});
+                addSite({ key, hash, site });
             }
             closeModal();
         }

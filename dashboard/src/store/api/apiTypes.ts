@@ -1,11 +1,3 @@
-export type tWebsite = {
-    _id: string,        // ⚠️ it is extra code, should be removed
-    id: string,
-    site: string,
-    key: string,
-    hash: string
-}
-
 export type tUser = {
     id: string,
     name: string,
@@ -14,37 +6,38 @@ export type tUser = {
     email: string,
     password?: string,
     date: string,
-    image: string,
-    websites: tWebsite[],
+    image: string
 }
 
 export interface iTodos {
-    // __v: number,
-    _id: string,        // ⚠️ it is extra code, should be removed
     id: string,
+    user: string,
     date: number,
     description: string,
-    done: boolean,
-    user: string
+    done: boolean
 }
 
 export interface iNotes {
-    // __v: number,
-    _id: string,        // ⚠️ it is extra code, should be removed
     id: string,
+    user: string,
     date: number,
     title: string,
     description: string,
-    type: string,
-    user: string
+    type: string
 }
 
 export interface iAnswers {
-    // __v: number,
-    _id: string,        // ⚠️ it is extra code, should be removed
     id: string,
+    user: string,
     date: number,
     description: string,
-    type: string,
-    user: string
+    type: string
+}
+
+export interface iWebsites {
+    id: string,
+    user: string,
+    site: string,
+    key: string,
+    hash: string,
 }

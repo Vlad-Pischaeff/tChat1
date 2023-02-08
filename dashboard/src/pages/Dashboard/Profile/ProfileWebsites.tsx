@@ -1,16 +1,13 @@
 import React from 'react';
 import { useAppDispatch } from 'store/hook';
+import { useWebsitesQuery } from 'store/api/websitesApi';
 import { setServicesModal, eModal } from 'store/slices/ui';
 import { ProfileWebsitesItem } from './ProfileWebsitesItem';
-import { tUser } from 'store/api/apiTypes';
 import s from './Profile.module.sass';
 
-interface iProps extends React.HTMLAttributes<HTMLDivElement> {
-    user: tUser
-}
-
-export const ProfileWebsites = ({ user }: iProps) => {
+export const ProfileWebsites = () => {
     const dispatch = useAppDispatch();
+    const { data, isSuccess, isLoading } = useWebsitesQuery('');
 
     const openModalAddSite = () => {
         dispatch(setServicesModal(eModal.addSite));
@@ -30,19 +27,22 @@ export const ProfileWebsites = ({ user }: iProps) => {
                 </div>
 
                 <div className={s.ItemsContainer} role="listbox">
-                    { user.websites.length === 0
-                        ?   <div className={s.MainPlaceholder} role="listitem">
-                                <p>No managed sites...</p>
-                            </div>
-                        :   user.websites.map(item => {
-                                return (
-                                    <div key={item.key} role="listitem">
-                                        <ProfileWebsitesItem item={item} />
-                                    </div>
-                                )
-                            })
-                    }
+                    { !!data && isSuccess && (
+                        data.length === 0
+                            ?   <div className={s.MainPlaceholder} role="listitem">
+                                    <p>No managed sites...</p>
+                                </div>
+                            :   data.map(item => {
+                                    return (
+                                        <div key={item.key} role="listitem">
+                                            <ProfileWebsitesItem item={item} />
+                                        </div>
+                                    )
+                                })
+                    )}
                 </div>
+
+                { isLoading && <div>Loading...</div>}
             </div>
         </div>
     );

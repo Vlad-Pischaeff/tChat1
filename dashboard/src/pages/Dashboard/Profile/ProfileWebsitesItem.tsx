@@ -1,31 +1,27 @@
 import React from 'react';
-import { useAppSelector, useAppDispatch } from 'store/hook';
-import { useUpdateUserMutation, useGetUserQuery } from 'store/api/usersApi';
-import { selectCurrentUser } from 'store/slices/auth';
+import { useAppDispatch } from 'store/hook';
+import { useDeleteWebsiteMutation } from 'store/api/websitesApi';
 import { setServicesModal, setEditedSite, eModal } from 'store/slices/ui';
 import { Site } from 'assets/img';
-import { tWebsite } from 'store/api/apiTypes';
+import { iWebsites } from 'store/api/apiTypes';
 import * as ICON from 'assets/icons';
 import s from './Profile.module.sass';
 
 interface iProps extends React.HTMLAttributes<HTMLDivElement> {
-    item: tWebsite
+    item: iWebsites
 }
 
 export const ProfileWebsitesItem = ({ item }: iProps) => {
     const dispatch = useAppDispatch();
-    const user = useAppSelector(selectCurrentUser);
-    const [ updateUser ] = useUpdateUserMutation();
-    const { data } = useGetUserQuery(user.id, { skip: !user.id });
+    const [ deleteSite ] = useDeleteWebsiteMutation();
 
-    const openModalEditSite = (website: tWebsite) => {
+    const openModalEditSite = (website: iWebsites) => {
         dispatch(setEditedSite(website));
         dispatch(setServicesModal(eModal.addSite));
     }
 
     const removeItem = (key: string) => {
-        const websites = data?.websites.filter(site => site.key !== key);
-        updateUser({ id: user.id, body: { websites }});
+        deleteSite({ id: item.id });
     }
 
     return (
