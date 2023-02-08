@@ -128,6 +128,17 @@ const usersController = () => {
 
             const newMember = await Users.findOne({ nickname });
 
+            // check if user try to add itself
+            if (newMember.id === userID) {
+                throw new Error('You can not add itself...');
+            }
+
+            // check if user already member
+            const member = await Users.findOne({ _id: userID });
+            if (member.team.findIndex((item) => item.member === newMember.id) === -1 ) {
+                throw new Error('User already member of the team...');
+            }
+
             await Users.updateOne(
                 { _id: userID },
                 { $push: {

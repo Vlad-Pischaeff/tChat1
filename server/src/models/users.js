@@ -50,12 +50,14 @@ const schema = new Schema({
     team: [{
         member: {
             type: Schema.Types.ObjectId,
-            ref: 'Users'
+            ref: 'Users',
+            unique: true,
         },
         sites: [
             {
                 type: Schema.Types.ObjectId,
-                ref: 'Websites'
+                ref: 'Websites',
+                unique: true,
             }
         ]
     }],

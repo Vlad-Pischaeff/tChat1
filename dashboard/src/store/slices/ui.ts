@@ -129,6 +129,7 @@ const slice = createSlice({
                 usersApi.endpoints.resetUserPassword.matchRejected,
                 usersApi.endpoints.getUserIdFromToken.matchRejected,
                 usersApi.endpoints.updateUserWebsite.matchRejected,
+                usersApi.endpoints.addUserTeamMembers.matchRejected,
                 todosApi.endpoints.getTodo.matchRejected,
                 todosApi.endpoints.addTodo.matchRejected,
                 todosApi.endpoints.deleteTodo.matchRejected,
