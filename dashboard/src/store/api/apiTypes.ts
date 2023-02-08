@@ -1,3 +1,8 @@
+type tMember = {
+    member: string,
+    sites: string[] | []
+}
+
 export type tUser = {
     id: string,
     name: string,
@@ -7,7 +12,7 @@ export type tUser = {
     password?: string,
     date: string,
     image: string,
-    team: string[]
+    team: tMember[]
 }
 
 export interface iTodos {

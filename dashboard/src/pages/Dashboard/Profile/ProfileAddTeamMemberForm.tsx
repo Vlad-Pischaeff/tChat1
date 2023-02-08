@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useAppDispatch, useAppSelector } from 'store/hook';
 import { selectCurrentUser } from 'store/slices/auth';
-import { useAddUserTeamMembersMutation, useGetUserQuery } from 'store/api/usersApi';
+import { useAddUserTeamMembersMutation } from 'store/api/usersApi';
 import { setServicesModal, eModal } from "store/slices/ui";
 import { withModalBG } from 'components/HOC';
 import s from 'assets/style/forms.module.sass';
@@ -14,7 +14,7 @@ type tFormInputs = {
 const ProfileAddTeamMemberFormTmp = () => {
     const dispatch = useAppDispatch();
     const user = useAppSelector(selectCurrentUser);
-    const { data } = useGetUserQuery(user.id, { skip: !user.id });
+    // const { data } = useGetUserQuery(user.id, { skip: !user.id });
     const [ addMember ] = useAddUserTeamMembersMutation();
     const { setFocus, register, resetField, handleSubmit } = useForm<tFormInputs>();
 

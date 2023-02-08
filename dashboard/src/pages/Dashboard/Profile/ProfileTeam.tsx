@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAppDispatch } from 'store/hook';
 import { setServicesModal, eModal } from 'store/slices/ui';
+import { ProfileTeamMember } from './ProfileTeamMember';
 import { tUser } from 'store/api/apiTypes';
 import s from './Profile.module.sass';
 
@@ -28,17 +29,17 @@ export const ProfileTeam = ({ user }: iProps) => {
             </div>
 
             <div className={s.ItemsContainer} role="listbox">
-                { !!user &&
-                            <div className={s.MainPlaceholder} role="listitem">
+                { !!user && user.team.length === 0
+                        ?    <div className={s.MainPlaceholder} role="listitem">
                                 <p>No members...</p>
                             </div>
-                        // :   data.map(item => {
-                        //         return (
-                        //             <div key={item.key} role="listitem">
-                        //                 <ProfileWebsitesItem item={item} />
-                        //             </div>
-                        //         )
-                        //     })
+                        :   user.team.map(item => {
+                                return (
+                                    <div key={item.member} role="listitem">
+                                        <ProfileTeamMember userId={item.member} />
+                                    </div>
+                                )
+                            })
                 }
             </div>
 
