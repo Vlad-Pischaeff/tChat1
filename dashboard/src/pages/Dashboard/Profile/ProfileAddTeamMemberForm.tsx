@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useAppDispatch, useAppSelector } from 'store/hook';
-import { selectCurrentUser } from 'store/slices/auth';
+import { useAppDispatch } from 'store/hook';
 import { useAddUserTeamMembersMutation } from 'store/api/usersApi';
 import { setServicesModal, eModal } from "store/slices/ui";
 import { withModalBG } from 'components/HOC';
@@ -13,7 +12,6 @@ type tFormInputs = {
 
 const ProfileAddTeamMemberFormTmp = () => {
     const dispatch = useAppDispatch();
-    const user = useAppSelector(selectCurrentUser);
     const [ addMember ] = useAddUserTeamMembersMutation();
     const { setFocus, register, resetField, handleSubmit } = useForm<tFormInputs>();
 
@@ -25,7 +23,7 @@ const ProfileAddTeamMemberFormTmp = () => {
     const onSubmit = async (formData: tFormInputs) => {
         // ✅ вызываем API '/websites', обновляем 'website'
         if (formData.member) {
-            addMember({ id: user.id, body: { nickname: formData.member }});
+            addMember({ body: { nickname: formData.member }});
             closeModal();
         }
     };

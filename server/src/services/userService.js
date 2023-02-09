@@ -112,16 +112,21 @@ class UserService {
 
             // check if user already member
             const member = await Users.findOne({ _id: userID });
-            if (member.team.findIndex((item) => item.member === memberID) === -1 ) {
+
+            const isFound = member.team.findIndex((item) =>
+                item.member.toString() === memberID
+            );
+
+            if (isFound !== -1 ) {
                 throw new Error('User already member of the team...');
             }
 
             await Users.updateOne(
                 { _id: userID },
                 { $push: {
-                    team: {
-                            member: memberID,
-                            sites: []
+                    'team': {
+                            'member': memberID,
+                            'sites': []
                         }
                     }
                 }

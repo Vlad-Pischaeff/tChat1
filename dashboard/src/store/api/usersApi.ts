@@ -42,6 +42,14 @@ export const usersApi = createApi({
             }),
             invalidatesTags: ['User'],
         }),
+        removeUserTeamMembers: builder.mutation({
+            query: (arg) => ({
+                url: `users/team`,
+                method: 'DELETE',
+                body: { ...arg.body }
+            }),
+            invalidatesTags: ['User'],
+        }),
         addUser: builder.mutation({
             query: (user) => ({
                 url: 'users/register',
@@ -83,6 +91,7 @@ export const {
     useUpdateUserMutation,
     useUpdateUserWebsiteMutation,
     useAddUserTeamMembersMutation,
+    useRemoveUserTeamMembersMutation,
     useLoginUserMutation,
     useResetUserPasswordMutation,
     useGetUserIdFromTokenMutation,

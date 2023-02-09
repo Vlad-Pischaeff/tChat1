@@ -26,6 +26,7 @@ usersRouter.route('/users/website/:siteID')
 
 usersRouter.route('/users/team')
     .post(auth, controller.addMemberToUserTeam)
+    .delete(auth, controller.removeMemberFromUserTeam)
 
 usersRouter.route('/users/exclude/:id')
     .get(auth, controller.getExcludeUser);

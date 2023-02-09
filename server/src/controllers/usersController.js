@@ -136,7 +136,32 @@ const usersController = () => {
 
             res.status(201).json(updatedUser);
         } catch (e) {
-            res.status(500).json({ message: `Update user websites error, details... ${e.message}` });
+            res.status(500).json({ message: `Update user team error, details... ${e.message}` });
+        }
+    };
+    /** ******************************************
+     * add member to user's team - host/api/users/team
+     ****************************************** */
+    const removeMemberFromUserTeam = async (req, res) => {
+        try {
+            const userID = req.id;
+            const { memberID } = req.body;
+
+            await Users.updateOne(
+                { _id: userID },
+                { $pull: {
+                    'team': {
+                            'member': memberID
+                        }
+                    }
+                }
+            );
+
+            const owner = await Users.findOne({ _id: userID });
+
+            res.status(201).json(owner);
+        } catch (e) {
+            res.status(500).json({ message: `Update user team error, details... ${e.message}` });
         }
     };
     /** ******************************************
@@ -228,6 +253,7 @@ const usersController = () => {
         updateUser,
         updateUserWebsite,
         addMemberToUserTeam,
+        removeMemberFromUserTeam,
         getExcludeUser,
         getUser,
         refreshToken,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useGetUserQuery } from 'store/api/usersApi';
+import { useGetUserQuery, useRemoveUserTeamMembersMutation } from 'store/api/usersApi';
 import * as ICON from 'assets/icons';
 import s from './Profile.module.sass';
 
@@ -9,11 +9,18 @@ interface iProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export const ProfileTeamMember = ({ userId }: iProps ) => {
     const { data } = useGetUserQuery(userId, { skip: !userId });
+    const [ removeUser ] = useRemoveUserTeamMembersMutation();
+
+    const removeFromTeam = () => {
+        if (data) {
+            removeUser({ body: { memberID: data.id }});
+        }
+    }
 
     return (
         <>
             { !!data &&
-                <div className={s.PropertyContainer}>
+                <div className={s.PropertyContainer} style={{ 'padding': '8px' }}>
                     <div className={s.PropertyFlexRow}>
                         <img
                             className={s.PropertyMemberIcon}
@@ -37,7 +44,7 @@ export const ProfileTeamMember = ({ userId }: iProps ) => {
                         </div>
                         <div
                             className={s.PropertyIcon}
-                            onClick={() => { console.log('delete..') }}
+                            onClick={removeFromTeam}
                         >
                             <ICON.TrashIcon />
                         </div>
