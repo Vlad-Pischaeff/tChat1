@@ -14,28 +14,35 @@ export const ProfileTeamMember = ({ userId }: iProps ) => {
         <>
             { !!data &&
                 <div className={s.PropertyContainer}>
-                    <img
-                        className={s.PropertyMemberIcon}
-                        src={data.image}
-                        alt=""
-                    />
+                    <div className={s.PropertyFlexRow}>
+                        <img
+                            className={s.PropertyMemberIcon}
+                            src={data.image}
+                            alt=""
+                        />
 
-                    <div className={s.PropertyTitle}>name: </div>
-                    <div className={s.PropertySite}>{data.name}</div>
-                    <div className={s.PropertyTitle}>email:</div>
-                    <div className={s.PropertyHash}>{data.email}</div>
-                    <div
-                        className={s.PropertyIcon}
-                        onClick={() => { console.log('edit..') }}
-                    >
-                        <ICON.EditIcon />
+                        <div>
+                            <div className={s.PropertySite}>{data.name}</div>
+                            <div className={s.PropertyTitle}>{data.email}</div>
+                            <div className={s.PropertyTitle}>{data.alias}</div>
+                        </div>
                     </div>
-                    <div
-                        className={s.PropertyIcon}
-                        onClick={() => { console.log('delete..') }}
-                    >
-                        <ICON.TrashIcon />
+
+                    <div className={s.PropertyFlexRow}>
+                        <div
+                            className={s.PropertyIcon}
+                            onClick={() => { console.log('edit..') }}
+                        >
+                            <ICON.EditIcon />
+                        </div>
+                        <div
+                            className={s.PropertyIcon}
+                            onClick={() => { console.log('delete..') }}
+                        >
+                            <ICON.TrashIcon />
+                        </div>
                     </div>
+
                 </div>
             }
         </>
