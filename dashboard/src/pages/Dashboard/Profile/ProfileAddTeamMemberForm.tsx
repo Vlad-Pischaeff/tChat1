@@ -14,7 +14,6 @@ type tFormInputs = {
 const ProfileAddTeamMemberFormTmp = () => {
     const dispatch = useAppDispatch();
     const user = useAppSelector(selectCurrentUser);
-    // const { data } = useGetUserQuery(user.id, { skip: !user.id });
     const [ addMember ] = useAddUserTeamMembersMutation();
     const { setFocus, register, resetField, handleSubmit } = useForm<tFormInputs>();
 

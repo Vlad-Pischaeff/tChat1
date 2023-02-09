@@ -96,6 +96,44 @@ class UserService {
             ...userDTO
         };
     }
+
+    /**
+     * check new user before add to team
+     * @param {*} memberID user ID to add to team
+     * @param {*} userID team owner ID
+     * @returns updated User (team owner)
+     */
+    async checkUserBeforUpdateTeam(memberID, userID) {
+        try {
+            // check if user try to add itself
+            if (memberID === userID) {
+                throw new Error('You can not add itself...');
+            }
+
+            // check if user already member
+            const member = await Users.findOne({ _id: userID });
+            if (member.team.findIndex((item) => item.member === memberID) === -1 ) {
+                throw new Error('User already member of the team...');
+            }
+
+            await Users.updateOne(
+                { _id: userID },
+                { $push: {
+                    team: {
+                            member: memberID,
+                            sites: []
+                        }
+                    }
+                }
+            );
+
+            const updatedUser = await Users.findOne({ _id: userID });
+
+            return updatedUser;
+        } catch(e) {
+            return ({ checkError: `Add user ${e.message}` });
+        }
+    }
 }
 
 module.exports = new UserService();
