@@ -176,7 +176,7 @@ const usersController = () => {
             await Users.updateOne(
                 { _id: userID, 'team.member': memberID },
                 { $set: {
-                        'team.$.sites': [ ...sites ]
+                        'team.$.sites': sites
                     }
                 }
             );
