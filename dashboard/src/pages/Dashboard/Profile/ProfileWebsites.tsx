@@ -30,13 +30,11 @@ export const ProfileWebsites = () => {
                         ?   <div className={s.MainPlaceholder} role="listitem">
                                 <p>No managed sites...</p>
                             </div>
-                        :   data.map(item => {
-                                return (
-                                    <div key={item.key} role="listitem">
-                                        <ProfileWebsitesItem item={item} />
-                                    </div>
-                                )
-                            })
+                        :   data.map(item => (
+                                <div key={item.key} role="listitem">
+                                    <ProfileWebsitesItem item={item} />
+                                </div>
+                            ))
                 )}
             </div>
 

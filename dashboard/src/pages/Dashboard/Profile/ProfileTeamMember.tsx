@@ -57,13 +57,11 @@ export const ProfileTeamMember = ({ user }: iProps ) => {
                                 ?   <div className={s.PropertyTitle}>
                                         <p>No observed sites...</p>
                                     </div>
-                                :   SITES.map((site) => {
-                                        return (
-                                            <div key={site.id} role="listitem">
-                                                {site.site}
-                                            </div>
-                                        )
-                                    })
+                                :   SITES.map((site) => (
+                                        <div key={site.id} role="listitem">
+                                            {site.site}
+                                        </div>
+                                    ))
                         )}
                     </div>
 

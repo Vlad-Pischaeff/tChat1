@@ -57,21 +57,19 @@ const Form = () => {
                 <fieldset>
                     <label>Add/remove observed sites</label>
                     { !!sites && sites.length !== 0
-                        ?   sites.map((site, idx) => {
-                                return (
-                                    <div key={site.id} className={sl.PropertyContainer} role="listitem">
-                                        <p>{site.site}</p>
-                                        <div className={sl.CheckboxContainer}>
-                                            <input
-                                                id={`cb-${idx}`}
-                                                type="checkbox"
-                                                value={site.id}
-                                                { ...register('sites')} />
-                                            <label htmlFor={`cb-${idx}`} className={sl.Checkbox} />
-                                        </div>
+                        ?   sites.map((site, idx) => (
+                                <div key={site.id} className={sl.PropertyContainer} role="listitem">
+                                    <p>{site.site}</p>
+                                    <div className={sl.CheckboxContainer}>
+                                        <input
+                                            id={`cb-${idx}`}
+                                            type="checkbox"
+                                            value={site.id}
+                                            { ...register('sites')} />
+                                        <label htmlFor={`cb-${idx}`} className={sl.Checkbox} />
                                     </div>
-                                )
-                            })
+                                </div>
+                            ))
                         :   <div>
                                 <p>You have no managed web-sites...</p>
                             </div>

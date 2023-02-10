@@ -31,8 +31,7 @@ export const ProfileChangeImageButton = () => {
                 type="file"
                 accept="image/*"
                 onChange={onSelectFile}
-                style={{ display: 'none' }}
-            />
+                style={{ display: 'none' }} />
         </div>
     );
 };

@@ -32,13 +32,11 @@ export const ProfileTeam = ({ user }: iProps) => {
                     ?   <div className={s.MainPlaceholder} role="listitem">
                             <p>No members...</p>
                         </div>
-                    :   user.team.map(item => {
-                            return (
-                                <div key={item.member} role="listitem">
-                                    <ProfileTeamMember user={item} />
-                                </div>
-                            )
-                        })
+                    :   user.team.map(item => (
+                            <div key={item.member} role="listitem">
+                                <ProfileTeamMember user={item} />
+                            </div>
+                        ))
                 }
             </div>
         </div>
