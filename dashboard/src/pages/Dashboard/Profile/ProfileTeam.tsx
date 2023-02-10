@@ -24,8 +24,7 @@ export const ProfileTeam = ({ user }: iProps) => {
                     type="button"
                     className={s.AddItem}
                     value="+ add new member"
-                    onClick={openModalAddMember}
-                />
+                    onClick={openModalAddMember} />
             </div>
 
             <div className={s.ItemsContainer} role="listbox">

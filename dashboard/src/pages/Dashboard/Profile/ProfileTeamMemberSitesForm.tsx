@@ -66,8 +66,7 @@ const Form = () => {
                                                 id={`cb-${idx}`}
                                                 type="checkbox"
                                                 value={site.id}
-                                                { ...register('sites')}
-                                            />
+                                                { ...register('sites')} />
                                             <label htmlFor={`cb-${idx}`} className={sl.Checkbox} />
                                         </div>
                                     </div>

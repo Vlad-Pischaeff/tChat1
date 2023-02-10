@@ -42,8 +42,7 @@ export const ProfileTeamMember = ({ user }: iProps ) => {
                         <img
                             className={s.PropertyMemberIcon}
                             src={member.image}
-                            alt=""
-                        />
+                            alt="avatar" />
 
                         <div>
                             <div className={s.PropertySite}>{member.name}</div>

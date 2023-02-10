@@ -21,8 +21,7 @@ export const ProfileWebsites = () => {
                     type="button"
                     className={s.AddItem}
                     value="+ add site"
-                    onClick={openModalAddSite}
-                />
+                    onClick={openModalAddSite} />
             </div>
 
             <div className={s.ItemsContainer} role="listbox">
@@ -41,7 +40,7 @@ export const ProfileWebsites = () => {
                 )}
             </div>
 
-            { isLoading && <div>Loading...</div>}
+            { isLoading && <div>Loading...</div> }
         </div>
     );
 };
