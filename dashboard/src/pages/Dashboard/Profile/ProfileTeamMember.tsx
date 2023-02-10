@@ -7,7 +7,6 @@ import { tMember } from 'store/api/apiTypes';
 import * as ICON from 'assets/icons';
 import s from './Profile.module.sass';
 
-
 interface iProps extends React.HTMLAttributes<HTMLDivElement> {
     user: tMember
 }
@@ -15,17 +14,17 @@ interface iProps extends React.HTMLAttributes<HTMLDivElement> {
 export const ProfileTeamMember = ({ user }: iProps ) => {
     const dispatch = useAppDispatch();
     const { data: sites } = useWebsitesQuery('');
-    const { data } = useGetUserQuery(user.member, { skip: !user.member });
+    const { data: member } = useGetUserQuery(user.member, { skip: !user.member });
     const [ removeUser ] = useRemoveUserTeamMembersMutation();
 
     const editMemberSites = () => {
-        !!data && dispatch(setEditedMember(data));
+        !!member && dispatch(setEditedMember(member));
         dispatch(setServicesModal(eModal.editMemberSites));
     }
 
     const removeFromTeam = () => {
-        if (data) {
-            removeUser({ body: { memberID: data.id }});
+        if (member) {
+            removeUser({ body: { memberID: member.id }});
         }
     }
 
@@ -37,19 +36,19 @@ export const ProfileTeamMember = ({ user }: iProps ) => {
 
     return (
         <>
-            { !!data &&
+            { !!member &&
                 <div className={s.PropertyContainer} style={{ 'padding': '8px' }}>
                     <div className={`${s.PropertyFlexRow} ${s.flex11}`}>
                         <img
                             className={s.PropertyMemberIcon}
-                            src={data.image}
+                            src={member.image}
                             alt=""
                         />
 
                         <div>
-                            <div className={s.PropertySite}>{data.name}</div>
-                            <div className={s.PropertyTitle}>{data.email}</div>
-                            <div className={s.PropertyTitle}>{data.alias}</div>
+                            <div className={s.PropertySite}>{member.name}</div>
+                            <div className={s.PropertyTitle}>{member.email}</div>
+                            <div className={s.PropertyTitle}>{member.alias}</div>
                         </div>
                     </div>
 
