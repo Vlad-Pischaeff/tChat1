@@ -15,7 +15,7 @@ const ASPECT = 1;
 const ROTATE = 0;
 const SCALE = 1;
 
-const ProfileChangeImageFormTmp = () => {
+const Form = () => {
     const dispatch = useAppDispatch();
     const user = useAppSelector(selectCurrentUser);
     const imgSrc = useAppSelector(selectUIEditedImage);
@@ -118,4 +118,4 @@ const ProfileChangeImageFormTmp = () => {
     );
 };
 
-export const ProfileChangeImageForm = withModalBG(ProfileChangeImageFormTmp);
+export const ProfileChangeImageForm = withModalBG(Form);

@@ -33,14 +33,7 @@ export const ProfileTeamMember = ({ user }: iProps ) => {
         return (user.sites as string[]).includes(id);
     }
 
-    const filteredSites = () => {
-        if (!!sites) {
-            const arr = sites?.filter((site) => isInList(site.id));
-            return arr;
-        }
-    }
-
-    const SITES = filteredSites();
+    const SITES = sites?.filter((site) => isInList(site.id));
 
     return (
         <>

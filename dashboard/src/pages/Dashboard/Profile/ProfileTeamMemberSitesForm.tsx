@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useAppDispatch, useAppSelector } from 'store/hook';
-import { useUpdateTeamMemberWebsitesMutation } from 'store/api/usersApi';
+import { selectCurrentUser } from 'store/slices/auth';
+import { useUpdateTeamMemberWebsitesMutation, useGetUserQuery } from 'store/api/usersApi';
 import { useWebsitesQuery } from 'store/api/websitesApi';
 import { setServicesModal, setEditedSite, selectUIEditedMember, eModal } from "store/slices/ui";
 import { withModalBG } from 'components/HOC';
@@ -15,14 +16,26 @@ type tFormInputs = {
 const Form = () => {
     const dispatch = useAppDispatch();
     const member = useAppSelector(selectUIEditedMember);
-    const [ updWebsites ] = useUpdateTeamMemberWebsitesMutation();
+    const user = useAppSelector(selectCurrentUser);
+    const { data: owner } = useGetUserQuery(user.id, { skip: !user.id });
     const { data: sites } = useWebsitesQuery('');
-    const { register, resetField, handleSubmit } = useForm<tFormInputs>();
+    const [ updWebsites ] = useUpdateTeamMemberWebsitesMutation();
+    const { setValue, register, resetField, handleSubmit } = useForm<tFormInputs>();
 
-    console.log('form..', sites)
+    useEffect(() => {
+        if (member) {
+            const observedSites = owner?.team.filter((user) => {
+                return user.member === member.id
+            })
+
+            if (observedSites) {
+                setValue('sites', observedSites[0].sites );
+            }
+        }
+        // eslint-disable-next-line
+    }, [])
 
     const onSubmit = async (formData: tFormInputs) => {
-        console.log('submit..', formData)
         if (!!member) {
             if (formData.sites.length !== 0) {
                 const data = { memberID: member.id, sites: formData.sites }

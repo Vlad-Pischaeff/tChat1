@@ -12,7 +12,7 @@ type tFormInputs = {
     siteName: string;
 }
 
-const ProfileAddSiteFormTmp = () => {
+const Form = () => {
     const dispatch = useAppDispatch();
     const editedSite = useAppSelector(selectUIEditedSite);
     const [ addSite ] = useAddWebsiteMutation();
@@ -73,4 +73,4 @@ const ProfileAddSiteFormTmp = () => {
     );
 };
 
-export const ProfileAddSiteForm = withModalBG(ProfileAddSiteFormTmp);
+export const ProfileAddSiteForm = withModalBG(Form);

@@ -11,7 +11,7 @@ type tFormInputs = {
     alias: string;
 }
 
-const ProfileChangeAliasFormTmp = () => {
+const Form = () => {
     const dispatch = useAppDispatch();
     const user = useAppSelector(selectCurrentUser);
     const { data } = useGetUserQuery(user.id, { skip: !user.id });
@@ -55,4 +55,4 @@ const ProfileChangeAliasFormTmp = () => {
     );
 };
 
-export const ProfileChangeAliasForm = withModalBG(ProfileChangeAliasFormTmp);
+export const ProfileChangeAliasForm = withModalBG(Form);

@@ -10,7 +10,7 @@ type tFormInputs = {
     member: string;
 }
 
-const ProfileAddTeamMemberFormTmp = () => {
+const Form = () => {
     const dispatch = useAppDispatch();
     const [ addMember ] = useAddUserTeamMembersMutation();
     const { setFocus, register, resetField, handleSubmit } = useForm<tFormInputs>();
@@ -52,4 +52,4 @@ const ProfileAddTeamMemberFormTmp = () => {
     );
 };
 
-export const ProfileAddTeamMemberForm = withModalBG(ProfileAddTeamMemberFormTmp);
+export const ProfileAddTeamMemberForm = withModalBG(Form);
