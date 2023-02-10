@@ -164,3 +164,74 @@
     height: 100%
     &:hover
         cursor: pointer
+/**
+ * modal checkbox description
+ */
+$checked-color: #{var(--C7)}
+$unchecked-color: #{var(--C1)}
+$checkbox-height: 20px
+$background-color: transparent
+$duration: .4s
+$duration2: .2s
+
+.CheckboxContainer
+    padding: 2px
+    margin: 0 6px
+
+@keyframes dothabottomcheck
+    0%
+        height: 0
+    100%
+        height: calc($checkbox-height / 2)
+
+@keyframes dothatopcheck
+    0%
+        height: 0
+    50%
+        height: 0
+    100%
+        height: calc($checkbox-height * 1.2)
+
+input[type=checkbox]
+    display: none
+
+.Checkbox
+    height: $checkbox-height
+    width: $checkbox-height
+    background-color: transparent
+    border: 1px solid $unchecked-color
+    border-radius: 5px
+    position: relative
+    display: inline-block
+    transition: border-color ease $duration2
+    cursor: pointer
+    margin-bottom: 0
+    &::before, &::after
+        position: absolute
+        height: 0
+        width: calc($checkbox-height * .2)
+        background-color: $checked-color
+        display: inline-block
+        transform-origin: left top
+        border-radius: 5px
+        content: ' '
+        transition: opacity ease .5
+    &::before
+        top: calc($checkbox-height * .7)
+        left: calc($checkbox-height * .4)
+        box-shadow: 0 0 0 calc($checkbox-height * .05) $background-color
+        transform: rotate(-135deg)
+    &::after
+        top: calc($checkbox-height * .37)
+        left: calc($checkbox-height * .05)
+        transform: rotate(-45deg)
+
+input[type=checkbox]:checked + .Checkbox,
+.Checkbox.checked
+    border-color: $checked-color
+    &::after
+        height: calc($checkbox-height * .5)
+        animation: dothabottomcheck $duration2 ease 0s forwards
+    &::before
+        height: calc($checkbox-height * 1.2)
+        animation: dothatopcheck $duration ease 0s forwards

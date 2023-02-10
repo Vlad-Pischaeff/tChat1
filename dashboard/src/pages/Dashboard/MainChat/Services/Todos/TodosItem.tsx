@@ -20,7 +20,7 @@ export const TodosItem = ({ todo }: iProps) => {
         updateTodo(data);
     }
 
-    const handleClick = () => {
+    const handleDelete = () => {
         const data = { id: todo.id };
         deleteTodo(data);
     }
@@ -36,7 +36,7 @@ export const TodosItem = ({ todo }: iProps) => {
             <div className={s.itemCheck}>
                 <UI.CheckBox checked={todo.done} idx={todo.id} onChange={handleChange}/>
             </div>
-            <div className={s.itemDelete} onClick={handleClick}>
+            <div className={s.itemDelete} onClick={handleDelete}>
                 <ICON.TrashIcon />
             </div>
         </div>

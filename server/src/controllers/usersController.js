@@ -82,6 +82,7 @@ const usersController = () => {
      ****************************************** */
     const updateUser = async (req, res) => {
         try {
+            console.log('update..', req.body, req.id)
             const { id } = req.params;
             await Users.findByIdAndUpdate(id, req.body);
             const newUser = await Users.findOne({ _id: id });
@@ -95,29 +96,29 @@ const usersController = () => {
      * update user - host/api/users/website/${siteID}
      * @param {string} siteID - site ID
      ****************************************** */
-    const updateUserWebsite = async (req, res) => {
-        try {
-            const { siteID } = req.params;
-            const userID = req.id;
-            const { site, key, hash } = req.body;
+    // const updateUserWebsite = async (req, res) => {
+    //     try {
+    //         const { siteID } = req.params;
+    //         const userID = req.id;
+    //         const { site, key, hash } = req.body;
 
-            await Users.updateOne(
-                { _id: userID, 'websites._id': siteID },
-                { $set: {
-                        "websites.$.site": site,
-                        "websites.$.hash": hash,
-                        "websites.$.key": key,
-                    }
-                }
-            );
+    //         await Users.updateOne(
+    //             { _id: userID, 'websites._id': siteID },
+    //             { $set: {
+    //                     "websites.$.site": site,
+    //                     "websites.$.hash": hash,
+    //                     "websites.$.key": key,
+    //                 }
+    //             }
+    //         );
 
-            const newUser = await Users.findOne({ _id: userID });
+    //         const newUser = await Users.findOne({ _id: userID });
 
-            res.status(201).json(newUser);
-        } catch (e) {
-            res.status(500).json({ message: `Update user websites error, details... ${e.message}` });
-        }
-    };
+    //         res.status(201).json(newUser);
+    //     } catch (e) {
+    //         res.status(500).json({ message: `Update user websites error, details... ${e.message}` });
+    //     }
+    // };
     /** ******************************************
      * add member to user's team - host/api/users/team
      ****************************************** */
@@ -161,7 +162,30 @@ const usersController = () => {
 
             res.status(201).json(owner);
         } catch (e) {
-            res.status(500).json({ message: `Update user team error, details... ${e.message}` });
+            res.status(500).json({ message: `Remove user from team error, details... ${e.message}` });
+        }
+    };
+    /** ******************************************
+     * update member websites - host/api/users/team/member/websites
+     ****************************************** */
+    const updTeamMemberWebsites = async (req, res) => {
+        try {
+            const userID = req.id;
+            const { memberID, sites } = req.body;
+
+            await Users.updateOne(
+                { _id: userID, 'team.member': memberID },
+                { $set: {
+                        'team.$.sites': [ ...sites ]
+                    }
+                }
+            );
+
+            const newUser = await Users.findOne({ _id: userID });
+
+            res.status(201).json(newUser);
+        } catch (e) {
+            res.status(500).json({ message: `Update user team member websites error, details... ${e.message}` });
         }
     };
     /** ******************************************
@@ -251,9 +275,10 @@ const usersController = () => {
         loginUser,
         logoutUser,
         updateUser,
-        updateUserWebsite,
+        // updateUserWebsite,
         addMemberToUserTeam,
         removeMemberFromUserTeam,
+        updTeamMemberWebsites,
         getExcludeUser,
         getUser,
         refreshToken,

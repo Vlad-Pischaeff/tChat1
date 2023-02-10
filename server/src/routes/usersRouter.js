@@ -21,12 +21,16 @@ usersRouter.route('/users/:id')
     .patch(auth, controller.updateUser)
     .get(auth, controller.getUser);
 
-usersRouter.route('/users/website/:siteID')
-    .patch(auth, controller.updateUserWebsite)
+// usersRouter.route('/users/website/:siteID')
+//     .patch(auth, controller.updateUserWebsite)
 
 usersRouter.route('/users/team')
     .post(auth, controller.addMemberToUserTeam)
     .delete(auth, controller.removeMemberFromUserTeam)
+    // .patch(auth, controller.updTeamMemberWebsites)
+
+usersRouter.route('/users/team/member/websites')
+    .patch(auth, controller.updTeamMemberWebsites)
 
 usersRouter.route('/users/exclude/:id')
     .get(auth, controller.getExcludeUser);

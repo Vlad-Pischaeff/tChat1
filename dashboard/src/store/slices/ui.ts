@@ -5,7 +5,7 @@ import { notesApi } from 'store/api/notesApi';
 import { answersApi } from 'store/api/answersApi';
 import { websitesApi } from 'store/api/websitesApi';
 import { tTheme } from 'assets/style/utils';
-import { iNotes, iAnswers, iWebsites } from 'store/api/apiTypes';
+import { tUser, iNotes, iAnswers, iWebsites } from 'store/api/apiTypes';
 import { tServiceMenu } from 'pages/Dashboard/MainChat/Services/Types';
 import type { RootState } from 'store/store';
 
@@ -28,6 +28,7 @@ export enum eModal {
     changeImage = 'CHANGE_IMAGE',
     changeAlias = 'CHANGE_ALIAS',
     addMember = 'ADD_MEMBER',
+    editMemberSites = 'EDIT_MEMBER_SITES',
     none = 'NONE'
 }
 
@@ -41,6 +42,7 @@ export type UIType = {
     editedAnswer: iAnswers | null;
     editedSite: iWebsites | null;
     editedImage: string;
+    editedMember: tUser | null;          // м.б. использовать только ID
     serviceMenu: iItemServiceMenu;
     notesFilterColor: string;
     answersFilterIcon: string;
@@ -57,6 +59,7 @@ const initialState: UIType = {
     editedAnswer: null,
     editedSite: null,
     editedImage: '',
+    editedMember: null,
     serviceMenu: {
         noteActions: false,
         noteMark: false,
@@ -101,6 +104,9 @@ const slice = createSlice({
         setEditedImage: (state, { payload }: PayloadAction<string>) => {
             state.editedImage = payload;
         },
+        setEditedMember: (state, { payload }: PayloadAction<tUser | null>) => {
+            state.editedMember = payload;
+        },
         setItemServiceMenu: (state, { payload }: PayloadAction<iItemServiceMenu | null>) => {
             const obj = { ...state.serviceMenu };
             // ✅ reset all properties to "false"
@@ -126,10 +132,12 @@ const slice = createSlice({
         builder.addMatcher( isAnyOf(
                 usersApi.endpoints.loginUser.matchRejected,
                 usersApi.endpoints.addUser.matchRejected,
+                usersApi.endpoints.updateUser.matchRejected,
                 usersApi.endpoints.resetUserPassword.matchRejected,
                 usersApi.endpoints.getUserIdFromToken.matchRejected,
-                usersApi.endpoints.updateUserWebsite.matchRejected,
+                // usersApi.endpoints.updateUserWebsite.matchRejected,
                 usersApi.endpoints.addUserTeamMembers.matchRejected,
+                usersApi.endpoints.updateTeamMemberWebsites.matchRejected,
                 todosApi.endpoints.getTodo.matchRejected,
                 todosApi.endpoints.addTodo.matchRejected,
                 todosApi.endpoints.deleteTodo.matchRejected,
@@ -177,6 +185,7 @@ export const {
     setEditedAnswer,
     setEditedSite,
     setEditedImage,
+    setEditedMember,
     setItemServiceMenu,
     setNotesFilterColor,
     setAnswersFilterIcon,
@@ -198,6 +207,7 @@ export const selectUIEditedNote = (state: RootState) => state.ui.editedNote;
 export const selectUIEditedAnswer = (state: RootState) => state.ui.editedAnswer;
 export const selectUIEditedSite = (state: RootState) => state.ui.editedSite;
 export const selectUIEditedImage = (state: RootState) => state.ui.editedImage;
+export const selectUIEditedMember = (state: RootState) => state.ui.editedMember;
 
 export const selectUIAnswersFilterIcon = (state: RootState) => state.ui.answersFilterIcon;
 export const selectUINotesFilterColor = (state: RootState) => state.ui.notesFilterColor;

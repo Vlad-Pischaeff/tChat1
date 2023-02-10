@@ -5,14 +5,22 @@ import { ProfileAddSiteForm } from './ProfileAddSiteForm';
 import { ProfileChangeImageForm } from './ProfileChangeImageForm';
 import { ProfileChangeAliasForm } from './ProfileChangeAliasForm';
 import { ProfileAddTeamMemberForm } from './ProfileAddTeamMemberForm';
+import { ProfileTeamMemberSitesForm } from './ProfileTeamMemberSitesForm';
 
-type eProfileModals = Extract<eModal, eModal.addSite | eModal.changeImage | eModal.changeAlias | eModal.addMember>;
+type eProfileModals = Extract<eModal,
+        eModal.addSite |
+        eModal.changeImage |
+        eModal.changeAlias |
+        eModal.addMember |
+        eModal.editMemberSites
+    >;
 
 const MODAL_FORMS = {
-    [eModal.addSite]:       <ProfileAddSiteForm />,
-    [eModal.changeImage]:   <ProfileChangeImageForm />,
-    [eModal.changeAlias]:   <ProfileChangeAliasForm />,
-    [eModal.addMember]:     <ProfileAddTeamMemberForm />
+    [eModal.addSite]:           <ProfileAddSiteForm />,
+    [eModal.changeImage]:       <ProfileChangeImageForm />,
+    [eModal.changeAlias]:       <ProfileChangeAliasForm />,
+    [eModal.addMember]:         <ProfileAddTeamMemberForm />,
+    [eModal.editMemberSites]:   <ProfileTeamMemberSitesForm />
 }
 
 export const ProfileModals = () => {

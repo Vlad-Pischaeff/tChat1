@@ -36,7 +36,7 @@ export const ProfileTeam = ({ user }: iProps) => {
                         :   user.team.map(item => {
                                 return (
                                     <div key={item.member} role="listitem">
-                                        <ProfileTeamMember userId={item.member} />
+                                        <ProfileTeamMember user={item} />
                                     </div>
                                 )
                             })

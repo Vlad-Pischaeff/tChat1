@@ -26,14 +26,14 @@ export const usersApi = createApi({
             }),
             invalidatesTags: ['User'],
         }),
-        updateUserWebsite: builder.mutation({
-            query: (arg) => ({
-                url: `users/website/${arg.id}`,
-                method: 'PATCH',
-                body: { ...arg.body }
-            }),
-            invalidatesTags: ['User'],
-        }),
+        // updateUserWebsite: builder.mutation({
+        //     query: (arg) => ({
+        //         url: `users/website/${arg.id}`,
+        //         method: 'PATCH',
+        //         body: { ...arg.body }
+        //     }),
+        //     invalidatesTags: ['User'],
+        // }),
         addUserTeamMembers: builder.mutation({
             query: (arg) => ({
                 url: `users/team`,
@@ -46,6 +46,14 @@ export const usersApi = createApi({
             query: (arg) => ({
                 url: `users/team`,
                 method: 'DELETE',
+                body: { ...arg.body }
+            }),
+            invalidatesTags: ['User'],
+        }),
+        updateTeamMemberWebsites: builder.mutation({
+            query: (arg) => ({
+                url: `users/team/member/websites`,
+                method: 'PATCH',
                 body: { ...arg.body }
             }),
             invalidatesTags: ['User'],
@@ -89,9 +97,10 @@ export const {
     useLazyGetUserQuery,
     useAddUserMutation,
     useUpdateUserMutation,
-    useUpdateUserWebsiteMutation,
+    // useUpdateUserWebsiteMutation,
     useAddUserTeamMembersMutation,
     useRemoveUserTeamMembersMutation,
+    useUpdateTeamMemberWebsitesMutation,
     useLoginUserMutation,
     useResetUserPasswordMutation,
     useGetUserIdFromTokenMutation,

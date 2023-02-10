@@ -1,4 +1,5 @@
-type tMember = {
+export type tMember = {
+    id: string,
     member: string,
     sites: string[] | []
 }
