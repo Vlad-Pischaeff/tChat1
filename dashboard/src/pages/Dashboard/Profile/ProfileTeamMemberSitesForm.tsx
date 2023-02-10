@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from 'store/hook';
 import { selectCurrentUser } from 'store/slices/auth';
 import { useUpdateTeamMemberWebsitesMutation, useGetUserQuery } from 'store/api/usersApi';
 import { useWebsitesQuery } from 'store/api/websitesApi';
-import { setServicesModal, setEditedSite, selectUIEditedMember, eModal } from "store/slices/ui";
+import { setServicesModal, setEditedMember, selectUIEditedMember, eModal } from "store/slices/ui";
 import { withModalBG } from 'components/HOC';
 import s from 'assets/style/forms.module.sass';
 import sl from './Profile.module.sass';
@@ -47,7 +47,7 @@ const Form = () => {
 
     const closeModal = () => {
         resetField('sites');
-        dispatch(setEditedSite(null));
+        dispatch(setEditedMember(null));
         dispatch(setServicesModal(eModal.none));
     }
 
