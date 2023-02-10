@@ -53,14 +53,13 @@ const Form = () => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className={s.Form}>
-            <div className={s.FormBody}>
+            <div className={s.FormBody} role="listbox">
                 <fieldset>
                     <label>Add/remove observed sites</label>
                     { !!sites && sites.length !== 0
-                        ? (
-                            sites.map((site, idx) => {
+                        ?   sites.map((site, idx) => {
                                 return (
-                                    <div key={site.id} className={sl.PropertyContainer}>
+                                    <div key={site.id} className={sl.PropertyContainer} role="listitem">
                                         <p>{site.site}</p>
                                         <div className={sl.CheckboxContainer}>
                                             <input
@@ -74,12 +73,9 @@ const Form = () => {
                                     </div>
                                 )
                             })
-                        )
-                        : (
-                            <div>
+                        :   <div>
                                 <p>You have no managed web-sites...</p>
                             </div>
-                        )
                     }
                 </fieldset>
             </div>

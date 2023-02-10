@@ -52,7 +52,7 @@ export const ProfileTeamMember = ({ user }: iProps ) => {
                         </div>
                     </div>
 
-                    <div className={s.PropertyHash}>
+                    <div className={s.PropertyHash} role="listbox">
                         { !!SITES && (
                             SITES.length === 0
                                 ?   <div className={s.PropertyTitle}>
@@ -60,11 +60,11 @@ export const ProfileTeamMember = ({ user }: iProps ) => {
                                     </div>
                                 :   SITES.map((site) => {
                                         return (
-                                                <div key={site.id} >
-                                                    {site.site}
-                                                </div>
-                                            )
-                                        })
+                                            <div key={site.id} role="listitem">
+                                                {site.site}
+                                            </div>
+                                        )
+                                    })
                         )}
                     </div>
 
