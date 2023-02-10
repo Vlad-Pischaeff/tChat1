@@ -2,6 +2,7 @@ import React from 'react';
 import { useAppDispatch } from 'store/hook';
 import { setServicesModal, setEditedMember, eModal } from 'store/slices/ui';
 import { useGetUserQuery, useRemoveUserTeamMembersMutation } from 'store/api/usersApi';
+import { useWebsitesQuery } from 'store/api/websitesApi';
 import { tMember } from 'store/api/apiTypes';
 import * as ICON from 'assets/icons';
 import s from './Profile.module.sass';
@@ -13,6 +14,7 @@ interface iProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export const ProfileTeamMember = ({ user }: iProps ) => {
     const dispatch = useAppDispatch();
+    const { data: sites } = useWebsitesQuery('');
     const { data } = useGetUserQuery(user.member, { skip: !user.member });
     const [ removeUser ] = useRemoveUserTeamMembersMutation();
 
@@ -27,11 +29,24 @@ export const ProfileTeamMember = ({ user }: iProps ) => {
         }
     }
 
+    const isInList = (id: string) => {
+        return (user.sites as string[]).includes(id);
+    }
+
+    const filteredSites = () => {
+        if (!!sites) {
+            const arr = sites?.filter((site) => isInList(site.id));
+            return arr;
+        }
+    }
+
+    const SITES = filteredSites();
+
     return (
         <>
             { !!data &&
                 <div className={s.PropertyContainer} style={{ 'padding': '8px' }}>
-                    <div className={s.PropertyFlexRow}>
+                    <div className={`${s.PropertyFlexRow} ${s.flex11}`}>
                         <img
                             className={s.PropertyMemberIcon}
                             src={data.image}
@@ -45,19 +60,20 @@ export const ProfileTeamMember = ({ user }: iProps ) => {
                         </div>
                     </div>
 
-                    <div>
-                        { user.sites.length === 0
-                            ?   <div className={s.PropertyTitle}>
-                                    <p>No observed sites...</p>
-                                </div>
-                            :   user.sites.map((site) => {
-                                    return (
-                                            <div key={site}>
-                                                {site}
-                                            </div>
-                                        )
-                                    })
-                        }
+                    <div className={s.PropertyHash}>
+                        { !!SITES && (
+                            SITES.length === 0
+                                ?   <div className={s.PropertyTitle}>
+                                        <p>No observed sites...</p>
+                                    </div>
+                                :   SITES.map((site) => {
+                                        return (
+                                                <div key={site.id} >
+                                                    {site.site}
+                                                </div>
+                                            )
+                                        })
+                        )}
                     </div>
 
                     <div className={s.PropertyFlexRow}>
