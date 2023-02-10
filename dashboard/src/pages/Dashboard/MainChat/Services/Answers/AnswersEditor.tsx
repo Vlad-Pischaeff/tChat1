@@ -6,7 +6,7 @@ import { withModalBG } from 'components/HOC';
 import * as UI from 'components/ui';
 import s from 'assets/style/forms.module.sass';
 
-const AnswersEditorTmp = () => {
+const Editor = () => {
     const dispatch = useAppDispatch();
     const editedAnswer = useAppSelector(selectUIEditedAnswer);
     const [ updateAnswer ] = useEditAnswerMutation();
@@ -48,4 +48,4 @@ const AnswersEditorTmp = () => {
     );
 };
 
-export const AnswersEditor = withModalBG(AnswersEditorTmp);
+export const AnswersEditor = withModalBG(Editor);

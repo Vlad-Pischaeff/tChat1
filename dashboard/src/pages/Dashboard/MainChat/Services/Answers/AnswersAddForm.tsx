@@ -10,7 +10,7 @@ type tFormInputs = {
     description: string;
 }
 
-const AnswersAddFormTmp = () => {
+const Form = () => {
     const dispatch = useAppDispatch();
     const editedAnswer = useAppSelector(selectUIEditedAnswer);
     const [ addAnswer ] = useAddAnswerMutation();
@@ -67,4 +67,4 @@ const AnswersAddFormTmp = () => {
     );
 };
 
-export const AnswersAddForm = withModalBG(AnswersAddFormTmp);
+export const AnswersAddForm = withModalBG(Form);

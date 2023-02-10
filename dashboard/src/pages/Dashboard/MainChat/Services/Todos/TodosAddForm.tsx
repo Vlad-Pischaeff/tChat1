@@ -10,7 +10,7 @@ type tFormInputs = {
     description: string;
 }
 
-const TodosAddFormTmp = () => {
+const Form = () => {
     const dispatch = useAppDispatch();
     const [ addTodo ] = useAddTodoMutation();
     const { setFocus, register, resetField, handleSubmit } = useForm<tFormInputs>();
@@ -52,4 +52,4 @@ const TodosAddFormTmp = () => {
     );
 };
 
-export const TodosAddForm = withModalBG(TodosAddFormTmp);
+export const TodosAddForm = withModalBG(Form);

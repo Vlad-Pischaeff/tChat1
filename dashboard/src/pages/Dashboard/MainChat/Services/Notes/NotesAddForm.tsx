@@ -11,7 +11,7 @@ type tFormInputs = {
     description: string;
 }
 
-export const NotesAddFormTmp = () => {
+export const Form = () => {
     const dispatch = useAppDispatch();
     const editedNote = useAppSelector(selectUIEditedNote);
     const [ addNote ] = useAddNoteMutation();
@@ -79,4 +79,4 @@ export const NotesAddFormTmp = () => {
     );
 };
 
-export const NotesAddForm = withModalBG(NotesAddFormTmp);
+export const NotesAddForm = withModalBG(Form);
