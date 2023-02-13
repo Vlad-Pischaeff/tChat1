@@ -82,7 +82,6 @@ const usersController = () => {
      ****************************************** */
     const updateUser = async (req, res) => {
         try {
-            console.log('update..', req.body, req.id)
             const { id } = req.params;
             await Users.findByIdAndUpdate(id, req.body);
             const newUser = await Users.findOne({ _id: id });

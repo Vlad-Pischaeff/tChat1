@@ -14,14 +14,8 @@ type tTypes = typeof TYPES[number];
 export const Todos = () => {
     const dispatch = useAppDispatch();
     const servicesModal = useAppSelector(selectUIServicesModal);
-    // eslint-disable-next-line
-    const { refetch, data, isSuccess, isLoading } = useTodosQuery('');
+    const { data, isSuccess, isLoading } = useTodosQuery('');
     const [ checked, setChecked ] = useState<tTypes>("All");
-
-    // useEffect(() => {
-    //     refetch();
-    //     // eslint-disable-next-line
-    // }, []);
 
     const FILTER = useMemo(() => ({
         [TYPES[0]]: (data: iTodos[]) => data,
