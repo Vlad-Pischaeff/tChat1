@@ -1,9 +1,11 @@
 import React from 'react';
-import { MENU } from './Types';
 import { Todos } from 'pages/Dashboard/MainChat/Services/Todos';
 import { Mail } from 'pages/Dashboard/MainChat/Services/Mail';
 import { Notes } from 'pages/Dashboard/MainChat/Services/Notes';
 import { Answers } from 'pages/Dashboard/MainChat/Services/Answers';
+
+export const MENU = [ "Todos", "Notes", "Mail", "Answers" ] as const;
+export type tServiceMenu = typeof MENU[number];
 
 export const BODY = [
     { name: MENU[0], render: () => <Todos /> },

@@ -1,11 +1,10 @@
 import React from 'react';
+import { selectUIState } from 'store/slices/ui';
+import { useAppSelector } from 'store/hook';
 import { Snack } from './Snack';
 
-interface iProps extends React.HTMLAttributes<HTMLDivElement> {
-    message: string
-}
-
-export const SnackBar = ({ message }: iProps) => {
+export const SnackBar = () => {
+    const message = useAppSelector(selectUIState('message'));
 
     return message
         ?   <Snack message={message} />

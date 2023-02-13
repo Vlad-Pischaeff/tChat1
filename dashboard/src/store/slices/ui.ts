@@ -6,7 +6,7 @@ import { answersApi } from 'store/api/answersApi';
 import { websitesApi } from 'store/api/websitesApi';
 import { tTheme } from 'assets/style/utils';
 import { tUser, iNotes, iAnswers, iWebsites } from 'store/api/apiTypes';
-import { tServiceMenu } from 'pages/Dashboard/MainChat/Services/Types';
+import { tServiceMenu } from 'pages/Dashboard/MainChat/Services/ServicesVariables';
 import type { RootState } from 'store/store';
 
 export interface iItemServiceMenu {
