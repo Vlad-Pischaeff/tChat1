@@ -204,23 +204,22 @@ export function selectUIState<T extends UIKeys>(arg: T) {
 
 export const selectUI = (state: RootState) => state.ui;
 
-export const selectUITheme = (state: RootState) => state.ui.theme;
-export const selectUIMessage = (state: RootState) => state.ui.message;
-
 // ✅ interchanged with a universal selector
+// export const selectUITheme = (state: RootState) => state.ui.theme;
+// export const selectUIMessage = (state: RootState) => state.ui.message;
+
 // export const selectUIServices = (state: RootState) => state.ui.services;
-export const selectUIServicesModal = (state: RootState) => state.ui.servicesModal;
-export const selectUIServiceMenu = (state: RootState) => state.ui.serviceMenu;
+// export const selectUIServicesModal = (state: RootState) => state.ui.servicesModal;
+// export const selectUIServiceMenu = (state: RootState) => state.ui.serviceMenu;
 
-export const selectUIEditedNote = (state: RootState) => state.ui.editedNote;
-export const selectUIEditedAnswer = (state: RootState) => state.ui.editedAnswer;
+// export const selectUIEditedNote = (state: RootState) => state.ui.editedNote;
+// export const selectUIEditedAnswer = (state: RootState) => state.ui.editedAnswer;
 
-// ✅ interchanged with a universal selector
 // export const selectUIEditedSite = (state: RootState) => state.ui.editedSite;
 // export const selectUIEditedImage = (state: RootState) => state.ui.editedImage;
 // export const selectUIEditedMember = (state: RootState) => state.ui.editedMember;
 
-export const selectUIAnswersFilterIcon = (state: RootState) => state.ui.answersFilterIcon;
-export const selectUINotesFilterColor = (state: RootState) => state.ui.notesFilterColor;
+// export const selectUIAnswersFilterIcon = (state: RootState) => state.ui.answersFilterIcon;
+// export const selectUINotesFilterColor = (state: RootState) => state.ui.notesFilterColor;
 
-export const selectUIHiddenPanelServices = (state: RootState) => state.ui.hiddenPanelServices;
+// export const selectUIHiddenPanelServices = (state: RootState) => state.ui.hiddenPanelServices;

@@ -1,7 +1,7 @@
 import React from 'react';
 import parse from 'html-react-parser';
 import { useAppSelector, useAppDispatch } from 'store/hook';
-import { selectUIServiceMenu, setItemServiceMenu } from "store/slices/ui";
+import { selectUIState, setItemServiceMenu } from "store/slices/ui";
 import { NotesServiceMenu } from './NotesServiceMenu';
 import { NotesMarkServiceMenu } from './NotesMarkServiceMenu';
 import { removeContentEditableAttr } from 'assets/utils';
@@ -15,7 +15,7 @@ interface iProps extends React.HtmlHTMLAttributes<HTMLDetailsElement> {
 
 export const NotesItem = ({ note }: iProps) => {
     const dispatch = useAppDispatch();
-    const serviceMenu = useAppSelector(selectUIServiceMenu);
+    const serviceMenu = useAppSelector(selectUIState('serviceMenu'));
 
     const showMenu = (e: React.MouseEvent<HTMLDivElement>) => {
         e.preventDefault();

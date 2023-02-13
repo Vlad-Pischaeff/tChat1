@@ -1,18 +1,14 @@
 import React from 'react';
 import { useAppSelector, useAppDispatch } from 'store/hook';
-import {
-    setItemServiceMenu,
-    selectUIServiceMenu,
-    selectUIAnswersFilterIcon
-} from 'store/slices/ui';
+import { setItemServiceMenu, selectUIState } from 'store/slices/ui';
 import { AnswersFilterServiceMenu } from './AnswersFilterServiceMenu';
 import { SYMBOLS_OBJ } from './AnswersVariables';
 import s from '../Services.module.sass';
 
 export const AnswersMainListFooter = () => {
     const dispatch = useAppDispatch();
-    const answersFilterIcon = useAppSelector(selectUIAnswersFilterIcon);
-    const serviceMenu = useAppSelector(selectUIServiceMenu);
+    const answersFilterIcon = useAppSelector(selectUIState('answersFilterIcon'));
+    const serviceMenu = useAppSelector(selectUIState('serviceMenu'));
 
     const handlerShowFilterMenu = (e: React.MouseEvent<HTMLDivElement>) => {
         dispatch(setItemServiceMenu({ answersFilter: 'none' }));

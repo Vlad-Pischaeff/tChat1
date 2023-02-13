@@ -1,7 +1,7 @@
 import React from 'react';
 import parse from 'html-react-parser';
 import { useAppSelector, useAppDispatch } from 'store/hook';
-import { selectUIServiceMenu, setItemServiceMenu } from 'store/slices/ui';
+import { selectUIState, setItemServiceMenu } from 'store/slices/ui';
 import { iAnswers } from 'store/api/apiTypes';
 import { AnswersServiceMenu } from './AnswersServiceMenu';
 import { AnswersMarkServiceMenu } from './AnswersMarkServiceMenu';
@@ -16,7 +16,7 @@ interface iProps extends React.HtmlHTMLAttributes<HTMLDetailsElement> {
 
 export const AnswersItem = ({ answer }: iProps) => {
     const dispatch = useAppDispatch();
-    const serviceMenu = useAppSelector(selectUIServiceMenu);
+    const serviceMenu = useAppSelector(selectUIState('serviceMenu'));
 
     const showMenu = (e: React.MouseEvent<HTMLDivElement>) => {
         e.preventDefault();

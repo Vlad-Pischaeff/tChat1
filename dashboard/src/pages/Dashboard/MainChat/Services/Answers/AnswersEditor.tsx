@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from 'store/hook';
-import { selectUIEditedAnswer, setServicesModal, setEditedAnswer, setItemServiceMenu, eModal } from 'store/slices/ui';
+import { selectUIState, setServicesModal, setEditedAnswer, setItemServiceMenu, eModal } from 'store/slices/ui';
 import { useEditAnswerMutation } from 'store/api/answersApi';
 import { withModalBG } from 'components/HOC';
 import * as UI from 'components/ui';
@@ -8,7 +8,7 @@ import s from 'assets/style/forms.module.sass';
 
 const Editor = () => {
     const dispatch = useAppDispatch();
-    const editedAnswer = useAppSelector(selectUIEditedAnswer);
+    const editedAnswer = useAppSelector(selectUIState('editedAnswer'));
     const [ updateAnswer ] = useEditAnswerMutation();
     const [ convertedText, setConvertedText ] = useState('');
 

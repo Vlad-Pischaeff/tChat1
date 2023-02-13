@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAppSelector } from 'store/hook';
-import { selectUIServicesModal, eModal } from 'store/slices/ui';
+import { selectUIState, eModal } from 'store/slices/ui';
 import { ProfileAddSiteForm } from './ProfileAddSiteForm';
 import { ProfileChangeImageForm } from './ProfileChangeImageForm';
 import { ProfileChangeAliasForm } from './ProfileChangeAliasForm';
@@ -24,7 +24,7 @@ const MODAL_FORMS = {
 }
 
 export const ProfileModals = () => {
-    const modal = useAppSelector(selectUIServicesModal);
+    const modal = useAppSelector(selectUIState('servicesModal'));
 
     return (
         <>

@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from 'store/hook';
 import { changeTheme } from 'assets/style/utils';
-import { selectUITheme, setTheme } from 'store/slices/ui';
+import { selectUIState, setTheme } from 'store/slices/ui';
 import s from './ThemeToggle.module.sass';
 
 export const ThemeToggle = () => {
     const dispatch = useAppDispatch();
-    const theme = useAppSelector(selectUITheme);
+    const theme = useAppSelector(selectUIState('theme'));
 
     useEffect(() => {
         changeTheme(theme);

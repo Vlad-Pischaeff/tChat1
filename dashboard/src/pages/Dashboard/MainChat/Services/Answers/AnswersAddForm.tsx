@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useAppSelector, useAppDispatch } from 'store/hook';
-import { selectUIEditedAnswer, setServicesModal, setEditedAnswer, eModal } from 'store/slices/ui';
+import { selectUIState, setServicesModal, setEditedAnswer, eModal } from 'store/slices/ui';
 import { useAddAnswerMutation, useEditAnswerMutation } from 'store/api/answersApi';
 import { withModalBG } from 'components/HOC';
 import s from 'assets/style/forms.module.sass';
@@ -12,7 +12,7 @@ type tFormInputs = {
 
 const Form = () => {
     const dispatch = useAppDispatch();
-    const editedAnswer = useAppSelector(selectUIEditedAnswer);
+    const editedAnswer = useAppSelector(selectUIState('editedAnswer'));
     const [ addAnswer ] = useAddAnswerMutation();
     const [ updateAnswer ] = useEditAnswerMutation();
     const { setFocus, setValue, register, resetField, handleSubmit } = useForm<tFormInputs>();

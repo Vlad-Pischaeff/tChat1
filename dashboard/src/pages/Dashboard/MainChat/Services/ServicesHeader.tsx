@@ -1,10 +1,6 @@
 import React, { useMemo } from 'react';
 import { useAppSelector, useAppDispatch } from 'store/hook';
-import {
-    setServiceMenuCategory,
-    setHiddenPanelServices,
-    selectUIState
-} from 'store/slices/ui';
+import { setServiceMenuCategory, setHiddenPanelServices, selectUIState } from 'store/slices/ui';
 import { MENU, tServiceMenu} from './ServicesVariables';
 import * as ICON from 'assets/icons';
 import s from './Services.module.sass';

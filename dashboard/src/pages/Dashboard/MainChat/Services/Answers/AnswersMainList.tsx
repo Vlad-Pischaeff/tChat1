@@ -1,12 +1,12 @@
 import React from 'react';
 import { useAppSelector } from 'store/hook';
-import { selectUIAnswersFilterIcon } from 'store/slices/ui';
+import { selectUIState } from 'store/slices/ui';
 import { useAnswersQuery } from 'store/api/answersApi';
 import { AnswersItem } from './AnswersItem';
 import s from '../Services.module.sass';
 
 export const AnswersMainList = () => {
-    const answersFilterIcon = useAppSelector(selectUIAnswersFilterIcon);
+    const answersFilterIcon = useAppSelector(selectUIState('answersFilterIcon'));
     const { data, isSuccess, isLoading } = useAnswersQuery('');
 
     const filterData = () => {

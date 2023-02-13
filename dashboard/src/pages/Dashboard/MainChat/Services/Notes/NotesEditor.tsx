@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from 'store/hook';
 import {
-    selectUIEditedNote,
+    selectUIState,
     setServicesModal,
     setEditedNote,
     setItemServiceMenu,
@@ -14,7 +14,7 @@ import s from 'assets/style/forms.module.sass';
 
 const Editor = () => {
     const dispatch = useAppDispatch();
-    const editedNote = useAppSelector(selectUIEditedNote);
+    const editedNote = useAppSelector(selectUIState('editedNote'));
     const [ updateNote ] = useEditNoteMutation();
     const [ convertedText, setConvertedText ] = useState('');
 

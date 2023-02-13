@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAppSelector } from 'store/hook';
-import { selectUIServicesModal, eModal } from 'store/slices/ui';
+import { selectUIState, eModal } from 'store/slices/ui';
 import { AnswersAddForm } from './AnswersAddForm';
 import { AnswersEditor } from './AnswersEditor';
 
@@ -12,7 +12,7 @@ const MODAL_FORMS = {
 }
 
 export const AnswersModals = () => {
-    const modal = useAppSelector(selectUIServicesModal);
+    const modal = useAppSelector(selectUIState('servicesModal'));
 
     return (
         <>

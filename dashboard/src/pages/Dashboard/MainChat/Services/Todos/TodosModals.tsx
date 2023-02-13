@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAppSelector } from 'store/hook';
-import { selectUIServicesModal, eModal } from 'store/slices/ui';
+import { selectUIState, eModal } from 'store/slices/ui';
 import { TodosAddForm } from './TodosAddForm';
 
 type eTodosModals = Extract<eModal, eModal.todo>;
@@ -11,7 +11,7 @@ const MODAL_FORMS = {
 }
 
 export const TodosModals = () => {
-    const modal = useAppSelector(selectUIServicesModal);
+    const modal = useAppSelector(selectUIState('servicesModal'));
 
     return (
         <>

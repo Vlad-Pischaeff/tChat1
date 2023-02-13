@@ -1,12 +1,12 @@
 import React from 'react';
 import { useAppSelector } from 'store/hook';
-import { selectUINotesFilterColor } from 'store/slices/ui';
+import { selectUIState } from 'store/slices/ui';
 import { useNotesQuery } from 'store/api/notesApi';
 import { NotesItem } from './NotesItem';
 import s from '../Services.module.sass';
 
 export const NotesMainList = () => {
-    const notesFilterColor = useAppSelector(selectUINotesFilterColor);
+    const notesFilterColor = useAppSelector(selectUIState('notesFilterColor'));
     const { data, isSuccess, isLoading } = useNotesQuery('');
 
     const filterData = () => {
