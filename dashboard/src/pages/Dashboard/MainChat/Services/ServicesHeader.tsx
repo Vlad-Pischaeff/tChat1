@@ -3,7 +3,7 @@ import { useAppSelector, useAppDispatch } from 'store/hook';
 import {
     setServiceMenuCategory,
     setHiddenPanelServices,
-    selectUIServices
+    selectUIState
 } from 'store/slices/ui';
 import * as ICON from 'assets/icons';
 import { MENU, tServiceMenu} from './Types';
@@ -11,7 +11,7 @@ import s from './Services.module.sass';
 
 export const ServicesHeader = () => {
     const dispatch = useAppDispatch();
-    const services = useAppSelector(selectUIServices);
+    const services = useAppSelector(selectUIState('services'));
 
     const NAVIGATION = [
         { name: MENU[0], render: () => <ICON.TodosIcon active={services === MENU[0]} />},

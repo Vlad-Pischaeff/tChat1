@@ -4,7 +4,7 @@ import ReactCrop, { Crop, PixelCrop } from 'react-image-crop';
 import { canvasPreview, canvasHidden, customCenterCrop } from './ProfileUtils';
 import { useAppDispatch, useAppSelector } from 'store/hook';
 import { selectCurrentUser } from 'store/slices/auth';
-import { setServicesModal, setEditedImage, selectUIEditedImage, eModal } from 'store/slices/ui';
+import { setServicesModal, setEditedImage, selectUIState, eModal } from 'store/slices/ui';
 import { useUpdateUserMutation } from 'store/api/usersApi';
 import { withModalBG } from 'components/HOC';
 import s from 'assets/style/forms.module.sass';
@@ -18,7 +18,7 @@ const SCALE = 1;
 const Form = () => {
     const dispatch = useAppDispatch();
     const user = useAppSelector(selectCurrentUser);
-    const imgSrc = useAppSelector(selectUIEditedImage);
+    const imgSrc = useAppSelector(selectUIState('editedImage'));
     const imgRef = useRef<HTMLImageElement>(null);
     const previewCanvasRef = useRef<HTMLCanvasElement>(null);
     const hiddenCanvasRef = useRef<HTMLCanvasElement>(null);
@@ -78,7 +78,7 @@ const Form = () => {
     return (
         <form onSubmit={handleSubmit(onSubmit)} className={s.Form}>
             <div className={sl.imageContainer}>
-                { !!imgSrc
+                { (!!imgSrc && typeof imgSrc === 'string')
                     ?   <ReactCrop
                             crop={crop}
                             onChange={(_, percentCrop) => setCrop(percentCrop)}
@@ -94,8 +94,7 @@ const Form = () => {
                                     maxHeight: '300px',
                                     transform: `scale(${SCALE}) rotate(${ROTATE}deg)`
                                 }}
-                                onLoad={onImageLoad}
-                            />
+                                onLoad={onImageLoad} />
                         </ReactCrop>
                     :   <p>loading image...</p>
                 }

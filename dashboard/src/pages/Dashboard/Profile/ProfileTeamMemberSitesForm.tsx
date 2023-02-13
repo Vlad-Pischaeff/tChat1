@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from 'store/hook';
 import { selectCurrentUser } from 'store/slices/auth';
 import { useUpdateTeamMemberWebsitesMutation, useGetUserQuery } from 'store/api/usersApi';
 import { useWebsitesQuery } from 'store/api/websitesApi';
-import { setServicesModal, setEditedMember, selectUIEditedMember, eModal } from "store/slices/ui";
+import { setServicesModal, setEditedMember, selectUIState, eModal } from "store/slices/ui";
 import { withModalBG } from 'components/HOC';
 import s from 'assets/style/forms.module.sass';
 import sl from './Profile.module.sass';
@@ -15,7 +15,7 @@ type tFormInputs = {
 
 const Form = () => {
     const dispatch = useAppDispatch();
-    const member = useAppSelector(selectUIEditedMember);
+    const member = useAppSelector(selectUIState('editedMember'));
     const user = useAppSelector(selectCurrentUser);
     const { data: owner } = useGetUserQuery(user.id, { skip: !user.id });
     const { data: sites } = useWebsitesQuery('');
@@ -23,7 +23,7 @@ const Form = () => {
     const { setValue, register, resetField, handleSubmit } = useForm<tFormInputs>();
 
     useEffect(() => {
-        if (member) {
+        if (member && 'id' in member) {
             const observedSites = owner?.team.filter((user) => {
                 return user.member === member.id
             })
@@ -36,7 +36,7 @@ const Form = () => {
     }, [])
 
     const onSubmit = async (formData: tFormInputs) => {
-        if (!!member) {
+        if (!!member && 'id' in member) {
             if (formData.sites.length !== 0) {
                 const data = { memberID: member.id, sites: formData.sites }
                 updWebsites({ body: data });

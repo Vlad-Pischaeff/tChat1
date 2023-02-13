@@ -4,7 +4,7 @@ import bcrypt from 'bcryptjs-react';
 import randomstring from 'randomstring';
 import { useAppDispatch, useAppSelector } from 'store/hook';
 import { useAddWebsiteMutation, useEditWebsiteMutation } from 'store/api/websitesApi';
-import { setServicesModal, setEditedSite, selectUIEditedSite, eModal } from "store/slices/ui";
+import { setServicesModal, setEditedSite, selectUIState, eModal } from "store/slices/ui";
 import { withModalBG } from 'components/HOC';
 import s from 'assets/style/forms.module.sass';
 
@@ -14,7 +14,7 @@ type tFormInputs = {
 
 const Form = () => {
     const dispatch = useAppDispatch();
-    const editedSite = useAppSelector(selectUIEditedSite);
+    const editedSite = useAppSelector(selectUIState('editedSite'));
     const [ addSite ] = useAddWebsiteMutation();
     const [ updateSite ] = useEditWebsiteMutation();
     const { setFocus, setValue, register, resetField, handleSubmit } = useForm<tFormInputs>();
@@ -26,7 +26,9 @@ const Form = () => {
 
     useEffect(() => {
         // ✅ invoke when editing site
-        !!editedSite && setValue('siteName', editedSite.site);
+        if (editedSite && 'site' in editedSite) {
+            setValue('siteName', editedSite.site);
+        }
         // eslint-disable-next-line
     }, [editedSite]);
 
@@ -37,7 +39,7 @@ const Form = () => {
         const hash = await bcrypt.hashSync(key + site);
 
         if (formData.siteName) {
-            if (editedSite) {
+            if (!!editedSite && 'id' in editedSite) {
                 // ✅ invoke when edit site
                 updateSite({ id: editedSite.id, key, hash, site });
             } else {
