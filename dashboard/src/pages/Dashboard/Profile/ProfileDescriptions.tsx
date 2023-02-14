@@ -50,8 +50,8 @@ const ItemDescription = ({ title, desc }: iProp) => {
 
     return (
         <div className={s.Item} role="listitem">
-            <p className={s.ItemTitle}>{title}</p>
-            <p className={s.ItemValue}>{desc}</p>
+            <div className={s.ItemTitle}>{title}</div>
+            <div className={s.ItemValue}>{desc}</div>
         </div>
     );
 };
