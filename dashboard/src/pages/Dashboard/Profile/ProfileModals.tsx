@@ -3,7 +3,7 @@ import { useAppSelector } from 'store/hook';
 import { selectUIState, eModal } from 'store/slices/ui';
 import { ProfileAddSiteForm } from './ProfileAddSiteForm';
 import { ProfileChangeImageForm } from './ProfileChangeImageForm';
-import { ProfileChangeAliasForm } from './ProfileChangeAliasForm';
+import { ProfileChangePropertyForm } from './ProfileChangePropertyForm';
 import { ProfileAddTeamMemberForm } from './ProfileAddTeamMemberForm';
 import { ProfileTeamMemberSitesForm } from './ProfileTeamMemberSitesForm';
 
@@ -11,6 +11,7 @@ type eProfileModals = Extract<eModal,
         eModal.addSite |
         eModal.changeImage |
         eModal.changeAlias |
+        eModal.changeGreeting |
         eModal.addMember |
         eModal.editMemberSites
     >;
@@ -18,7 +19,8 @@ type eProfileModals = Extract<eModal,
 const MODAL_FORMS = {
     [eModal.addSite]:           <ProfileAddSiteForm />,
     [eModal.changeImage]:       <ProfileChangeImageForm />,
-    [eModal.changeAlias]:       <ProfileChangeAliasForm />,
+    [eModal.changeAlias]:       <ProfileChangePropertyForm userProperty="alias" />,
+    [eModal.changeGreeting]:    <ProfileChangePropertyForm userProperty="greeting" />,
     [eModal.addMember]:         <ProfileAddTeamMemberForm />,
     [eModal.editMemberSites]:   <ProfileTeamMemberSitesForm />
 }

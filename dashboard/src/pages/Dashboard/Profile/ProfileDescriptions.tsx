@@ -16,6 +16,10 @@ export const ProfileDescriptions = ({ user }: iProps) => {
         dispatch(setServicesModal(eModal.changeAlias));
     }
 
+    const openModalEditGreeting = () => {
+        dispatch(setServicesModal(eModal.changeGreeting));
+    }
+
     return (
         <div role="listbox">
             <ItemDescription title="Name: " desc={user.name} />
@@ -29,7 +33,7 @@ export const ProfileDescriptions = ({ user }: iProps) => {
             </div>
             <div className={s.ItemContainer}>
                 <ItemDescription title="Greeting: " desc={user.greeting} />
-                <div className={s.ItemIcon} onClick={openModalEditAlias}>
+                <div className={s.ItemIcon} onClick={openModalEditGreeting}>
                     <ICON.EditIcon />
                 </div>
             </div>
