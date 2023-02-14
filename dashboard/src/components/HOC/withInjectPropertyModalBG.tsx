@@ -1,23 +1,23 @@
-import React from "react";
+import React, { ComponentType } from "react";
 import s from './hocStyles.module.sass';
 
 interface iExtraProperty {
-    userProperty: 'alias' | 'greeting';
+    userProperty?: 'alias' | 'greeting';
 }
 
-export function withInjectPropertyModalBG<T extends iExtraProperty>(
-        WrappedComponent: React.ComponentType<T>
-    ){
-    const NewComp = (props: T) => {
-        return (
-            <div className={s.ModalWrap}>
-                <div className={s.ModalBG}></div>
-                <div className={s.ModalComponentContainer}>
-                    <WrappedComponent { ...(props as T)} />
-                </div>
-            </div>
-        )
-    };
+export const withInjectPropertyModalBG =
+    <T extends iExtraProperty>(WrappedComponent: ComponentType<T>) => {
 
-    return NewComp;
+        const NewComp = (props: T) => {
+            return (
+                <div className={s.ModalWrap}>
+                    <div className={s.ModalBG}></div>
+                    <div className={s.ModalComponentContainer}>
+                        <WrappedComponent { ...(props as T) } />
+                    </div>
+                </div>
+            )
+        };
+
+        return NewComp;
 }
