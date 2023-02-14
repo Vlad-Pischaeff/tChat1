@@ -13,7 +13,8 @@ export type tUser = {
     password?: string,
     date: string,
     image: string,
-    team: tMember[]
+    team: tMember[],
+    greeting: string
 }
 
 export interface iTodos {

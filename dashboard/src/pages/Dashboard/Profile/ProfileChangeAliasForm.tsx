@@ -21,8 +21,7 @@ const Form = () => {
     useEffect(() => {
         !!data && setValue('alias', data.alias);
         setFocus("alias", { shouldSelect: false });
-        // eslint-disable-next-line
-    }, []);
+    }, [setValue, setFocus, data]);
 
     const onSubmit = async (formData: tFormInputs) => {
         // ✅ вызываем API '/users', обновляем 'alias'

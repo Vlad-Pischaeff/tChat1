@@ -61,6 +61,11 @@ const schema = new Schema({
             }
         ]
     }],
+    greeting: {
+        type: String,
+        required: false,
+        default: 'Welcome to our website...'
+    },
 });
 
 module.exports = model('Users', schema);

@@ -27,6 +27,12 @@ export const ProfileDescriptions = ({ user }: iProps) => {
                     <ICON.EditIcon />
                 </div>
             </div>
+            <div className={s.ItemContainer}>
+                <ItemDescription title="Greeting: " desc={user.greeting} />
+                <div className={s.ItemIcon} onClick={openModalEditAlias}>
+                    <ICON.EditIcon />
+                </div>
+            </div>
         </div>
     );
 };
