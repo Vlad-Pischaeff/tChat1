@@ -21,16 +21,14 @@ const Form = () => {
 
     useEffect(() => {
         setFocus('siteName', { shouldSelect: false });
-        // eslint-disable-next-line
-    }, []);
+    }, [setFocus]);
 
     useEffect(() => {
         // ✅ invoke when editing site
         if (editedSite && 'site' in editedSite) {
             setValue('siteName', editedSite.site);
         }
-        // eslint-disable-next-line
-    }, [editedSite]);
+    }, [editedSite, setValue]);
 
     const onSubmit = async (formData: tFormInputs) => {
         // ✅ вызываем API '/websites', обновляем 'website'

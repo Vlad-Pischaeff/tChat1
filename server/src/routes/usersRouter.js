@@ -24,7 +24,7 @@ usersRouter.route('/users/:id')
 // usersRouter.route('/users/website/:siteID')
 //     .patch(auth, controller.updateUserWebsite)
 
-usersRouter.route('/users/team')
+usersRouter.route('/users/team/member')
     .post(auth, controller.addMemberToUserTeam)
     .delete(auth, controller.removeMemberFromUserTeam)
     // .patch(auth, controller.updTeamMemberWebsites)

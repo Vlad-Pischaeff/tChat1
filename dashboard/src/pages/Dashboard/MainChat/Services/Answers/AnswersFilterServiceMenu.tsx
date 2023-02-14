@@ -28,7 +28,7 @@ const AnswersFilterSM = ({ closeMenu }: iProps) => {
                 Show all...
             </div>
             <div className={s.ServiceMenuFooterGrid}>
-                { SYMBOLS.map(symbol =>
+                { SYMBOLS.map((symbol) => (
                     <div
                         key={symbol.key}
                         id={symbol.key}
@@ -38,7 +38,7 @@ const AnswersFilterSM = ({ closeMenu }: iProps) => {
                     >
                         {symbol.render()}
                     </div>
-                )}
+                ))}
             </div>
         </div>
     );

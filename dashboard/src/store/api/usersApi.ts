@@ -28,7 +28,7 @@ export const usersApi = createApi({
         }),
         addUserTeamMembers: builder.mutation({
             query: (arg) => ({
-                url: `users/team`,
+                url: `users/team/member`,
                 method: 'POST',
                 body: { ...arg.body }
             }),
@@ -36,7 +36,7 @@ export const usersApi = createApi({
         }),
         removeUserTeamMembers: builder.mutation({
             query: (arg) => ({
-                url: `users/team`,
+                url: `users/team/member`,
                 method: 'DELETE',
                 body: { ...arg.body }
             }),

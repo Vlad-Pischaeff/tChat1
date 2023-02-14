@@ -17,8 +17,7 @@ const Form = () => {
 
     useEffect(() => {
         setFocus('description', { shouldSelect: false });
-        // eslint-disable-next-line
-    }, []);
+    }, [setFocus]);
 
     const onSubmit = (data: tFormInputs) => {
         // ✅ вызываем API '/todos', добавляем 'todo'

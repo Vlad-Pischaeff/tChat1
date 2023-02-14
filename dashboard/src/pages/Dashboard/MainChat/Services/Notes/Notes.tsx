@@ -15,7 +15,11 @@ export const Notes = () => {
 
     return (
         <>
-            <input type="button" className={s.AddItem} value="+ add note" onClick={openModal} />
+            <input
+                type="button"
+                className={s.AddItem}
+                value="+ add note"
+                onClick={openModal} />
 
             <NotesModals />
 

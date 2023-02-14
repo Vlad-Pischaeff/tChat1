@@ -42,8 +42,7 @@ const Editor = () => {
                 content={convertedText}
                 setContent={setConvertedText}
                 onClose={closeModal}
-                onSubmit={onSubmit}
-            />
+                onSubmit={onSubmit} />
         </div>
     );
 };

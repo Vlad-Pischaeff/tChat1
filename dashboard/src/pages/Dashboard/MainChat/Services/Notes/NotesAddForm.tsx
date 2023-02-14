@@ -20,8 +20,7 @@ export const Form = () => {
 
     useEffect(() => {
         setFocus('title', { shouldSelect: false });
-        // eslint-disable-next-line
-    }, []);
+    }, [setFocus]);
 
     useEffect(() => {
         // ✅ invoke when editing note
@@ -29,8 +28,7 @@ export const Form = () => {
             setValue('title', editedNote.title);
             setValue('description', editedNote.description);
         }
-        // eslint-disable-next-line
-    }, [editedNote]);
+    }, [editedNote, setValue]);
 
     const onSubmit = (data: tFormInputs) => {
         if (editedNote) {

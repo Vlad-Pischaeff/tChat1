@@ -15,7 +15,11 @@ export const Todos = () => {
 
     return (
         <>
-            <input type="button" className={s.AddItem} value="+ add todo" onClick={openModal} />
+            <input
+                type="button"
+                className={s.AddItem}
+                value="+ add todo"
+                onClick={openModal} />
 
             <TodosModals />
 

@@ -19,8 +19,7 @@ export const Answers = () => {
                 type="button"
                 className={s.AddItem}
                 value="+ add answer"
-                onClick={openModal}
-            />
+                onClick={openModal} />
 
             <AnswersModals />
 

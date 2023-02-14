@@ -19,14 +19,12 @@ const Form = () => {
 
     useEffect(() => {
         setFocus('description', { shouldSelect: false });
-        // eslint-disable-next-line
-    }, []);
+    }, [setFocus]);
 
     useEffect(() => {
         // ✅ invoke when editing note
         !!editedAnswer && setValue('description', editedAnswer.description);
-        // eslint-disable-next-line
-    }, [editedAnswer]);
+    }, [editedAnswer, setValue]);
 
     const onSubmit = (data: tFormInputs) => {
         if (editedAnswer) {
