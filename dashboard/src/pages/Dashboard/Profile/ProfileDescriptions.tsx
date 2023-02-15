@@ -1,7 +1,6 @@
 import React from 'react';
 import { useAppDispatch } from 'store/hook';
-// import { UserIcons } from '@telebox/assets/icons';
-// import { lion, bear, microbe } from '@telebox/assets/svg';
+import { UserIconsSVG, UserIconsPNG } from '@telebox/assets/icons';
 import { setServicesModal, eModal } from 'store/slices/ui';
 import { tUser } from 'store/api/apiTypes';
 import * as ICON from 'assets/icons';
@@ -39,12 +38,12 @@ export const ProfileDescriptions = ({ user }: iProps) => {
                     <ICON.EditIcon />
                 </div>
             </div>
-            {/* <div>
-                <img src={UserIcons.user47} />
+            <div>
+                <img src={UserIconsPNG.user43} alt="" />
             </div>
             <div>
-                <img src={microbe} />
-            </div> */}
+                <img src={UserIconsSVG.microbe} alt="" />
+            </div>
         </div>
     );
 };

@@ -3,9 +3,9 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
-        "@telebox/assets": "file:../packages/assets",
         "@icon/icofont": "^1.0.1-alpha.1",
         "@reduxjs/toolkit": "^1.9.0",
+        "@telebox/assets": "file:../packages/assets",
         "@testing-library/jest-dom": "^5.16.5",
         "@testing-library/react": "^13.4.0",
         "@testing-library/user-event": "^14.4.3",
