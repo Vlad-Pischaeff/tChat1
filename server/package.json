@@ -29,7 +29,8 @@
         "make-random": "^3.0.2",
         "mongoose": "^6.4.2",
         "nodemailer": "^6.8.0",
-        "tChat1": "file:.."
+        "tChat1": "file:..",
+        "ws": "^8.12.1"
     },
     "devDependencies": {
         "cross-env": "^7.0.3",

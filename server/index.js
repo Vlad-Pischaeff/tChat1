@@ -11,3 +11,4 @@ require('#s/startup/cors')(app);
 require('#s/startup/bodyParser')(app);
 require('#s/startup/routes')(app);
 require('#s/startup/server')(server);
+require('#s/startup/ws')(server);
