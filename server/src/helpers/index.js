@@ -7,8 +7,8 @@ let mappedSites = {}, mappedUsers = {};
 
 exports.doWebSitesHashReduce = async () => {
     try {
-        const websites = await Websites.find({});
-        const users = await Users.find({});
+        const websites = await Websites.find();
+        const users = await Users.find();
 
         mappedSites = websites.reduce((summary, item) => {   // mappedSites
             summary[item.id.toString()] = {
@@ -21,7 +21,8 @@ exports.doWebSitesHashReduce = async () => {
         }, {});
 
         mappedUsers = users.reduce((summary, item) => {     // mappedUsers
-            return summary.push( ...item.team ), summary;
+            summary.push( ...item.team )
+            return summary;
         }, []);
 
         mappedUsers.forEach((item) => {
