@@ -46,3 +46,6 @@ export const user44 = require('./user44.png');
 export const user45 = require('./user45.png');
 export const user46 = require('./user46.png');
 export const user47 = require('./user47.png');
+export const user48 = require('./user48.png');
+export const user49 = require('./user49.png');
+export const user50 = require('./user50.png');
