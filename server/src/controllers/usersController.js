@@ -12,6 +12,7 @@ const {
     fillTodosTemplates,
     // fillWebTemplates         // use for development
 } = require('#s/templates/index');
+const { doWebSitesHashReduce } = require('#s/helpers/index');
 
 const usersController = () => {
     /** ******************************************
@@ -55,6 +56,7 @@ const usersController = () => {
             const { refreshToken, accessToken, id } = userData;
 
             // await fillWebTemplates(id);          // use for development
+            await doWebSitesHashReduce();
 
             res.cookie('refreshToken', refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true });
             res.status(201).json({ accessToken, id });
@@ -86,38 +88,13 @@ const usersController = () => {
             await Users.findByIdAndUpdate(id, req.body);
             const newUser = await Users.findOne({ _id: id });
 
+            await doWebSitesHashReduce();
+
             res.status(201).json(newUser);
         } catch (e) {
             res.status(500).json({ message: `Update user error, details... ${e.message}` });
         }
     };
-    /** ******************************************
-     * update user - host/api/users/website/${siteID}
-     * @param {string} siteID - site ID
-     ****************************************** */
-    // const updateUserWebsite = async (req, res) => {
-    //     try {
-    //         const { siteID } = req.params;
-    //         const userID = req.id;
-    //         const { site, key, hash } = req.body;
-
-    //         await Users.updateOne(
-    //             { _id: userID, 'websites._id': siteID },
-    //             { $set: {
-    //                     "websites.$.site": site,
-    //                     "websites.$.hash": hash,
-    //                     "websites.$.key": key,
-    //                 }
-    //             }
-    //         );
-
-    //         const newUser = await Users.findOne({ _id: userID });
-
-    //         res.status(201).json(newUser);
-    //     } catch (e) {
-    //         res.status(500).json({ message: `Update user websites error, details... ${e.message}` });
-    //     }
-    // };
     /** ******************************************
      * add member to user's team - host/api/users/team
      ****************************************** */
@@ -133,6 +110,8 @@ const usersController = () => {
             if ('checkError' in updatedUser) {
                 throw new Error(updatedUser.checkError);
             }
+
+            await doWebSitesHashReduce();
 
             res.status(201).json(updatedUser);
         } catch (e) {
@@ -157,6 +136,8 @@ const usersController = () => {
                 }
             );
 
+            await doWebSitesHashReduce();
+
             const owner = await Users.findOne({ _id: userID });
 
             res.status(201).json(owner);
@@ -179,6 +160,8 @@ const usersController = () => {
                     }
                 }
             );
+
+            await doWebSitesHashReduce();
 
             const newUser = await Users.findOne({ _id: userID });
 
@@ -274,7 +257,6 @@ const usersController = () => {
         loginUser,
         logoutUser,
         updateUser,
-        // updateUserWebsite,
         addMemberToUserTeam,
         removeMemberFromUserTeam,
         updTeamMemberWebsites,
