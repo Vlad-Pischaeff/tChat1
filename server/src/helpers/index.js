@@ -24,13 +24,12 @@ exports.doWebSitesHashReduce = async () => {
             summary.push( ...item.team )
             return summary;
         }, []);
-        // console.log('✅ mappedSites => \n', mappedSites, '\n✅ mappedUsers => \n', mappedUsers);
+
         mappedUsers.forEach((item) => {
             if (item.sites.lenght !== 0) {
                 item.sites.forEach((site) => {
                     let siteId = site.toString();
                     let memberId = item.member.toString();
-                    // console.log('✅ item => \n', mappedSites[siteId], siteId, site )
                     mappedSites[siteId].teamUserIds.push(memberId);
                 })
             }
