@@ -1,6 +1,7 @@
 'use strict';
 
 const Websites = require('#s/models/websites');
+const Users = require('#s/models/users');
 
 class WebsitesService {
     async aggregateWebsites(req) {
@@ -32,6 +33,24 @@ class WebsitesService {
         }
 
         return websites;
+    }
+
+    async removeWebsiteFromAllDocuments(req) {
+        const userID = req.id;
+        const siteID = req.params.id;
+
+        // ✅ remove site
+        await Websites.deleteOne({ _id: siteID });
+
+        // ✅ remove site from members sites
+        await Users.updateMany(
+            { _id: userID },
+            { $pull:
+                {
+                    'team.$[].sites': { $eq: siteID }
+                }
+            }
+        );
     }
 }
 

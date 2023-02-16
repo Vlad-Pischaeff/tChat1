@@ -1,6 +1,7 @@
 'use strict';
 
 const Websites = require('#s/models/websites');
+const Users = require('#s/models/users');
 const WebsitesService = require('#s/services/websitesService');
 
 const websitesController = () => {
@@ -66,10 +67,9 @@ const websitesController = () => {
      ****************************************** */
     const deleteWebsite = async (req, res) => {
         try {
-            const { id } = req.params;
-            await Websites.deleteOne({ _id: id });
+            await WebsitesService.removeWebsiteFromAllDocuments(req);
 
-            res.status(201).json({ message: 'Website deleted succsessfully...' });
+            res.status(201).json({ message: 'Website deleted successfully...' });
         } catch (e) {
             res.status(500).json({ message: `Delete website error, details... ${e.message}` });
         }
