@@ -1,0 +1,336 @@
+/**
+ * *************************************** General variables
+ * */
+ @font-face {
+  font-family: Esqadero;
+  src: url("./fonts/Esqadero FF CY 4F-Regular.woff2") format("woff2");
+  src: url("./fonts/Esqadero FF CY 4F-Regular.woff") format("woff");
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: Jura;
+  src: url("./fonts/Jura.woff2") format("woff2");
+  src: url("./fonts/Jura.woff") format("woff");
+  font-style: normal;
+  font-weight: normal;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: white;
+}
+
+body {
+  font-family: "Esqadero", sans-serif;
+  font-size: 1rem;
+  line-height: 1em;
+  overflow: hidden;
+}
+
+.cp {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+}
+.cp_logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  font-size: .6rem;
+  padding: .2rem 0;
+  background: #14262b;
+}
+.cp_logo a {
+  color: aqua;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: .2rem;
+}
+.cp_header, .cp_footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+}
+.cp_header {
+  height: 6rem;
+  background: #2e3842;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+.cp_header-avatar {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 5rem;
+          flex: 0 0 5rem;
+  position: relative;
+  padding: 0.5rem 0 0 0.5rem;
+  height: 5rem;
+}
+.cp_header-avatarimg {
+  position: absolute;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #00ffff7a;
+}
+.cp_header-card {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  margin: 0.5rem;
+  width: 50%;
+}
+.cp_header-card-1 {
+  color: aqua;
+  text-shadow: 0 0 6px aqua;
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
+  padding: 0.2rem;
+}
+.cp_header-card-2 {
+  font-family: "Jura", sans-serif;
+  color: aqua;
+  text-shadow: 0 0 6px aqua;
+  white-space: break-spaces;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
+  height: 3.4rem;
+  padding: 0.2rem;
+}
+.cp_footer {
+  height: 3rem;
+}
+.cp_body {
+  flex: 1 1 auto;
+  width: 100%;
+  background: #777;
+  overflow: auto;
+  min-width: 12rem;
+}
+.chat_field {
+  padding: 1rem;
+  height: 100%;   /* to enable scrollTo */
+  overflow: auto; /* to enable scrollTo */
+}
+.chat_field-message {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.chat_field-message[data-align=to] {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+.chat_field-message[data-align=from] {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+.chat_field-messageto, .chat_field-messagefrom {
+  position: relative;
+  max-width: 70%;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+
+  opacity: 1;
+  -webkit-animation: show 0.5s ease-in-out;
+          animation: show 0.5s ease-in-out;
+}
+.chat_field-messageto {
+  border-radius: 1rem 1rem 1rem 0/1rem 1rem 1rem 0;
+  background: #555;
+  -webkit-box-shadow: 0 0 1rem #6bffffc4;
+          box-shadow: 0 0 1rem #6bffffc4;
+}
+.chat_field-messageto .msg-text {
+  font-family: "Jura", sans-serif;
+  line-height: 1.2rem;
+  color: aqua;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.chat_field-messagefrom {
+  border-radius: 1rem 1rem 0 1rem/1rem 1rem 0 1rem;
+  background: darkturquoise;
+  -webkit-box-shadow:  0 0 .7rem #333;
+          box-shadow:  0 0 .7rem #333;
+}
+.chat_field-messagefrom .msg-text {
+  font-family: "Jura", sans-serif;
+  line-height: 1.2rem;
+  color: black;
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chat_input {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  background: #454545;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+}
+.chat_input-text {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  height: 3rem;
+  width: 80%;
+  color: #000;
+  background: #454545;
+  border: none;
+  font-family: "Esqadero", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 300;
+  line-height: 1.5rem;
+  padding: 0 0.5rem 0 0.5rem;
+}
+.chat_input-text::-webkit-input-placeholder {
+  font-size: 0.9rem;
+}
+.chat_input-text::-moz-placeholder {
+  font-size: 0.9rem;
+}
+.chat_input-text:-ms-input-placeholder {
+  font-size: 0.9rem;
+}
+.chat_input-text::-ms-input-placeholder {
+  font-size: 0.9rem;
+}
+.chat_input-text::placeholder {
+  font-size: 0.9rem;
+  color: #aaa;
+}
+.chat_input-text:focus {
+  outline: none;
+  background: ivory;
+}
+.chat_input-icon {
+  height: 3rem;
+  width: 3rem;
+  padding: 0.5rem;
+  -webkit-filter: grayscale(100%);
+          filter: grayscale(100%);
+}
+.chat_input-icon:hover {
+  -webkit-filter: grayscale(0);
+          filter: grayscale(0);
+  background: #000;
+  cursor: pointer;
+}
+
+
+.msg-data {
+  font-size: 0.8rem;
+  font-family: "Jura", sans-serif;
+}
+.chat_field-messagefrom .msg-data {
+  color: #555;
+}
+.chat_field-messageto .msg-data {
+  color: #aaa;
+}
+
+.online_status {
+  position: absolute;
+  bottom: 0.3rem;
+  right: 0.3rem;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background: rgb(205, 255, 154);
+  animation: signal 1s infinite ease-in-out;
+}
+.online_status-off {
+  position: absolute;
+  bottom: 0.3rem;
+  right: 0.3rem;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background: #444;
+  border: 1px solid #888;
+}
+
+.service {
+  font-family: Jura;
+  font-size: .9rem;
+  color: #333;
+  padding: .2rem;
+}
+
+/**
+ * icons style
+ */
+.b-icon, .w-icon {
+  height: 2rem;
+}
+.b-icon:hover,
+.w-icon:hover,
+.p_icon:hover {
+  cursor: pointer;
+  filter: drop-shadow(0px 0px .5rem aqua);
+}
+.w-icon, .p_icon {
+  filter: grayscale(100%);
+}
+.b-icon {
+  filter: grayscale(100%) invert(100%);
+}
+.p_icon {
+  width: 2.5rem;
+  margin: .5rem;
+}
+
+/**/
+@-webkit-keyframes show {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes signal {
+  0% {
+    background: rgb(115, 128, 123);
+  }
+  50% {
+    background: aquamarine;
+    box-shadow: 0 0 4px aquamarine;
+  }
+  100% {
+    background: rgb(115, 128, 123);
+  }
+}
